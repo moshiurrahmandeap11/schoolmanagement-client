@@ -1,13 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router";
-import logo from "../../../assets/logo.jpeg"; 
+import logo from "../../../assets/logo.jpeg";
 import useAuth from "../../../hooks/useAuth/useAuth";
 import Loader from "../Loader/Loader";
+import CustomButton from "../CustomButton/CustomButton";
+import axiosInstance from "../../../hooks/axiosInstance/axiosInstance";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const {user, loading} = useAuth();
+  const { user, loading, logOut } = useAuth();
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const res = await axiosInstance.get(`/users/uid/${user?.uid}`);
+        setProfile(res.data.data);
+      } catch {
+        setProfile(null);
+      }
+    };
+
+    fetchProfile();
+  }, [user?.uid]);
 
   const navlinks = (
     <>
@@ -75,11 +91,21 @@ const Navbar = () => {
   );
 
   const handleLogin = () => {
-navigate("/auth/login");
-  }
+    navigate("/auth/login");
+  };
 
-  if(loading){
-    return <Loader></Loader>
+  const handleLogOut = async () => {
+    try {
+      await logOut();
+      navigate("/");
+    } catch (error) {
+      console.error("Logout failed:", error);
+      alert("Logout failed: " + error.message);
+    }
+  };
+
+  if (loading) {
+    return <Loader />;
   }
 
   return (
@@ -88,12 +114,11 @@ navigate("/auth/login");
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center justify-center gap-4">
-            <img 
-  className="w-full max-w-[72px] h-auto rounded-2xl object-contain" 
-  src={logo} 
-  alt="BrightFuture Logo" 
-/>
-
+            <img
+              className="w-full max-w-[72px] h-auto rounded-2xl object-contain"
+              src={logo}
+              alt="BrightFuture Logo"
+            />
             <h1 className="text-xl font-bold">BrightFuture International</h1>
           </div>
 
@@ -102,17 +127,22 @@ navigate("/auth/login");
             {navlinks}
           </div>
 
-          {/* Login Button */}
+          {/* Login/Logout Button */}
           <div className="hidden md:block">
-            {
-                user ? (
-                    user?.displayName || "ghost"
-                ) : (
-                    <button onClick={handleLogin} className="bg-[#0F5EF6] text-white px-6 py-2 rounded-md hover:bg-[#0b4cd1] transition-colors duration-300">
-              Login
-            </button>
-                )
-            }
+            {user ? (
+              <>
+                <span className="text-lg font-medium text-gray-800">
+                  {profile?.fullName || "Guest"}
+                </span>
+                <CustomButton onClick={handleLogOut} className="ml-4">
+                  Logout
+                </CustomButton>
+              </>
+            ) : (
+              <CustomButton onClick={handleLogin}>
+                Login
+              </CustomButton>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -154,15 +184,20 @@ navigate("/auth/login");
         <div className="md:hidden bg-white border-t border-gray-200">
           <div className="flex flex-col gap-4 px-4 py-6">
             {navlinks}
-            {
-                user ? (
-                    user?.displayName || "ghost"
-                ) : (
-                    <button onClick={handleLogin} className="bg-[#0F5EF6] text-white px-6 py-2 rounded-md hover:bg-[#0b4cd1] transition-colors duration-300">
-              Login
-            </button>
-                )
-            }
+            {user ? (
+              <>
+                <span className="text-lg font-medium text-gray-800">
+                  {profile?.fullName || "Guest"}
+                </span>
+                <CustomButton onClick={handleLogOut}>
+                  Logout
+                </CustomButton>
+              </>
+            ) : (
+              <CustomButton onClick={handleLogin}>
+                Login
+              </CustomButton>
+            )}
           </div>
         </div>
       )}
