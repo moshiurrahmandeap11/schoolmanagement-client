@@ -10,6 +10,8 @@ import About from "../../pages/About/About";
 import Author from "../../pages/Author/Author";
 import Results from "../../pages/Results/Results";
 import Contact from "../../pages/Contact/Contact";
+import DashboardLayout from "../../layouts/DashboardLayout/DashboardLayout";
+import NormalDashboard from "../../components/DashboardComponent/NormalDashboard/NormalDashboard";
 
 export const route = createBrowserRouter([
   {
@@ -37,6 +39,16 @@ export const route = createBrowserRouter([
             path: "signup",
             element: <SignUp></SignUp>
         }
+    ]
+  },
+  {
+    path: "/",
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
+      {
+        path: "dashboard",
+        element: <NormalDashboard></NormalDashboard>
+      }
     ]
   }
 ]);
