@@ -1,162 +1,141 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router";
-import logo from "../../../assets/logo.jpeg";
-import useAuth from "../../../hooks/useAuth/useAuth";
-import Loader from "../Loader/Loader";
-import CustomButton from "../CustomButton/CustomButton";
-import axiosInstance from "../../../hooks/axiosInstance/axiosInstance";
+import React, { useState } from "react";
+import { NavLink } from "react-router";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
-  const { user, loading, logOut } = useAuth();
-  const [profile, setProfile] = useState(null);
+  const [openSubmenu, setOpenSubmenu] = useState(null);
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const res = await axiosInstance.get(`/users/uid/${user?.uid}`);
-        setProfile(res.data.data);
-      } catch {
-        setProfile(null);
-      }
-    };
+  // Menu data with submenus
+  const menuItems = [
+    { name: "প্রচ্ছদ", path: "/" },
+    {
+      name: "প্রশাসন",
+      submenu: [
+        { name: "শিক্ষকমণ্ডলীর তালিকা", path: "/teachers" },
+        { name: "কর্মকর্তা-কর্মচারীদের তালিকা", path: "/staff" },
+        { name: "প্রধান শিক্ষকগণের নামের তালিকা", path: "/head-teachers" }
+      ]
+    },
+    { name: "শিক্ষার্থীদের তথ্য", path: "/students" },
+    {
+      name: "ভর্তি",
+      submenu: [
+        { name: "ভর্তি তথ্য", path: "/admission-info" },
+        { name: "ভর্তি ফরম", path: "/admission-form" }
+      ]
+    },
+    { name: "ডাউনলোড", path: "/downloads" },
+    { name: "রুটিন", path: "/routine" },
+    { name: "ফলাফল", path: "/results" },
+    { name: "নোটিশ", path: "/notices" },
+    { name: "ব্লগ", path: "/blog" },
+    {
+      name: "গ্যালারী",
+      submenu: [
+        { name: "ফটো গ্যালারী", path: "/photo-gallery" },
+        { name: "ভিডিও গ্যালারী", path: "/video-gallery" }
+      ]
+    },
+    {
+      name: "বিভিন্ন তথ্য",
+      submenu: [
+        { name: "কক্ষ সংখ্যা", path: "/classrooms" },
+        { name: "কম্পিউটার ব্যবহার", path: "/computer-facilities" },
+        { name: "ছাত্র-ছাত্রীদের আসন সংখ্যা", path: "/seats" },
+        { name: "ভৌতকাঠামো", path: "/infrastructure" },
+        { name: "মাল্টিমিডিয়া ক্লাসরুম", path: "/multimedia-classrooms" },
+        { name: "যানবাহন সুবিধা", path: "/transport" },
+        { name: "শূণ্যপদের তালিকা", path: "/vacancies" },
+        { name: "ছুটির তালিকা", path: "/holidays" },
+        { name: "সহপাঠ", path: "/co-curricular" },
+        { name: "সার্কুলার", path: "/circulars" }
+      ]
+    },
+    { name: "যোগাযোগ", path: "/contact" }
+  ];
 
-    fetchProfile();
-  }, [user?.uid]);
-
-  const navlinks = (
-    <>
-      <NavLink
-        to="/"
-        className={({ isActive }) =>
-          `relative text-lg font-medium transition-colors duration-300 ${
-            isActive ? "text-[#0F5EF6]" : "text-gray-800 hover:text-[#0F5EF6]"
-          } after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:h-[2px] after:bg-[#0F5EF6] after:transition-all after:duration-300 ${
-            isActive ? "after:w-full" : "after:w-0 hover:after:w-full"
-          }`
-        }
-      >
-        Home
-      </NavLink>
-      <NavLink
-        to="/about"
-        className={({ isActive }) =>
-          `relative text-lg font-medium transition-colors duration-300 ${
-            isActive ? "text-[#0F5EF6]" : "text-gray-800 hover:text-[#0F5EF6]"
-          } after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:h-[2px] after:bg-[#0F5EF6] after:transition-all after:duration-300 ${
-            isActive ? "after:w-full" : "after:w-0 hover:after:w-full"
-          }`
-        }
-      >
-        About
-      </NavLink>
-      <NavLink
-        to="/author"
-        className={({ isActive }) =>
-          `relative text-lg font-medium transition-colors duration-300 ${
-            isActive ? "text-[#0F5EF6]" : "text-gray-800 hover:text-[#0F5EF6]"
-          } after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:h-[2px] after:bg-[#0F5EF6] after:transition-all after:duration-300 ${
-            isActive ? "after:w-full" : "after:w-0 hover:after:w-full"
-          }`
-        }
-      >
-        Author
-      </NavLink>
-      <NavLink
-        to="/results"
-        className={({ isActive }) =>
-          `relative text-lg font-medium transition-colors duration-300 ${
-            isActive ? "text-[#0F5EF6]" : "text-gray-800 hover:text-[#0F5EF6]"
-          } after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:h-[2px] after:bg-[#0F5EF6] after:transition-all after:duration-300 ${
-            isActive ? "after:w-full" : "after:w-0 hover:after:w-full"
-          }`
-        }
-      >
-        Results
-      </NavLink>
-      <NavLink
-        to="/contact"
-        className={({ isActive }) =>
-          `relative text-lg font-medium transition-colors duration-300 ${
-            isActive ? "text-[#0F5EF6]" : "text-gray-800 hover:text-[#0F5EF6]"
-          } after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:h-[2px] after:bg-[#0F5EF6] after:transition-all after:duration-300 ${
-            isActive ? "after:w-full" : "after:w-0 hover:after:w-full"
-          }`
-        }
-      >
-        Contact
-      </NavLink>
-    </>
-  );
-
-  const handleLogin = () => {
-    navigate("/auth/login");
+  const handleSubmenuToggle = (menuName) => {
+    setOpenSubmenu(openSubmenu === menuName ? null : menuName);
   };
-
-  const handleLogOut = async () => {
-    try {
-      await logOut();
-      navigate("/");
-    } catch (error) {
-      console.error("Logout failed:", error);
-      alert("Logout failed: " + error.message);
-    }
-  };
-
-  if (loading) {
-    return <Loader />;
-  }
 
   return (
-    <nav className="bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center justify-center gap-4">
-            <img
-              className="w-full max-w-[72px] h-auto rounded-2xl object-contain"
-              src={logo}
-              alt="BrightFuture Logo"
-            />
-            <h1 className="text-xl font-bold">BrightFuture International</h1>
-          </div>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex md:items-center md:gap-10">
-            {navlinks}
-          </div>
-
-          {/* Login/Logout Button */}
-          <div className="hidden md:block">
-            {user ? (
-              <>
-                <span className="text-lg font-medium text-gray-800">
-                  {profile?.fullName || "Guest"}
-                </span>
-                <CustomButton onClick={handleLogOut} className="ml-4">
-                  Logout
-                </CustomButton>
-              </>
-            ) : (
-              <CustomButton onClick={handleLogin}>
-                Login
-              </CustomButton>
-            )}
+    <nav className="bg-[#016496] shadow-lg w-full">
+      <div className="w-full px-2 sm:px-3 lg:px-4">
+        <div className="flex justify-between items-center h-12">
+          {/* Desktop Menu - Full Width */}
+          <div className="hidden lg:flex lg:items-center lg:justify-between lg:w-full">
+            {menuItems.map((item) => (
+              <div key={item.name} className="relative group flex-1 text-center">
+                {item.submenu ? (
+                  <>
+                    <button
+                      className="flex items-center justify-center w-full text-xs font-medium text-white hover:text-yellow-400 px-1 py-1 transition-colors duration-200"
+                    >
+                      {item.name}
+                      <svg
+                        className="w-2 h-2 ml-0.5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+                    
+                    {/* Desktop Submenu */}
+                    <div className="absolute left-1/2 transform -translate-x-1/2 mt-0.5 w-48 bg-white shadow-xl rounded border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                      {item.submenu.map((subItem) => (
+                        <NavLink
+                          key={subItem.name}
+                          to={subItem.path}
+                          className={({ isActive }) =>
+                            `block px-2 py-1 text-xs text-gray-800 hover:text-yellow-600 border-b border-gray-100 last:border-b-0 transition-colors duration-150 ${
+                              isActive ? "bg-blue-50 text-yellow-600 font-medium" : ""
+                            }`
+                          }
+                        >
+                          {subItem.name}
+                        </NavLink>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <NavLink
+                    to={item.path}
+                    className={({ isActive }) =>
+                      `flex items-center justify-center w-full text-xs font-medium px-1 py-1 transition-colors duration-200 ${
+                        isActive
+                          ? "text-white bg-blue-700 font-semibold"
+                          : "text-white hover:text-yellow-400 "
+                      }`
+                    }
+                  >
+                    {item.name}
+                  </NavLink>
+                )}
+              </div>
+            ))}
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="lg:hidden flex justify-between items-center w-full">
+            <div className="text-sm font-semibold text-white">
+              মেনু
+            </div>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-800 hover:text-[#0F5EF6] focus:outline-none"
+              className="text-white hover:text-blue-200 p-1 rounded transition-colors duration-200 bg-blue-700 hover:bg-blue-600"
             >
               <svg
-                className="w-6 h-6"
+                className="w-4 h-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
               >
                 {isOpen ? (
                   <path
@@ -181,23 +160,74 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200">
-          <div className="flex flex-col gap-4 px-4 py-6">
-            {navlinks}
-            {user ? (
-              <>
-                <span className="text-lg font-medium text-gray-800">
-                  {profile?.fullName || "Guest"}
-                </span>
-                <CustomButton onClick={handleLogOut}>
-                  Logout
-                </CustomButton>
-              </>
-            ) : (
-              <CustomButton onClick={handleLogin}>
-                Login
-              </CustomButton>
-            )}
+        <div className="lg:hidden bg-[#016496] border-t border-blue-500 shadow-lg">
+          <div className="px-2 py-1 space-y-0 max-h-[80vh] overflow-y-auto">
+            {menuItems.map((item) => (
+              <div key={item.name}>
+                {item.submenu ? (
+                  <>
+                    <button
+                      className="flex items-center justify-between w-full text-left text-xs font-medium text-white hover:text-blue-200 px-2 py-1.5 border-b border-blue-400 hover:bg-blue-700 transition-colors duration-200"
+                      onClick={() => handleSubmenuToggle(item.name)}
+                    >
+                      {item.name}
+                      <svg
+                        className={`w-2 h-2 transition-transform duration-200 ${
+                          openSubmenu === item.name ? "rotate-180" : ""
+                        }`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+                    
+                    {/* Mobile Submenu */}
+                    {openSubmenu === item.name && (
+                      <div className="bg-blue-600 ml-2 border-l-2 border-blue-300">
+                        {item.submenu.map((subItem) => (
+                          <NavLink
+                            key={subItem.name}
+                            to={subItem.path}
+                            className={({ isActive }) =>
+                              `block px-3 py-1 text-xs text-white hover:bg-blue-500 hover:text-white border-b border-blue-400 last:border-b-0 transition-colors duration-150 ${
+                                isActive ? "bg-blue-500 text-white font-medium" : ""
+                              }`
+                            }
+                            onClick={() => {
+                              setIsOpen(false);
+                              setOpenSubmenu(null);
+                            }}
+                          >
+                            {subItem.name}
+                          </NavLink>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <NavLink
+                    to={item.path}
+                    className={({ isActive }) =>
+                      `block text-xs font-medium px-2 py-1.5 border-b border-blue-400 transition-colors duration-200 ${
+                        isActive
+                          ? "text-white bg-blue-700 font-semibold"
+                          : "text-white hover:text-blue-200 hover:bg-blue-700"
+                      }`
+                    }
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </NavLink>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       )}

@@ -12,6 +12,8 @@ import Results from "../../pages/Results/Results";
 import Contact from "../../pages/Contact/Contact";
 import DashboardLayout from "../../layouts/DashboardLayout/DashboardLayout";
 import NormalDashboard from "../../components/DashboardComponent/NormalDashboard/NormalDashboard";
+import SuperDashboard from "../../components/DashboardComponent/SuperDashboard/SuperDashboard";
+import Announcement from "../../pages/Announcement/Announcement";
 
 export const route = createBrowserRouter([
   {
@@ -24,7 +26,8 @@ export const route = createBrowserRouter([
         { path: "/results", element: <Results></Results>},
         { path: "/contact", element: <Contact></Contact>},
         { path: "/terms-and-conditions", element: <TermsAndConditions></TermsAndConditions> },
-        { path: "/privacy-policy", element: <PrivacyPolicy></PrivacyPolicy> }
+        { path: "/privacy-policy", element: <PrivacyPolicy></PrivacyPolicy> },
+        { path: "/announcement/:id", element: <Announcement></Announcement>}
     ],
   },
   {
@@ -48,6 +51,10 @@ export const route = createBrowserRouter([
       {
         path: "dashboard",
         element: <NormalDashboard></NormalDashboard>
+      },
+      {
+        path: "super/dashboard",
+        element: <SuperDashboard></SuperDashboard>
       }
     ]
   }
