@@ -1,6 +1,7 @@
 import React from 'react';
 import Settings from '../Sidebar/Settings/Settings';
 import RecentlyAdmin from '../Sidebar/RecentlyAdmin/RecentlyAdmin';
+import SchoolHistory from '../Sidebar/SchoolHistory/SchoolHistory';
 
 const MainComponent = ({ activeMenu }) => {
   const renderContent = () => {
@@ -58,30 +59,9 @@ const MainComponent = ({ activeMenu }) => {
           <RecentlyAdmin></RecentlyAdmin>
         );
       
-      case 'reports':
+      case 'school-history':
         return (
-          <div className="space-y-6">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-800">রিপোর্ট ও এনালিটিক্স</h1>
-              <p className="text-gray-600 mt-2">বিস্তারিত রিপোর্ট এবং বিশ্লেষণ দেখুন।</p>
-            </div>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                <h3 className="text-lg font-semibold text-gray-800 mb-4">মাসিক রিপোর্ট</h3>
-                <div className="h-48 bg-gray-100 rounded-lg flex items-center justify-center">
-                  <p className="text-gray-500">গ্রাফ চার্ট এখানে দেখানো হবে</p>
-                </div>
-              </div>
-              
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                <h3 className="text-lg font-semibold text-gray-800 mb-4">বিক্রয় রিপোর্ট</h3>
-                <div className="h-48 bg-gray-100 rounded-lg flex items-center justify-center">
-                  <p className="text-gray-500">বিক্রয় ডাটা এখানে দেখানো হবে</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <SchoolHistory></SchoolHistory>
         );
       
       case 'settings':

@@ -4,6 +4,7 @@ const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen })
   const menuItems = [
     { id: 'dashboard', label: 'ড্যাশবোর্ড', icon: '📊' },
     { id: 'announcement', label: 'Announcement', icon: '👥' },
+    { id: 'school-history', label: 'School History', icon: '👥' },
     { id: 'reports', label: 'রিপোর্ট', icon: '📈' },
     { id: 'settings', label: 'Settings', icon: '⚙️' },
     { id: 'profile', label: 'প্রোফাইল', icon: '👤' },

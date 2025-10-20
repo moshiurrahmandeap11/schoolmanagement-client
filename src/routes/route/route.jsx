@@ -14,6 +14,7 @@ import DashboardLayout from "../../layouts/DashboardLayout/DashboardLayout";
 import NormalDashboard from "../../components/DashboardComponent/NormalDashboard/NormalDashboard";
 import SuperDashboard from "../../components/DashboardComponent/SuperDashboard/SuperDashboard";
 import Announcement from "../../pages/Announcement/Announcement";
+import SchoolHistoryDetails from "../../pages/SchoolHistoryDetails/SchoolHistoryDetails";
 
 export const route = createBrowserRouter([
   {
@@ -27,7 +28,8 @@ export const route = createBrowserRouter([
         { path: "/contact", element: <Contact></Contact>},
         { path: "/terms-and-conditions", element: <TermsAndConditions></TermsAndConditions> },
         { path: "/privacy-policy", element: <PrivacyPolicy></PrivacyPolicy> },
-        { path: "/announcement/:id", element: <Announcement></Announcement>}
+        { path: "/announcement/:id", element: <Announcement></Announcement>},
+        { path: "/school-history/:id", element: <SchoolHistoryDetails></SchoolHistoryDetails>},
     ],
   },
   {
