@@ -43,7 +43,7 @@ const HistorySchool = () => {
         // Remove extra spaces and get words
         const words = text.trim().split(/\s+/);
         // Get first 20 words
-        return words.slice(0, 140).join(' ') + (words.length > 20 ? '...' : '');
+        return words.slice(0, 60).join(' ') + (words.length > 20 ? '...' : '');
     };
 
     const handleReadMore = () => {
@@ -71,17 +71,18 @@ const HistorySchool = () => {
     }
 
     return (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
+        <div className="bg-white rounded-md shadow-sm border border-gray-200 overflow-hidden transition-all duration-300">
 
-<h2 className="text-2xl mt-4 px-5 w-full bg-[#051939] sm:text-xl py-3 font-bold text-white mb-4 leading-tight flex items-center gap-2">
+<h2 className="text-xl my-2 mx-2 px-5 bg-[#051939] sm:text-xl py-3 font-bold text-white leading-tight flex items-center gap-2 rounded">
     <FaHistory className="text-white text-xl" />
     {historyData.title}
 </h2>
+
             {/* Content */}
-            <div className="p-6">
+            <div className="px-3 pb-2">
 
                 {/* Body Preview (First 20 words) */}
-                <div className="mb-6">
+                <div className="mb-2">
                     <p className="text-gray-700 text-lg leading-relaxed">
                         {getFirst20Words(historyData.body)}
                     </p>

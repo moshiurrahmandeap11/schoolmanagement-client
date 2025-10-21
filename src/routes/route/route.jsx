@@ -15,6 +15,8 @@ import NormalDashboard from "../../components/DashboardComponent/NormalDashboard
 import SuperDashboard from "../../components/DashboardComponent/SuperDashboard/SuperDashboard";
 import Announcement from "../../pages/Announcement/Announcement";
 import SchoolHistoryDetails from "../../pages/SchoolHistoryDetails/SchoolHistoryDetails";
+import PrincipalSpeechDetails from "../../pages/Home/PrincipalSpeech/PrincipalSpeechDetails/PrincipalSpeechDetails";
+import PresidentDetails from "../../pages/Home/President/PresidentDetails/PresidentDetails";
 
 export const route = createBrowserRouter([
   {
@@ -30,6 +32,8 @@ export const route = createBrowserRouter([
         { path: "/privacy-policy", element: <PrivacyPolicy></PrivacyPolicy> },
         { path: "/announcement/:id", element: <Announcement></Announcement>},
         { path: "/school-history/:id", element: <SchoolHistoryDetails></SchoolHistoryDetails>},
+        { path: "/principal-speech/:id", element: <PrincipalSpeechDetails></PrincipalSpeechDetails>},
+        { path: "/president-speech/:id", element: <PresidentDetails></PresidentDetails>},
     ],
   },
   {

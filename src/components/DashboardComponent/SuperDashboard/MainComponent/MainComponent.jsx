@@ -2,6 +2,7 @@ import React from 'react';
 import Settings from '../Sidebar/Settings/Settings';
 import RecentlyAdmin from '../Sidebar/RecentlyAdmin/RecentlyAdmin';
 import SchoolHistory from '../Sidebar/SchoolHistory/SchoolHistory';
+import SpeechAdmin from '../Sidebar/SpeechAdmin/SpeechAdmin';
 
 const MainComponent = ({ activeMenu }) => {
   const renderContent = () => {
@@ -63,6 +64,9 @@ const MainComponent = ({ activeMenu }) => {
         return (
           <SchoolHistory></SchoolHistory>
         );
+      
+      case "speech":
+        return <SpeechAdmin></SpeechAdmin>
       
       case 'settings':
         return (
