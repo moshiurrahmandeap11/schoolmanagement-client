@@ -19,6 +19,7 @@ import PrincipalSpeechDetails from "../../pages/Home/PrincipalSpeech/PrincipalSp
 import PresidentDetails from "../../pages/Home/President/PresidentDetails/PresidentDetails";
 import StudentsInfo from "../../pages/Home/Students/StudentsInfo/StudentsInfo";
 import SeatNumbers from "../../pages/Home/Students/SeatNumbers/SeatNumbers";
+import ClassRoomsClient from "../../pages/Home/Students/ClassRoomsClient/ClassRoomsClient";
 
 export const route = createBrowserRouter([
   {
@@ -38,6 +39,7 @@ export const route = createBrowserRouter([
         { path: "/president-speech/:id", element: <PresidentDetails></PresidentDetails>},
         { path: "/students-info", element: <StudentsInfo></StudentsInfo>},
         { path: "/seat-numbers", element: <SeatNumbers></SeatNumbers>},
+        { path: "/class-rooms", element: <ClassRoomsClient></ClassRoomsClient>},
     ],
   },
   {

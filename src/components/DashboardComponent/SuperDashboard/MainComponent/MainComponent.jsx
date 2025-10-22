@@ -5,6 +5,7 @@ import SchoolHistory from '../Sidebar/SchoolHistory/SchoolHistory';
 import SpeechAdmin from '../Sidebar/SpeechAdmin/SpeechAdmin';
 import StudentsAdmin from '../Sidebar/StudentsAdmin/StudentsAdmin';
 import TotalSeats from '../Sidebar/TotalSeats/TotalSeats';
+import ClassRooms from '../Sidebar/ClassRooms/ClassRooms';
 
 const MainComponent = ({ activeMenu }) => {
   const renderContent = () => {
@@ -73,6 +74,8 @@ const MainComponent = ({ activeMenu }) => {
         return <StudentsAdmin></StudentsAdmin>
       case "total-seats":
         return <TotalSeats></TotalSeats>
+      case "class-rooms":
+        return <ClassRooms></ClassRooms>
       
       case 'settings':
         return (

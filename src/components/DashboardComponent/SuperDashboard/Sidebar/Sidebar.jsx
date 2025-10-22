@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaBullhorn, FaCog, FaQuoteRight, FaSchool, FaTachometerAlt, FaUserGraduate } from 'react-icons/fa';
+import { MdRoom } from 'react-icons/md';
 import { PiSeat } from 'react-icons/pi';
 
 const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen }) => {
@@ -10,6 +11,7 @@ const menuItems = [
   { id: 'speech', label: 'Speech', icon: <FaQuoteRight /> },
   { id: 'students', label: 'Students', icon: <FaUserGraduate /> },
   { id: "total-seats", label: "Total Seat", icon: <PiSeat></PiSeat>},
+  { id: "class-rooms", label: "Class Rooms", icon: <MdRoom></MdRoom>},
   { id: 'settings', label: 'Settings', icon: <FaCog /> },
 ];
 
