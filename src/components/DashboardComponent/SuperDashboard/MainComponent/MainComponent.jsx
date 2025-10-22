@@ -3,6 +3,8 @@ import Settings from '../Sidebar/Settings/Settings';
 import RecentlyAdmin from '../Sidebar/RecentlyAdmin/RecentlyAdmin';
 import SchoolHistory from '../Sidebar/SchoolHistory/SchoolHistory';
 import SpeechAdmin from '../Sidebar/SpeechAdmin/SpeechAdmin';
+import StudentsAdmin from '../Sidebar/StudentsAdmin/StudentsAdmin';
+import TotalSeats from '../Sidebar/TotalSeats/TotalSeats';
 
 const MainComponent = ({ activeMenu }) => {
   const renderContent = () => {
@@ -67,6 +69,10 @@ const MainComponent = ({ activeMenu }) => {
       
       case "speech":
         return <SpeechAdmin></SpeechAdmin>
+      case "students":
+        return <StudentsAdmin></StudentsAdmin>
+      case "total-seats":
+        return <TotalSeats></TotalSeats>
       
       case 'settings':
         return (

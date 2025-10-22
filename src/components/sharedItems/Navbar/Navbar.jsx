@@ -16,7 +16,7 @@ const Navbar = () => {
         { name: "প্রধান শিক্ষকগণের নামের তালিকা", path: "/head-teachers" }
       ]
     },
-    { name: "শিক্ষার্থীদের তথ্য", path: "/students" },
+    { name: "শিক্ষার্থীদের তথ্য", path: "/students-info" },
     {
       name: "ভর্তি",
       submenu: [

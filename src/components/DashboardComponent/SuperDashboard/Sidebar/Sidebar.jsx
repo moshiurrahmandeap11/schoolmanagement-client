@@ -1,14 +1,17 @@
 import React from 'react';
+import { FaBullhorn, FaCog, FaQuoteRight, FaSchool, FaTachometerAlt, FaUserGraduate } from 'react-icons/fa';
+import { PiSeat } from 'react-icons/pi';
 
 const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen }) => {
-  const menuItems = [
-    { id: 'dashboard', label: 'ড্যাশবোর্ড', icon: '📊' },
-    { id: 'announcement', label: 'Announcement', icon: '👥' },
-    { id: 'school-history', label: 'School History', icon: '👥' },
-    { id: 'speech', label: 'Speech', icon: '📈' },
-    { id: 'settings', label: 'Settings', icon: '⚙️' },
-    { id: 'profile', label: 'প্রোফাইল', icon: '👤' },
-  ];
+const menuItems = [
+  { id: 'dashboard', label: 'ড্যাশবোর্ড', icon: <FaTachometerAlt /> },
+  { id: 'announcement', label: 'Announcement', icon: <FaBullhorn /> },
+  { id: 'school-history', label: 'School History', icon: <FaSchool /> },
+  { id: 'speech', label: 'Speech', icon: <FaQuoteRight /> },
+  { id: 'students', label: 'Students', icon: <FaUserGraduate /> },
+  { id: "total-seats", label: "Total Seat", icon: <PiSeat></PiSeat>},
+  { id: 'settings', label: 'Settings', icon: <FaCog /> },
+];
 
   return (
     <>

@@ -17,6 +17,8 @@ import Announcement from "../../pages/Announcement/Announcement";
 import SchoolHistoryDetails from "../../pages/SchoolHistoryDetails/SchoolHistoryDetails";
 import PrincipalSpeechDetails from "../../pages/Home/PrincipalSpeech/PrincipalSpeechDetails/PrincipalSpeechDetails";
 import PresidentDetails from "../../pages/Home/President/PresidentDetails/PresidentDetails";
+import StudentsInfo from "../../pages/Home/Students/StudentsInfo/StudentsInfo";
+import SeatNumbers from "../../pages/Home/Students/SeatNumbers/SeatNumbers";
 
 export const route = createBrowserRouter([
   {
@@ -34,6 +36,8 @@ export const route = createBrowserRouter([
         { path: "/school-history/:id", element: <SchoolHistoryDetails></SchoolHistoryDetails>},
         { path: "/principal-speech/:id", element: <PrincipalSpeechDetails></PrincipalSpeechDetails>},
         { path: "/president-speech/:id", element: <PresidentDetails></PresidentDetails>},
+        { path: "/students-info", element: <StudentsInfo></StudentsInfo>},
+        { path: "/seat-numbers", element: <SeatNumbers></SeatNumbers>},
     ],
   },
   {
