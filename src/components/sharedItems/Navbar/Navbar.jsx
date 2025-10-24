@@ -11,9 +11,9 @@ const Navbar = () => {
     {
       name: "প্রশাসন",
       submenu: [
-        { name: "শিক্ষকমণ্ডলীর তালিকা", path: "/teachers" },
-        { name: "কর্মকর্তা-কর্মচারীদের তালিকা", path: "/staff" },
-        { name: "প্রধান শিক্ষকগণের নামের তালিকা", path: "/head-teachers" }
+        { name: "শিক্ষকমণ্ডলীর তালিকা", path: "/teachers-list" },
+        { name: "কর্মকর্তা-কর্মচারীদের তালিকা", path: "/staff-list" },
+        { name: "প্রধান শিক্ষকগণের নামের তালিকা", path: "/head-teachers-list" }
       ]
     },
     { name: "শিক্ষার্থীদের তথ্য", path: "/students-info" },

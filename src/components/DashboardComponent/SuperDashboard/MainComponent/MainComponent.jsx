@@ -6,6 +6,11 @@ import SpeechAdmin from '../Sidebar/SpeechAdmin/SpeechAdmin';
 import StudentsAdmin from '../Sidebar/StudentsAdmin/StudentsAdmin';
 import TotalSeats from '../Sidebar/TotalSeats/TotalSeats';
 import ClassRooms from '../Sidebar/ClassRooms/ClassRooms';
+import AdmissionInfoAdmin from '../Sidebar/AdmissionInfo/AdmissionInfoAdmin';
+import AdmissionFormAdmin from '../Sidebar/AdmissionFormAdmin/AdmissionFormAdmin';
+import TeacherListAdmin from '../Sidebar/TeachersListAdmin/TeacherListAdmin';
+import WorkersListAdmin from '../Sidebar/WorkersListAdmin/WorkersListAdmin';
+import HeadmastersListAdmin from '../Sidebar/HeadmastersListAdmin/HeadmastersListAdmin';
 
 const MainComponent = ({ activeMenu }) => {
   const renderContent = () => {
@@ -76,6 +81,16 @@ const MainComponent = ({ activeMenu }) => {
         return <TotalSeats></TotalSeats>
       case "class-rooms":
         return <ClassRooms></ClassRooms>
+      case "admission-info":
+        return <AdmissionInfoAdmin></AdmissionInfoAdmin>
+      case "admission-form":
+        return <AdmissionFormAdmin></AdmissionFormAdmin>
+      case "teacher-list":
+        return <TeacherListAdmin></TeacherListAdmin>
+        case "workers-list":
+          return <WorkersListAdmin></WorkersListAdmin>
+        case "headmasters-list":
+          return <HeadmastersListAdmin></HeadmastersListAdmin>
       
       case 'settings':
         return (

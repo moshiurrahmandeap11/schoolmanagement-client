@@ -20,6 +20,11 @@ import PresidentDetails from "../../pages/Home/President/PresidentDetails/Presid
 import StudentsInfo from "../../pages/Home/Students/StudentsInfo/StudentsInfo";
 import SeatNumbers from "../../pages/Home/Students/SeatNumbers/SeatNumbers";
 import ClassRoomsClient from "../../pages/Home/Students/ClassRoomsClient/ClassRoomsClient";
+import AdmissionInfo from "../../pages/Home/Students/AdmissionINfo/AdmissionInfo";
+import AdmissionForm from "../../pages/Home/Students/AdmissionForm/AdmissionForm";
+import TeachersList from "../../pages/Home/Teachers/TeachersList/TeachersList";
+import WorkersList from "../../pages/Home/Teachers/WorkersList/WorkersList";
+import HeadmasterList from "../../pages/Home/Teachers/HeadmasterList/HeadmasterList";
 
 export const route = createBrowserRouter([
   {
@@ -40,6 +45,11 @@ export const route = createBrowserRouter([
         { path: "/students-info", element: <StudentsInfo></StudentsInfo>},
         { path: "/seat-numbers", element: <SeatNumbers></SeatNumbers>},
         { path: "/class-rooms", element: <ClassRoomsClient></ClassRoomsClient>},
+        { path: "/admission-info", element: <AdmissionInfo></AdmissionInfo>},
+        { path: "/admission-form", element: <AdmissionForm></AdmissionForm>},
+        { path: "/teachers-list", element: <TeachersList></TeachersList>},
+        { path: "/staff-list", element: <WorkersList></WorkersList>},
+        { path: "/head-teachers-list", element: <HeadmasterList></HeadmasterList>},
     ],
   },
   {
