@@ -25,6 +25,7 @@ import AdmissionForm from "../../pages/Home/Students/AdmissionForm/AdmissionForm
 import TeachersList from "../../pages/Home/Teachers/TeachersList/TeachersList";
 import WorkersList from "../../pages/Home/Teachers/WorkersList/WorkersList";
 import HeadmasterList from "../../pages/Home/Teachers/HeadmasterList/HeadmasterList";
+import HolidayList from "../../pages/Home/Teachers/HolidayList/HolidayList";
 
 export const route = createBrowserRouter([
   {
@@ -50,6 +51,7 @@ export const route = createBrowserRouter([
         { path: "/teachers-list", element: <TeachersList></TeachersList>},
         { path: "/staff-list", element: <WorkersList></WorkersList>},
         { path: "/head-teachers-list", element: <HeadmasterList></HeadmasterList>},
+        { path: "/holiday-list", element: <HolidayList></HolidayList>},
     ],
   },
   {

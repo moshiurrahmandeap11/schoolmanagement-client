@@ -1,28 +1,34 @@
-import React from 'react';
-import Settings from '../Sidebar/Settings/Settings';
-import RecentlyAdmin from '../Sidebar/RecentlyAdmin/RecentlyAdmin';
-import SchoolHistory from '../Sidebar/SchoolHistory/SchoolHistory';
-import SpeechAdmin from '../Sidebar/SpeechAdmin/SpeechAdmin';
-import StudentsAdmin from '../Sidebar/StudentsAdmin/StudentsAdmin';
-import TotalSeats from '../Sidebar/TotalSeats/TotalSeats';
-import ClassRooms from '../Sidebar/ClassRooms/ClassRooms';
-import AdmissionInfoAdmin from '../Sidebar/AdmissionInfo/AdmissionInfoAdmin';
-import AdmissionFormAdmin from '../Sidebar/AdmissionFormAdmin/AdmissionFormAdmin';
-import TeacherListAdmin from '../Sidebar/TeachersListAdmin/TeacherListAdmin';
-import WorkersListAdmin from '../Sidebar/WorkersListAdmin/WorkersListAdmin';
-import HeadmastersListAdmin from '../Sidebar/HeadmastersListAdmin/HeadmastersListAdmin';
+import React from "react";
+import Settings from "../Sidebar/Settings/Settings";
+import RecentlyAdmin from "../Sidebar/RecentlyAdmin/RecentlyAdmin";
+import SchoolHistory from "../Sidebar/SchoolHistory/SchoolHistory";
+import SpeechAdmin from "../Sidebar/SpeechAdmin/SpeechAdmin";
+import StudentsAdmin from "../Sidebar/StudentsAdmin/StudentsAdmin";
+import TotalSeats from "../Sidebar/TotalSeats/TotalSeats";
+import ClassRooms from "../Sidebar/ClassRooms/ClassRooms";
+import AdmissionInfoAdmin from "../Sidebar/AdmissionInfo/AdmissionInfoAdmin";
+import AdmissionFormAdmin from "../Sidebar/AdmissionFormAdmin/AdmissionFormAdmin";
+import TeacherListAdmin from "../Sidebar/TeachersListAdmin/TeacherListAdmin";
+import WorkersListAdmin from "../Sidebar/WorkersListAdmin/WorkersListAdmin";
+import HeadmastersListAdmin from "../Sidebar/HeadmastersListAdmin/HeadmastersListAdmin";
+import HolidayListAdmin from "../Sidebar/HolidayListAdmin/HolidayListAdmin";
+import CircularAdmin from "../Sidebar/CircularAdmin/CircularAdmin";
 
 const MainComponent = ({ activeMenu }) => {
   const renderContent = () => {
     switch (activeMenu) {
-      case 'dashboard':
+      case "dashboard":
         return (
           <div className="space-y-6">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">ড্যাশবোর্ড ওভারভিউ</h1>
-              <p className="text-gray-600 mt-2">এখানে আপনার সামগ্রিক স্ট্যাটাস এবং সারাংশ দেখানো হচ্ছে।</p>
+              <h1 className="text-3xl font-bold text-gray-800">
+                ড্যাশবোর্ড ওভারভিউ
+              </h1>
+              <p className="text-gray-600 mt-2">
+                এখানে আপনার সামগ্রিক স্ট্যাটাস এবং সারাংশ দেখানো হচ্ছে।
+              </p>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                 <div className="flex items-center gap-4">
@@ -35,7 +41,7 @@ const MainComponent = ({ activeMenu }) => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
@@ -47,7 +53,7 @@ const MainComponent = ({ activeMenu }) => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
@@ -62,49 +68,51 @@ const MainComponent = ({ activeMenu }) => {
             </div>
           </div>
         );
-      
-      case 'announcement':
-        return (
-          <RecentlyAdmin></RecentlyAdmin>
-        );
-      
-      case 'school-history':
-        return (
-          <SchoolHistory></SchoolHistory>
-        );
-      
+
+      case "announcement":
+        return <RecentlyAdmin></RecentlyAdmin>;
+
+      case "school-history":
+        return <SchoolHistory></SchoolHistory>;
+
       case "speech":
-        return <SpeechAdmin></SpeechAdmin>
+        return <SpeechAdmin></SpeechAdmin>;
       case "students":
-        return <StudentsAdmin></StudentsAdmin>
+        return <StudentsAdmin></StudentsAdmin>;
       case "total-seats":
-        return <TotalSeats></TotalSeats>
+        return <TotalSeats></TotalSeats>;
       case "class-rooms":
-        return <ClassRooms></ClassRooms>
+        return <ClassRooms></ClassRooms>;
       case "admission-info":
-        return <AdmissionInfoAdmin></AdmissionInfoAdmin>
+        return <AdmissionInfoAdmin></AdmissionInfoAdmin>;
       case "admission-form":
-        return <AdmissionFormAdmin></AdmissionFormAdmin>
+        return <AdmissionFormAdmin></AdmissionFormAdmin>;
       case "teacher-list":
-        return <TeacherListAdmin></TeacherListAdmin>
-        case "workers-list":
-          return <WorkersListAdmin></WorkersListAdmin>
-        case "headmasters-list":
-          return <HeadmastersListAdmin></HeadmastersListAdmin>
-      
-      case 'settings':
-        return (
-            <Settings></Settings>
-        );
-      
-      case 'profile':
+        return <TeacherListAdmin></TeacherListAdmin>;
+      case "workers-list":
+        return <WorkersListAdmin></WorkersListAdmin>;
+      case "headmasters-list":
+        return <HeadmastersListAdmin></HeadmastersListAdmin>;
+      case "off-days":
+        return <HolidayListAdmin></HolidayListAdmin>;
+      case "circular":
+        return <CircularAdmin></CircularAdmin>
+
+      case "settings":
+        return <Settings></Settings>;
+
+      case "profile":
         return (
           <div className="space-y-6">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">ব্যবহারকারী প্রোফাইল</h1>
-              <p className="text-gray-600 mt-2">আপনার প্রোফাইল তথ্য দেখুন এবং এডিট করুন।</p>
+              <h1 className="text-3xl font-bold text-gray-800">
+                ব্যবহারকারী প্রোফাইল
+              </h1>
+              <p className="text-gray-600 mt-2">
+                আপনার প্রোফাইল তথ্য দেখুন এবং এডিট করুন।
+              </p>
             </div>
-            
+
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
               <div className="p-8">
                 <div className="flex items-center gap-6 mb-6">
@@ -112,35 +120,45 @@ const MainComponent = ({ activeMenu }) => {
                     <span className="text-white text-2xl font-bold">A</span>
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-800">আপনার নাম</h2>
+                    <h2 className="text-2xl font-bold text-gray-800">
+                      আপনার নাম
+                    </h2>
                     <p className="text-gray-600">অ্যাডমিন ব্যবহারকারী</p>
                   </div>
                 </div>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">পুরো নাম</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        পুরো নাম
+                      </label>
                       <p className="text-gray-800">আপনার পুরো নাম</p>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">ইমেইল</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        ইমেইল
+                      </label>
                       <p className="text-gray-800">your@email.com</p>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">ভূমিকা</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        ভূমিকা
+                      </label>
                       <p className="text-gray-800">অ্যাডমিন</p>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">সদস্য sejak</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        সদস্য sejak
+                      </label>
                       <p className="text-gray-800">১ জানুয়ারি, ২০২৪</p>
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="mt-6 flex gap-4">
                   <button className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
                     প্রোফাইল এডিট করুন
@@ -153,12 +171,16 @@ const MainComponent = ({ activeMenu }) => {
             </div>
           </div>
         );
-      
+
       default:
         return (
           <div className="text-center py-12">
-            <h1 className="text-3xl font-bold text-gray-800 mb-4">সুপার ড্যাশবোর্ডে স্বাগতম</h1>
-            <p className="text-gray-600 text-lg">বাম পাশের মেনু থেকে কোনো অপশন সিলেক্ট করুন</p>
+            <h1 className="text-3xl font-bold text-gray-800 mb-4">
+              সুপার ড্যাশবোর্ডে স্বাগতম
+            </h1>
+            <p className="text-gray-600 text-lg">
+              বাম পাশের মেনু থেকে কোনো অপশন সিলেক্ট করুন
+            </p>
           </div>
         );
     }

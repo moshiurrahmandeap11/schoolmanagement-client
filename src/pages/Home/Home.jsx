@@ -14,6 +14,7 @@ import FacebookPage from "../../components/FacebookPage/FacebookPage";
 import GovtImage from "../../components/GovtImage/GovtImage";
 import { BsArrowRight } from "react-icons/bs";
 import { useNavigate } from "react-router";
+import AllTeachersAndWorkers from "./AllTeachersAndWorkers/AllTeachersAndWorkers";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -69,7 +70,10 @@ const Home = () => {
             <FacebookPage />
             <GovtImage />
           </div>
+          <div>
+          </div>
         </div>
+            <AllTeachersAndWorkers></AllTeachersAndWorkers>
       </div>
     </div>
   );
