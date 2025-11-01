@@ -3,7 +3,6 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { useNavigate } from 'react-router';
 import axiosInstance from '../../hooks/axiosInstance/axiosInstance';
 
-
 const Notices = () => {
     const [notices, setNotices] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -19,9 +18,11 @@ const Notices = () => {
             const response = await axiosInstance.get('/notices');
             
             if (response.data.success) {
+                // Published notices only, sorted by creation date (newest first), take latest 5
                 const activeNotices = response.data.data
-                    .filter(notice => notice.isActive)
-                    .slice(0, 5);
+                    .filter(notice => notice.isPublished) // Only published notices
+                    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort by newest first
+                    .slice(0, 5); // Take only 5 latest
                 setNotices(activeNotices);
             }
         } catch (error) {
@@ -38,7 +39,7 @@ const Notices = () => {
     return (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
             {/* Header */}
-            <h2 className="text-xl sm:text-xl  px-4 sm:px-5 bg-[#051939] py-3 font-bold text-white leading-tight flex items-center gap-2 sm:gap-3 rounded">
+            <h2 className="text-xl sm:text-xl px-4 sm:px-5 bg-[#051939] py-3 font-bold text-white leading-tight flex items-center gap-2 sm:gap-3 rounded">
                 <GiHamburgerMenu className="text-white text-lg sm:text-xl flex-shrink-0" />
                 নোটিশ
             </h2>
@@ -55,10 +56,14 @@ const Notices = () => {
                             <div 
                                 key={notice._id}
                                 onClick={() => handleNoticeClick(notice._id)}
-                                className="p-2 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 cursor-pointer transition-colors duration-150"
+                                className="p-2 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 cursor-pointer transition-colors duration-150 group"
                             >
-                                <p className="text-gray-700 text-sm line-clamp-2 hover:text-blue-600">
+                                <p className="text-gray-700 text-sm line-clamp-2 group-hover:text-blue-600 transition-colors duration-150">
                                     {notice.title}
+                                </p>
+                                {/* Optional: Show date */}
+                                <p className="text-xs text-gray-400 mt-1">
+                                    {new Date(notice.createdAt).toLocaleDateString('bn-BD')}
                                 </p>
                             </div>
                         ))}
@@ -70,6 +75,18 @@ const Notices = () => {
                     </div>
                 )}
             </div>
+
+            {/* View All Button (Optional) */}
+            {notices.length > 0 && (
+                <div className="px-4 pb-4">
+                    <button 
+                        onClick={() => navigate('/all-notices')}
+                        className="w-full py-2 text-sm text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors duration-150 border border-blue-200"
+                    >
+                        সব নোটিশ দেখুন
+                    </button>
+                </div>
+            )}
         </div>
     );
 };

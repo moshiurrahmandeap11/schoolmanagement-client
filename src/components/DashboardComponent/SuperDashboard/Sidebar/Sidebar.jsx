@@ -21,7 +21,10 @@ import {
   FaBell,
   FaImages,
   FaVideo,
-  FaHistory
+  FaHistory,
+  FaPhone,
+  FaEnvelope,
+  FaCalendarDay
 } from 'react-icons/fa';
 import { ImInfo } from 'react-icons/im';
 import { MdManageHistory, MdRoom } from 'react-icons/md';
@@ -33,14 +36,17 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
     student: false,
     teachers: false,
     gallery: false,
-    history: false, // New history submenu state
+    history: false,
+    contact: false,
   });
 
-  // Menu configuration - History submenu added
+  // Menu configuration - Notice and Routine menu added
   const menuConfig = {
     main: [
       { id: 'dashboard', label: 'ড্যাশবোর্ড', icon: FaTachometerAlt },
       { id: 'announcement', label: 'Announcement', icon: FaBullhorn },
+      { id: 'notice', label: 'Notice', icon: FaBullhorn },
+      { id: 'routine', label: 'Routine', icon: FaCalendarDay }, // New Routine menu
       { id: 'school-history', label: 'School History', icon: FaSchool },
       { id: 'speech', label: 'Speech', icon: FaQuoteRight },
     ],
@@ -77,13 +83,22 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
         { id: 'video-gallery', label: 'Video Gallery', icon: FaVideo },
       ]
     },
-    history: { // New history submenu
+    history: {
       title: 'History',
       icon: FaHistory,
       color: 'orange',
       items: [
         { id: 'upazilla-history', label: 'Upazilla History', icon: FaHistory },
         { id: 'zilla-history', label: 'Zilla History', icon: FaHistory },
+      ]
+    },
+    contact: {
+      title: 'যোগাযোগ',
+      icon: FaPhone,
+      color: 'red',
+      items: [
+        { id: 'contact-info', label: 'যোগাযোগ তথ্য', icon: FaEnvelope },
+        { id: 'social-links', label: 'সোশ্যাল মিডিয়া', icon: FaBullhorn },
       ]
     },
     blogs: { id: "blogs", label: "Blogs", icon: Notebook},
@@ -253,7 +268,8 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
           <Submenu config={menuConfig.student} submenuKey="student" />
           <Submenu config={menuConfig.teachers} submenuKey="teachers" />
           <Submenu config={menuConfig.gallery} submenuKey="gallery" />
-          <Submenu config={menuConfig.history} submenuKey="history" /> {/* New History Submenu */}
+          <Submenu config={menuConfig.history} submenuKey="history" />
+          <Submenu config={menuConfig.contact} submenuKey="contact" />
 
           {/* Blogs */}
           <div className='mt-4'>
@@ -299,6 +315,9 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
         .bg-orange-50 { background-color: #fff7ed; }
         .text-orange-600 { color: #ea580c; }
         .border-orange-600 { border-color: #ea580c; }
+        .bg-red-50 { background-color: #fef2f2; }
+        .text-red-600 { color: #dc2626; }
+        .border-red-600 { border-color: #dc2626; }
         
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(-10px); }

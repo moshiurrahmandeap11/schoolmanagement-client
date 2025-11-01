@@ -20,6 +20,9 @@ import ManagingCommitteeAdmin from "../Sidebar/ManagingCommitteeAdmin/ManagingCo
 import UpazillaHistoryAdmin from "../Sidebar/UpazillaHistoryAdmin/UpazillaHistoryAdmin";
 import ZillaHistory from "../Sidebar/ZillaHistoryAdmin/ZillaHistoryAdmin";
 import ZillaHistoryAdmin from "../Sidebar/ZillaHistoryAdmin/ZillaHistoryAdmin";
+import ContactInfoAdmin from "../Sidebar/ContactInfoAdmin/ContactInfoAdmin";
+import NoticesAdmin from "../Sidebar/NoticesAdmin/NoticesAdmin";
+import RoutineAdmin from "../Sidebar/RoutineAdmin/RoutineAdmin";
 
 const MainComponent = ({ activeMenu }) => {
   const renderContent = () => {
@@ -116,6 +119,12 @@ const MainComponent = ({ activeMenu }) => {
         return <UpazillaHistoryAdmin></UpazillaHistoryAdmin>
       case "zilla-history":
         return <ZillaHistoryAdmin></ZillaHistoryAdmin>
+      case "contact-info":
+        return <ContactInfoAdmin></ContactInfoAdmin>
+      case "notice":
+        return <NoticesAdmin></NoticesAdmin>
+      case "routine":
+        return <RoutineAdmin></RoutineAdmin>
 
       case "settings":
         return <Settings></Settings>;

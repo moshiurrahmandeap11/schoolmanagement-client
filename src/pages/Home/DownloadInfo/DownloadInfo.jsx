@@ -13,11 +13,11 @@ const DownloadInfo = () => {
         },
         { 
             text: "ভর্তি ফরম", 
-            path: "/admission-forms" 
+            path: "/admission-form" 
         },
         { 
             text: "রুটিন", 
-            path: "/routines" 
+            path: "/routine" 
         },
         { 
             text: "সার্কুলার", 

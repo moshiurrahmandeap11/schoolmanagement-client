@@ -33,6 +33,13 @@ import BlogDetails from "../../components/BlogNav/BlogDetails/BlogDetails";
 import ManagingCommittee from "../../components/sharedItems/Footer/SubFooter/ManagingCommittee/ManagingCommittee";
 import UpazillaHistory from "../../components/sharedItems/Footer/SubFooter/UpazillaHistory/UpazillaHistory";
 import ZillaHistory from "../../components/sharedItems/Footer/SubFooter/ZillaHistory/ZillaHistory";
+import Downloads from "../../components/Downloads/Downloads";
+import Notices from "../../components/Notices/Notices";
+import NoticeDetails from "../../components/Notices/NoticeDetails/NoticeDetails";
+import AllNotices from "../../components/Notices/AllNotices/AllNotices";
+import Routine from "../../pages/Home/DownloadInfo/Routine/Routine";
+import Circulars from "../../pages/Home/DownloadInfo/Circulars/Circulars";
+import MultimediaClassroom from "../../pages/Home/AcademincInfo/MultimediaClassroom/MultimediaClassroom";
 
 export const route = createBrowserRouter([
   {
@@ -66,6 +73,13 @@ export const route = createBrowserRouter([
         { path: "/managing-committee", element: <ManagingCommittee></ManagingCommittee>},
         { path: "/upazilla-history", element: <UpazillaHistory></UpazillaHistory>},
         { path: "/zilla-history", element: <ZillaHistory></ZillaHistory>},
+        { path: "/downloads", element: <Downloads></Downloads>},
+        { path: "/notices", element: <Notices></Notices>},
+        { path: "/notice-details/:id", element: <NoticeDetails></NoticeDetails>},
+        { path:"/all-notices", element: <AllNotices></AllNotices>},
+        { path: "/routine", element: <Routine></Routine>},
+        { path: "/circulars", element: <Circulars></Circulars>},
+        { path: "/multimedia-classroom", element: <MultimediaClassroom></MultimediaClassroom>},
     ],
   },
   {
