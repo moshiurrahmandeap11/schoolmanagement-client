@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axiosInstance, { baseImageURL } from '../../../hooks/axiosInstance/axiosInstance';
+import axiosInstance from '../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../components/sharedItems/Loader/Loader';
 
-const AllTeachersAndWorkers = () => {
-    const [teachers, setTeachers] = useState([]);
-    const [workers, setWorkers] = useState([]);
+const BrilliantStudents = () => {
+    const [students, setStudents] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const scrollContainerRef = useRef(null);
@@ -13,7 +12,7 @@ const AllTeachersAndWorkers = () => {
     const [scrollLeft, setScrollLeft] = useState(0);
 
     useEffect(() => {
-        fetchAllData();
+        fetchStudents();
     }, []);
 
     // Auto scroll functionality
@@ -36,36 +35,44 @@ const AllTeachersAndWorkers = () => {
         }, 30); // Smooth scroll speed
 
         return () => clearInterval(autoScroll);
-    }, [isDragging, teachers.length, workers.length]);
+    }, [isDragging, students.length]);
 
-    const fetchAllData = async () => {
+    const fetchStudents = async () => {
         try {
             setLoading(true);
             
-            const [teachersResponse, workersResponse] = await Promise.all([
-                axiosInstance.get('/teacher-list'),
-                axiosInstance.get('/workers-list')
-            ]);
+            const response = await axiosInstance.get('/students');
 
-            if (teachersResponse.data.success && workersResponse.data.success) {
-                setTeachers(teachersResponse.data.data || []);
-                setWorkers(workersResponse.data.data || []);
+            if (response.data.success) {
+                const allStudents = response.data.data || [];
+                
+                // Filter students with roll 1 or 2 and active status
+                const brilliantStudents = allStudents.filter(
+                    student => (student.roll === 1 || student.roll === 2) && student.status === 'active'
+                );
+                
+                // Sort by class and then by roll
+                brilliantStudents.sort((a, b) => {
+                    if (a.class !== b.class) {
+                        return a.class.localeCompare(b.class);
+                    }
+                    return a.roll - b.roll;
+                });
+                
+                setStudents(brilliantStudents);
             } else {
                 setError('Failed to load data');
             }
         } catch (error) {
-            console.error('Error fetching data:', error);
-            setError('Failed to load teachers and workers list');
+            console.error('Error fetching students:', error);
+            setError('Failed to load brilliant students');
         } finally {
             setLoading(false);
         }
     };
 
-    // Combine teachers and workers
-    const allStaff = [...teachers, ...workers];
-    
-    // Duplicate staff for infinite scroll effect
-    const infiniteStaff = [...allStaff, ...allStaff];
+    // Duplicate students for infinite scroll effect
+    const infiniteStudents = [...students, ...students];
 
     // Mouse drag handlers
     const handleMouseDown = (e) => {
@@ -104,28 +111,28 @@ const AllTeachersAndWorkers = () => {
         scrollContainerRef.current.scrollLeft = scrollLeft - walk;
     };
 
-    const getStaffType = (staff) => {
-        if (teachers.some(teacher => teacher._id === staff._id)) {
-            return { type: 'Teacher', badge: '👨‍🏫' };
-        } else {
-            return { type: 'Staff', badge: '👷' };
-        }
+    const getRankBadge = (roll) => {
+        if (roll === 1) return { emoji: '🥇', text: '1st', color: 'bg-yellow-500' };
+        if (roll === 2) return { emoji: '🥈', text: '2nd', color: 'bg-gray-400' };
+        return { emoji: '🏆', text: 'Top', color: 'bg-orange-500' };
     };
 
+    const imageu = axiosInstance.defaults.baseURL;
+
     if (loading) {
-        return <Loader></Loader>
+        return <Loader />;
     }
 
     if (error) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
+            <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-16">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="bg-white rounded-lg shadow-sm border border-red-200 p-8 text-center">
                         <div className="text-red-500 text-6xl mb-4">⚠️</div>
                         <h2 className="text-2xl font-bold text-gray-800 mb-2">Unable to Load</h2>
                         <p className="text-red-500 mb-6">{error}</p>
                         <button
-                            onClick={fetchAllData}
+                            onClick={fetchStudents}
                             className="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-medium"
                         >
                             Try Again
@@ -136,13 +143,13 @@ const AllTeachersAndWorkers = () => {
         );
     }
 
-    if (allStaff.length === 0) {
+    if (students.length === 0) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
+            <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-16">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 text-center">
-                        <div className="text-6xl mb-4">👥</div>
-                        <h3 className="text-xl font-semibold text-gray-800 mb-2">No Data Found</h3>
+                        <div className="text-6xl mb-4">🎓</div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">No Brilliant Students Found</h3>
                     </div>
                 </div>
             </div>
@@ -150,13 +157,13 @@ const AllTeachersAndWorkers = () => {
     }
 
     return (
-        <div className=" py-12">
+        <div className="py-12">
             <div className="w-full px-4 sm:px-6 lg:px-8">
                 
                 {/* Header Section */}
                 <div className="text-center mb-8">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-                        শিক্ষক ও কর্মচারীবৃন্দ
+                        মেধাবী শিক্ষার্থী
                     </h1>
                     <div className="w-32 h-1 bg-black mx-auto"></div>
                 </div>
@@ -178,40 +185,50 @@ const AllTeachersAndWorkers = () => {
                     }}
                 >
                     <div className="flex gap-4 sm:gap-6" style={{ width: 'max-content' }}>
-                        {infiniteStaff.map((staff, index) => {
-                            const staffType = getStaffType(staff);
+                        {infiniteStudents.map((student, index) => {
+                            const rankBadge = getRankBadge(student.roll);
                             
                             return (
                                 <div
-                                    key={`${staff._id}-${index}`}
+                                    key={`${student._id}-${index}`}
                                     className="shrink-0 w-52 sm:w-64 bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
                                     style={{ pointerEvents: isDragging ? 'none' : 'auto' }}
                                 >
                                     {/* Image Section */}
-                                    <div className="relative h-52 sm:h-64 bg-gradient-to-br from-gray-50 to-gray-100">
-                                        {staff.photo ? (
+                                    <div className="relative h-52 sm:h-64 bg-linear-to-br from-blue-50 to-indigo-100">
+                                        {student.photo ? (
                                             <img
-                                                src={`${baseImageURL}${staff.photo}`}
-                                                alt={staff.name}
+                                                src={`${imageu}${student.photo}`}
+                                                alt={student.name}
                                                 className="w-full h-full object-cover"
                                                 draggable="false"
                                             />
                                         ) : (
                                             <div className="w-full h-full flex items-center justify-center">
                                                 <div className="text-6xl sm:text-8xl text-gray-300">
-                                                    {staffType.badge}
+                                                    🎓
                                                 </div>
                                             </div>
                                         )}
                                         
-                                        {/* Type Badge */}
+                                        {/* Rank Badge */}
                                         <div className="absolute top-2 left-2">
-                                            <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-bold ${
-                                                staffType.type === 'Teacher' 
-                                                    ? 'bg-blue-500 text-white' 
-                                                    : 'bg-green-500 text-white'
-                                            } shadow-lg`}>
-                                                {staffType.badge}
+                                            <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-bold ${rankBadge.color} text-white shadow-lg`}>
+                                                {rankBadge.emoji} {rankBadge.text}
+                                            </span>
+                                        </div>
+
+                                        {/* Class Badge */}
+                                        <div className="absolute top-2 right-2">
+                                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-purple-500 text-white shadow-lg">
+                                                {student.class}
+                                            </span>
+                                        </div>
+
+                                        {/* Roll Badge */}
+                                        <div className="absolute bottom-2 right-2">
+                                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-green-500 text-white shadow-lg">
+                                                Roll: {student.roll}
                                             </span>
                                         </div>
                                     </div>
@@ -219,11 +236,11 @@ const AllTeachersAndWorkers = () => {
                                     {/* Info Section */}
                                     <div className="p-4 text-center">
                                         <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-1">
-                                            {staff.name}
+                                            {student.name}
                                         </h3>
                                         
                                         <p className="text-xs sm:text-sm text-gray-600">
-                                            {staff.designation}
+                                            {student.class} - Section {student.section}
                                         </p>
                                     </div>
                                 </div>
@@ -241,4 +258,4 @@ const AllTeachersAndWorkers = () => {
     );
 };
 
-export default AllTeachersAndWorkers;
+export default BrilliantStudents;

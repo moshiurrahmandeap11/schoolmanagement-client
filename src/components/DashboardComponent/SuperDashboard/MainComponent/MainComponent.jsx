@@ -13,6 +13,9 @@ import WorkersListAdmin from "../Sidebar/WorkersListAdmin/WorkersListAdmin";
 import HeadmastersListAdmin from "../Sidebar/HeadmastersListAdmin/HeadmastersListAdmin";
 import HolidayListAdmin from "../Sidebar/HolidayListAdmin/HolidayListAdmin";
 import CircularAdmin from "../Sidebar/CircularAdmin/CircularAdmin";
+import VideoGallaryAdmin from "../Sidebar/VideoGallaryAdmin/VideoGallaryAdmin";
+import PhotoGallaryAdmin from "../Sidebar/PhotoGallaryAdmin/PhotoGallaryAdmin";
+import BlogsAdmin from "../Sidebar/BlogsAdmin/BlogsAdmin";
 
 const MainComponent = ({ activeMenu }) => {
   const renderContent = () => {
@@ -97,6 +100,12 @@ const MainComponent = ({ activeMenu }) => {
         return <HolidayListAdmin></HolidayListAdmin>;
       case "circular":
         return <CircularAdmin></CircularAdmin>
+      case "video-gallery":
+        return <VideoGallaryAdmin></VideoGallaryAdmin>
+      case "photo-gallery":
+        return <PhotoGallaryAdmin></PhotoGallaryAdmin>
+      case "blogs":
+        return <BlogsAdmin></BlogsAdmin>
 
       case "settings":
         return <Settings></Settings>;

@@ -1,3 +1,4 @@
+import { Notebook } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { 
   CgFormatBold, 
@@ -17,7 +18,9 @@ import {
   FaUserTie,
   FaUserFriends,
   FaCalendarAlt,
-  FaBell
+  FaBell,
+  FaImages,
+  FaVideo
 } from 'react-icons/fa';
 import { ImInfo } from 'react-icons/im';
 import { MdRoom } from 'react-icons/md';
@@ -28,9 +31,10 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
   const [openSubmenus, setOpenSubmenus] = useState({
     student: false,
     teachers: false,
+    gallery: false, // New gallery submenu state
   });
 
-  // Menu configuration
+  // Menu configuration - Gallery option added
   const menuConfig = {
     main: [
       { id: 'dashboard', label: 'ড্যাশবোর্ড', icon: FaTachometerAlt },
@@ -62,6 +66,16 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
         { id: 'circular', label: 'Circular', icon: FaBell },
       ]
     },
+    gallery: { // New gallery submenu
+      title: 'Gallery',
+      icon: FaImages,
+      color: 'purple',
+      items: [
+        { id: 'photo-gallery', label: 'Photo Gallery', icon: FaImages },
+        { id: 'video-gallery', label: 'Video Gallery', icon: FaVideo },
+      ]
+    },
+    blogs: { id: "blogs", label: "Blogs", icon: Notebook},
     settings: { id: 'settings', label: 'Settings', icon: FaCog }
   };
 
@@ -226,6 +240,12 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
           {/* Submenus */}
           <Submenu config={menuConfig.student} submenuKey="student" />
           <Submenu config={menuConfig.teachers} submenuKey="teachers" />
+          <Submenu config={menuConfig.gallery} submenuKey="gallery" /> {/* New Gallery Submenu */}
+
+          {/* blgos */}
+          <div className='mt-4'>
+            <MenuItem item={menuConfig.blogs} />
+          </div>
 
           {/* Settings */}
           <div className="mt-4">
@@ -255,6 +275,9 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
         .bg-green-50 { background-color: #f0fdf4; }
         .text-green-600 { color: #16a34a; }
         .border-green-600 { border-color: #16a34a; }
+        .bg-purple-50 { background-color: #faf5ff; }
+        .text-purple-600 { color: #9333ea; }
+        .border-purple-600 { border-color: #9333ea; }
         
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(-10px); }

@@ -26,6 +26,10 @@ import TeachersList from "../../pages/Home/Teachers/TeachersList/TeachersList";
 import WorkersList from "../../pages/Home/Teachers/WorkersList/WorkersList";
 import HeadmasterList from "../../pages/Home/Teachers/HeadmasterList/HeadmasterList";
 import HolidayList from "../../pages/Home/Teachers/HolidayList/HolidayList";
+import VideoGallaryNav from "../../components/Gallary/VideoGallaryNav/VideoGallaryNav";
+import PhotoGalleryNav from "../../components/Gallary/PhotoGallaryNav/PhotoGalleryNav";
+import BlogNav from "../../components/BlogNav/BlogNav";
+import BlogDetails from "../../components/BlogNav/BlogDetails/BlogDetails";
 
 export const route = createBrowserRouter([
   {
@@ -52,6 +56,10 @@ export const route = createBrowserRouter([
         { path: "/staff-list", element: <WorkersList></WorkersList>},
         { path: "/head-teachers-list", element: <HeadmasterList></HeadmasterList>},
         { path: "/holiday-list", element: <HolidayList></HolidayList>},
+        { path: "/video-gallery", element: <VideoGallaryNav></VideoGallaryNav>},
+        { path: "/photo-gallery", element: <PhotoGalleryNav></PhotoGalleryNav>},
+        { path: "/blog", element: <BlogNav></BlogNav>},
+        { path: "/blog-details/:id", element: <BlogDetails></BlogDetails>},
     ],
   },
   {

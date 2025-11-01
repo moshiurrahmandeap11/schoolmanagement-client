@@ -15,6 +15,9 @@ import GovtImage from "../../components/GovtImage/GovtImage";
 import { BsArrowRight } from "react-icons/bs";
 import { useNavigate } from "react-router";
 import AllTeachersAndWorkers from "./AllTeachersAndWorkers/AllTeachersAndWorkers";
+import BrilliantStudents from "./BrilliantStudents/BrilliantStudents";
+import VideoGallery from "./VideoGallery/VideoGallery";
+import LatestBlogs from "./LatestBlogs/LatestBlogs";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -74,6 +77,9 @@ const Home = () => {
           </div>
         </div>
             <AllTeachersAndWorkers></AllTeachersAndWorkers>
+            <BrilliantStudents></BrilliantStudents>
+            <VideoGallery></VideoGallery>
+            <LatestBlogs></LatestBlogs>
       </div>
     </div>
   );
