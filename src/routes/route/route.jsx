@@ -30,6 +30,9 @@ import VideoGallaryNav from "../../components/Gallary/VideoGallaryNav/VideoGalla
 import PhotoGalleryNav from "../../components/Gallary/PhotoGallaryNav/PhotoGalleryNav";
 import BlogNav from "../../components/BlogNav/BlogNav";
 import BlogDetails from "../../components/BlogNav/BlogDetails/BlogDetails";
+import ManagingCommittee from "../../components/sharedItems/Footer/SubFooter/ManagingCommittee/ManagingCommittee";
+import UpazillaHistory from "../../components/sharedItems/Footer/SubFooter/UpazillaHistory/UpazillaHistory";
+import ZillaHistory from "../../components/sharedItems/Footer/SubFooter/ZillaHistory/ZillaHistory";
 
 export const route = createBrowserRouter([
   {
@@ -60,6 +63,9 @@ export const route = createBrowserRouter([
         { path: "/photo-gallery", element: <PhotoGalleryNav></PhotoGalleryNav>},
         { path: "/blog", element: <BlogNav></BlogNav>},
         { path: "/blog-details/:id", element: <BlogDetails></BlogDetails>},
+        { path: "/managing-committee", element: <ManagingCommittee></ManagingCommittee>},
+        { path: "/upazilla-history", element: <UpazillaHistory></UpazillaHistory>},
+        { path: "/zilla-history", element: <ZillaHistory></ZillaHistory>},
     ],
   },
   {

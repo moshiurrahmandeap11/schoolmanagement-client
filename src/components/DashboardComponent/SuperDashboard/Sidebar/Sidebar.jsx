@@ -20,10 +20,11 @@ import {
   FaCalendarAlt,
   FaBell,
   FaImages,
-  FaVideo
+  FaVideo,
+  FaHistory
 } from 'react-icons/fa';
 import { ImInfo } from 'react-icons/im';
-import { MdRoom } from 'react-icons/md';
+import { MdManageHistory, MdRoom } from 'react-icons/md';
 import { PiSeat } from 'react-icons/pi';
 
 const Sidebar = ({ activeMenu, setActiveMenu }) => {
@@ -31,10 +32,11 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
   const [openSubmenus, setOpenSubmenus] = useState({
     student: false,
     teachers: false,
-    gallery: false, // New gallery submenu state
+    gallery: false,
+    history: false, // New history submenu state
   });
 
-  // Menu configuration - Gallery option added
+  // Menu configuration - History submenu added
   const menuConfig = {
     main: [
       { id: 'dashboard', label: 'ড্যাশবোর্ড', icon: FaTachometerAlt },
@@ -66,7 +68,7 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
         { id: 'circular', label: 'Circular', icon: FaBell },
       ]
     },
-    gallery: { // New gallery submenu
+    gallery: {
       title: 'Gallery',
       icon: FaImages,
       color: 'purple',
@@ -75,7 +77,17 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
         { id: 'video-gallery', label: 'Video Gallery', icon: FaVideo },
       ]
     },
+    history: { // New history submenu
+      title: 'History',
+      icon: FaHistory,
+      color: 'orange',
+      items: [
+        { id: 'upazilla-history', label: 'Upazilla History', icon: FaHistory },
+        { id: 'zilla-history', label: 'Zilla History', icon: FaHistory },
+      ]
+    },
     blogs: { id: "blogs", label: "Blogs", icon: Notebook},
+    managing: { id: "managing", label: "Committee", icon: MdManageHistory},
     settings: { id: 'settings', label: 'Settings', icon: FaCog }
   };
 
@@ -240,11 +252,17 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
           {/* Submenus */}
           <Submenu config={menuConfig.student} submenuKey="student" />
           <Submenu config={menuConfig.teachers} submenuKey="teachers" />
-          <Submenu config={menuConfig.gallery} submenuKey="gallery" /> {/* New Gallery Submenu */}
+          <Submenu config={menuConfig.gallery} submenuKey="gallery" />
+          <Submenu config={menuConfig.history} submenuKey="history" /> {/* New History Submenu */}
 
-          {/* blgos */}
+          {/* Blogs */}
           <div className='mt-4'>
             <MenuItem item={menuConfig.blogs} />
+          </div>
+
+          {/* Managing Committee */}
+          <div className='mt-4'>
+            <MenuItem item={menuConfig.managing} />
           </div>
 
           {/* Settings */}
@@ -278,6 +296,9 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
         .bg-purple-50 { background-color: #faf5ff; }
         .text-purple-600 { color: #9333ea; }
         .border-purple-600 { border-color: #9333ea; }
+        .bg-orange-50 { background-color: #fff7ed; }
+        .text-orange-600 { color: #ea580c; }
+        .border-orange-600 { border-color: #ea580c; }
         
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(-10px); }

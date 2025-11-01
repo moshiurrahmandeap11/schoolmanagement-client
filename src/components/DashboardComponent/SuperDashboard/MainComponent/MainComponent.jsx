@@ -16,6 +16,10 @@ import CircularAdmin from "../Sidebar/CircularAdmin/CircularAdmin";
 import VideoGallaryAdmin from "../Sidebar/VideoGallaryAdmin/VideoGallaryAdmin";
 import PhotoGallaryAdmin from "../Sidebar/PhotoGallaryAdmin/PhotoGallaryAdmin";
 import BlogsAdmin from "../Sidebar/BlogsAdmin/BlogsAdmin";
+import ManagingCommitteeAdmin from "../Sidebar/ManagingCommitteeAdmin/ManagingCommitteeAdmin";
+import UpazillaHistoryAdmin from "../Sidebar/UpazillaHistoryAdmin/UpazillaHistoryAdmin";
+import ZillaHistory from "../Sidebar/ZillaHistoryAdmin/ZillaHistoryAdmin";
+import ZillaHistoryAdmin from "../Sidebar/ZillaHistoryAdmin/ZillaHistoryAdmin";
 
 const MainComponent = ({ activeMenu }) => {
   const renderContent = () => {
@@ -106,6 +110,12 @@ const MainComponent = ({ activeMenu }) => {
         return <PhotoGallaryAdmin></PhotoGallaryAdmin>
       case "blogs":
         return <BlogsAdmin></BlogsAdmin>
+      case "managing":
+        return <ManagingCommitteeAdmin></ManagingCommitteeAdmin>
+      case "upazilla-history":
+        return <UpazillaHistoryAdmin></UpazillaHistoryAdmin>
+      case "zilla-history":
+        return <ZillaHistoryAdmin></ZillaHistoryAdmin>
 
       case "settings":
         return <Settings></Settings>;
