@@ -17,16 +17,8 @@ const AcademicInfo = () => {
         },
         { 
             text: "কক্ষ সংখ্যা", 
-            path: "/room-numbers" 
+            path: "/class-rooms" 
         },
-        { 
-            text: "বিভিন্ন তথ্য", 
-            path: "/various-info" 
-        },
-        { 
-            text: "সহপাঠ", 
-            path: "/co-curricular" 
-        }
     ];
 
     const handleItemClick = (path) => {

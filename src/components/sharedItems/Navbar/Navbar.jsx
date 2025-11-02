@@ -39,15 +39,8 @@ const Navbar = () => {
     {
       name: "বিভিন্ন তথ্য",
       submenu: [
-        { name: "কক্ষ সংখ্যা", path: "/classrooms" },
-        { name: "কম্পিউটার ব্যবহার", path: "/computer-facilities" },
-        { name: "ছাত্র-ছাত্রীদের আসন সংখ্যা", path: "/seats" },
-        { name: "ভৌতকাঠামো", path: "/infrastructure" },
-        { name: "মাল্টিমিডিয়া ক্লাসরুম", path: "/multimedia-classrooms" },
-        { name: "যানবাহন সুবিধা", path: "/transport" },
-        { name: "শূণ্যপদের তালিকা", path: "/vacancies" },
-        { name: "ছুটির তালিকা", path: "/holidays" },
-        { name: "সহপাঠ", path: "/co-curricular" },
+        { name: "ছাত্র-ছাত্রীদের আসন সংখ্যা", path: "/seat-numbers" },
+        { name: "ছুটির তালিকা", path: "/holiday-list" },
         { name: "সার্কুলার", path: "/circulars" }
       ]
     },
