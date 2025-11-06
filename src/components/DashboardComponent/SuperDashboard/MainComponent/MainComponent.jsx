@@ -1,3 +1,4 @@
+// MainComponent/MainComponent.jsx
 import React from "react";
 import Settings from "../Sidebar/Settings/Settings";
 import RecentlyAdmin from "../Sidebar/RecentlyAdmin/RecentlyAdmin";
@@ -18,183 +19,137 @@ import PhotoGallaryAdmin from "../Sidebar/PhotoGallaryAdmin/PhotoGallaryAdmin";
 import BlogsAdmin from "../Sidebar/BlogsAdmin/BlogsAdmin";
 import ManagingCommitteeAdmin from "../Sidebar/ManagingCommitteeAdmin/ManagingCommitteeAdmin";
 import UpazillaHistoryAdmin from "../Sidebar/UpazillaHistoryAdmin/UpazillaHistoryAdmin";
-import ZillaHistory from "../Sidebar/ZillaHistoryAdmin/ZillaHistoryAdmin";
 import ZillaHistoryAdmin from "../Sidebar/ZillaHistoryAdmin/ZillaHistoryAdmin";
 import ContactInfoAdmin from "../Sidebar/ContactInfoAdmin/ContactInfoAdmin";
 import NoticesAdmin from "../Sidebar/NoticesAdmin/NoticesAdmin";
 import RoutineAdmin from "../Sidebar/RoutineAdmin/RoutineAdmin";
+import SDashboardItems from "../Sidebar/SDashboardItems/SDashboardItems";
 
-const MainComponent = ({ activeMenu }) => {
+// সব SDashboardItems কম্পোনেন্ট
+import BranchManagement from "../Sidebar/SDashboardItems/Branch/Branch";
+import DonationManagement from "../Sidebar/SDashboardItems/DonationManagement/DonationManagement";
+import CertificateManagement from "../Sidebar/SDashboardItems/CertificateManagement/CertificateManagement";
+import SalaryBonusManagement from "../Sidebar/SDashboardItems/SalaryBonusManagement/SalaryBonusManagement";
+import WebsiteManagement from "../Sidebar/SDashboardItems/WebsiteManagement/WebsiteManagement";
+import AcademicManagement from "../Sidebar/SDashboardItems/AcademicManagement/AcademicManagement";
+import ExaminationManagement from "../Sidebar/SDashboardItems/ExaminationManagement/ExaminationManagement";
+import AccountsManagement from "../Sidebar/SDashboardItems/AccountsManagement/AccountsManagement";
+import FeeManagement from "../Sidebar/SDashboardItems/FeeManagement/FeeManagement";
+import PrintManagement from "../Sidebar/SDashboardItems/PrintManagement/PrintManagement";
+import SMSManagement from "../Sidebar/SDashboardItems/SMSManagement/SMSManagement";
+import AttendanceManagement from "../Sidebar/SDashboardItems/AttendanceManagement/AttendanceManagement";
+import DepartmentManagement from "../Sidebar/SDashboardItems/DepartmentManagement/DepartmentManagement";
+
+const MainComponent = ({ activeMenu, onDashboardItemClick }) => { // প্রপ রিসিভ করা হলো
   const renderContent = () => {
     switch (activeMenu) {
       case "dashboard":
-        return (
-          <div className="space-y-6">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-800">
-                ড্যাশবোর্ড ওভারভিউ
-              </h1>
-              <p className="text-gray-600 mt-2">
-                এখানে আপনার সামগ্রিক স্ট্যাটাস এবং সারাংশ দেখানো হচ্ছে।
-              </p>
-            </div>
+        return <SDashboardItems onItemClick={onDashboardItemClick} />; // প্রপ পাস
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <span className="text-2xl">👥</span>
-                  </div>
-                  <div>
-                    <p className="text-gray-500 text-sm">মোট ব্যবহারকারী</p>
-                    <p className="text-2xl font-bold text-gray-800">১,২৩৪</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                    <span className="text-2xl">🔄</span>
-                  </div>
-                  <div>
-                    <p className="text-gray-500 text-sm">সক্রিয় সেশন</p>
-                    <p className="text-2xl font-bold text-gray-800">৫৬</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <span className="text-2xl">💰</span>
-                  </div>
-                  <div>
-                    <p className="text-gray-500 text-sm">আজকের আয়</p>
-                    <p className="text-2xl font-bold text-gray-800">৳১২,৫০০</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
+      case "branch-management":
+        return <BranchManagement />;
+      case "donation-management":
+        return <DonationManagement />;
+      case "certificate-management":
+        return <CertificateManagement />;
+      case "salary-bonus-management":
+        return <SalaryBonusManagement />;
+      case "website-management":
+        return <WebsiteManagement />;
+      case "academic-management":
+        return <AcademicManagement />;
+      case "examination-management":
+        return <ExaminationManagement />;
+      case "accounts-management":
+        return <AccountsManagement />;
+      case "fee-management":
+        return <FeeManagement />;
+      case "print-management":
+        return <PrintManagement />;
+      case "sms-management":
+        return <SMSManagement />;
+      case "attendance-management":
+        return <AttendanceManagement />;
+      case "department-management":
+        return <DepartmentManagement />;
 
       case "announcement":
-        return <RecentlyAdmin></RecentlyAdmin>;
-
+        return <RecentlyAdmin />;
       case "school-history":
-        return <SchoolHistory></SchoolHistory>;
-
+        return <SchoolHistory />;
       case "speech":
-        return <SpeechAdmin></SpeechAdmin>;
+        return <SpeechAdmin />;
       case "students":
-        return <StudentsAdmin></StudentsAdmin>;
+        return <StudentsAdmin />;
       case "total-seats":
-        return <TotalSeats></TotalSeats>;
+        return <TotalSeats />;
       case "class-rooms":
-        return <ClassRooms></ClassRooms>;
+        return <ClassRooms />;
       case "admission-info":
-        return <AdmissionInfoAdmin></AdmissionInfoAdmin>;
+        return <AdmissionInfoAdmin />;
       case "admission-form":
-        return <AdmissionFormAdmin></AdmissionFormAdmin>;
+        return <AdmissionFormAdmin />;
       case "teacher-list":
-        return <TeacherListAdmin></TeacherListAdmin>;
+        return <TeacherListAdmin />;
       case "workers-list":
-        return <WorkersListAdmin></WorkersListAdmin>;
+        return <WorkersListAdmin />;
       case "headmasters-list":
-        return <HeadmastersListAdmin></HeadmastersListAdmin>;
+        return <HeadmastersListAdmin />;
       case "off-days":
-        return <HolidayListAdmin></HolidayListAdmin>;
+        return <HolidayListAdmin />;
       case "circular":
-        return <CircularAdmin></CircularAdmin>
+        return <CircularAdmin />;
       case "video-gallery":
-        return <VideoGallaryAdmin></VideoGallaryAdmin>
+        return <VideoGallaryAdmin />;
       case "photo-gallery":
-        return <PhotoGallaryAdmin></PhotoGallaryAdmin>
+        return <PhotoGallaryAdmin />;
       case "blogs":
-        return <BlogsAdmin></BlogsAdmin>
+        return <BlogsAdmin />;
       case "managing":
-        return <ManagingCommitteeAdmin></ManagingCommitteeAdmin>
+        return <ManagingCommitteeAdmin />;
       case "upazilla-history":
-        return <UpazillaHistoryAdmin></UpazillaHistoryAdmin>
+        return <UpazillaHistoryAdmin />;
       case "zilla-history":
-        return <ZillaHistoryAdmin></ZillaHistoryAdmin>
+        return <ZillaHistoryAdmin />;
       case "contact-info":
-        return <ContactInfoAdmin></ContactInfoAdmin>
+        return <ContactInfoAdmin />;
       case "notice":
-        return <NoticesAdmin></NoticesAdmin>
+        return <NoticesAdmin />;
       case "routine":
-        return <RoutineAdmin></RoutineAdmin>
-
+        return <RoutineAdmin />;
       case "settings":
-        return <Settings></Settings>;
+        return <Settings />;
 
       case "profile":
         return (
           <div className="space-y-6">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">
-                ব্যবহারকারী প্রোফাইল
-              </h1>
-              <p className="text-gray-600 mt-2">
-                আপনার প্রোফাইল তথ্য দেখুন এবং এডিট করুন।
-              </p>
+              <h1 className="text-3xl font-bold text-gray-800">ব্যবহারকারী প্রোফাইল</h1>
+              <p className="text-gray-600 mt-2">আপনার প্রোফাইল তথ্য দেখুন এবং এডিট করুন।</p>
             </div>
-
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-              <div className="p-8">
-                <div className="flex items-center gap-6 mb-6">
-                  <div className="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center">
-                    <span className="text-white text-2xl font-bold">A</span>
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold text-gray-800">
-                      আপনার নাম
-                    </h2>
-                    <p className="text-gray-600">অ্যাডমিন ব্যবহারকারী</p>
-                  </div>
+            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+              <div className="flex items-center gap-6 mb-6">
+                <div className="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center">
+                  <span className="text-white text-2xl font-bold">A</span>
                 </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        পুরো নাম
-                      </label>
-                      <p className="text-gray-800">আপনার পুরো নাম</p>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        ইমেইল
-                      </label>
-                      <p className="text-gray-800">your@email.com</p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        ভূমিকা
-                      </label>
-                      <p className="text-gray-800">অ্যাডমিন</p>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        সদস্য sejak
-                      </label>
-                      <p className="text-gray-800">১ জানুয়ারি, ২০২৪</p>
-                    </div>
-                  </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-800">আপনার নাম</h2>
+                  <p className="text-gray-600">অ্যাডমিন ব্যবহারকারী</p>
                 </div>
-
-                <div className="mt-6 flex gap-4">
-                  <button className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
-                    প্রোফাইল এডিট করুন
-                  </button>
-                  <button className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                    পাসওয়ার্ড পরিবর্তন
-                  </button>
-                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div><p className="font-medium">পুরো নাম:</p><p>আপনার পুরো নাম</p></div>
+                <div><p className="font-medium">ইমেইল:</p><p>your@email.com</p></div>
+                <div><p className="font-medium">ভূমিকা:</p><p>অ্যাডমিন</p></div>
+                <div><p className="font-medium">সদস্য since:</p><p>১ জানুয়ারি, ২০২৪</p></div>
+              </div>
+              <div className="mt-6 flex gap-4">
+                <button className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                  প্রোফাইল এডিট করুন
+                </button>
+                <button className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                  পাসওয়ার্ড পরিবর্তন
+                </button>
               </div>
             </div>
           </div>
@@ -202,22 +157,26 @@ const MainComponent = ({ activeMenu }) => {
 
       default:
         return (
-          <div className="text-center py-12">
-            <h1 className="text-3xl font-bold text-gray-800 mb-4">
-              সুপার ড্যাশবোর্ডে স্বাগতম
-            </h1>
-            <p className="text-gray-600 text-lg">
-              বাম পাশের মেনু থেকে কোনো অপশন সিলেক্ট করুন
-            </p>
+          <div className="flex items-center justify-center h-full">
+            <div className="text-center">
+              <h1 className="text-3xl font-bold text-gray-800 mb-4">
+                সুপার ড্যাশবোর্ডে স্বাগতম
+              </h1>
+              <p className="text-gray-600 text-lg">
+                বাম পাশের মেনু থেকে কোনো অপশন সিলেক্ট করুন
+              </p>
+            </div>
           </div>
         );
     }
   };
 
   return (
-    <div className="flex-1 p-6 lg:p-8 bg-gray-50 min-h-screen">
-      {renderContent()}
-    </div>
+    <main className="flex-1 bg-gray-50 h-[calc(100vh-4rem)] overflow-y-auto">
+      <div className="p-4 sm:p-6 lg:p-8">
+        {renderContent()}
+      </div>
+    </main>
   );
 };
 

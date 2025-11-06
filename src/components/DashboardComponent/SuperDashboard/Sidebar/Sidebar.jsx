@@ -2,9 +2,7 @@ import { Notebook } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { 
   CgFormatBold, 
-  CgChevronDown, 
-  CgChevronRight,
-  CgMenu,
+  CgChevronDown,
   CgClose 
 } from 'react-icons/cg';
 import { 
@@ -30,8 +28,7 @@ import { ImInfo } from 'react-icons/im';
 import { MdManageHistory, MdRoom } from 'react-icons/md';
 import { PiSeat } from 'react-icons/pi';
 
-const Sidebar = ({ activeMenu, setActiveMenu }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen }) => {
   const [openSubmenus, setOpenSubmenus] = useState({
     student: false,
     teachers: false,
@@ -40,13 +37,13 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
     contact: false,
   });
 
-  // Menu configuration - Notice and Routine menu added
+  // Menu configuration
   const menuConfig = {
     main: [
       { id: 'dashboard', label: 'ড্যাশবোর্ড', icon: FaTachometerAlt },
       { id: 'announcement', label: 'Announcement', icon: FaBullhorn },
       { id: 'notice', label: 'Notice', icon: FaBullhorn },
-      { id: 'routine', label: 'Routine', icon: FaCalendarDay }, // New Routine menu
+      { id: 'routine', label: 'Routine', icon: FaCalendarDay },
       { id: 'school-history', label: 'School History', icon: FaSchool },
       { id: 'speech', label: 'Speech', icon: FaQuoteRight },
     ],
@@ -127,7 +124,8 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
     const handleClickOutside = (event) => {
       if (window.innerWidth < 1024 && isSidebarOpen) {
         const sidebar = document.getElementById('sidebar');
-        if (sidebar && !sidebar.contains(event.target)) {
+        const mobileToggle = document.querySelector('[data-mobile-toggle]');
+        if (sidebar && !sidebar.contains(event.target) && !mobileToggle?.contains(event.target)) {
           setIsSidebarOpen(false);
         }
       }
@@ -135,7 +133,7 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isSidebarOpen]);
+  }, [isSidebarOpen, setIsSidebarOpen]);
 
   // Close sidebar on escape key
   useEffect(() => {
@@ -147,7 +145,7 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
 
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
-  }, [isSidebarOpen]);
+  }, [isSidebarOpen, setIsSidebarOpen]);
 
   // Menu item component
   const MenuItem = ({ item, level = 0, isSubmenu = false }) => {
@@ -161,13 +159,13 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
           w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200
           text-left hover:scale-[1.02] active:scale-[0.98]
           ${isActive 
-            ? `bg-${menuConfig[item.color]?.color || 'blue'}-50 text-${menuConfig[item.color]?.color || 'blue'}-600 border-r-2 border-${menuConfig[item.color]?.color || 'blue'}-600` 
+            ? `bg-blue-50 text-blue-600 border-r-2 border-blue-600` 
             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-800'
           }
           ${isSubmenu ? 'text-sm pl-12' : ''}
         `}
       >
-        <Icon className={`text-xl ${isActive ? `text-${menuConfig[item.color]?.color || 'blue'}-600` : 'text-gray-500'}`} />
+        <Icon className={`text-xl ${isActive ? 'text-blue-600' : 'text-gray-500'}`} />
         <span className="font-medium flex-1">{item.label}</span>
       </button>
     );
@@ -180,7 +178,7 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
     const hasActiveItem = items.some(item => item.id === activeMenu);
 
     return (
-      <div className="mt-4">
+      <div className="mt-2">
         <button
           onClick={() => toggleSubmenu(submenuKey)}
           className={`
@@ -217,22 +215,6 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
 
   return (
     <>
-      {/* Mobile Header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 bg-white shadow-sm z-30 p-4 border-b border-gray-200">
-        <div className="flex items-center justify-between">
-          <button
-            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
-          >
-            {isSidebarOpen ? <CgClose className="text-xl" /> : <CgMenu className="text-xl" />}
-          </button>
-          <h1 className="text-lg font-bold text-gray-800">সুপার ড্যাশবোর্ড</h1>
-          <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
-            <span className="text-white text-sm font-bold">A</span>
-          </div>
-        </div>
-      </div>
-
       {/* Mobile Overlay */}
       {isSidebarOpen && (
         <div 
@@ -242,22 +224,36 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
       )}
       
       {/* Sidebar */}
-      <div 
+      <aside 
         id="sidebar"
         className={`
-          fixed lg:static inset-y-0 left-0 z-50
-          w-64 bg-white shadow-xl lg:shadow-lg transform transition-transform duration-300 ease-in-out
-          flex flex-col h-screen border-r border-gray-200
+          fixed lg:sticky 
+          top-16 left-0 
+          h-[calc(100vh-4rem)]
+          w-64 bg-white shadow-xl lg:shadow-lg 
+          transform transition-transform duration-300 ease-in-out
+          flex flex-col border-r border-gray-200
           ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
-          lg:mt-0 mt-16
+          z-40
         `}
       >
+        {/* Close Button - Mobile Only */}
+        <div className="lg:hidden flex justify-between items-center p-4 border-b border-gray-200">
+          <h2 className="text-lg font-bold text-gray-800">মেনু</h2>
+          <button
+            onClick={() => setIsSidebarOpen(false)}
+            className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+          >
+            <CgClose className="text-xl text-gray-600" />
+          </button>
+        </div>
+
         {/* Sidebar Header - Desktop */}
         <div className="hidden lg:flex items-center justify-between p-6 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-800">সুপার ড্যাশবোর্ড</h2>
         </div>
         
-        {/* Navigation */}
+        {/* Navigation - Scrollable */}
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           {/* Main Menu Items */}
           {menuConfig.main.map((item) => (
@@ -277,29 +273,16 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
           </div>
 
           {/* Managing Committee */}
-          <div className='mt-4'>
+          <div className='mt-2'>
             <MenuItem item={menuConfig.managing} />
           </div>
 
           {/* Settings */}
-          <div className="mt-4">
+          <div className="mt-2">
             <MenuItem item={menuConfig.settings} />
           </div>
         </nav>
-
-        {/* Sidebar Footer - Desktop */}
-        <div className="hidden lg:block p-4 border-t border-gray-200">
-          <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-            <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-sm font-bold">A</span>
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-800 truncate">অ্যাডমিন</p>
-              <p className="text-xs text-gray-500 truncate">admin@example.com</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      </aside>
 
       {/* Custom Styles for safe color classes */}
       <style jsx>{`
