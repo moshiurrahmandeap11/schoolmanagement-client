@@ -5,6 +5,9 @@ import {
   FaGlobe, FaGraduationCap, FaFileAlt, FaChartBar, FaMoneyCheckAlt,
   FaPrint, FaSms, FaUserCheck, FaSitemap, FaArrowRight
 } from 'react-icons/fa';
+import SDashboardItems2 from './SDashboardItems2/SDashboardItems2';
+import SDashboardItems3 from './SDashboardItems3/SDashboardITems3';
+import SDashboardItems4 from './SDashboadItems4/SDashboardItems4';
 
 const SDashboardItems = ({ onItemClick }) => {
   const menuItems = [
@@ -55,6 +58,9 @@ const SDashboardItems = ({ onItemClick }) => {
           ))}
         </div>
       </div>
+      <SDashboardItems2></SDashboardItems2>
+      <SDashboardItems3></SDashboardItems3>
+      <SDashboardItems4></SDashboardItems4>
     </div>
   );
 };
