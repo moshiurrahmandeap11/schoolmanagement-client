@@ -1,50 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  FaBullhorn, 
-  FaCog, 
-  FaQuoteRight, 
-  FaSchool, 
-  FaTachometerAlt, 
-  FaUserGraduate, 
-  FaChalkboardTeacher,
-  FaUserTie,
-  FaUserFriends,
-  FaCalendarAlt,
-  FaBell,
-  FaImages,
-  FaVideo,
-  FaHistory,
-  FaPhone,
-  FaEnvelope,
-  FaCalendarDay,
-  FaHome,
-  FaInfoCircle,
-  FaFileAlt,
-  FaShieldAlt,
-  FaLink,
-  FaBookOpen,
-  FaSms,
-  FaRegIdCard,
-  FaWpforms,
-  FaRegCalendarAlt,
-  FaPhotoVideo,
-  FaLaptop
-} from 'react-icons/fa';
-import { ImInfo } from 'react-icons/im';
-import { MdAddCard, MdClass, MdHomeWork, MdManageHistory, MdOutlineAccessTime, MdOutlineAssignment, MdOutlineAssignmentTurnedIn, MdOutlineCategory, MdOutlineClass, MdOutlineDomain, MdOutlineEventBusy, MdOutlineGTranslate, MdOutlinePayments, MdOutlinePrint, MdReport, MdRoom } from 'react-icons/md';
-import { PiBehanceLogoBold, PiBuildingsBold, PiCertificateBold, PiChalkboardTeacherBold, PiChalkboardTeacherFill, PiChatCircleBold, PiDownloadBold, PiImageBold, PiMoneyBold, PiMoneyLight, PiMoneyWavyBold, PiNewspaperBold, PiSailboatBold, PiSeat, PiStackBold, PiStudent, PiStudentBold, PiTableBold, PiUploadBold, PiUserPlusBold, PiUsersThreeBold, PiVideoBold } from 'react-icons/pi';
-import { CgFormatBold, CgChevronDown, CgClose } from 'react-icons/cg';
-import { Book,  Image,  LucideUserPlus2,  LucideUsers2,  LucideUserSquare2,  Notebook, Section } from 'lucide-react';
-import { SiSession } from 'react-icons/si';
-import { BsCoin, BsPatchCheck, BsPatchCheckFill } from 'react-icons/bs';
-import { GiBranchArrow, GiClassicalKnowledge, GiGraduateCap, GiGroupedDrops, GiPathDistance, GiTeacher, GiTeamIdea, GiUpgrade } from 'react-icons/gi';
-import { RiBriefcaseLine, RiCalendarEventLine, RiCalendarScheduleLine, RiContactsBookLine, RiLayoutLine, RiLogoutBoxRLine, RiMoneyCnyCircleLine, RiOutletLine, RiSendPlaneLine, RiSettings3Line } from 'react-icons/ri';
-import { GoReport } from 'react-icons/go';
-import { FaTableList } from 'react-icons/fa6';
-import { LuBookOpenCheck, LuClipboardList, LuFile, LuFileBadge, LuFileOutput, LuFileStack, LuMenu, LuTable, LuUser, LuUserCog } from 'react-icons/lu';
-import { TbArrowsExchange2, TbBell, TbBuilding, TbCalendarStats, TbCategory, TbClock, TbCoins, TbCoinTaka, TbList, TbReceiptRefund, TbReport, TbReportAnalytics, TbReportMoney, TbTableAlias, TbTools } from 'react-icons/tb';
+import { LucideUserPlus2, LucideUsers2, LucideUserSquare2, Notebook } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { AiOutlinePercentage } from 'react-icons/ai';
+import { BsCoin, BsPatchCheckFill } from 'react-icons/bs';
+import { CgChevronDown, CgClose, CgFormatBold } from 'react-icons/cg';
+import {
+  FaBell,
+  FaBookOpen,
+  FaBullhorn,
+  FaCalendarAlt,
+  FaCalendarDay,
+  FaChalkboardTeacher,
+  FaCog,
+  FaEnvelope,
+  FaFileAlt,
+  FaHistory,
+  FaHome,
+  FaImages,
+  FaInfoCircle,
+  FaLaptop,
+  FaLink,
+  FaPhone,
+  FaPhotoVideo,
+  FaQuoteRight,
+  FaRegCalendarAlt,
+  FaRegIdCard,
+  FaSchool,
+  FaShieldAlt,
+  FaSms,
+  FaUserFriends,
+  FaUserGraduate,
+  FaUserTie,
+  FaVideo,
+  FaWpforms
+} from 'react-icons/fa';
+import { FaTableList } from 'react-icons/fa6';
+import { GiGraduateCap, GiGroupedDrops, GiPathDistance, GiTeamIdea, GiUpgrade } from 'react-icons/gi';
+import { GoReport } from 'react-icons/go';
 import { HiOutlineIdentification } from 'react-icons/hi';
+import { ImInfo } from 'react-icons/im';
+import { LuBookOpenCheck, LuClipboardList, LuFile, LuFileBadge, LuFileOutput, LuFileStack, LuMenu, LuTable, LuUser, LuUserCog } from 'react-icons/lu';
+import { MdAddCard, MdClass, MdHomeWork, MdManageHistory, MdOutlineAccessTime, MdOutlineAssignment, MdOutlineAssignmentTurnedIn, MdOutlineCategory, MdOutlineClass, MdOutlineDomain, MdOutlineEventBusy, MdOutlinePayments, MdOutlinePrint, MdReport, MdRoom } from 'react-icons/md';
+import { PiBehanceLogoBold, PiBuildingsBold, PiCertificateBold, PiChalkboardTeacherBold, PiChalkboardTeacherFill, PiChatCircleBold, PiDownloadBold, PiImageBold, PiMoneyBold, PiMoneyLight, PiMoneyWavyBold, PiNewspaperBold, PiSeat, PiStackBold, PiStudent, PiStudentBold, PiTableBold, PiUploadBold, PiUserPlusBold, PiUsersThreeBold, PiVideoBold } from 'react-icons/pi';
+import { RiBriefcaseLine, RiCalendarEventLine, RiCalendarScheduleLine, RiContactsBookLine, RiLayoutLine, RiLogoutBoxRLine, RiMoneyCnyCircleLine, RiSendPlaneLine, RiSettings3Line } from 'react-icons/ri';
+import { TbArrowsExchange2, TbBell, TbBuilding, TbCalendarStats, TbCategory, TbClock, TbCoins, TbCoinTaka, TbList, TbReceiptRefund, TbReport, TbReportAnalytics, TbReportMoney, TbTableAlias, TbTools } from 'react-icons/tb';
 
 // ====================================
 // এখানে শুধু মেনু যোগ করুন - খুবই সহজ!

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 import axiosInstance, { baseImageURL } from '../../../../../hooks/axiosInstance/axiosInstance';
 
 const TeacherListAdmin = () => {
@@ -15,23 +16,29 @@ const TeacherListAdmin = () => {
         'Finance', 'Business Studies', 'Economics', 'Geography', 'History'
     ]);
 
-    // Form state
+    // Filter states
+    const [showFilters, setShowFilters] = useState(false);
+    const [filters, setFilters] = useState({
+        search: '',
+        session: '',
+        mobile: '',
+        staffType: '',
+        position: ''
+    });
+
+    // Form state with new fields
     const [formData, setFormData] = useState({
+        smartId: '',
+        fingerId: '',
         name: '',
         mobile: '',
-        subject: '',
-        email: '',
-        address: '',
-        joiningDate: '',
-        qualifications: '',
-        photo: '',
         designation: '',
-        department: '',
+        biboron: '',
         salary: '',
-        experience: '',
-        bloodGroup: '',
-        gender: '',
-        dateOfBirth: ''
+        position: 'Active',
+        photo: '',
+        session: '',
+        staffType: 'Teacher'
     });
 
     // File upload state
@@ -46,25 +53,35 @@ const TeacherListAdmin = () => {
     const fetchTeachers = async () => {
         try {
             setLoading(true);
-            console.log('Fetching teachers...');
             const response = await axiosInstance.get('/teacher-list');
-            console.log('Teachers response:', response.data);
             
             if (response.data.success) {
                 setTeachers(response.data.data);
             } else {
-                showMessage('error', response.data.message || 'Failed to load teachers');
+                showSweetAlert('error', response.data.message || 'Failed to load teachers');
             }
         } catch (error) {
             console.error('Error fetching teachers:', error);
-            showMessage('error', 'Failed to load teachers list: ' + error.message);
+            showSweetAlert('error', 'Failed to load teachers list: ' + error.message);
         } finally {
             setLoading(false);
         }
     };
 
+    const showSweetAlert = (icon, title, text = '') => {
+        Swal.fire({
+            icon,
+            title,
+            text,
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+        });
+    };
+
     const showMessage = (type, text) => {
-        console.log(`Message: ${type} - ${text}`);
         setMessage({ type, text });
         setTimeout(() => setMessage({ type: '', text: '' }), 5000);
     };
@@ -72,35 +89,72 @@ const TeacherListAdmin = () => {
     // Handle form input changes
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        console.log(`Input changed: ${name} = ${value}`);
         setFormData(prev => ({
             ...prev,
             [name]: value
         }));
     };
 
+    // Handle filter changes
+    const handleFilterChange = (e) => {
+        const { name, value } = e.target;
+        setFilters(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    // Apply filters
+    const applyFilters = async () => {
+        try {
+            setLoading(true);
+            const response = await axiosInstance.get('/teacher-list/search/filter', {
+                params: filters
+            });
+
+            if (response.data.success) {
+                setTeachers(response.data.data);
+                showSweetAlert('success', 'Filters applied successfully!');
+            }
+        } catch (error) {
+            console.error('Error applying filters:', error);
+            showSweetAlert('error', 'Failed to apply filters');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Clear filters
+    const clearFilters = () => {
+        setFilters({
+            search: '',
+            session: '',
+            mobile: '',
+            staffType: '',
+            position: ''
+        });
+        fetchTeachers();
+        showSweetAlert('info', 'Filters cleared!');
+    };
+
     // Handle file selection
     const handleFileSelect = (e) => {
         const file = e.target.files[0];
-        console.log('File selected:', file);
         
         if (file) {
-            // Validate file type
             const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
             if (!allowedTypes.includes(file.type)) {
-                showMessage('error', 'Please select a valid image file (JPEG, PNG, GIF)');
+                showSweetAlert('error', 'Please select a valid image file (JPEG, PNG, GIF)');
                 return;
             }
 
-            // Validate file size (2MB)
             if (file.size > 2 * 1024 * 1024) {
-                showMessage('error', 'Image size should be less than 2MB');
+                showSweetAlert('error', 'Image size should be less than 2MB');
                 return;
             }
 
             setSelectedFile(file);
             
-            // Create preview
             const reader = new FileReader();
             reader.onload = (e) => {
                 setFormData(prev => ({ ...prev, photo: e.target.result }));
@@ -109,54 +163,20 @@ const TeacherListAdmin = () => {
         }
     };
 
-// Upload file to server - FIXED URL
-const uploadFile = async (file) => {
-    console.log('Uploading file:', file.name);
-    const formData = new FormData();
-    formData.append('photo', file);
-
-    try {
-        const response = await axiosInstance.post('/upload/teacher-photo', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-            onUploadProgress: (progressEvent) => {
-                const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-                setUploadProgress(percentCompleted);
-            }
-        });
-
-        console.log('Upload response:', response.data);
-
-        if (response.data.success) {
-            return response.data.fileUrl;
-        }
-        throw new Error('Upload failed: ' + response.data.message);
-    } catch (error) {
-        console.error('Error uploading file:', error);
-        throw error;
-    }
-};
-
     // Reset form
     const resetForm = () => {
-        console.log('Resetting form');
         setFormData({
+            smartId: '',
+            fingerId: '',
             name: '',
             mobile: '',
-            subject: '',
-            email: '',
-            address: '',
-            joiningDate: '',
-            qualifications: '',
-            photo: '',
             designation: '',
-            department: '',
+            biboron: '',
             salary: '',
-            experience: '',
-            bloodGroup: '',
-            gender: '',
-            dateOfBirth: ''
+            position: 'Active',
+            photo: '',
+            session: '',
+            staffType: 'Teacher'
         });
         setSelectedFile(null);
         setUploadProgress(0);
@@ -165,112 +185,87 @@ const uploadFile = async (file) => {
     };
 
     // Handle form submit
-// Handle form submit - SIMPLIFIED VERSION
-const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log('Form submitted', formData);
-    
-    // Validation
-    if (!formData.name.trim() || !formData.mobile.trim() || !formData.subject.trim()) {
-        showMessage('error', 'Please fill in all required fields (Name, Mobile, Subject)');
-        return;
-    }
-
-    // Mobile number validation
-    const mobileRegex = /^[0-9]{11}$/;
-    if (!mobileRegex.test(formData.mobile)) {
-        showMessage('error', 'Please enter a valid 11-digit mobile number');
-        return;
-    }
-
-    // Email validation
-    if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
-        showMessage('error', 'Please enter a valid email address');
-        return;
-    }
-
-    try {
-        setLoading(true);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         
-        // Create FormData object for file upload
-        const submitFormData = new FormData();
-        
-        // Append all form fields
-        Object.keys(formData).forEach(key => {
-            if (key !== 'photo') { // photo field separately handle করব
-                submitFormData.append(key, formData[key]);
+        // Validation
+        if (!formData.name.trim() || !formData.mobile.trim()) {
+            showSweetAlert('error', 'Please fill in all required fields (Name, Mobile)');
+            return;
+        }
+
+        const mobileRegex = /^[0-9]{11}$/;
+        if (!mobileRegex.test(formData.mobile)) {
+            showSweetAlert('error', 'Please enter a valid 11-digit mobile number');
+            return;
+        }
+
+        try {
+            setLoading(true);
+            
+            const submitFormData = new FormData();
+            
+            Object.keys(formData).forEach(key => {
+                if (key !== 'photo') {
+                    submitFormData.append(key, formData[key]);
+                }
+            });
+            
+            if (selectedFile) {
+                submitFormData.append('photo', selectedFile);
             }
-        });
-        
-        // Append file if selected
-        if (selectedFile) {
-            submitFormData.append('photo', selectedFile);
+
+            let response;
+
+            if (editingTeacher) {
+                response = await axiosInstance.put(`/teacher-list/${editingTeacher._id}`, submitFormData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    }
+                });
+            } else {
+                response = await axiosInstance.post('/teacher-list', submitFormData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    }
+                });
+            }
+
+            if (response.data.success) {
+                showSweetAlert(
+                    'success', 
+                    editingTeacher ? 'Teacher updated successfully!' : 'Teacher added successfully!'
+                );
+                resetForm();
+                fetchTeachers();
+            } else {
+                showSweetAlert('error', response.data.message || 'Failed to save teacher');
+            }
+        } catch (error) {
+            console.error('Error saving teacher:', error);
+            const errorMessage = error.response?.data?.message || error.message || 'Failed to save teacher';
+            showSweetAlert('error', errorMessage);
+        } finally {
+            setLoading(false);
+            setUploadProgress(0);
         }
-
-        console.log('Submitting form data...');
-
-        let response;
-
-        if (editingTeacher) {
-            // Update existing teacher
-            console.log('Updating teacher:', editingTeacher._id);
-            response = await axiosInstance.put(`/teacher-list/${editingTeacher._id}`, submitFormData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                }
-            });
-        } else {
-            // Create new teacher
-            console.log('Creating new teacher');
-            response = await axiosInstance.post('/teacher-list', submitFormData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                }
-            });
-        }
-
-        console.log('Server response:', response.data);
-
-        if (response.data.success) {
-            showMessage('success', 
-                editingTeacher ? 'Teacher updated successfully!' : 'Teacher added successfully!'
-            );
-            resetForm();
-            fetchTeachers();
-        } else {
-            showMessage('error', response.data.message || 'Failed to save teacher');
-        }
-    } catch (error) {
-        console.error('Error saving teacher:', error);
-        console.error('Error details:', error.response?.data);
-        const errorMessage = error.response?.data?.message || error.message || 'Failed to save teacher';
-        showMessage('error', errorMessage);
-    } finally {
-        setLoading(false);
-        setUploadProgress(0);
-    }
-};
+    };
 
     // Edit teacher
     const handleEdit = (teacher) => {
-        console.log('Editing teacher:', teacher);
         setEditingTeacher(teacher);
         setFormData({
-            name: teacher.name,
-            mobile: teacher.mobile,
-            subject: teacher.subject,
-            email: teacher.email || '',
-            address: teacher.address || '',
-            joiningDate: teacher.joiningDate ? teacher.joiningDate.split('T')[0] : '',
-            qualifications: teacher.qualifications || '',
-            photo: teacher.photo || '',
+            smartId: teacher.smartId || '',
+            fingerId: teacher.fingerId || '',
+            name: teacher.name || '',
+            mobile: teacher.mobile || '',
             designation: teacher.designation || '',
-            department: teacher.department || '',
+            biboron: teacher.biboron || '',
             salary: teacher.salary || '',
-            experience: teacher.experience || '',
-            bloodGroup: teacher.bloodGroup || '',
-            gender: teacher.gender || '',
-            dateOfBirth: teacher.dateOfBirth ? teacher.dateOfBirth.split('T')[0] : ''
+            position: teacher.position || 'Active',
+            photo: teacher.photo || '',
+            session: teacher.session || '',
+            staffType: teacher.staffType || 'Teacher'
         });
         setSelectedFile(null);
         setShowForm(true);
@@ -278,27 +273,35 @@ const handleSubmit = async (e) => {
 
     // Delete teacher
     const handleDelete = async (teacherId) => {
-        if (!window.confirm('Are you sure you want to delete this teacher?')) {
-            return;
-        }
+        const result = await Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
+        });
 
-        try {
-            setLoading(true);
-            console.log('Deleting teacher:', teacherId);
-            const response = await axiosInstance.delete(`/teacher-list/${teacherId}`);
+        if (result.isConfirmed) {
+            try {
+                setLoading(true);
+                const response = await axiosInstance.delete(`/teacher-list/${teacherId}`);
 
-            if (response.data.success) {
-                showMessage('success', 'Teacher deleted successfully!');
-                fetchTeachers();
-            } else {
-                showMessage('error', response.data.message || 'Failed to delete teacher');
+                if (response.data.success) {
+                    showSweetAlert('success', 'Teacher deleted successfully!');
+                    fetchTeachers();
+                } else {
+                    showSweetAlert('error', response.data.message || 'Failed to delete teacher');
+                }
+            } catch (error) {
+                console.error('Error deleting teacher:', error);
+                const errorMessage = error.response?.data?.message || 'Failed to delete teacher';
+                showSweetAlert('error', errorMessage);
+            } finally {
+                setLoading(false);
             }
-        } catch (error) {
-            console.error('Error deleting teacher:', error);
-            const errorMessage = error.response?.data?.message || 'Failed to delete teacher';
-            showMessage('error', errorMessage);
-        } finally {
-            setLoading(false);
         }
     };
 
@@ -307,9 +310,9 @@ const handleSubmit = async (e) => {
         if (newSubject.trim() && !subjects.includes(newSubject.trim())) {
             setSubjects(prev => [...prev, newSubject.trim()]);
             setNewSubject('');
-            showMessage('success', 'Subject added successfully!');
+            showSweetAlert('success', 'Subject added successfully!');
         } else {
-            showMessage('error', 'Subject already exists or is empty');
+            showSweetAlert('error', 'Subject already exists or is empty');
         }
     };
 
@@ -317,9 +320,9 @@ const handleSubmit = async (e) => {
     const handleRemoveSubject = (subjectToRemove) => {
         if (subjects.length > 1) {
             setSubjects(prev => prev.filter(subject => subject !== subjectToRemove));
-            showMessage('success', 'Subject removed successfully!');
+            showSweetAlert('success', 'Subject removed successfully!');
         } else {
-            showMessage('error', 'Cannot remove the last subject');
+            showSweetAlert('error', 'Cannot remove the last subject');
         }
     };
 
@@ -330,44 +333,65 @@ const handleSubmit = async (e) => {
         'Senior Teacher',
         'Teacher',
         'Assistant Teacher',
-        'Guest Teacher'
+        'Guest Teacher',
+        'Principal',
+        'Vice Principal',
+        'Coordinator'
     ];
 
-    // Common departments
-    const departments = [
-        'Science',
-        'Arts', 
-        'Commerce',
-        'General',
-        'Vocational'
-    ];
+    // Staff types
+    const staffTypes = ['Teacher', 'Staff'];
 
-    const baseURL = baseImageURL;
-    const u = "/api/uploads/teacher-photos/teacher-1761335463800-517183729.png";
-    const sum = baseURL + u;
-    console.log(sum);
+    // Position types
+    const positions = ['Active', 'Transferred', 'Retired', 'Deactivated'];
 
-    // Blood groups
-    const bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+    // Get filtered teachers (client-side filtering as fallback)
+    const filteredTeachers = teachers.filter(teacher => {
+        const matchesSearch = !filters.search || 
+            teacher.smartId?.toLowerCase().includes(filters.search.toLowerCase()) ||
+            teacher.fingerId?.toLowerCase().includes(filters.search.toLowerCase()) ||
+            teacher.name?.toLowerCase().includes(filters.search.toLowerCase());
+        
+        const matchesMobile = !filters.mobile || 
+            teacher.mobile?.includes(filters.mobile);
+        
+        const matchesStaffType = !filters.staffType || 
+            teacher.staffType === filters.staffType;
+        
+        const matchesPosition = !filters.position || 
+            teacher.position === filters.position;
+
+        const matchesSession = !filters.session || 
+            teacher.session?.includes(filters.session);
+
+        return matchesSearch && matchesMobile && matchesStaffType && matchesPosition && matchesSession;
+    });
+
+    const totalTeachers = teachers.length;
+    const activeTeachers = teachers.filter(t => t.position === 'Active').length;
 
     return (
-        <div className="max-w-7xl mx-auto p-4 sm:p-6">
-            {/* Header */}
+        <div className="max-w-full mx-auto p-4 sm:p-6">
+            {/* Header with Summary */}
             <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6">
                 <div>
                     <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
-                        Teacher Management
+                        Teacher/Staff Management
                     </h1>
-                    <p className="text-gray-600">
-                        Manage all teachers information and details
-                    </p>
+                    <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+                        <div className="bg-blue-50 px-3 py-1 rounded-lg">
+                            <strong>Total Teacher/Staff:</strong> {totalTeachers}
+                        </div>
+                        <div className="bg-green-50 px-3 py-1 rounded-lg">
+                            <strong>Active:</strong> {activeTeachers}
+                        </div>
+                    </div>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3 mt-4 lg:mt-0">
                     <button
                         onClick={() => setShowSubjectManager(true)}
                         className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium flex items-center gap-2"
                     >
-                        <span>📚</span>
                         Manage Subjects
                     </button>
                     <button
@@ -375,21 +399,123 @@ const handleSubmit = async (e) => {
                         className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2"
                     >
                         <span>+</span>
-                        Add New Teacher
+                        NEW TEACHER / STAFF
                     </button>
                 </div>
             </div>
 
-            {/* Message Display */}
-            {message.text && (
-                <div className={`mb-6 p-4 rounded-lg ${
-                    message.type === 'success' 
-                        ? 'bg-green-50 border border-green-200 text-green-700' 
-                        : 'bg-red-50 border border-red-200 text-red-700'
-                }`}>
-                    {message.text}
+            {/* Filters Section */}
+            <div className="bg-white rounded-lg shadow-lg border border-gray-200 mb-6">
+                <div className="p-4 border-b border-gray-200">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <button
+                            onClick={() => setShowFilters(!showFilters)}
+                            className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors font-medium flex items-center gap-2"
+                        >
+                            Toggle Filters
+                        </button>
+                    </div>
                 </div>
-            )}
+
+                {showFilters && (
+                    <div className="p-4 bg-gray-50 border-t border-gray-200">
+                        {/* Search and Filter Inputs in one line */}
+                        <div className="grid grid-cols-1 lg:grid-cols-6 gap-4 mb-4">
+                            <div className="lg:col-span-2">
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                    Search (Name, ID)
+                                </label>
+                                <input
+                                    type="text"
+                                    name="search"
+                                    value={filters.search}
+                                    onChange={handleFilterChange}
+                                    placeholder="Search by name, smart ID, finger ID..."
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+                            
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                    Session
+                                </label>
+                                <input
+                                    type="text"
+                                    name="session"
+                                    value={filters.session}
+                                    onChange={handleFilterChange}
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    placeholder="2024"
+                                />
+                            </div>
+                            
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                    Mobile
+                                </label>
+                                <input
+                                    type="text"
+                                    name="mobile"
+                                    value={filters.mobile}
+                                    onChange={handleFilterChange}
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    placeholder="01XXXXXXXXX"
+                                />
+                            </div>
+                            
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                    Staff Type
+                                </label>
+                                <select
+                                    name="staffType"
+                                    value={filters.staffType}
+                                    onChange={handleFilterChange}
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                >
+                                    <option value="">All Types</option>
+                                    {staffTypes.map(type => (
+                                        <option key={type} value={type}>{type}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                    Position
+                                </label>
+                                <select
+                                    name="position"
+                                    value={filters.position}
+                                    onChange={handleFilterChange}
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                >
+                                    <option value="">All Positions</option>
+                                    {positions.map(position => (
+                                        <option key={position} value={position}>{position}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+
+                        {/* Apply and Clear buttons on right side */}
+                        <div className="flex justify-end gap-2">
+                            <button
+                                onClick={applyFilters}
+                                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
+                            >
+                                Apply Filters
+                            </button>
+                            <button
+                                onClick={clearFilters}
+                                className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors font-medium"
+                            >
+                                Clear Filters
+                            </button>
+                        </div>
+                    </div>
+                )}
+            </div>
 
             {/* Subject Manager Modal */}
             {showSubjectManager && (
@@ -446,20 +572,66 @@ const handleSubmit = async (e) => {
                     <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
                         <div className="p-6 border-b border-gray-200">
                             <h2 className="text-xl font-bold text-gray-800">
-                                {editingTeacher ? 'Edit Teacher' : 'Add New Teacher'}
+                                {editingTeacher ? 'Edit Teacher/Staff' : 'Add New Teacher/Staff'}
                             </h2>
                         </div>
 
                         <form onSubmit={handleSubmit} className="p-6 space-y-4">
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                {/* Personal Information */}
+                                {/* ID Information */}
                                 <div className="md:col-span-2 lg:col-span-3">
+                                    <h3 className="text-lg font-semibold text-gray-800 mb-3 border-b pb-2">
+                                        ID Information
+                                    </h3>
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        Smart ID
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="smartId"
+                                        value={formData.smartId}
+                                        onChange={handleInputChange}
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        Finger ID
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="fingerId"
+                                        value={formData.fingerId}
+                                        onChange={handleInputChange}
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        Session
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="session"
+                                        value={formData.session}
+                                        onChange={handleInputChange}
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        placeholder="2024"
+                                    />
+                                </div>
+
+                                {/* Personal Information */}
+                                <div className="md:col-span-2 lg:col-span-3 mt-4">
                                     <h3 className="text-lg font-semibold text-gray-800 mb-3 border-b pb-2">
                                         Personal Information
                                     </h3>
                                 </div>
 
-                                {/* Name - Required */}
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">
                                         Full Name *
@@ -474,7 +646,6 @@ const handleSubmit = async (e) => {
                                     />
                                 </div>
 
-                                {/* Mobile - Required */}
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">
                                         Mobile Number *
@@ -490,66 +661,18 @@ const handleSubmit = async (e) => {
                                     />
                                 </div>
 
-                                {/* Email */}
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                                        Email Address
-                                    </label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    />
-                                </div>
-
-                                {/* Gender */}
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                                        Gender
+                                        Staff Type
                                     </label>
                                     <select
-                                        name="gender"
-                                        value={formData.gender}
+                                        name="staffType"
+                                        value={formData.staffType}
                                         onChange={handleInputChange}
                                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     >
-                                        <option value="">Select Gender</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                </div>
-
-                                {/* Date of Birth */}
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                                        Date of Birth
-                                    </label>
-                                    <input
-                                        type="date"
-                                        name="dateOfBirth"
-                                        value={formData.dateOfBirth}
-                                        onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    />
-                                </div>
-
-                                {/* Blood Group */}
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                                        Blood Group
-                                    </label>
-                                    <select
-                                        name="bloodGroup"
-                                        value={formData.bloodGroup}
-                                        onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    >
-                                        <option value="">Select Blood Group</option>
-                                        {bloodGroups.map(group => (
-                                            <option key={group} value={group}>{group}</option>
+                                        {staffTypes.map(type => (
+                                            <option key={type} value={type}>{type}</option>
                                         ))}
                                     </select>
                                 </div>
@@ -561,28 +684,6 @@ const handleSubmit = async (e) => {
                                     </h3>
                                 </div>
 
-                                {/* Subject - Required */}
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                                        Subject *
-                                    </label>
-                                    <select
-                                        name="subject"
-                                        value={formData.subject}
-                                        onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        required
-                                    >
-                                        <option value="">Select Subject</option>
-                                        {subjects.map(subject => (
-                                            <option key={subject} value={subject}>
-                                                {subject}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
-
-                                {/* Designation */}
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">
                                         Designation
@@ -602,43 +703,6 @@ const handleSubmit = async (e) => {
                                     </select>
                                 </div>
 
-                                {/* Department */}
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                                        Department
-                                    </label>
-                                    <select
-                                        name="department"
-                                        value={formData.department}
-                                        onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    >
-                                        <option value="">Select Department</option>
-                                        {departments.map(dept => (
-                                            <option key={dept} value={dept}>
-                                                {dept}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
-
-                                {/* Experience */}
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                                        Experience (Years)
-                                    </label>
-                                    <input
-                                        type="number"
-                                        name="experience"
-                                        value={formData.experience}
-                                        onChange={handleInputChange}
-                                        min="0"
-                                        max="50"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    />
-                                </div>
-
-                                {/* Salary */}
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">
                                         Salary
@@ -653,18 +717,20 @@ const handleSubmit = async (e) => {
                                     />
                                 </div>
 
-                                {/* Joining Date */}
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                                        Joining Date
+                                        Position
                                     </label>
-                                    <input
-                                        type="date"
-                                        name="joiningDate"
-                                        value={formData.joiningDate}
+                                    <select
+                                        name="position"
+                                        value={formData.position}
                                         onChange={handleInputChange}
                                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    />
+                                    >
+                                        {positions.map(position => (
+                                            <option key={position} value={position}>{position}</option>
+                                        ))}
+                                    </select>
                                 </div>
 
                                 {/* Additional Information */}
@@ -674,10 +740,23 @@ const handleSubmit = async (e) => {
                                     </h3>
                                 </div>
 
-                                {/* Photo Upload */}
                                 <div className="md:col-span-2">
                                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                                        Photo
+                                        বিবরণ (Description)
+                                    </label>
+                                    <textarea
+                                        name="biboron"
+                                        value={formData.biboron}
+                                        onChange={handleInputChange}
+                                        rows="3"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        placeholder="Additional information about the teacher/staff"
+                                    />
+                                </div>
+
+                                <div className="md:col-span-2">
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        ছবি (Photo)
                                     </label>
                                     <div className="flex flex-col sm:flex-row gap-4 items-start">
                                         <div className="flex-1">
@@ -708,41 +787,12 @@ const handleSubmit = async (e) => {
                                     {formData.photo && (
                                         <div className="mt-2">
                                             <img 
-                                                src={`${baseImageURL}${formData.photo}`} 
+                                                src={`${baseImageURL}${formData.photo}`}
                                                 alt="Preview" 
                                                 className="w-20 h-20 object-cover rounded-lg border"
                                             />
                                         </div>
                                     )}
-                                </div>
-
-                                {/* Qualifications */}
-                                <div className="md:col-span-2">
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                                        Qualifications
-                                    </label>
-                                    <textarea
-                                        name="qualifications"
-                                        value={formData.qualifications}
-                                        onChange={handleInputChange}
-                                        rows="3"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        placeholder="B.Sc, M.Sc, B.Ed, etc."
-                                    />
-                                </div>
-
-                                {/* Address */}
-                                <div className="md:col-span-2 lg:col-span-3">
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                                        Address
-                                    </label>
-                                    <textarea
-                                        name="address"
-                                        value={formData.address}
-                                        onChange={handleInputChange}
-                                        rows="2"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    />
                                 </div>
                             </div>
 
@@ -753,7 +803,7 @@ const handleSubmit = async (e) => {
                                     disabled={loading}
                                     className="flex-1 px-4 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 transition-colors font-medium"
                                 >
-                                    {loading ? 'Saving...' : (editingTeacher ? 'Update Teacher' : 'Add Teacher')}
+                                    {loading ? 'Saving...' : (editingTeacher ? 'Update Teacher/Staff' : 'Add Teacher/Staff')}
                                 </button>
                                 <button
                                     type="button"
@@ -780,90 +830,110 @@ const handleSubmit = async (e) => {
                 )}
 
                 {/* Empty State */}
-                {!loading && teachers.length === 0 && (
+                {!loading && filteredTeachers.length === 0 && (
                     <div className="p-8 text-center">
                         <div className="text-6xl mb-4">👨‍🏫</div>
-                        <h3 className="text-xl font-semibold text-gray-800 mb-2">No Teachers Found</h3>
-                        <p className="text-gray-600 mb-4">Get started by adding your first teacher.</p>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">No Teachers/Staff Found</h3>
+                        <p className="text-gray-600 mb-4">Get started by adding your first teacher/staff member.</p>
                         <button
                             onClick={() => setShowForm(true)}
                             className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
                         >
-                            Add Teacher
+                            Add Teacher/Staff
                         </button>
                     </div>
                 )}
 
                 {/* Teachers Table */}
-                {!loading && teachers.length > 0 && (
+                {!loading && filteredTeachers.length > 0 && (
                     <div className="overflow-x-auto">
-                        <table className="w-full">
+                        <table className="w-full min-w-[1000px]">
                             <thead className="bg-gray-50 border-b border-gray-200">
                                 <tr>
-                                    <th className="px-3 py-3 text-left text-sm font-semibold text-gray-700">Teacher</th>
-                                    <th className="px-3 py-3 text-left text-sm font-semibold text-gray-700">Subject</th>
-                                    <th className="px-3 py-3 text-left text-sm font-semibold text-gray-700 hidden sm:table-cell">Mobile</th>
-                                    <th className="px-3 py-3 text-left text-sm font-semibold text-gray-700 hidden lg:table-cell">Designation</th>
-                                    <th className="px-3 py-3 text-left text-sm font-semibold text-gray-700">Status</th>
-                                    <th className="px-3 py-3 text-left text-sm font-semibold text-gray-700">Actions</th>
+                                    <th className="px-3 py-3 text-left text-sm font-semibold text-gray-700">আইডি</th>
+                                    <th className="px-3 py-3 text-left text-sm font-semibold text-gray-700">Smart ID</th>
+                                    <th className="px-3 py-3 text-left text-sm font-semibold text-gray-700">Finger ID</th>
+                                    <th className="px-3 py-3 text-left text-sm font-semibold text-gray-700">নাম</th>
+                                    <th className="px-3 py-3 text-left text-sm font-semibold text-gray-700">মোবাইল</th>
+                                    <th className="px-3 py-3 text-left text-sm font-semibold text-gray-700">পদবি</th>
+                                    <th className="px-3 py-3 text-left text-sm font-semibold text-gray-700">বিবরণ</th>
+                                    <th className="px-3 py-3 text-left text-sm font-semibold text-gray-700">Pay Salary</th>
+                                    <th className="px-3 py-3 text-left text-sm font-semibold text-gray-700">অবস্থান</th>
+                                    <th className="px-3 py-3 text-left text-sm font-semibold text-gray-700">ছবি</th>
+                                    <th className="px-3 py-3 text-left text-sm font-semibold text-gray-700">এডিট / ডিলিট</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-200">
-                                {teachers.map((teacher) => (
+                                {filteredTeachers.map((teacher) => (
                                     <tr key={teacher._id} className="hover:bg-gray-50">
+                                        <td className="px-3 py-3 text-sm text-gray-900">
+                                            {teacher._id?.toString().substring(18, 24) || 'N/A'}
+                                        </td>
+                                        <td className="px-3 py-3 text-sm text-gray-900">
+                                            {teacher.smartId || 'N/A'}
+                                        </td>
+                                        <td className="px-3 py-3 text-sm text-gray-900">
+                                            {teacher.fingerId || 'N/A'}
+                                        </td>
                                         <td className="px-3 py-3">
-                                            <div className="flex items-center gap-3">
-                                                {teacher.photo ? (
-                                                    <img
-                                                        src={`${baseImageURL}${teacher.photo}`}
-                                                        alt={teacher.name}
-                                                        className="w-10 h-10 rounded-full object-cover"
-                                                    />
-                                                ) : (
-                                                    <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
-                                                        <span className="text-white font-semibold text-sm">
-                                                            {teacher.name.charAt(0).toUpperCase()}
-                                                        </span>
-                                                    </div>
-                                                )}
-                                                <div>
-                                                    <p className="font-medium text-gray-800">{teacher.name}</p>
-                                                    <p className="text-sm text-gray-500 sm:hidden">{teacher.mobile}</p>
-                                                    {teacher.designation && (
-                                                        <p className="text-sm text-gray-500 lg:hidden">{teacher.designation}</p>
-                                                    )}
-                                                </div>
+                                            <div>
+                                                <p className="font-medium text-gray-800 text-sm">{teacher.name}</p>
+                                                <p className="text-xs text-gray-500">{teacher.staffType}</p>
                                             </div>
                                         </td>
-                                        <td className="px-3 py-3">
+                                        <td className="px-3 py-3 text-sm text-gray-600">{teacher.mobile}</td>
+                                        <td className="px-3 py-3 text-sm">
                                             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                                {teacher.subject}
+                                                {teacher.designation || 'N/A'}
                                             </span>
                                         </td>
-                                        <td className="px-3 py-3 text-gray-600 hidden sm:table-cell">{teacher.mobile}</td>
-                                        <td className="px-3 py-3 text-gray-600 hidden lg:table-cell">{teacher.designation || 'N/A'}</td>
-                                        <td className="px-3 py-3">
+                                        <td className="px-3 py-3 text-sm text-gray-600 max-w-xs truncate">
+                                            {teacher.biboron || 'N/A'}
+                                        </td>
+                                        <td className="px-3 py-3 text-sm text-gray-600">
+                                            {teacher.salary ? `৳${teacher.salary}` : 'N/A'}
+                                        </td>
+                                        <td className="px-3 py-3 text-sm">
                                             <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                                                teacher.isActive 
-                                                    ? 'bg-green-100 text-green-800' 
+                                                teacher.position === 'Active' 
+                                                    ? 'bg-green-100 text-green-800'
+                                                    : teacher.position === 'Transferred'
+                                                    ? 'bg-yellow-100 text-yellow-800'
+                                                    : teacher.position === 'Retired'
+                                                    ? 'bg-blue-100 text-blue-800'
                                                     : 'bg-red-100 text-red-800'
                                             }`}>
-                                                {teacher.isActive ? 'Active' : 'Inactive'}
+                                                {teacher.position || 'Active'}
                                             </span>
+                                        </td>
+                                        <td className="px-3 py-3">
+                                            {teacher.photo ? (
+                                                <img
+                                                    src={`${baseImageURL}${teacher.photo}`}
+                                                    alt={teacher.name}
+                                                    className="w-10 h-10 rounded-full object-cover border"
+                                                />
+                                            ) : (
+                                                <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                                                    <span className="text-white font-semibold text-xs">
+                                                        {teacher.name?.charAt(0).toUpperCase() || 'U'}
+                                                    </span>
+                                                </div>
+                                            )}
                                         </td>
                                         <td className="px-3 py-3">
                                             <div className="flex gap-1">
                                                 <button
                                                     onClick={() => handleEdit(teacher)}
-                                                    className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors text-xs sm:text-sm"
+                                                    className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors text-xs"
                                                 >
-                                                    Edit
+                                                    এডিট
                                                 </button>
                                                 <button
                                                     onClick={() => handleDelete(teacher._id)}
-                                                    className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors text-xs sm:text-sm"
+                                                    className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors text-xs"
                                                 >
-                                                    Delete
+                                                    ডিলিট
                                                 </button>
                                             </div>
                                         </td>
@@ -876,11 +946,12 @@ const handleSubmit = async (e) => {
             </div>
 
             {/* Summary */}
-            {teachers.length > 0 && (
+            {filteredTeachers.length > 0 && (
                 <div className="mt-4 text-sm text-gray-600">
-                    Total Teachers: {teachers.length} | 
-                    Active: {teachers.filter(t => t.isActive).length} | 
-                    Subjects: {[...new Set(teachers.map(t => t.subject))].length}
+                    Showing {filteredTeachers.length} of {totalTeachers} teachers/staff | 
+                    Active: {activeTeachers} | 
+                    Teachers: {teachers.filter(t => t.staffType === 'Teacher').length} | 
+                    Staff: {teachers.filter(t => t.staffType === 'Staff').length}
                 </div>
             )}
         </div>

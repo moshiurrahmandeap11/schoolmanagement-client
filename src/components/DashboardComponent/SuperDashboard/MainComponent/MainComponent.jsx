@@ -1,44 +1,46 @@
 // MainComponent/MainComponent.jsx
-import React from "react";
-import Settings from "../Sidebar/Settings/Settings";
-import RecentlyAdmin from "../Sidebar/RecentlyAdmin/RecentlyAdmin";
-import SchoolHistory from "../Sidebar/SchoolHistory/SchoolHistory";
-import SpeechAdmin from "../Sidebar/SpeechAdmin/SpeechAdmin";
-import StudentsAdmin from "../Sidebar/StudentsAdmin/StudentsAdmin";
-import TotalSeats from "../Sidebar/TotalSeats/TotalSeats";
-import ClassRooms from "../Sidebar/ClassRooms/ClassRooms";
-import AdmissionInfoAdmin from "../Sidebar/AdmissionInfo/AdmissionInfoAdmin";
 import AdmissionFormAdmin from "../Sidebar/AdmissionFormAdmin/AdmissionFormAdmin";
-import TeacherListAdmin from "../Sidebar/TeachersListAdmin/TeacherListAdmin";
-import WorkersListAdmin from "../Sidebar/WorkersListAdmin/WorkersListAdmin";
+import AdmissionInfoAdmin from "../Sidebar/AdmissionInfo/AdmissionInfoAdmin";
+import BlogsAdmin from "../Sidebar/BlogsAdmin/BlogsAdmin";
+import CircularAdmin from "../Sidebar/CircularAdmin/CircularAdmin";
+import ClassRooms from "../Sidebar/ClassRooms/ClassRooms";
+import ContactInfoAdmin from "../Sidebar/ContactInfoAdmin/ContactInfoAdmin";
 import HeadmastersListAdmin from "../Sidebar/HeadmastersListAdmin/HeadmastersListAdmin";
 import HolidayListAdmin from "../Sidebar/HolidayListAdmin/HolidayListAdmin";
-import CircularAdmin from "../Sidebar/CircularAdmin/CircularAdmin";
-import VideoGallaryAdmin from "../Sidebar/VideoGallaryAdmin/VideoGallaryAdmin";
-import PhotoGallaryAdmin from "../Sidebar/PhotoGallaryAdmin/PhotoGallaryAdmin";
-import BlogsAdmin from "../Sidebar/BlogsAdmin/BlogsAdmin";
 import ManagingCommitteeAdmin from "../Sidebar/ManagingCommitteeAdmin/ManagingCommitteeAdmin";
-import UpazillaHistoryAdmin from "../Sidebar/UpazillaHistoryAdmin/UpazillaHistoryAdmin";
-import ZillaHistoryAdmin from "../Sidebar/ZillaHistoryAdmin/ZillaHistoryAdmin";
-import ContactInfoAdmin from "../Sidebar/ContactInfoAdmin/ContactInfoAdmin";
 import NoticesAdmin from "../Sidebar/NoticesAdmin/NoticesAdmin";
+import PhotoGallaryAdmin from "../Sidebar/PhotoGallaryAdmin/PhotoGallaryAdmin";
+import RecentlyAdmin from "../Sidebar/RecentlyAdmin/RecentlyAdmin";
 import RoutineAdmin from "../Sidebar/RoutineAdmin/RoutineAdmin";
+import SchoolHistory from "../Sidebar/SchoolHistory/SchoolHistory";
 import SDashboardItems from "../Sidebar/SDashboardItems/SDashboardItems";
+import Settings from "../Sidebar/Settings/Settings";
+import SpeechAdmin from "../Sidebar/SpeechAdmin/SpeechAdmin";
+import StudentsAdmin from "../Sidebar/StudentsAdmin/StudentsAdmin";
+import TeacherListAdmin from "../Sidebar/TeachersListAdmin/TeacherListAdmin";
+import TotalSeats from "../Sidebar/TotalSeats/TotalSeats";
+import UpazillaHistoryAdmin from "../Sidebar/UpazillaHistoryAdmin/UpazillaHistoryAdmin";
+import VideoGallaryAdmin from "../Sidebar/VideoGallaryAdmin/VideoGallaryAdmin";
+import WorkersListAdmin from "../Sidebar/WorkersListAdmin/WorkersListAdmin";
+import ZillaHistoryAdmin from "../Sidebar/ZillaHistoryAdmin/ZillaHistoryAdmin";
 
 // সব SDashboardItems কম্পোনেন্ট
-import BranchManagement from "../Sidebar/SDashboardItems/Branch/Branch";
-import DonationManagement from "../Sidebar/SDashboardItems/DonationManagement/DonationManagement";
-import CertificateManagement from "../Sidebar/SDashboardItems/CertificateManagement/CertificateManagement";
-import SalaryBonusManagement from "../Sidebar/SDashboardItems/SalaryBonusManagement/SalaryBonusManagement";
-import WebsiteManagement from "../Sidebar/SDashboardItems/WebsiteManagement/WebsiteManagement";
 import AcademicManagement from "../Sidebar/SDashboardItems/AcademicManagement/AcademicManagement";
-import ExaminationManagement from "../Sidebar/SDashboardItems/ExaminationManagement/ExaminationManagement";
 import AccountsManagement from "../Sidebar/SDashboardItems/AccountsManagement/AccountsManagement";
+import AttendanceManagement from "../Sidebar/SDashboardItems/AttendanceManagement/AttendanceManagement";
+import BranchManagement from "../Sidebar/SDashboardItems/Branch/Branch";
+import CertificateManagement from "../Sidebar/SDashboardItems/CertificateManagement/CertificateManagement";
+import DepartmentManagement from "../Sidebar/SDashboardItems/DepartmentManagement/DepartmentManagement";
+import DonationManagement from "../Sidebar/SDashboardItems/DonationManagement/DonationManagement";
+import ExaminationManagement from "../Sidebar/SDashboardItems/ExaminationManagement/ExaminationManagement";
 import FeeManagement from "../Sidebar/SDashboardItems/FeeManagement/FeeManagement";
 import PrintManagement from "../Sidebar/SDashboardItems/PrintManagement/PrintManagement";
+import SalaryBonusManagement from "../Sidebar/SDashboardItems/SalaryBonusManagement/SalaryBonusManagement";
 import SMSManagement from "../Sidebar/SDashboardItems/SMSManagement/SMSManagement";
-import AttendanceManagement from "../Sidebar/SDashboardItems/AttendanceManagement/AttendanceManagement";
-import DepartmentManagement from "../Sidebar/SDashboardItems/DepartmentManagement/DepartmentManagement";
+import InstituteInfo from "../Sidebar/SDashboardItems/WebsiteManagement/InstitueInfo/InstituteInfo";
+import PrivacyPolicy from "../Sidebar/SDashboardItems/WebsiteManagement/PrivacyPolicy/PrivacyPolicy";
+import SocialLinks from "../Sidebar/SDashboardItems/WebsiteManagement/SocialLinks/SocialLinks";
+import WebsiteManagement from "../Sidebar/SDashboardItems/WebsiteManagement/WebsiteManagement";
 
 const MainComponent = ({ activeMenu, onDashboardItemClick }) => { // প্রপ রিসিভ করা হলো
   const renderContent = () => {
@@ -72,6 +74,18 @@ const MainComponent = ({ activeMenu, onDashboardItemClick }) => { // প্র�
         return <AttendanceManagement />;
       case "department-management":
         return <DepartmentManagement />;
+      case "teachers-staffs":
+        return <TeacherListAdmin></TeacherListAdmin>
+      case "institute-info":
+        return <InstituteInfo></InstituteInfo>
+      case "update-images":
+        return <Settings></Settings>
+      case "history":
+        return <SchoolHistory></SchoolHistory>
+      case "social-links":
+        return <SocialLinks></SocialLinks>
+      case "privacy-policy":
+        return <PrivacyPolicy></PrivacyPolicy>
 
       case "announcement":
         return <RecentlyAdmin />;

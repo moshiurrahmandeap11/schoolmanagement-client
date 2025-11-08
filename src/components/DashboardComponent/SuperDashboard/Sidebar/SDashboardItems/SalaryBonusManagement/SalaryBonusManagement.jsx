@@ -1,18 +1,15 @@
 // src/pages/salary/SalaryManagement.jsx
-import React, { useState } from 'react';
-import { 
-  FaMoneyBillWave, 
-  FaSearch, 
-  FaListAlt,
+import { useState } from 'react';
+import {
   FaArrowLeft,
   FaArrowRight,
   FaEdit,
-  FaTrash,
-  FaUserTie
+  FaListAlt,
+  FaMoneyBillWave
 } from 'react-icons/fa';
 
 // সাব-কম্পোনেন্ট ইমপোর্ট (আপনার প্রয়োজন অনুযায়ী তৈরি করুন)
-import TeacherSalaryPayment from './TeacherSalaryPayment/TeacherSalaryPayment';
+import TeacherListAdmin from '../../TeachersListAdmin/TeacherListAdmin';
 import CreateSalaryType from './CreateSalaryType/CreateSalaryType';
 import SalaryTypeList from './SalaryTypeList/SalaryTypeList';
 
@@ -58,13 +55,13 @@ const SalaryManagement = () => {
   if (activeSection !== 'main') {
     const selected = menuItems.find(item => item.id === activeSection);
     const Component = {
-      payment: TeacherSalaryPayment,
+      payment: TeacherListAdmin,
       type: CreateSalaryType,
       list: SalaryTypeList,
     }[activeSection];
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
         {/* Sticky Header */}
         <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-lg">
           <div className="flex items-center gap-4 px-6 py-5">

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
-import RichTextEditor from '../../../../sharedItems/RichTextEditor/RichTextEditor';
 import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
+import RichTextEditor from '../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 const SpeechAdmin = () => {
     const [activeTab, setActiveTab] = useState('principal');
@@ -40,7 +40,7 @@ const SpeechAdmin = () => {
                         body: currentSpeech.body || '',
                         image: null
                     });
-                    setImagePreview(currentSpeech.image || '');
+                    setImagePreview(`${axiosInstance.defaults.baseURL}${currentSpeech.image}`);
                 } else {
                     resetForm();
                 }
@@ -268,7 +268,7 @@ const SpeechAdmin = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 py-8">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center mb-8">
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -332,7 +332,7 @@ const SpeechAdmin = () => {
                                         </div>
                                         
                                         {imagePreview && (
-                                            <div className="flex-shrink-0">
+                                            <div className="shrink-0">
                                                 <div className="relative w-20 h-20 border border-gray-300 rounded-md overflow-hidden">
                                                     <img
                                                         src={imagePreview}
