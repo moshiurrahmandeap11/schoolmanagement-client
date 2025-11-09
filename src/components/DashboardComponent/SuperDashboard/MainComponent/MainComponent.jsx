@@ -25,6 +25,10 @@ import WorkersListAdmin from "../Sidebar/WorkersListAdmin/WorkersListAdmin";
 import ZillaHistoryAdmin from "../Sidebar/ZillaHistoryAdmin/ZillaHistoryAdmin";
 
 // সব SDashboardItems কম্পোনেন্ট
+import Batch from "../Sidebar/Class/Batch/Batch";
+import Section from "../Sidebar/Class/Section/Section";
+import Session from "../Sidebar/Class/Session/Session";
+import Subjects from "../Sidebar/Class/Subjects/Subjects";
 import AcademicManagement from "../Sidebar/SDashboardItems/AcademicManagement/AcademicManagement";
 import AccountsManagement from "../Sidebar/SDashboardItems/AccountsManagement/AccountsManagement";
 import AttendanceManagement from "../Sidebar/SDashboardItems/AttendanceManagement/AttendanceManagement";
@@ -41,6 +45,7 @@ import InstituteInfo from "../Sidebar/SDashboardItems/WebsiteManagement/Institue
 import PrivacyPolicy from "../Sidebar/SDashboardItems/WebsiteManagement/PrivacyPolicy/PrivacyPolicy";
 import SocialLinks from "../Sidebar/SDashboardItems/WebsiteManagement/SocialLinks/SocialLinks";
 import WebsiteManagement from "../Sidebar/SDashboardItems/WebsiteManagement/WebsiteManagement";
+import StudentsMenu from "../Sidebar/Students/StudentsMenu/StudentsMenu";
 
 const MainComponent = ({ activeMenu, onDashboardItemClick }) => { // প্রপ রিসিভ করা হলো
   const renderContent = () => {
@@ -133,6 +138,16 @@ const MainComponent = ({ activeMenu, onDashboardItemClick }) => { // প্র�
         return <RoutineAdmin />;
       case "settings":
         return <Settings />;
+      case "section":
+        return <Section></Section>
+      case "patthokrom":
+        return <Subjects></Subjects>
+      case "students-submenu":
+        return <StudentsMenu></StudentsMenu>
+      case "session":
+        return <Session></Session>
+      case "batch":
+        return <Batch></Batch>
 
       case "profile":
         return (
