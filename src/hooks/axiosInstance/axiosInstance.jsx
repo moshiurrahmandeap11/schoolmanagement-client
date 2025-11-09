@@ -7,6 +7,6 @@ const axiosInstance = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-export const baseImageURL = "http://localhost:3000";
+export const baseImageURL = "http://localhost:3000/";
 
 export default axiosInstance;
