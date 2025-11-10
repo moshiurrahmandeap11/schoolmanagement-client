@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axiosInstance, { baseImageURL } from '../../../../../hooks/axiosInstance/axiosInstance';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
+import axiosInstance, { baseImageURL } from '../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../sharedItems/Loader/Loader';
 
 const Settings = () => {
@@ -271,7 +271,7 @@ const Settings = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4 lg:p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-full mx-auto">
         {/* Header */}
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold bg-black bg-clip-text text-transparent">

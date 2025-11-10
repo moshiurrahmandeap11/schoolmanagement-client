@@ -29,6 +29,8 @@ import Batch from "../Sidebar/Class/Batch/Batch";
 import Section from "../Sidebar/Class/Section/Section";
 import Session from "../Sidebar/Class/Session/Session";
 import Subjects from "../Sidebar/Class/Subjects/Subjects";
+import ExpenseCategory from "../Sidebar/Hisab/ExpenseCategory/ExpenseCategory";
+import AnnualReports from "../Sidebar/HomePristha/AnnualReports/AnnualReports";
 import AcademicManagement from "../Sidebar/SDashboardItems/AcademicManagement/AcademicManagement";
 import AccountsManagement from "../Sidebar/SDashboardItems/AccountsManagement/AccountsManagement";
 import AttendanceManagement from "../Sidebar/SDashboardItems/AttendanceManagement/AttendanceManagement";
@@ -45,6 +47,7 @@ import InstituteInfo from "../Sidebar/SDashboardItems/WebsiteManagement/Institue
 import PrivacyPolicy from "../Sidebar/SDashboardItems/WebsiteManagement/PrivacyPolicy/PrivacyPolicy";
 import SocialLinks from "../Sidebar/SDashboardItems/WebsiteManagement/SocialLinks/SocialLinks";
 import WebsiteManagement from "../Sidebar/SDashboardItems/WebsiteManagement/WebsiteManagement";
+import ExamCategory from "../Sidebar/SidebarExam/ExamCategory/ExamCategory";
 import StudentsMenu from "../Sidebar/Students/StudentsMenu/StudentsMenu";
 
 const MainComponent = ({ activeMenu, onDashboardItemClick }) => { // প্রপ রিসিভ করা হলো
@@ -87,10 +90,16 @@ const MainComponent = ({ activeMenu, onDashboardItemClick }) => { // প্র�
         return <Settings></Settings>
       case "history":
         return <SchoolHistory></SchoolHistory>
+      case "annual-reports":
+        return <AnnualReports></AnnualReports>
       case "social-links":
         return <SocialLinks></SocialLinks>
       case "privacy-policy":
         return <PrivacyPolicy></PrivacyPolicy>
+      case "exam-category":
+        return <ExamCategory></ExamCategory>
+      case "expense-category":
+        return <ExpenseCategory></ExpenseCategory>
 
       case "announcement":
         return <RecentlyAdmin />;

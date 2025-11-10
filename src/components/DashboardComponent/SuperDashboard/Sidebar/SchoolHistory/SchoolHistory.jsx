@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
-import RichTextEditor from '../../../../sharedItems/RichTextEditor/RichTextEditor';
 import Loader from '../../../../sharedItems/Loader/Loader';
+import RichTextEditor from '../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 const SchoolHistory = () => {
     const [historyData, setHistoryData] = useState(null);
@@ -179,7 +179,7 @@ const SchoolHistory = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 p-4 lg:p-6">
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-full mx-auto">
                 {/* Header */}
                 <div className="mb-8 text-center">
                     <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">

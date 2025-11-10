@@ -49,7 +49,7 @@ import { TbArrowsExchange2, TbBell, TbBuilding, TbCalendarStats, TbCategory, TbC
 // ====================================
 const MENU_ITEMS = [
   // সিম্পল মেনু (সাবমেনু ছাড়া)
-    {
+  {
     id: 'home',
     label: 'হোম পৃষ্ঠা',
     icon: FaHome,
@@ -64,318 +64,327 @@ const MENU_ITEMS = [
       { id: 'privacy-policy', label: 'প্রাইভেসি পলিসি', icon: FaShieldAlt },
     ]
   },
-{
-  id: 'class',
-  label: "ক্লাস",
-  icon: MdOutlineClass,
-  color: "blue",
-  submenu: [
-    { id: "session", label: "সেশন", icon: MdOutlineAccessTime },         // time/session
-    { id: "class-id", label: "ক্লাস", icon: MdClass },                     // class icon
-    { id: "section", label: "সেকশন", icon: FaTableList },                 // section list
-    { id: "batch", label: "ব্যাচ", icon: BsPatchCheckFill },              // batch/tick
-    { id: "patthokrom", label: "পাঠ্যক্রম", icon: LuBookOpenCheck },      // curriculum/book
-    { id: "class-wise-teacher", label: "ক্লাসভিত্তিক শিক্ষক যোগ", icon: PiChalkboardTeacherFill }, // teacher assign
-    { id: "divide-pattokrom", label: "পাঠ্যক্রম বণ্টন", icon: FaBookOpen }, // curriculum division
-    { id: "class-routine", label: "ক্লাস রুটিন", icon: RiCalendarScheduleLine }, // routine/schedule
-    { id: "plus-new-report", label: "নতুন রিপোর্ট", icon: GoReport },          // new report
-    { id: "class-report-list", label: "ক্লাস রিপোর্ট লিস্ট", icon: MdReport }, // report list
-  ]
-},
-{
-  id: "students",
-  label: "শিক্ষার্থী",
-  icon: PiStudentBold,
-  color: "blue",
-  submenu: [
-    { 
-      id: "students-submenu", 
-      label: "শিক্ষার্থী", 
-      icon: PiUsersThreeBold 
-    },
-    { 
-      id: "add-student", 
-      label: "শিক্ষার্থী যোগ", 
-      icon: PiUserPlusBold 
-    },
-    { 
-      id: "add-student-image", 
-      label: "শিক্ষার্থীর ছবি যোগ", 
-      icon: PiImageBold 
-    },
-    { 
-      id: "student-class-update", 
-      label: "শিক্ষার্থীর শ্রেণী পরিবর্তন", 
-      icon: GiUpgrade 
-    },
-    { 
-      id: "migrate-status", 
-      label: "Migrate Status", 
-      icon: TbArrowsExchange2 
-    },
-    { 
-      id: "migrate-branch", 
-      label: "Migrate Branch", 
-      icon: GiPathDistance 
-    },
-    { 
-      id: "student-leave", 
-      label: "Student Leave", 
-      icon: RiLogoutBoxRLine 
-    },
-  ]
-},
-{
-  id: "fees",
-  label: "ফি",
-  icon: PiMoneyWavyBold,
-  color: "blue",
-  submenu: [
-    { id: "fine-type", label: "জরিমানার ধরণ", icon: TbCoins },
-    { id: "fee-type", label: "ফির ধরণ", icon: PiMoneyBold },
-    { id: "discount", label: "ডিস্কাউন্ট", icon: AiOutlinePercentage },
-    { id: "add-fee", label: "ফি যোগ", icon: MdAddCard },
-    { id: "add-discount", label: "ডিসকাউন্ট যোগ", icon: AiOutlinePercentage },
-    { id: "assign-fines", label: "Assign Fines", icon: BsCoin },
-    { id: "fee-settings", label: "ফি সেটিং", icon: RiSettings3Line },
-    { id: "collect-fee", label: "ফি সংগ্রহ করুন", icon: MdOutlinePayments },
-    { id: "due-fee", label: "শিক্ষার্থীদের বকেয়া বেতন", icon: TbCoinTaka },
-    { id: "collected-fee", label: "সংগ্রহীত বেতন", icon: PiMoneyLight },
-    { id: "monthly-fee-report", label: "Monthly Fee Report Statement", icon: LuClipboardList },
-    { id: "monthly-fee-summary", label: "Monthly Fee Colletion Summary", icon: LuFileOutput },
-    { id: "due-fee-sms", label: "বকেয়া বেতনের এস এম এস", icon: FaSms },
-    { id: "deleted-fees", label: "Deleted Fees", icon: TbReceiptRefund },
-    { id: "monthly-fee-report-2", label: "Monthly Fee Report Statement", icon: LuClipboardList },
-  ]
-},
-{
-  id: "print",
-  label: "প্রিন্ট",
-  icon: MdOutlinePrint,
-  color: "blue",
-  submenu: [
-    { id: "admission-token", label: "Admission Token", icon: HiOutlineIdentification },
-    { id: "admit-card", label: "অ্যাডমিট কার্ড", icon: FaRegIdCard },
-    { id: "tabular-result", label: "টেবুলার রেজাল্ট", icon: TbTableAlias },
-    { id: "income-expense-report", label: "আয়ের - ব্যয়ের রিপোর্ট", icon: TbReportMoney },
-    { id: "summary-income-statement", label: "Summary-Income Statement", icon: TbReportAnalytics },
-    { id: "monthly-income-expense", label: "মাসিক আয়-ব্যয়ের রিপোর্ট", icon: TbCalendarStats },
-    { id: "print-student", label: "শিক্ষার্থী", icon: PiStudent },
-    { id: "salary-sheet", label: "Salary Sheet", icon: RiMoneyCnyCircleLine },
-    { id: "teacher-salary-report", label: "Teacher Salary Report", icon: LucideUsers2 },
-    { id: "employee-salary-report", label: "Employee Salary Report", icon: LuUserCog },
-  ],
-},
-{
-  id: "forms-certificates",
-  label: "ফর্ম & সার্টিফিকেট",
-  icon: LuFileBadge,
-  color: "blue",
-  submenu: [
-    { id: "instant-form", label: "Instant Form", icon: FaWpforms },
-    { id: "certificate", label: "Certificate", icon: PiCertificateBold },
-    { id: "classwise-forms", label: "Classwise Forms / Certificate", icon: LuFileStack },
-    { id: "form-category-list", label: "Form Category List", icon: TbCategory },
-    { id: "institute-form-list", label: "Institute Form List", icon: MdOutlineDomain },
-  ],
-},
-{
-  id: "accounts",
-  label: "হিসাব",
-  icon: TbReportMoney,
-  color: "blue",
-  submenu: [
-    { id: "accounts-settings", label: "সেটিংস", icon: RiSettings3Line },
-    { id: "income-expense", label: "আয় / ব্যয়", icon: TbReportMoney },
-  ],
-},
-{
-  id: "home-works",
-  label: "Home Works",
-  icon: MdHomeWork,
-  color: "blue",
-  submenu: [
-    { id: "home-work", label: "Home Work", icon: MdHomeWork},
-  ]
-},
-{
-  id: "attendance",
-  label: "উপস্থিতি",
-  icon: TbReport,
-  color: "blue",
-  submenu: [
-    { id: "attendance-settings", label: "সেটিংস", icon: RiSettings3Line },
-    { id: "attendance-report", label: "Attendance Report", icon: TbReport },
-    { id: "attendance-leave", label: "Leave", icon: MdOutlineEventBusy },
-  ],
-},
-{
-  id: "exams",
-  label: "পরীক্ষা",
-  icon: GiGraduateCap,
-  color: "blue",
-  submenu: [
-    { id: "grading", label: "Grading", icon: TbReport },
-    { id: "exam-category", label: "Exam Category", icon: PiStackBold },
-    { id: "exam-group", label: "Exam Group", icon: PiStackBold },
-    { id: "exam", label: "পরীক্ষা", icon: MdOutlineAssignment },
-    { id: "exam-routine", label: "পরীক্ষার রুটিন", icon: RiCalendarEventLine },
-  ],
-},
-{
-  id: "seat-plan",
-  label: "Seat Plan",
-  icon: RiLayoutLine,
-  color: "blue",
-  submenu: [
-    { id: "exam-hall", label: "পরীক্ষার হল", icon: RiLayoutLine },
-    { id: "exam-timetable", label: "পরীক্ষার সময় কাল", icon: TbClock },
-    { id: "seat-arrangement", label: "আসন পরিকল্পনা", icon: PiTableBold },
-    { id: "seat-download", label: "আসন পরিকল্পনা ডাউনলোড", icon: PiDownloadBold },
-  ],
-},
-{
-  id: "results",
-  label: "ফলাফল",
-  icon: MdOutlineAssignmentTurnedIn,
-  color: "blue",
-  submenu: [
-    { id: "result", label: "ফলাফল", icon: TbReport },
-    { id: "combined-result", label: "Combined Result", icon: TbReport },
-    { id: "result-sheet-upload", label: "রেজাল্ট শিট আপলোড", icon: PiUploadBold },
-    { id: "subject-wise-marks", label: "বিষয়ভিত্তিক নাম্বার যোগ", icon: PiUploadBold },
-    { id: "excel-marks-entry", label: "এক্সেলে নাম্বার যোগ", icon: PiUploadBold },
-    { id: "tabular-result", label: "টেবুলার রেজাল্ট", icon: LuTable },
-    { id: "marksheet-download", label: "মার্কশিট ডাউনলোড", icon: PiDownloadBold },
-    { id: "result-sms", label: "রেজাল্টের এস এম এস", icon: FaSms },
-  ],
-},
-{
-  id: "sms",
-  label: "এস এম এস",
-  icon: PiChatCircleBold,
-  color: "blue",
-  submenu: [
-    { id: "send-instant-message", label: "Send Instant Message", icon: PiChatCircleBold },
-    { id: "sms-balance", label: "এস এম এস ব্যালেন্স", icon: TbCoinTaka },
-    { id: "sms-list", label: "এস এম এস", icon: FaSms },
-    { id: "send-sms", label: "এস এম এস পাঠান", icon: RiSendPlaneLine },
-    { id: "due-fee-sms", label: "বকেয়া বেতনের এস এম এস", icon: FaSms },
-    { id: "sms-report", label: "এস এম এস রিপোর্ট", icon: TbReport },
-  ],
-},
-{
-  id: "teachers",
-  label: "শিক্ষক",
-  icon: LucideUserSquare2,
-  color: "blue",
-  submenu: [
-    { id: "teachers-staffs", label: "Teachers / Staffs", icon: LucideUserPlus2 },
-    { id: "salary-report", label: "Salary Report", icon: RiMoneyCnyCircleLine },
-  ],
-},
-{
-  id: "documents",
-  label: "Documents",
-  icon: LuFile,
-  color: "blue",
-  submenu: [
-    { id: "document-category", label: "Document Category", icon: TbCategory },
-    { id: "documents", label: "Documents", icon: LuFile },
-  ],
-},
-{
-  id: "institute",
-  label: "প্রতিষ্ঠান",
-  icon: PiBuildingsBold,
-  color: "blue",
-  submenu: [
-    { id: "institute-messages", label: "Institute Messages", icon: PiChatCircleBold },
-    { id: "contact", label: "যোগাযোগ", icon: RiContactsBookLine },
-    { id: "services", label: "সেবাসমূহ", icon: TbTools },
-    { id: "management-committee", label: "পরিচালনা কমিটি", icon: GiGroupedDrops },
-    { id: "jobs", label: "চাকুরী", icon: RiBriefcaseLine },
-  ],
-},
-{
-  id: "publication",
-  label: "প্রকাশনা",
-  icon: PiNewspaperBold,
-  color: "blue",
-  submenu: [
-    { id: "notice", label: "নোটিশ", icon: TbBell },
-    { id: "event", label: "ইভেন্ট", icon: FaRegCalendarAlt },
-    { id: "photo-gallery", label: "ফটো গ্যালারী", icon: FaPhotoVideo },
-    { id: "author", label: "লেখক", icon: LuUser },
-    { id: "blog-category", label: "ব্লগ ক্যাটাগরি", icon: TbCategory },
-    { id: "blog", label: "ব্লগ", icon: PiBehanceLogoBold },
-    { id: "menu", label: "Menu", icon: LuMenu },
-    { id: "page", label: "Page", icon: LuFile },
-  ],
-},
-{
-  id: "admission",
-  label: "ভর্তি",
-  icon: PiStudentBold,
-  color: "blue",
-  submenu: [
-    { id: "admission-info", label: "ভর্তি তথ্য", icon: PiStudentBold },
-    { id: "online-application", label: "অনলাইন আবেদন", icon: FaLaptop },
-  ],
-},
-{
-  id: "faculty",
-  label: "অনুষদ",
-  icon: TbBuilding,
-  color: "blue",
-  submenu: [
-    { id: "new-faculty", label: "নতুন অনুষদ", icon: TbBuilding },
-    { id: "faculty-list", label: "অনুষদ তালিকা", icon: TbList },
-    { id: "new-department", label: "নতুন বিভাগ", icon: MdOutlineCategory },
-    { id: "department-list", label: "বিভাগ তালিকা", icon: TbList },
-  ],
-},
-{
-  id: "institute-media",
-  label: "প্রতিষ্ঠানের মিডিয়া",
-  icon: FaPhotoVideo,
-  color: "blue",
-  submenu: [
-    { id: "new-media", label: "New Media", icon: FaPhotoVideo },
-    { id: "media-list", label: "Media List", icon: TbList },
-    { id: "new-video", label: "New Video", icon: PiVideoBold },
-    { id: "video-list", label: "Video List", icon: TbList },
-  ],
-},
-{
-  id: "management-board",
-  label: "পরিচালনা পরিষদ",
-  icon: GiTeamIdea,
-  color: "blue",
-  submenu: [
-    { id: "officers", label: "কর্মকর্তা", icon: GiTeamIdea },
-    { id: "teachers", label: "শিক্ষকবৃন্দ", icon: LucideUsers2 },
-    { id: "students", label: "শিক্ষার্থী", icon: PiStudentBold },
-  ],
-},
-{
-  id: "settings",
-  label: "সেটিংস",
-  icon: RiSettings3Line,
-  color: "blue",
-  submenu: [
-    { id: "basic-settings", label: "প্রাথমিক সেটিং", icon: RiSettings3Line },
-  ],
-},
-{
-  id: "collaboration",
-  label: "সহযোগিতা",
-  icon: PiChalkboardTeacherBold,
-  color: "blue",
-  submenu: [
-    { id: "tutorial", label: "টিউটোরিয়াল", icon: PiChalkboardTeacherBold },
-  ],
-},
+  {
+    id: 'class',
+    label: "ক্লাস",
+    icon: MdOutlineClass,
+    color: "blue",
+    submenu: [
+      { id: "session", label: "সেশন", icon: MdOutlineAccessTime },
+      { id: "class-id", label: "ক্লাস", icon: MdClass },
+      { id: "section", label: "সেকশন", icon: FaTableList },
+      { id: "batch", label: "ব্যাচ", icon: BsPatchCheckFill },
+      { id: "patthokrom", label: "পাঠ্যক্রম", icon: LuBookOpenCheck },
+      { id: "class-wise-teacher", label: "ক্লাসভিত্তিক শিক্ষক যোগ", icon: PiChalkboardTeacherFill },
+      { id: "divide-pattokrom", label: "পাঠ্যক্রম বণ্টন", icon: FaBookOpen },
+      { id: "class-routine", label: "ক্লাস রুটিন", icon: RiCalendarScheduleLine },
+      { id: "plus-new-report", label: "নতুন রিপোর্ট", icon: GoReport },
+      { id: "class-report-list", label: "ক্লাস রিপোর্ট লিস্ট", icon: MdReport },
+    ]
+  },
+  {
+    id: "students",
+    label: "শিক্ষার্থী",
+    icon: PiStudentBold,
+    color: "blue",
+    submenu: [
+      { 
+        id: "students-submenu", 
+        label: "শিক্ষার্থী", 
+        icon: PiUsersThreeBold 
+      },
+      { 
+        id: "add-student", 
+        label: "শিক্ষার্থী যোগ", 
+        icon: PiUserPlusBold 
+      },
+      { 
+        id: "add-student-image", 
+        label: "শিক্ষার্থীর ছবি যোগ", 
+        icon: PiImageBold 
+      },
+      { 
+        id: "student-class-update", 
+        label: "শিক্ষার্থীর শ্রেণী পরিবর্তন", 
+        icon: GiUpgrade 
+      },
+      { 
+        id: "migrate-status", 
+        label: "Migrate Status", 
+        icon: TbArrowsExchange2 
+      },
+      { 
+        id: "migrate-branch", 
+        label: "Migrate Branch", 
+        icon: GiPathDistance 
+      },
+      { 
+        id: "student-leave", 
+        label: "Student Leave", 
+        icon: RiLogoutBoxRLine 
+      },
+    ]
+  },
+  {
+    id: "fees",
+    label: "ফি",
+    icon: PiMoneyWavyBold,
+    color: "blue",
+    submenu: [
+      { id: "fine-type", label: "জরিমানার ধরণ", icon: TbCoins },
+      { id: "fee-type", label: "ফির ধরণ", icon: PiMoneyBold },
+      { id: "discount", label: "ডিস্কাউন্ট", icon: AiOutlinePercentage },
+      { id: "add-fee", label: "ফি যোগ", icon: MdAddCard },
+      { id: "add-discount", label: "ডিসকাউন্ট যোগ", icon: AiOutlinePercentage },
+      { id: "assign-fines", label: "Assign Fines", icon: BsCoin },
+      { id: "fee-settings", label: "ফি সেটিং", icon: RiSettings3Line },
+      { id: "collect-fee", label: "ফি সংগ্রহ করুন", icon: MdOutlinePayments },
+      { id: "due-fee", label: "শিক্ষার্থীদের বকেয়া বেতন", icon: TbCoinTaka },
+      { id: "collected-fee", label: "সংগ্রহীত বেতন", icon: PiMoneyLight },
+      { id: "monthly-fee-report", label: "Monthly Fee Report Statement", icon: LuClipboardList },
+      { id: "monthly-fee-summary", label: "Monthly Fee Colletion Summary", icon: LuFileOutput },
+      { id: "due-fee-sms", label: "বকেয়া বেতনের এস এম এস", icon: FaSms },
+      { id: "deleted-fees", label: "Deleted Fees", icon: TbReceiptRefund },
+      { id: "monthly-fee-report-2", label: "Monthly Fee Report Statement", icon: LuClipboardList },
+    ]
+  },
+  {
+    id: "print",
+    label: "প্রিন্ট",
+    icon: MdOutlinePrint,
+    color: "blue",
+    submenu: [
+      { id: "admission-token", label: "Admission Token", icon: HiOutlineIdentification },
+      { id: "admit-card", label: "অ্যাডমিট কার্ড", icon: FaRegIdCard },
+      { id: "tabular-result", label: "টেবুলার রেজাল্ট", icon: TbTableAlias },
+      { id: "income-expense-report", label: "আয়ের - ব্যয়ের রিপোর্ট", icon: TbReportMoney },
+      { id: "summary-income-statement", label: "Summary-Income Statement", icon: TbReportAnalytics },
+      { id: "monthly-income-expense", label: "মাসিক আয়-ব্যয়ের রিপোর্ট", icon: TbCalendarStats },
+      { id: "print-student", label: "শিক্ষার্থী", icon: PiStudent },
+      { id: "salary-sheet", label: "Salary Sheet", icon: RiMoneyCnyCircleLine },
+      { id: "teacher-salary-report", label: "Teacher Salary Report", icon: LucideUsers2 },
+      { id: "employee-salary-report", label: "Employee Salary Report", icon: LuUserCog },
+    ],
+  },
+  {
+    id: "forms-certificates",
+    label: "ফর্ম & সার্টিফিকেট",
+    icon: LuFileBadge,
+    color: "blue",
+    submenu: [
+      { id: "instant-form", label: "Instant Form", icon: FaWpforms },
+      { id: "certificate", label: "Certificate", icon: PiCertificateBold },
+      { id: "classwise-forms", label: "Classwise Forms / Certificate", icon: LuFileStack },
+      { id: "form-category-list", label: "Form Category List", icon: TbCategory },
+      { id: "institute-form-list", label: "Institute Form List", icon: MdOutlineDomain },
+    ],
+  },
+  {
+    id: "accounts",
+    label: "হিসাব",
+    icon: TbReportMoney,
+    color: "blue",
+    submenu: [
+      { id: "bank-accounts", label: "একাউন্ট", icon: RiSettings3Line },
+      { id: "income-sources", label: "আয়ের উৎস", icon: TbReportMoney },
+      { id: "expense-category", label: "Expense Category", icon: TbCategory },
+      { id: "expense-item", label: "Expense Item", icon: TbList },
+      { id: "due-expense-field", label: "Due Expense Field", icon: TbReport },
+      { id: "transaction-types", label: "লেনদেনের ধরন", icon: TbArrowsExchange2 },
+      { id: "incomes", label: "আয়", icon: TbReportMoney },
+      { id: "due-expenses", label: "Due Expenses", icon: TbReport },
+      { id: "expenses", label: "ব্যয়", icon: TbReportMoney },
+      { id: "balance-sheet", label: "ব্যাল্যান্স শিট", icon: LuFileOutput },
+      { id: "transactions", label: "লেনদেনসমূহ", icon: TbArrowsExchange2 },
+    ]
+  },
+  {
+    id: "home-works",
+    label: "Home Works",
+    icon: MdHomeWork,
+    color: "blue",
+    submenu: [
+      { id: "home-work", label: "Home Work", icon: MdHomeWork},
+    ]
+  },
+  {
+    id: "attendance",
+    label: "উপস্থিতি",
+    icon: TbReport,
+    color: "blue",
+    submenu: [
+      { id: "attendance-settings", label: "সেটিংস", icon: RiSettings3Line },
+      { id: "attendance-report", label: "Attendance Report", icon: TbReport },
+      { id: "attendance-leave", label: "Leave", icon: MdOutlineEventBusy },
+    ],
+  },
+  {
+    id: "exams",
+    label: "পরীক্ষা",
+    icon: GiGraduateCap,
+    color: "blue",
+    submenu: [
+      { id: "grading", label: "Grading", icon: TbReport },
+      { id: "exam-category", label: "Exam Category", icon: PiStackBold },
+      { id: "exam-group", label: "Exam Group", icon: PiStackBold },
+      { id: "exam", label: "পরীক্ষা", icon: MdOutlineAssignment },
+      { id: "exam-routine", label: "পরীক্ষার রুটিন", icon: RiCalendarEventLine },
+    ],
+  },
+  {
+    id: "seat-plan",
+    label: "Seat Plan",
+    icon: RiLayoutLine,
+    color: "blue",
+    submenu: [
+      { id: "exam-hall", label: "পরীক্ষার হল", icon: RiLayoutLine },
+      { id: "exam-timetable", label: "পরীক্ষার সময় কাল", icon: TbClock },
+      { id: "seat-arrangement", label: "আসন পরিকল্পনা", icon: PiTableBold },
+      { id: "seat-download", label: "আসন পরিকল্পনা ডাউনলোড", icon: PiDownloadBold },
+    ],
+  },
+  {
+    id: "results",
+    label: "ফলাফল",
+    icon: MdOutlineAssignmentTurnedIn,
+    color: "blue",
+    submenu: [
+      { id: "result", label: "ফলাফল", icon: TbReport },
+      { id: "combined-result", label: "Combined Result", icon: TbReport },
+      { id: "result-sheet-upload", label: "রেজাল্ট শিট আপলোড", icon: PiUploadBold },
+      { id: "subject-wise-marks", label: "বিষয়ভিত্তিক নাম্বার যোগ", icon: PiUploadBold },
+      { id: "excel-marks-entry", label: "এক্সেলে নাম্বার যোগ", icon: PiUploadBold },
+      { id: "tabular-result", label: "টেবুলার রেজাল্ট", icon: LuTable },
+      { id: "marksheet-download", label: "মার্কশিট ডাউনলোড", icon: PiDownloadBold },
+      { id: "result-sms", label: "রেজাল্টের এস এম এস", icon: FaSms },
+    ],
+  },
+  {
+    id: "sms",
+    label: "এস এম এস",
+    icon: PiChatCircleBold,
+    color: "blue",
+    submenu: [
+      { id: "send-instant-message", label: "Send Instant Message", icon: PiChatCircleBold },
+      { id: "sms-balance", label: "এস এম এস ব্যালেন্স", icon: TbCoinTaka },
+      { id: "sms-list", label: "এস এম এস", icon: FaSms },
+      { id: "send-sms", label: "এস এম এস পাঠান", icon: RiSendPlaneLine },
+      { id: "due-fee-sms", label: "বকেয়া বেতনের এস এম এস", icon: FaSms },
+      { id: "sms-report", label: "এস এম এস রিপোর্ট", icon: TbReport },
+    ],
+  },
+  {
+    id: "teachers",
+    label: "শিক্ষক",
+    icon: LucideUserSquare2,
+    color: "blue",
+    submenu: [
+      { id: "teachers-staffs", label: "Teachers / Staffs", icon: LucideUserPlus2 },
+      { id: "salary-report", label: "Salary Report", icon: RiMoneyCnyCircleLine },
+    ],
+  },
+  {
+    id: "documents",
+    label: "Documents",
+    icon: LuFile,
+    color: "blue",
+    submenu: [
+      { id: "document-category", label: "Document Category", icon: TbCategory },
+      { id: "documents", label: "Documents", icon: LuFile },
+    ],
+  },
+  {
+    id: "institute",
+    label: "প্রতিষ্ঠান",
+    icon: PiBuildingsBold,
+    color: "blue",
+    submenu: [
+      { id: "institute-messages", label: "Institute Messages", icon: PiChatCircleBold },
+      { id: "contact", label: "যোগাযোগ", icon: RiContactsBookLine },
+      { id: "services", label: "সেবাসমূহ", icon: TbTools },
+      { id: "management-committee", label: "পরিচালনা কমিটি", icon: GiGroupedDrops },
+      { id: "jobs", label: "চাকুরী", icon: RiBriefcaseLine },
+    ],
+  },
+  {
+    id: "publication",
+    label: "প্রকাশনা",
+    icon: PiNewspaperBold,
+    color: "blue",
+    submenu: [
+      { id: "notice", label: "নোটিশ", icon: TbBell },
+      { id: "event", label: "ইভেন্ট", icon: FaRegCalendarAlt },
+      { id: "photo-gallery", label: "ফটো গ্যালারী", icon: FaPhotoVideo },
+      { id: "author", label: "লেখক", icon: LuUser },
+      { id: "blog-category", label: "ব্লগ ক্যাটাগরি", icon: TbCategory },
+      { id: "blog", label: "ব্লগ", icon: PiBehanceLogoBold },
+      { id: "menu", label: "Menu", icon: LuMenu },
+      { id: "page", label: "Page", icon: LuFile },
+    ],
+  },
+  {
+    id: "admission",
+    label: "ভর্তি",
+    icon: PiStudentBold,
+    color: "blue",
+    submenu: [
+      { id: "admission-info", label: "ভর্তি তথ্য", icon: PiStudentBold },
+      { id: "online-application", label: "অনলাইন আবেদন", icon: FaLaptop },
+    ],
+  },
+  {
+    id: "faculty",
+    label: "অনুষদ",
+    icon: TbBuilding,
+    color: "blue",
+    submenu: [
+      { id: "new-faculty", label: "নতুন অনুষদ", icon: TbBuilding },
+      { id: "faculty-list", label: "অনুষদ তালিকা", icon: TbList },
+      { id: "new-department", label: "নতুন বিভাগ", icon: MdOutlineCategory },
+      { id: "department-list", label: "বিভাগ তালিকা", icon: TbList },
+    ],
+  },
+  {
+    id: "institute-media",
+    label: "প্রতিষ্ঠানের মিডিয়া",
+    icon: FaPhotoVideo,
+    color: "blue",
+    submenu: [
+      { id: "new-media", label: "New Media", icon: FaPhotoVideo },
+      { id: "media-list", label: "Media List", icon: TbList },
+      { id: "new-video", label: "New Video", icon: PiVideoBold },
+      { id: "video-list", label: "Video List", icon: TbList },
+    ],
+  },
+  {
+    id: "management-board",
+    label: "পরিচালনা পরিষদ",
+    icon: GiTeamIdea,
+    color: "blue",
+    submenu: [
+      { id: "officers", label: "কর্মকর্তা", icon: GiTeamIdea },
+      { id: "teachers", label: "শিক্ষকবৃন্দ", icon: LucideUsers2 },
+      { id: "students", label: "শিক্ষার্থী", icon: PiStudentBold },
+    ],
+  },
+  {
+    id: "settings",
+    label: "সেটিংস",
+    icon: RiSettings3Line,
+    color: "blue",
+    submenu: [
+      { id: "basic-settings", label: "প্রাথমিক সেটিং", icon: RiSettings3Line },
+    ],
+  },
+  {
+    id: "collaboration",
+    label: "সহযোগিতা",
+    icon: PiChalkboardTeacherBold,
+    color: "blue",
+    submenu: [
+      { id: "tutorial", label: "টিউটোরিয়াল", icon: PiChalkboardTeacherBold },
+    ],
+  },
 
   { id: 'announcement', label: 'Announcement', icon: FaBullhorn },
   { id: 'notice', label: 'Notice', icon: FaBullhorn },
@@ -384,8 +393,6 @@ const MENU_ITEMS = [
   { id: 'speech', label: 'Speech', icon: FaQuoteRight },
 
   // সাবমেনু সহ মেনু
-
-
   {
     id: 'student',
     label: 'Manage Student',
@@ -498,7 +505,7 @@ const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen })
   }, [isSidebarOpen, setIsSidebarOpen]);
 
   // সিম্পল মেনু আইটেম
-  const MenuItem = ({ item, isSubmenuItem = false }) => {
+  const MenuItem = ({ item, isSubmenuItem = false, level = 0 }) => {
     const Icon = item.icon;
     const isActive = activeMenu === item.id;
     
@@ -512,17 +519,18 @@ const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen })
             ? 'bg-blue-50 text-blue-600 border-r-2 border-blue-600' 
             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-800'
           }
-          ${isSubmenuItem ? 'text-sm pl-12' : 'pl-4'}
+          ${isSubmenuItem ? `text-sm pl-${8 + level * 4}` : 'pl-4'}
         `}
+        style={{ paddingLeft: isSubmenuItem ? `${16 + level * 16}px` : '16px' }}
       >
-        <Icon className={`text-xl ${isActive ? 'text-blue-600' : 'text-gray-500'}`} />
+        {Icon && <Icon className={`text-xl ${isActive ? 'text-blue-600' : 'text-gray-500'}`} />}
         <span className="font-medium flex-1">{item.label}</span>
       </button>
     );
   };
 
   // সাবমেনু সহ মেনু আইটেম
-  const MenuWithSubmenu = ({ item }) => {
+  const MenuWithSubmenu = ({ item, level = 0 }) => {
     const Icon = item.icon;
     const isOpen = openSubmenus[item.id];
     const hasActiveItem = item.submenu?.some(sub => sub.id === activeMenu);
@@ -539,9 +547,10 @@ const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen })
               : 'text-gray-600 hover:bg-gray-50 hover:text-gray-800'
             }
           `}
+          style={{ paddingLeft: `${16 + level * 16}px` }}
         >
           <div className="flex items-center gap-3">
-            <Icon className={`text-xl ${hasActiveItem ? `text-${colorClass}-600` : 'text-gray-500'}`} />
+            {Icon && <Icon className={`text-xl ${hasActiveItem ? `text-${colorClass}-600` : 'text-gray-500'}`} />}
             <span className="font-medium">{item.label}</span>
           </div>
           <CgChevronDown className={`text-lg transition-transform duration-200 ${isOpen ? 'rotate-0' : '-rotate-90'}`} />
@@ -550,7 +559,11 @@ const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen })
         {isOpen && (
           <div className="mt-1 space-y-1 animate-fadeIn">
             {item.submenu.map((subItem) => (
-              <MenuItem key={subItem.id} item={subItem} isSubmenuItem={true} />
+              subItem.submenu ? (
+                <MenuWithSubmenu key={subItem.id} item={subItem} level={level + 1} />
+              ) : (
+                <MenuItem key={subItem.id} item={subItem} isSubmenuItem={true} level={level + 1} />
+              )
             ))}
           </div>
         )}

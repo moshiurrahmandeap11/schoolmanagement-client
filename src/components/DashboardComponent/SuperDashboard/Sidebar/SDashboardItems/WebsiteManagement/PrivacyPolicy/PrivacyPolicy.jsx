@@ -121,7 +121,7 @@ const PrivacyPolicy = () => {
         <div className="min-h-screen bg-gray-50">
             {/* Main Content */}
             <div className="p-4 sm:p-6 lg:p-8">
-                <div className="max-w-6xl mx-auto">
+                <div className="max-w-full mx-auto">
                     {/* Header Section */}
                     <div className="text-center mb-8">
                         <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
