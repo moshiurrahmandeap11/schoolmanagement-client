@@ -26,12 +26,27 @@ import ZillaHistoryAdmin from "../Sidebar/ZillaHistoryAdmin/ZillaHistoryAdmin";
 
 // সব SDashboardItems কম্পোনেন্ট
 import Batch from "../Sidebar/Class/Batch/Batch";
+import Class from "../Sidebar/Class/ClassId/Class";
+import ClassWiseTeacher from "../Sidebar/Class/ClassWiseTeacher/ClassWiseTeacher";
+import DividePathokrom from "../Sidebar/Class/dividePathokrom/DividePathokrom";
 import Section from "../Sidebar/Class/Section/Section";
 import Session from "../Sidebar/Class/Session/Session";
 import Subjects from "../Sidebar/Class/Subjects/Subjects";
+import AssignFines from "../Sidebar/Fee/AssignFines/AssignFines";
+import CollectFee from "../Sidebar/Fee/CollectFee/CollectFee";
+import Discount from "../Sidebar/Fee/Discount/Discount";
+import DiscountJog from "../Sidebar/Fee/DiscountJog/DiscountJog";
+import Fee from "../Sidebar/Fee/Fee/Fee";
+import FeeSettings from "../Sidebar/Fee/FeeSettings/FeeSettings";
+import FeesType from "../Sidebar/Fee/FeesType/FeesType";
+import FineTypes from "../Sidebar/Fee/FineTypes/FineTypes";
+import StudentsBokeya from "../Sidebar/Fee/StudentsBokeya/StudentsBokeya";
 import ExpenseCategory from "../Sidebar/Hisab/ExpenseCategory/ExpenseCategory";
 import AnnualReports from "../Sidebar/HomePristha/AnnualReports/AnnualReports";
+import ContactHome from "../Sidebar/HomePristha/ContactHome/ContactHome";
 import AcademicManagement from "../Sidebar/SDashboardItems/AcademicManagement/AcademicManagement";
+import ClassReport from "../Sidebar/SDashboardItems/AcademicManagement/ClassReport/ClassReport";
+import ClassReportList from "../Sidebar/SDashboardItems/AcademicManagement/ClassReportList/ClassReportList";
 import AccountsManagement from "../Sidebar/SDashboardItems/AccountsManagement/AccountsManagement";
 import AttendanceManagement from "../Sidebar/SDashboardItems/AttendanceManagement/AttendanceManagement";
 import BranchManagement from "../Sidebar/SDashboardItems/Branch/Branch";
@@ -39,6 +54,7 @@ import CertificateManagement from "../Sidebar/SDashboardItems/CertificateManagem
 import DepartmentManagement from "../Sidebar/SDashboardItems/DepartmentManagement/DepartmentManagement";
 import DonationManagement from "../Sidebar/SDashboardItems/DonationManagement/DonationManagement";
 import ExaminationManagement from "../Sidebar/SDashboardItems/ExaminationManagement/ExaminationManagement";
+import Routine from "../Sidebar/SDashboardItems/ExaminationManagement/Routine/Routine";
 import FeeManagement from "../Sidebar/SDashboardItems/FeeManagement/FeeManagement";
 import PrintManagement from "../Sidebar/SDashboardItems/PrintManagement/PrintManagement";
 import SalaryBonusManagement from "../Sidebar/SDashboardItems/SalaryBonusManagement/SalaryBonusManagement";
@@ -48,6 +64,12 @@ import PrivacyPolicy from "../Sidebar/SDashboardItems/WebsiteManagement/PrivacyP
 import SocialLinks from "../Sidebar/SDashboardItems/WebsiteManagement/SocialLinks/SocialLinks";
 import WebsiteManagement from "../Sidebar/SDashboardItems/WebsiteManagement/WebsiteManagement";
 import ExamCategory from "../Sidebar/SidebarExam/ExamCategory/ExamCategory";
+import AddStudentImage from "../Sidebar/Students/AddStudentImage/AddStudentImage";
+import MigrateBranch from "../Sidebar/Students/MigrateBranch/MigrateBranch";
+import MigrateStatus from "../Sidebar/Students/MigrateStatus/MigrateStatus";
+import StudentsClassUpdate from "../Sidebar/Students/StudentsClassUpdate/StudentsClassUpdate";
+import StudentsLeave from "../Sidebar/Students/StudentsLeave/StudentsLeave";
+import AddNewStudent from "../Sidebar/Students/StudentsMenu/AddNewStudent/AddNewStudent";
 import StudentsMenu from "../Sidebar/Students/StudentsMenu/StudentsMenu";
 
 const MainComponent = ({ activeMenu, onDashboardItemClick }) => { // প্রপ রিসিভ করা হলো
@@ -92,10 +114,54 @@ const MainComponent = ({ activeMenu, onDashboardItemClick }) => { // প্র�
         return <SchoolHistory></SchoolHistory>
       case "annual-reports":
         return <AnnualReports></AnnualReports>
+      case "contact":
+        return <ContactHome></ContactHome>
       case "social-links":
         return <SocialLinks></SocialLinks>
       case "privacy-policy":
         return <PrivacyPolicy></PrivacyPolicy>
+      case "class-id":
+        return <Class></Class>
+      case "class-wise-teacher":
+        return <ClassWiseTeacher></ClassWiseTeacher>
+      case "divide-pattokrom":
+        return <DividePathokrom></DividePathokrom>
+      case "class-routine":
+        return <Routine></Routine>
+      case "plus-new-report":
+        return <ClassReport></ClassReport>
+      case "class-report-list":
+        return <ClassReportList></ClassReportList>
+      case "add-student":
+        return <AddNewStudent></AddNewStudent>
+      case "add-student-image":
+        return <AddStudentImage></AddStudentImage>
+      case "migrate-status":
+        return <MigrateStatus></MigrateStatus>
+      case "migrate-branch":
+        return <MigrateBranch></MigrateBranch>
+      case "student-leave":
+        return <StudentsLeave></StudentsLeave>
+      case "fine-type":
+        return <FineTypes></FineTypes>
+      case "fee-type":
+        return <FeesType></FeesType>
+      case "discount":
+        return <Discount></Discount>
+      case "add-fee":
+        return <Fee></Fee>
+      case "add-discount":
+        return <DiscountJog></DiscountJog>
+      case "assign-fines":
+        return <AssignFines></AssignFines>
+      case "fee-settings":
+        return <FeeSettings></FeeSettings>
+      case "collect-fee":
+        return <CollectFee></CollectFee>
+      case "due-fee":
+        return <StudentsBokeya></StudentsBokeya>
+      case "student-class-update":
+        return <StudentsClassUpdate></StudentsClassUpdate>
       case "exam-category":
         return <ExamCategory></ExamCategory>
       case "expense-category":
@@ -157,6 +223,7 @@ const MainComponent = ({ activeMenu, onDashboardItemClick }) => { // প্র�
         return <Session></Session>
       case "batch":
         return <Batch></Batch>
+      
 
       case "profile":
         return (

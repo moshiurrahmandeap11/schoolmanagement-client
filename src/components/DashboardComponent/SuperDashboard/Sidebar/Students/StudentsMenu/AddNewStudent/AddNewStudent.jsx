@@ -408,7 +408,7 @@ const AddNewStudent = ({ onBack, onSuccess, editData, mode = 'new' }) => {
 
             {/* Main Content */}
             <div className="p-4 sm:p-6 lg:p-8">
-                <div className="max-w-6xl mx-auto">
+                <div className="max-w-full mx-auto">
                     <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg border border-gray-200">
                         {/* Tabs */}
                         <div className="border-b border-gray-200">
