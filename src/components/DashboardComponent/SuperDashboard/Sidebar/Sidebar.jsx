@@ -207,17 +207,52 @@ const MENU_ITEMS = [
       { id: "home-work", label: "Home Work", icon: MdHomeWork},
     ]
   },
-  {
-    id: "attendance",
-    label: "উপস্থিতি",
-    icon: TbReport,
-    color: "blue",
-    submenu: [
-      { id: "attendance-settings", label: "সেটিংস", icon: RiSettings3Line },
-      { id: "attendance-report", label: "Attendance Report", icon: TbReport },
-      { id: "attendance-leave", label: "Leave", icon: MdOutlineEventBusy },
-    ],
-  },
+{
+  id: "attendance",
+  label: "উপস্থিতি",
+  icon: TbReport,
+  color: "blue",
+  submenu: [
+    {
+      id: "attendance-settings",
+      label: "সেটিংস",
+      icon: RiSettings3Line,
+      submenu: [
+        { id: "smart-attendance", label: "Smart Attendance", icon: TbReport },
+        { id: "student-attendance-shift", label: "Student Attendance Shift", icon: TbClock },
+        { id: "teacher-shift", label: "Teacher Shift", icon: FaChalkboardTeacher },
+        { id: "smart-attendance-teacher", label: "Smart Attendance Teacher", icon: LucideUsers2 }
+      ]
+    },
+    {
+      id: "attendance-report",
+      label: "Attendance Report",
+      icon: TbReport,
+      submenu: [
+        { id: "summary-report", label: "Summery Report", icon: TbReport },
+        { id: "detailed-report", label: "বিস্তারিত রিপোর্ট", icon: TbReportAnalytics },
+        { id: "print-student-data-report", label: "Print Student Data Report", icon: MdOutlinePrint },
+        { id: "print-teacher-data-report", label: "Print Teacher Data Report", icon: MdOutlinePrint },
+        { id: "print-student-attendance", label: "Print Student Attendance", icon: PiStudentBold },
+        { id: "print-teacher-attendance", label: "Print Teacher Attendance", icon: LucideUsers2 },
+        { id: "monthly-report-students", label: "Monthly Report for Students", icon: PiStudentBold },
+        { id: "monthly-report-teachers", label: "Monthly Report for Teachers", icon: LucideUsers2 }
+      ]
+    },
+    {
+      id: "attendance-leave",
+      label: "Leave",
+      icon: MdOutlineEventBusy,
+      submenu: [
+        { id: "holiday", label: "Holiday", icon: FaCalendarAlt },
+        { id: "leave-type", label: "Leave Type", icon: TbCategory },
+        { id: "students-leave", label: "Student Leave", icon: PiStudentBold },
+        { id: "employee-leave", label: "Employee Leave", icon: LuUserCog },
+        { id: "teacher-leave", label: "Teacher Leave", icon: LucideUsers2 }
+      ]
+    },
+  ],
+},
   {
     id: "exams",
     label: "পরীক্ষা",

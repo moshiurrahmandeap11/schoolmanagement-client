@@ -1,12 +1,12 @@
 // src/pages/certificate/InstituteFormList/InstituteFormList.jsx
-import React, { useState, useEffect, useRef } from 'react';
-import { FaSave, FaEdit, FaTrash, FaPrint, FaArrowLeft, FaPlus } from 'react-icons/fa';
-import Swal from 'sweetalert2';
+import { useEffect, useRef, useState } from 'react';
+import { FaEdit, FaPlus, FaPrint, FaSave, FaTrash } from 'react-icons/fa';
 import { useReactToPrint } from 'react-to-print';
+import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
 
-const InstituteFormList = ({ onBack }) => {
+const InstantStudentForm = ({ onBack }) => {
   const [forms, setForms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(true);
@@ -140,7 +140,7 @@ const InstituteFormList = ({ onBack }) => {
 
   if (previewData) {
     return (
-      <div className="max-w-4xl mx-auto p-4">
+      <div className="max-w-full mx-auto p-4">
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6" ref={printRef}>
           <div className="text-center mb-6">
             <h2 className="text-2xl font-bold text-blue-700">ইনস্টিটিউট ফর্ম</h2>
@@ -248,7 +248,7 @@ const InstituteFormList = ({ onBack }) => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto p-4">
+    <div className="max-w-full mx-auto p-4">
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <h2 className="text-xl font-semibold text-center mb-6 text-gray-800">
           {editingId ? 'ফর্ম এডিট করুন' : 'নতুন শিক্ষার্থী ফর্ম'}
@@ -430,4 +430,4 @@ const InstituteFormList = ({ onBack }) => {
   );
 };
 
-export default InstituteFormList;
+export default InstantStudentForm;

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { FaPlus, FaEdit, FaTrash, FaEye, FaArrowLeft, FaSave } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
+import { FaEdit, FaEye, FaPlus, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
 import NewInstituteForm from './NewInstituteForm/NewInstituteForm';
 
-const InstituteFormList = () => {
+const InstituteFormListC = () => {
     const [institutes, setInstitutes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
@@ -89,7 +89,7 @@ const InstituteFormList = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 py-8 px-4">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
                     <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
                         <h2 className="text-2xl font-bold text-blue-800">ইনস্টিটিউট ফর্ম তালিকা</h2>
@@ -178,4 +178,4 @@ const InstituteFormList = () => {
     );
 };
 
-export default InstituteFormList;
+export default InstituteFormListC;

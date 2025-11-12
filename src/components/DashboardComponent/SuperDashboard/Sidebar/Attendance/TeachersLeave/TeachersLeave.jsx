@@ -3,29 +3,27 @@ import { FaArrowLeft, FaCheck, FaFilter, FaPlus, FaSearch, FaTimes, FaTrash, FaU
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
 
-const StudentsLeave = ({ onBack }) => {
+const TeachersLeave = ({ onBack }) => {
     const [leaveApplications, setLeaveApplications] = useState([]);
     const [loading, setLoading] = useState(false);
     const [showAddForm, setShowAddForm] = useState(false);
     const [editingLeave, setEditingLeave] = useState(null);
     const [filterData, setFilterData] = useState({
-        studentId: '',
-        classId: '',
+        teacherId: '',
         status: ''
     });
 
     // Form data
     const [formData, setFormData] = useState({
-        studentId: '',
-        classId: '',
+        teacherId: '',
         startDate: '',
         endDate: '',
-        reason: ''
+        reason: '',
+        leaveType: 'casual'
     });
 
     // Dropdown data
-    const [classes, setClasses] = useState([]);
-    const [students, setStudents] = useState([]);
+    const [teachers, setTeachers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [errors, setErrors] = useState({});
 
@@ -37,71 +35,68 @@ const StudentsLeave = ({ onBack }) => {
         { value: 'rejected', label: 'Rejected', color: 'red' }
     ];
 
+    // Leave type options
+    const leaveTypeOptions = [
+        { value: 'casual', label: 'ক্যাজুয়াল লিভ' },
+        { value: 'medical', label: 'মেডিকেল লিভ' },
+        { value: 'earned', label: 'আর্নড লিভ' },
+        { value: 'maternity', label: 'মাতৃত্ব লিভ' },
+        { value: 'paternity', label: 'পিতৃত্ব লিভ' },
+        { value: 'emergency', label: 'জরুরী লিভ' },
+        { value: 'other', label: 'অন্যান্য' }
+    ];
+
     useEffect(() => {
         fetchLeaveApplications();
-        fetchClasses();
     }, []);
 
     useEffect(() => {
-        if (filterData.classId || filterData.studentId || filterData.status) {
+        if (filterData.teacherId || filterData.status) {
             fetchLeaveApplications();
         }
     }, [filterData]);
 
     useEffect(() => {
         if (searchTerm.length > 2) {
-            searchStudents();
+            searchTeachers();
         } else {
-            setStudents([]);
+            setTeachers([]);
         }
-    }, [searchTerm, formData.classId]);
+    }, [searchTerm]);
 
     const fetchLeaveApplications = async () => {
         try {
             setLoading(true);
             const params = new URLSearchParams();
             
-            if (filterData.studentId) params.append('studentId', filterData.studentId);
-            if (filterData.classId) params.append('classId', filterData.classId);
+            if (filterData.teacherId) params.append('teacherId', filterData.teacherId);
             if (filterData.status) params.append('status', filterData.status);
 
-            const response = await axiosInstance.get(`/student-leave?${params}`);
+            const response = await axiosInstance.get(`/teacher-leave?${params}`);
             
             if (response.data.success) {
                 setLeaveApplications(response.data.data || []);
             }
         } catch (error) {
-            console.error('Error fetching leave applications:', error);
-            showSweetAlert('error', 'লিভ অ্যাপ্লিকেশন লোড করতে সমস্যা হয়েছে');
+            console.error('Error fetching teacher leave applications:', error);
+            showSweetAlert('error', 'শিক্ষক লিভ অ্যাপ্লিকেশন লোড করতে সমস্যা হয়েছে');
         } finally {
             setLoading(false);
         }
     };
 
-    const fetchClasses = async () => {
-        try {
-            const response = await axiosInstance.get('/class');
-            if (response.data.success) {
-                setClasses(response.data.data || []);
-            }
-        } catch (error) {
-            console.error('Error fetching classes:', error);
-        }
-    };
-
-    const searchStudents = async () => {
+    const searchTeachers = async () => {
         try {
             const params = new URLSearchParams();
             params.append('search', searchTerm);
-            if (formData.classId) params.append('classId', formData.classId);
 
-            const response = await axiosInstance.get(`/student-leave/students/search?${params}`);
+            const response = await axiosInstance.get(`/teacher-leave/teachers/search?${params}`);
             
             if (response.data.success) {
-                setStudents(response.data.data || []);
+                setTeachers(response.data.data || []);
             }
         } catch (error) {
-            console.error('Error searching students:', error);
+            console.error('Error searching teachers:', error);
         }
     };
 
@@ -128,21 +123,20 @@ const StudentsLeave = ({ onBack }) => {
         }
     };
 
-    const handleStudentSelect = (student) => {
+    const handleTeacherSelect = (teacher) => {
         setFormData(prev => ({
             ...prev,
-            studentId: student._id,
-            classId: student.classId
+            teacherId: teacher._id
         }));
-        setSearchTerm(student.name);
-        setStudents([]);
+        setSearchTerm(teacher.name);
+        setTeachers([]);
     };
 
     const validateForm = () => {
         const newErrors = {};
         
-        if (!formData.studentId) {
-            newErrors.studentId = 'শিক্ষার্থী নির্বাচন করুন';
+        if (!formData.teacherId) {
+            newErrors.teacherId = 'শিক্ষক নির্বাচন করুন';
         }
         
         if (!formData.startDate) {
@@ -191,17 +185,17 @@ const StudentsLeave = ({ onBack }) => {
 
         setLoading(true);
         try {
-            const response = await axiosInstance.post('/student-leave', formData);
+            const response = await axiosInstance.post('/teacher-leave', formData);
 
             if (response.data.success) {
                 showSweetAlert('success', response.data.message);
                 setShowAddForm(false);
                 setFormData({
-                    studentId: '',
-                    classId: '',
+                    teacherId: '',
                     startDate: '',
                     endDate: '',
-                    reason: ''
+                    reason: '',
+                    leaveType: 'casual'
                 });
                 setSearchTerm('');
                 fetchLeaveApplications();
@@ -209,7 +203,7 @@ const StudentsLeave = ({ onBack }) => {
                 setErrors({ submit: response.data.message });
             }
         } catch (error) {
-            console.error('Error submitting leave application:', error);
+            console.error('Error submitting teacher leave application:', error);
             const errorMessage = error.response?.data?.message || 'লিভ অ্যাপ্লিকেশন জমা দিতে সমস্যা হয়েছে';
             setErrors({ submit: errorMessage });
             showSweetAlert('error', errorMessage);
@@ -232,7 +226,7 @@ const StudentsLeave = ({ onBack }) => {
 
         if (result.isConfirmed) {
             try {
-                const response = await axiosInstance.patch(`/student-leave/${applicationId}/status`, {
+                const response = await axiosInstance.patch(`/teacher-leave/${applicationId}/status`, {
                     status: status
                 });
 
@@ -241,7 +235,7 @@ const StudentsLeave = ({ onBack }) => {
                     fetchLeaveApplications();
                 }
             } catch (error) {
-                console.error('Error updating leave status:', error);
+                console.error('Error updating teacher leave status:', error);
                 showSweetAlert('error', 'স্ট্যাটাস আপডেট করতে সমস্যা হয়েছে');
             }
         }
@@ -261,13 +255,13 @@ const StudentsLeave = ({ onBack }) => {
 
         if (result.isConfirmed) {
             try {
-                const response = await axiosInstance.delete(`/student-leave/${applicationId}`);
+                const response = await axiosInstance.delete(`/teacher-leave/${applicationId}`);
                 if (response.data.success) {
                     showSweetAlert('success', 'লিভ অ্যাপ্লিকেশন সফলভাবে ডিলিট হয়েছে');
                     fetchLeaveApplications();
                 }
             } catch (error) {
-                console.error('Error deleting leave application:', error);
+                console.error('Error deleting teacher leave application:', error);
                 showSweetAlert('error', 'লিভ অ্যাপ্লিকেশন ডিলিট করতে সমস্যা হয়েছে');
             }
         }
@@ -283,14 +277,18 @@ const StudentsLeave = ({ onBack }) => {
         return statusOption ? statusOption.label : status;
     };
 
+    const getLeaveTypeLabel = (leaveType) => {
+        const leaveTypeOption = leaveTypeOptions.find(opt => opt.value === leaveType);
+        return leaveTypeOption ? leaveTypeOption.label : leaveType;
+    };
+
     const formatDate = (dateString) => {
         return new Date(dateString).toLocaleDateString('bn-BD');
     };
 
     const resetFilters = () => {
         setFilterData({
-            studentId: '',
-            classId: '',
+            teacherId: '',
             status: ''
         });
     };
@@ -309,7 +307,7 @@ const StudentsLeave = ({ onBack }) => {
                                 <FaArrowLeft className="text-xl text-gray-600" />
                             </button>
                             <h1 className="text-2xl font-bold text-gray-800">
-                                নতুন লিভ অ্যাপ্লিকেশন
+                                নতুন শিক্ষক লিভ অ্যাপ্লিকেশন
                             </h1>
                         </div>
                     </div>
@@ -320,53 +318,61 @@ const StudentsLeave = ({ onBack }) => {
                     <div className="max-w-full mx-auto">
                         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8">
                             <form onSubmit={handleSubmit} className="space-y-6">
-                                <div className="bg-blue-50 p-4 rounded-lg mb-6">
-                                    <h3 className="text-lg font-semibold text-blue-800 mb-2">
-                                        লিভ অ্যাপ্লিকেশন তথ্য:
+                                <div className="bg-purple-50 p-4 rounded-lg mb-6">
+                                    <h3 className="text-lg font-semibold text-purple-800 mb-2">
+                                        শিক্ষক লিভ অ্যাপ্লিকেশন তথ্য:
                                     </h3>
-                                    <p className="text-sm text-blue-600">
-                                        শিক্ষার্থীর লিভ অ্যাপ্লিকেশন তৈরি করুন
+                                    <p className="text-sm text-purple-600">
+                                        শিক্ষকের লিভ অ্যাপ্লিকেশন তৈরি করুন
                                     </p>
                                 </div>
 
-                                {/* Student Search */}
+                                {/* Teacher Search */}
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                                        শিক্ষার্থী খুঁজুন *
+                                        শিক্ষক খুঁজুন *
                                     </label>
                                     <div className="relative">
                                         <input
                                             type="text"
                                             value={searchTerm}
                                             onChange={(e) => setSearchTerm(e.target.value)}
-                                            placeholder="শিক্ষার্থীর নাম বা আইডি লিখুন..."
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                            placeholder="শিক্ষকের নাম, আইডি বা পদবী লিখুন..."
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                                         />
                                         <FaSearch className="absolute right-3 top-3.5 text-gray-400" />
                                     </div>
-                                    {errors.studentId && (
-                                        <p className="mt-2 text-sm text-red-600">{errors.studentId}</p>
+                                    {errors.teacherId && (
+                                        <p className="mt-2 text-sm text-red-600">{errors.teacherId}</p>
                                     )}
 
-                                    {/* Student Dropdown */}
-                                    {students.length > 0 && (
+                                    {/* Teacher Dropdown */}
+                                    {teachers.length > 0 && (
                                         <div className="mt-2 border border-gray-300 rounded-lg max-h-48 overflow-y-auto">
-                                            {students.map((student) => (
+                                            {teachers.map((teacher) => (
                                                 <div
-                                                    key={student._id}
-                                                    onClick={() => handleStudentSelect(student)}
+                                                    key={teacher._id}
+                                                    onClick={() => handleTeacherSelect(teacher)}
                                                     className="p-3 border-b border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors"
                                                 >
                                                     <div className="flex items-center gap-3">
-                                                        <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                                                            <FaUser className="text-blue-600 text-sm" />
+                                                        <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                                                            {teacher.photo ? (
+                                                                <img 
+                                                                    src={teacher.photo} 
+                                                                    alt={teacher.name}
+                                                                    className="w-8 h-8 rounded-full object-cover"
+                                                                />
+                                                            ) : (
+                                                                <FaUser className="text-purple-600 text-sm" />
+                                                            )}
                                                         </div>
                                                         <div>
                                                             <p className="font-medium text-sm text-gray-800">
-                                                                {student.name}
+                                                                {teacher.name}
                                                             </p>
                                                             <p className="text-xs text-gray-500">
-                                                                ID: {student.studentId}
+                                                                {teacher.designation} | ID: {teacher.teacherId}
                                                             </p>
                                                         </div>
                                                     </div>
@@ -376,19 +382,24 @@ const StudentsLeave = ({ onBack }) => {
                                     )}
                                 </div>
 
-                                {/* Class (Auto-filled but display only) */}
-                                {formData.classId && (
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                                            ক্লাস
-                                        </label>
-                                        <div className="px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg">
-                                            <p className="text-gray-800">
-                                                {classes.find(c => c._id === formData.classId)?.name}
-                                            </p>
-                                        </div>
-                                    </div>
-                                )}
+                                {/* Leave Type */}
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                        লিভের ধরন *
+                                    </label>
+                                    <select
+                                        name="leaveType"
+                                        value={formData.leaveType}
+                                        onChange={handleFormChange}
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                                    >
+                                        {leaveTypeOptions.map((option) => (
+                                            <option key={option.value} value={option.value}>
+                                                {option.label}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
 
                                 {/* Date Range */}
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -401,7 +412,7 @@ const StudentsLeave = ({ onBack }) => {
                                             name="startDate"
                                             value={formData.startDate}
                                             onChange={handleFormChange}
-                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all ${
                                                 errors.startDate ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                             }`}
                                         />
@@ -419,7 +430,7 @@ const StudentsLeave = ({ onBack }) => {
                                             name="endDate"
                                             value={formData.endDate}
                                             onChange={handleFormChange}
-                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all ${
                                                 errors.endDate ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                             }`}
                                         />
@@ -439,7 +450,7 @@ const StudentsLeave = ({ onBack }) => {
                                         value={formData.reason}
                                         onChange={handleFormChange}
                                         rows="4"
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all ${
                                             errors.reason ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         placeholder="লিভের কারণ বিস্তারিত লিখুন..."
@@ -469,7 +480,7 @@ const StudentsLeave = ({ onBack }) => {
                                     <button
                                         type="submit"
                                         disabled={loading}
-                                        className="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="inline-flex items-center gap-2 px-8 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         {loading ? (
                                             <>
@@ -505,12 +516,12 @@ const StudentsLeave = ({ onBack }) => {
                             <FaArrowLeft className="text-xl text-gray-600" />
                         </button>
                         <h1 className="text-2xl font-bold text-gray-800">
-                            শিক্ষার্থীদের লিভ ব্যবস্থাপনা
+                            শিক্ষকদের লিভ ব্যবস্থাপনা
                         </h1>
                     </div>
                     <button
                         onClick={() => setShowAddForm(true)}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium"
                     >
                         <FaPlus className="text-sm" />
                         নতুন লিভ অ্যাপ্লিকেশন
@@ -525,7 +536,7 @@ const StudentsLeave = ({ onBack }) => {
                     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 mb-6">
                         <div className="flex items-center justify-between mb-4">
                             <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
-                                <FaFilter className="text-blue-600" />
+                                <FaFilter className="text-purple-600" />
                                 ফিল্টার
                             </h3>
                             <button
@@ -536,38 +547,19 @@ const StudentsLeave = ({ onBack }) => {
                             </button>
                         </div>
                         
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    Student ID
+                                    Teacher ID/Name
                                 </label>
                                 <input
                                     type="text"
-                                    name="studentId"
-                                    value={filterData.studentId}
+                                    name="teacherId"
+                                    value={filterData.teacherId}
                                     onChange={handleFilterChange}
-                                    placeholder="Student ID"
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    placeholder="Teacher ID or Name"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                                 />
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    Class
-                                </label>
-                                <select
-                                    name="classId"
-                                    value={filterData.classId}
-                                    onChange={handleFilterChange}
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                >
-                                    <option value="">সব ক্লাস</option>
-                                    {classes.map((classItem) => (
-                                        <option key={classItem._id} value={classItem._id}>
-                                            {classItem.name}
-                                        </option>
-                                    ))}
-                                </select>
                             </div>
 
                             <div>
@@ -578,7 +570,7 @@ const StudentsLeave = ({ onBack }) => {
                                     name="status"
                                     value={filterData.status}
                                     onChange={handleFilterChange}
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                                 >
                                     {statusOptions.map((status) => (
                                         <option key={status.value} value={status.value}>
@@ -593,21 +585,21 @@ const StudentsLeave = ({ onBack }) => {
                     {/* Table */}
                     {loading ? (
                         <div className="flex justify-center items-center py-12">
-                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p className="text-gray-600 ml-3">লিভ অ্যাপ্লিকেশন লোড হচ্ছে...</p>
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+                            <p className="text-gray-600 ml-3">শিক্ষক লিভ অ্যাপ্লিকেশন লোড হচ্ছে...</p>
                         </div>
                     ) : leaveApplications.length === 0 ? (
                         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 text-center">
-                            <div className="text-4xl text-gray-400 mb-3">📝</div>
+                            <div className="text-4xl text-gray-400 mb-3">👨‍🏫</div>
                             <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                                কোন লিভ অ্যাপ্লিকেশন পাওয়া যায়নি
+                                কোন শিক্ষক লিভ অ্যাপ্লিকেশন পাওয়া যায়নি
                             </h3>
                             <p className="text-gray-600 text-sm mb-4">
-                                নতুন লিভ অ্যাপ্লিকেশন তৈরি করুন
+                                নতুন শিক্ষক লিভ অ্যাপ্লিকেশন তৈরি করুন
                             </p>
                             <button
                                 onClick={() => setShowAddForm(true)}
-                                className="inline-flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                                className="inline-flex items-center gap-2 px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium"
                             >
                                 <FaPlus className="text-sm" />
                                 নতুন লিভ অ্যাপ্লিকেশন
@@ -618,7 +610,7 @@ const StudentsLeave = ({ onBack }) => {
                             {/* Table Header */}
                             <div className="px-6 py-4 border-b border-gray-200">
                                 <h2 className="text-lg font-semibold text-gray-800">
-                                    লিভ অ্যাপ্লিকেশন তালিকা ({leaveApplications.length}টি)
+                                    শিক্ষক লিভ অ্যাপ্লিকেশন তালিকা ({leaveApplications.length}টি)
                                 </h2>
                             </div>
 
@@ -628,10 +620,13 @@ const StudentsLeave = ({ onBack }) => {
                                     <thead className="bg-gray-50 border-b border-gray-200">
                                         <tr>
                                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                শিক্ষার্থী
+                                                শিক্ষক
                                             </th>
                                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                ক্লাস
+                                                পদবী
+                                            </th>
+                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                লিভের ধরন
                                             </th>
                                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 তারিখসমূহ
@@ -652,30 +647,35 @@ const StudentsLeave = ({ onBack }) => {
                                             <tr key={application._id} className="hover:bg-gray-50 transition-colors">
                                                 <td className="px-6 py-4">
                                                     <div className="flex items-center gap-3">
-                                                        <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                                                            {application.student?.photo ? (
+                                                        <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                                                            {application.teacher?.photo ? (
                                                                 <img 
-                                                                    src={application.student.photo} 
-                                                                    alt={application.student.name}
+                                                                    src={application.teacher.photo} 
+                                                                    alt={application.teacher.name}
                                                                     className="w-8 h-8 rounded-full object-cover"
                                                                 />
                                                             ) : (
-                                                                <FaUser className="text-blue-600 text-sm" />
+                                                                <FaUser className="text-purple-600 text-sm" />
                                                             )}
                                                         </div>
                                                         <div>
                                                             <p className="font-medium text-sm text-gray-800">
-                                                                {application.student?.name}
+                                                                {application.teacher?.name}
                                                             </p>
                                                             <p className="text-xs text-gray-500">
-                                                                ID: {application.student?.studentId}
+                                                                ID: {application.teacher?.teacherId}
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td className="px-6 py-4">
+                                                    <span className="inline-flex px-2 py-1 text-xs font-semibold bg-purple-100 text-purple-800 rounded-full">
+                                                        {application.teacher?.designation}
+                                                    </span>
+                                                </td>
+                                                <td className="px-6 py-4">
                                                     <span className="inline-flex px-2 py-1 text-xs font-semibold bg-blue-100 text-blue-800 rounded-full">
-                                                        {application.class?.name}
+                                                        {getLeaveTypeLabel(application.leaveType)}
                                                     </span>
                                                 </td>
                                                 <td className="px-6 py-4">
@@ -741,4 +741,4 @@ const StudentsLeave = ({ onBack }) => {
     );
 };
 
-export default StudentsLeave;
+export default TeachersLeave;

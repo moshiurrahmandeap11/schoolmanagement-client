@@ -25,6 +25,22 @@ import WorkersListAdmin from "../Sidebar/WorkersListAdmin/WorkersListAdmin";
 import ZillaHistoryAdmin from "../Sidebar/ZillaHistoryAdmin/ZillaHistoryAdmin";
 
 // সব SDashboardItems কম্পোনেন্ট
+import DetailedReport from "../Sidebar/Attendance/DetailedReport/DetailedReport";
+import EmployeeLeave from "../Sidebar/Attendance/EmployeeLeave/EmployeeLeave";
+import Holiday from "../Sidebar/Attendance/Holiday/Holiday";
+import HolidayType from "../Sidebar/Attendance/HolidayType/HolidayType";
+import MonthlyReportsStudents from "../Sidebar/Attendance/MonthlyReportStudents/MonthlyReportsStudents";
+import MonthlyReportTeachers from "../Sidebar/Attendance/MonthlyReportTeachers/MonthlyReportTeachers";
+import PrintStudentAttendance from "../Sidebar/Attendance/PrintStudentAttendance/PrintStudentAttendance";
+import PrintStudentDataReport from "../Sidebar/Attendance/PrintStudentDataReport/PrintStudentDataReport";
+import PrintTeacherAttendance from "../Sidebar/Attendance/PrintTeacherAttendance/PrintTeacherAttendance";
+import PrintTeacherDataReport from "../Sidebar/Attendance/PrintTeacherDataReport/PrintTeacherDataReport";
+import SmartAttendance from "../Sidebar/Attendance/SmartAttendance/SmartAttendance";
+import SmartAttendanceTeacher from "../Sidebar/Attendance/SmartAttendanceTeacher/SmartAttendanceTeacher";
+import StudentAttendanceShift from "../Sidebar/Attendance/StudentAttendanceShift/StudentAttendanceShift";
+import SummeryReport from "../Sidebar/Attendance/SummeryReport/SummeryReport";
+import TteacherShift from "../Sidebar/Attendance/TeacherShift/TteacherShift";
+import TeachersLeave from "../Sidebar/Attendance/TeachersLeave/TeachersLeave";
 import Batch from "../Sidebar/Class/Batch/Batch";
 import Class from "../Sidebar/Class/ClassId/Class";
 import ClassWiseTeacher from "../Sidebar/Class/ClassWiseTeacher/ClassWiseTeacher";
@@ -32,25 +48,55 @@ import DividePathokrom from "../Sidebar/Class/dividePathokrom/DividePathokrom";
 import Section from "../Sidebar/Class/Section/Section";
 import Session from "../Sidebar/Class/Session/Session";
 import Subjects from "../Sidebar/Class/Subjects/Subjects";
+import DueFeeSms from "../Sidebar/DueFeeSms/DueFeeSms";
 import AssignFines from "../Sidebar/Fee/AssignFines/AssignFines";
+import CollectedFee from "../Sidebar/Fee/CollectedFee/CollectedFee";
 import CollectFee from "../Sidebar/Fee/CollectFee/CollectFee";
+import DeletedFees from "../Sidebar/Fee/DeletedFees/DeletedFees";
 import Discount from "../Sidebar/Fee/Discount/Discount";
 import DiscountJog from "../Sidebar/Fee/DiscountJog/DiscountJog";
 import Fee from "../Sidebar/Fee/Fee/Fee";
 import FeeSettings from "../Sidebar/Fee/FeeSettings/FeeSettings";
 import FeesType from "../Sidebar/Fee/FeesType/FeesType";
 import FineTypes from "../Sidebar/Fee/FineTypes/FineTypes";
+import MonthlyFeeReport from "../Sidebar/Fee/MonthlyFeeReport/MonthlyFeeReport";
+import MonthlyFeeSummary from "../Sidebar/Fee/MonthlyFeeSummary/MonthlyFeeSummary";
 import StudentsBokeya from "../Sidebar/Fee/StudentsBokeya/StudentsBokeya";
+import ClassWiseForm from "../Sidebar/FormAndCertificates/ClassWiseForm/ClassWiseForm";
+import DueExpenses from "../Sidebar/Hisab/DueExpenses/DueExpenses";
 import ExpenseCategory from "../Sidebar/Hisab/ExpenseCategory/ExpenseCategory";
+import ExpenseItems from "../Sidebar/Hisab/ExpenseCategory/ExpenseItems/ExpenseItems";
 import AnnualReports from "../Sidebar/HomePristha/AnnualReports/AnnualReports";
 import ContactHome from "../Sidebar/HomePristha/ContactHome/ContactHome";
+import AdmissionToken from "../Sidebar/Print/AdmissionToken/AdmissionToken";
+import AdmitCard from "../Sidebar/Print/AdmitCard/AdmitCard";
+import EmployeeSalaryReport from "../Sidebar/Print/EmployeeSalaryReport/EmployeeSalaryReport";
+import IncomeExpenseReport from "../Sidebar/Print/IncomeExpenseReport/IncomeExpenseReport";
+import MonthlyIncomeExpense from "../Sidebar/Print/MonthlyIncomeExpense/MonthlyIncomeExpense";
+import PrintStudent from "../Sidebar/Print/PrintStudent/PrintStudent";
+import SalarySheet from "../Sidebar/Print/SalarySheet/SalarySheet";
+import SummaryIncomeStatement from "../Sidebar/Print/SummaryIncomeStatement/SummaryIncomeStatement";
+import TabularResult from "../Sidebar/Print/TabularResult/TabularResult";
+import TeacherSalaryReport from "../Sidebar/Print/TeacherSalaryReport/TeacherSalaryReport";
 import AcademicManagement from "../Sidebar/SDashboardItems/AcademicManagement/AcademicManagement";
+import Assignments from "../Sidebar/SDashboardItems/AcademicManagement/Assignments/Assignments";
 import ClassReport from "../Sidebar/SDashboardItems/AcademicManagement/ClassReport/ClassReport";
 import ClassReportList from "../Sidebar/SDashboardItems/AcademicManagement/ClassReportList/ClassReportList";
 import AccountsManagement from "../Sidebar/SDashboardItems/AccountsManagement/AccountsManagement";
+import BalanceSheet from "../Sidebar/SDashboardItems/AccountsManagement/BalanceSheet/BalanceSheet";
+import BankAccounts from "../Sidebar/SDashboardItems/AccountsManagement/BankAccounts/BankAccounts";
+import Expenses from "../Sidebar/SDashboardItems/AccountsManagement/Expenses/Expenses";
+import Incomes from "../Sidebar/SDashboardItems/AccountsManagement/Incomes/Incomes";
+import IncomeSources from "../Sidebar/SDashboardItems/AccountsManagement/IncomeSources/IncomeSources";
+import PaymentTypes from "../Sidebar/SDashboardItems/AccountsManagement/PaymentTypes/PaymentTypes";
+import Transactions from "../Sidebar/SDashboardItems/AccountsManagement/Transactions/Transactions";
 import AttendanceManagement from "../Sidebar/SDashboardItems/AttendanceManagement/AttendanceManagement";
 import BranchManagement from "../Sidebar/SDashboardItems/Branch/Branch";
+import CertificateCategory from "../Sidebar/SDashboardItems/CertificateManagement/CertificateCategory/CertificateCategory";
 import CertificateManagement from "../Sidebar/SDashboardItems/CertificateManagement/CertificateManagement";
+import CreateCertificate from "../Sidebar/SDashboardItems/CertificateManagement/CreateCertificate/CreateCertificate";
+import { default as InstantStudentForm } from "../Sidebar/SDashboardItems/CertificateManagement/InstantStudentForm/InstantStudentForm";
+import InstituteFormListC from "../Sidebar/SDashboardItems/CertificateManagement/InstituteFormList/InstituteFormList";
 import DepartmentManagement from "../Sidebar/SDashboardItems/DepartmentManagement/DepartmentManagement";
 import DonationManagement from "../Sidebar/SDashboardItems/DonationManagement/DonationManagement";
 import ExaminationManagement from "../Sidebar/SDashboardItems/ExaminationManagement/ExaminationManagement";
@@ -142,6 +188,10 @@ const MainComponent = ({ activeMenu, onDashboardItemClick }) => { // প্র�
         return <MigrateBranch></MigrateBranch>
       case "student-leave":
         return <StudentsLeave></StudentsLeave>
+      case "teacher-leave":
+        return <TeachersLeave></TeachersLeave>
+      case "employee-leave":
+        return <EmployeeLeave></EmployeeLeave>
       case "fine-type":
         return <FineTypes></FineTypes>
       case "fee-type":
@@ -160,6 +210,100 @@ const MainComponent = ({ activeMenu, onDashboardItemClick }) => { // প্র�
         return <CollectFee></CollectFee>
       case "due-fee":
         return <StudentsBokeya></StudentsBokeya>
+      case "collected-fee":
+        return <CollectedFee></CollectedFee>
+      case "monthly-fee-report":
+        return <MonthlyFeeReport></MonthlyFeeReport>
+      case "monthly-fee-summary":
+        return <MonthlyFeeSummary></MonthlyFeeSummary>
+      case "due-fee-sms":
+        return <DueFeeSms></DueFeeSms>
+      case "deleted-fees":
+        return <DeletedFees></DeletedFees>
+      case "monthly-fee-report-2":
+        return <MonthlyFeeReport></MonthlyFeeReport>
+      case "admission-token":
+        return <AdmissionToken></AdmissionToken>
+      case "admit-card":
+        return <AdmitCard></AdmitCard>
+      case "tabular-result":
+        return <TabularResult></TabularResult>
+      case "income-expense-report":
+        return <IncomeExpenseReport></IncomeExpenseReport>
+      case "summary-income-statement":
+        return <SummaryIncomeStatement></SummaryIncomeStatement>
+      case "monthly-income-expense":
+        return <MonthlyIncomeExpense></MonthlyIncomeExpense>
+      case "print-student":
+        return <PrintStudent></PrintStudent>
+      case "salary-sheet":
+        return <SalarySheet></SalarySheet>
+      case "teacher-salary-report":
+        return <TeacherSalaryReport></TeacherSalaryReport>
+      case "employee-salary-report":
+        return <EmployeeSalaryReport></EmployeeSalaryReport>
+      case "instant-form":
+        return <InstantStudentForm></InstantStudentForm>
+      case "certificate":
+        return <CreateCertificate></CreateCertificate>
+      case "classwise-forms":
+        return <ClassWiseForm></ClassWiseForm>
+      case "form-category-list":
+        return <CertificateCategory></CertificateCategory>
+      case "institute-form-list":
+        return <InstituteFormListC></InstituteFormListC>
+      case "bank-accounts":
+        return <BankAccounts></BankAccounts>
+      case "income-sources":
+        return <IncomeSources></IncomeSources>
+      case "expense-item":
+        return <ExpenseItems></ExpenseItems>
+      case "due-expense-field":
+        return <Expenses></Expenses>
+      case "transaction-types":
+        return <PaymentTypes></PaymentTypes>
+      case "incomes":
+        return <Incomes></Incomes>
+      case "due-expenses":
+        return <DueExpenses></DueExpenses>
+      case "expenses":
+        return <Expenses></Expenses>
+      case "balance-sheet":
+        return <BalanceSheet></BalanceSheet>
+      case "transactions":
+        return <Transactions></Transactions>
+      case "home-work":
+        return <Assignments></Assignments>
+      case "smart-attendance":
+        return <SmartAttendance></SmartAttendance>
+      case "student-attendance-shift":
+        return <StudentAttendanceShift></StudentAttendanceShift>
+      case "teacher-shift":
+        return <TteacherShift></TteacherShift>
+      case "smart-attendance-teacher":
+        return <SmartAttendanceTeacher></SmartAttendanceTeacher>
+      case "summary-report":
+        return <SummeryReport></SummeryReport>
+      case "detailed-report":
+        return <DetailedReport></DetailedReport>
+      case "print-student-data-report":
+        return <PrintStudentDataReport></PrintStudentDataReport>
+      case "print-student-attendance":
+        return <PrintStudentAttendance></PrintStudentAttendance>
+      case "print-teacher-attendance":
+        return <PrintTeacherAttendance></PrintTeacherAttendance>
+      case "monthly-report-students":
+        return <MonthlyReportsStudents></MonthlyReportsStudents>
+      case "monthly-report-teachers":
+        return <MonthlyReportTeachers></MonthlyReportTeachers>
+      case "holiday":
+        return <Holiday></Holiday>
+      case "leave-type":
+        return <HolidayType></HolidayType>
+      case "students-leave":
+        return <StudentsLeave></StudentsLeave>
+      case "print-teacher-data-report":
+        return <PrintTeacherDataReport></PrintTeacherDataReport>
       case "student-class-update":
         return <StudentsClassUpdate></StudentsClassUpdate>
       case "exam-category":
