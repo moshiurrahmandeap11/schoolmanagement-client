@@ -49,6 +49,7 @@ import Section from "../Sidebar/Class/Section/Section";
 import Session from "../Sidebar/Class/Session/Session";
 import Subjects from "../Sidebar/Class/Subjects/Subjects";
 import DueFeeSms from "../Sidebar/DueFeeSms/DueFeeSms";
+import ExamGroup from "../Sidebar/exam/ExamGroup/ExamGroup";
 import AssignFines from "../Sidebar/Fee/AssignFines/AssignFines";
 import CollectedFee from "../Sidebar/Fee/CollectedFee/CollectedFee";
 import CollectFee from "../Sidebar/Fee/CollectFee/CollectFee";
@@ -68,18 +69,26 @@ import ExpenseCategory from "../Sidebar/Hisab/ExpenseCategory/ExpenseCategory";
 import ExpenseItems from "../Sidebar/Hisab/ExpenseCategory/ExpenseItems/ExpenseItems";
 import AnnualReports from "../Sidebar/HomePristha/AnnualReports/AnnualReports";
 import ContactHome from "../Sidebar/HomePristha/ContactHome/ContactHome";
+import ContactMain from "../Sidebar/Institute/ContactMain/ContactMain";
+import InstituteMessage from "../Sidebar/Institute/InstituteMessage/InstituteMessage";
+import ServicesSomuho from "../Sidebar/Institute/ServicesSomuho/ServicesSomuho";
 import AdmissionToken from "../Sidebar/Print/AdmissionToken/AdmissionToken";
 import AdmitCard from "../Sidebar/Print/AdmitCard/AdmitCard";
 import EmployeeSalaryReport from "../Sidebar/Print/EmployeeSalaryReport/EmployeeSalaryReport";
 import IncomeExpenseReport from "../Sidebar/Print/IncomeExpenseReport/IncomeExpenseReport";
 import MonthlyIncomeExpense from "../Sidebar/Print/MonthlyIncomeExpense/MonthlyIncomeExpense";
 import PrintStudent from "../Sidebar/Print/PrintStudent/PrintStudent";
+import SalaryReport from "../Sidebar/Print/SalaryReport/SalaryReport";
 import SalarySheet from "../Sidebar/Print/SalarySheet/SalarySheet";
 import SummaryIncomeStatement from "../Sidebar/Print/SummaryIncomeStatement/SummaryIncomeStatement";
 import TabularResult from "../Sidebar/Print/TabularResult/TabularResult";
 import TeacherSalaryReport from "../Sidebar/Print/TeacherSalaryReport/TeacherSalaryReport";
+import CombinedResult from "../Sidebar/results/CombinedResult/CombinedResult";
+import ResultSheetUpload from "../Sidebar/results/ResultSheetUpload/ResultSheetUpload";
 import AcademicManagement from "../Sidebar/SDashboardItems/AcademicManagement/AcademicManagement";
+import AllDocument from "../Sidebar/SDashboardItems/AcademicManagement/AllDocument/AllDocument";
 import Assignments from "../Sidebar/SDashboardItems/AcademicManagement/Assignments/Assignments";
+import Category from "../Sidebar/SDashboardItems/AcademicManagement/Category/Category";
 import ClassReport from "../Sidebar/SDashboardItems/AcademicManagement/ClassReport/ClassReport";
 import ClassReportList from "../Sidebar/SDashboardItems/AcademicManagement/ClassReportList/ClassReportList";
 import AccountsManagement from "../Sidebar/SDashboardItems/AccountsManagement/AccountsManagement";
@@ -99,8 +108,15 @@ import { default as InstantStudentForm } from "../Sidebar/SDashboardItems/Certif
 import InstituteFormListC from "../Sidebar/SDashboardItems/CertificateManagement/InstituteFormList/InstituteFormList";
 import DepartmentManagement from "../Sidebar/SDashboardItems/DepartmentManagement/DepartmentManagement";
 import DonationManagement from "../Sidebar/SDashboardItems/DonationManagement/DonationManagement";
+import Exam from "../Sidebar/SDashboardItems/ExaminationManagement/Exam/Exam";
 import ExaminationManagement from "../Sidebar/SDashboardItems/ExaminationManagement/ExaminationManagement";
+import ExcelMarks from "../Sidebar/SDashboardItems/ExaminationManagement/ExcelMarks/ExcelMarks";
+import Grading from "../Sidebar/SDashboardItems/ExaminationManagement/Grading/Grading";
+import Marksheet from "../Sidebar/SDashboardItems/ExaminationManagement/Marksheet/Marksheet";
+import Result from "../Sidebar/SDashboardItems/ExaminationManagement/Result/Result";
+import ResultSMS from "../Sidebar/SDashboardItems/ExaminationManagement/ResultSMS/ResultSMS";
 import Routine from "../Sidebar/SDashboardItems/ExaminationManagement/Routine/Routine";
+import SubjectMarks from "../Sidebar/SDashboardItems/ExaminationManagement/SubjectMarks/SubjectMarks";
 import FeeManagement from "../Sidebar/SDashboardItems/FeeManagement/FeeManagement";
 import PrintManagement from "../Sidebar/SDashboardItems/PrintManagement/PrintManagement";
 import SalaryBonusManagement from "../Sidebar/SDashboardItems/SalaryBonusManagement/SalaryBonusManagement";
@@ -109,7 +125,14 @@ import InstituteInfo from "../Sidebar/SDashboardItems/WebsiteManagement/Institue
 import PrivacyPolicy from "../Sidebar/SDashboardItems/WebsiteManagement/PrivacyPolicy/PrivacyPolicy";
 import SocialLinks from "../Sidebar/SDashboardItems/WebsiteManagement/SocialLinks/SocialLinks";
 import WebsiteManagement from "../Sidebar/SDashboardItems/WebsiteManagement/WebsiteManagement";
+import ExamHall from "../Sidebar/SeatPlan/ExamHall/ExamHall";
+import ExamTimeTable from "../Sidebar/SeatPlan/ExamTimeTable/ExamTimeTable";
+import SeatArrangement from "../Sidebar/SeatPlan/SeatArrangement/SeatArrangement";
+import SeatDownload from "../Sidebar/SeatPlan/SeatDownload/SeatDownload";
 import ExamCategory from "../Sidebar/SidebarExam/ExamCategory/ExamCategory";
+import MessageForAdmin from "../Sidebar/sms/MessageForAdmin/MessageForAdmin";
+import SendInstantMessage from "../Sidebar/sms/SendInstantMessage/SendInstantMessage";
+import SmsBalance from "../Sidebar/sms/SmsBalance/SmsBalance";
 import AddStudentImage from "../Sidebar/Students/AddStudentImage/AddStudentImage";
 import MigrateBranch from "../Sidebar/Students/MigrateBranch/MigrateBranch";
 import MigrateStatus from "../Sidebar/Students/MigrateStatus/MigrateStatus";
@@ -192,6 +215,62 @@ const MainComponent = ({ activeMenu, onDashboardItemClick }) => { // প্র�
         return <TeachersLeave></TeachersLeave>
       case "employee-leave":
         return <EmployeeLeave></EmployeeLeave>
+      case "grading":
+        return <Grading></Grading>
+      case "exam-group":
+        return <ExamGroup></ExamGroup>
+      case "exam":
+        return <Exam></Exam>
+      case "exam-routine":
+        return <Routine></Routine>
+      case "exam-hall":
+        return <ExamHall></ExamHall>
+      case "exam-timetable":
+        return <ExamTimeTable></ExamTimeTable>
+      case "seat-arrangement":
+        return <SeatArrangement></SeatArrangement>
+      case "seat-download":
+        return <SeatDownload></SeatDownload>
+      case "result":
+        return <Result></Result>
+      case "combined-result":
+        return <CombinedResult></CombinedResult>
+      case "result-sheet-upload":
+        return <ResultSheetUpload></ResultSheetUpload>
+      case "subject-wise-marks":
+        return <SubjectMarks></SubjectMarks>
+      case "excel-marks-entry":
+        return <ExcelMarks></ExcelMarks>
+      case "tabular-results":
+        return <TabularResult></TabularResult>
+      case "marksheet-download":
+        return <Marksheet></Marksheet>
+      case "result-sms":
+        return <ResultSMS></ResultSMS>
+      case "send-instant-message":
+        return <SendInstantMessage></SendInstantMessage>
+      case "sms-balance":
+        return <SmsBalance></SmsBalance>
+      case "sms-list":
+        return <MessageForAdmin></MessageForAdmin>
+      case "send-sms":
+        return <MessageForAdmin></MessageForAdmin>
+      case "due-fees-sms":
+        return <DueFeeSms></DueFeeSms>
+      case "sms-report":
+        return <MessageForAdmin></MessageForAdmin>
+      case "salary-report":
+        return <SalaryReport></SalaryReport>
+      case "documents":
+        return <AllDocument></AllDocument>
+      case "institute-messages":
+        return <InstituteMessage></InstituteMessage>
+      case "contact-home":
+        return <ContactMain></ContactMain>
+      case "services":
+        return <ServicesSomuho></ServicesSomuho>
+      case "document-category":
+        return <Category></Category>
       case "fine-type":
         return <FineTypes></FineTypes>
       case "fee-type":
