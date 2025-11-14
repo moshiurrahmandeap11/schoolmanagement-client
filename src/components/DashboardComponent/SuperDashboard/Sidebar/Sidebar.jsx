@@ -347,7 +347,7 @@ const MENU_ITEMS = [
     icon: PiNewspaperBold,
     color: "blue",
     submenu: [
-      { id: "notice", label: "নোটিশ", icon: TbBell },
+      { id: "notices", label: "নোটিশ", icon: TbBell },
       { id: "event", label: "ইভেন্ট", icon: FaRegCalendarAlt },
       { id: "photo-gallery", label: "ফটো গ্যালারী", icon: FaPhotoVideo },
       { id: "author", label: "লেখক", icon: LuUser },
@@ -363,7 +363,7 @@ const MENU_ITEMS = [
     icon: PiStudentBold,
     color: "blue",
     submenu: [
-      { id: "admission-info", label: "ভর্তি তথ্য", icon: PiStudentBold },
+      { id: "admission-infos", label: "ভর্তি তথ্য", icon: PiStudentBold },
       { id: "online-application", label: "অনলাইন আবেদন", icon: FaLaptop },
     ],
   },
@@ -399,7 +399,7 @@ const MENU_ITEMS = [
     submenu: [
       { id: "officers", label: "কর্মকর্তা", icon: GiTeamIdea },
       { id: "teachers", label: "শিক্ষকবৃন্দ", icon: LucideUsers2 },
-      { id: "students", label: "শিক্ষার্থী", icon: PiStudentBold },
+      { id: "studentss", label: "শিক্ষার্থী", icon: PiStudentBold },
     ],
   },
   {

@@ -55,7 +55,7 @@ const AddBlog = () => {
 
     const fetchCategories = async () => {
         try {
-            const response = await axiosInstance.get('/categories');
+            const response = await axiosInstance.get('/blog-category');
             if (response.data.success) {
                 setCategories(response.data.data || []);
             }
@@ -126,14 +126,14 @@ const AddBlog = () => {
     };
 
     const handleCancel = () => {
-        navigate('/admin/blogs'); // Redirect back to blogs list
+        navigate('/super/dashboard'); // Redirect back to blogs list
     };
 
     if (loading) return <Loader />;
 
     return (
         <div className="p-6 bg-gray-50 min-h-screen">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg p-6">
                     <div className="flex justify-between items-center mb-6">
                         <h1 className="text-2xl font-bold text-gray-800">Add New Blog</h1>

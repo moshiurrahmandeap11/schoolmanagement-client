@@ -1,23 +1,22 @@
-import React from "react";
-import Banner from "./Banner/Banner";
-import Recently from "./Recently/Recently";
-import HistorySchool from "./HistorySchool/HistorySchool";
-import President from "./President/President";
-import PrincipalSpeech from "./PrincipalSpeech/PrincipalSpeech";
-import Students from "./Students/Students";
-import Teachers from "./Teachers/Teachers";
-import DownloadInfo from "./DownloadInfo/DownloadInfo";
-import AcademicInfo from "./AcademincInfo/AcademicInfo";
-import Login from "../../components/authItems/Login/Login";
-import Notices from "../../components/Notices/Notices";
-import FacebookPage from "../../components/FacebookPage/FacebookPage";
-import GovtImage from "../../components/GovtImage/GovtImage";
 import { BsArrowRight } from "react-icons/bs";
 import { useNavigate } from "react-router";
+import FacebookPage from "../../components/FacebookPage/FacebookPage";
+import PhotoGalleryNav from "../../components/Gallary/PhotoGallaryNav/PhotoGalleryNav";
+import GovtImage from "../../components/GovtImage/GovtImage";
+import Notices from "../../components/Notices/Notices";
+import AcademicInfo from "./AcademincInfo/AcademicInfo";
 import AllTeachersAndWorkers from "./AllTeachersAndWorkers/AllTeachersAndWorkers";
+import Banner from "./Banner/Banner";
 import BrilliantStudents from "./BrilliantStudents/BrilliantStudents";
-import VideoGallery from "./VideoGallery/VideoGallery";
+import DownloadInfo from "./DownloadInfo/DownloadInfo";
+import HistorySchool from "./HistorySchool/HistorySchool";
 import LatestBlogs from "./LatestBlogs/LatestBlogs";
+import President from "./President/President";
+import PrincipalSpeech from "./PrincipalSpeech/PrincipalSpeech";
+import Recently from "./Recently/Recently";
+import Students from "./Students/Students";
+import Teachers from "./Teachers/Teachers";
+import VideoGallery from "./VideoGallery/VideoGallery";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -78,6 +77,7 @@ const Home = () => {
         </div>
             <AllTeachersAndWorkers></AllTeachersAndWorkers>
             <BrilliantStudents></BrilliantStudents>
+            <PhotoGalleryNav></PhotoGalleryNav>
             <VideoGallery></VideoGallery>
             <LatestBlogs></LatestBlogs>
       </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router";
 
 const Navbar = () => {
@@ -62,7 +62,7 @@ const Navbar = () => {
                 {item.submenu ? (
                   <>
                     <button
-                      className="flex items-center justify-center w-full text-xs font-medium text-white hover:text-yellow-400 px-1 py-1 transition-colors duration-200"
+                      className="flex items-center justify-center w-full text-lg font-medium text-white hover:text-yellow-400 px-1 py-1 transition-colors duration-200"
                     >
                       {item.name}
                       <svg
@@ -87,7 +87,7 @@ const Navbar = () => {
                           key={subItem.name}
                           to={subItem.path}
                           className={({ isActive }) =>
-                            `block px-2 py-1 text-xs text-gray-800 hover:text-yellow-600 border-b border-gray-100 last:border-b-0 transition-colors duration-150 ${
+                            `block px-2 py-1 text-lg text-gray-800 hover:text-[#016496] text-left border-b border-gray-100 last:border-b-0 transition-colors duration-150 ${
                               isActive ? " text-yellow-600 font-medium" : ""
                             }`
                           }
@@ -101,9 +101,9 @@ const Navbar = () => {
                   <NavLink
                     to={item.path}
                     className={({ isActive }) =>
-                      `flex items-center justify-center w-full text-xs font-medium px-1 py-1 transition-colors duration-200 ${
+                      `flex items-center justify-center w-full text-lg font-medium px-1 py-1 transition-colors duration-200 ${
                         isActive
-                          ? "text-white bg-[#800505] py-4 font-semibold"
+                          ? "text-white bg-[#800505] py-2 font-semibold"
                           : "text-white hover:text-yellow-400 "
                       }`
                     }

@@ -1,45 +1,45 @@
 import { createBrowserRouter } from "react-router";
-import RootLayout from "../../layouts/RootLayout/RootLayout";
-import Home from "../../pages/Home/Home";
-import AuthLayout from "../../layouts/AuthLayout/AuthLayout";
 import Login from "../../components/authItems/Login/Login";
 import SignUp from "../../components/authItems/SignUp/SignUp";
-import TermsAndConditions from "../../components/TermsAndCondtions/TermsAndConditions";
-import PrivacyPolicy from "../../components/PrivacyPolicy/PrivacyPolicy";
-import About from "../../pages/About/About";
-import Author from "../../pages/Author/Author";
-import Results from "../../pages/Results/Results";
-import Contact from "../../pages/Contact/Contact";
-import DashboardLayout from "../../layouts/DashboardLayout/DashboardLayout";
-import NormalDashboard from "../../components/DashboardComponent/NormalDashboard/NormalDashboard";
-import SuperDashboard from "../../components/DashboardComponent/SuperDashboard/SuperDashboard";
-import Announcement from "../../pages/Announcement/Announcement";
-import SchoolHistoryDetails from "../../pages/SchoolHistoryDetails/SchoolHistoryDetails";
-import PrincipalSpeechDetails from "../../pages/Home/PrincipalSpeech/PrincipalSpeechDetails/PrincipalSpeechDetails";
-import PresidentDetails from "../../pages/Home/President/PresidentDetails/PresidentDetails";
-import StudentsInfo from "../../pages/Home/Students/StudentsInfo/StudentsInfo";
-import SeatNumbers from "../../pages/Home/Students/SeatNumbers/SeatNumbers";
-import ClassRoomsClient from "../../pages/Home/Students/ClassRoomsClient/ClassRoomsClient";
-import AdmissionInfo from "../../pages/Home/Students/AdmissionINfo/AdmissionInfo";
-import AdmissionForm from "../../pages/Home/Students/AdmissionForm/AdmissionForm";
-import TeachersList from "../../pages/Home/Teachers/TeachersList/TeachersList";
-import WorkersList from "../../pages/Home/Teachers/WorkersList/WorkersList";
-import HeadmasterList from "../../pages/Home/Teachers/HeadmasterList/HeadmasterList";
-import HolidayList from "../../pages/Home/Teachers/HolidayList/HolidayList";
-import VideoGallaryNav from "../../components/Gallary/VideoGallaryNav/VideoGallaryNav";
-import PhotoGalleryNav from "../../components/Gallary/PhotoGallaryNav/PhotoGalleryNav";
-import BlogNav from "../../components/BlogNav/BlogNav";
 import BlogDetails from "../../components/BlogNav/BlogDetails/BlogDetails";
+import BlogNav from "../../components/BlogNav/BlogNav";
+import NormalDashboard from "../../components/DashboardComponent/NormalDashboard/NormalDashboard";
+import AdmissionFormAdmin from "../../components/DashboardComponent/SuperDashboard/Sidebar/AdmissionFormAdmin/AdmissionFormAdmin";
+import SuperDashboard from "../../components/DashboardComponent/SuperDashboard/SuperDashboard";
+import Downloads from "../../components/Downloads/Downloads";
+import PhotoGalleryNav from "../../components/Gallary/PhotoGallaryNav/PhotoGalleryNav";
+import VideoGallaryNav from "../../components/Gallary/VideoGallaryNav/VideoGallaryNav";
+import AllNotices from "../../components/Notices/AllNotices/AllNotices";
+import NoticeDetails from "../../components/Notices/NoticeDetails/NoticeDetails";
+import Notices from "../../components/Notices/Notices";
+import PrivacyPolicy from "../../components/PrivacyPolicy/PrivacyPolicy";
 import ManagingCommittee from "../../components/sharedItems/Footer/SubFooter/ManagingCommittee/ManagingCommittee";
 import UpazillaHistory from "../../components/sharedItems/Footer/SubFooter/UpazillaHistory/UpazillaHistory";
 import ZillaHistory from "../../components/sharedItems/Footer/SubFooter/ZillaHistory/ZillaHistory";
-import Downloads from "../../components/Downloads/Downloads";
-import Notices from "../../components/Notices/Notices";
-import NoticeDetails from "../../components/Notices/NoticeDetails/NoticeDetails";
-import AllNotices from "../../components/Notices/AllNotices/AllNotices";
-import Routine from "../../pages/Home/DownloadInfo/Routine/Routine";
-import Circulars from "../../pages/Home/DownloadInfo/Circulars/Circulars";
+import TermsAndConditions from "../../components/TermsAndCondtions/TermsAndConditions";
+import AuthLayout from "../../layouts/AuthLayout/AuthLayout";
+import DashboardLayout from "../../layouts/DashboardLayout/DashboardLayout";
+import RootLayout from "../../layouts/RootLayout/RootLayout";
+import About from "../../pages/About/About";
+import Announcement from "../../pages/Announcement/Announcement";
+import Author from "../../pages/Author/Author";
+import Contact from "../../pages/Contact/Contact";
 import MultimediaClassroom from "../../pages/Home/AcademincInfo/MultimediaClassroom/MultimediaClassroom";
+import Circulars from "../../pages/Home/DownloadInfo/Circulars/Circulars";
+import Routine from "../../pages/Home/DownloadInfo/Routine/Routine";
+import Home from "../../pages/Home/Home";
+import PresidentDetails from "../../pages/Home/President/PresidentDetails/PresidentDetails";
+import PrincipalSpeechDetails from "../../pages/Home/PrincipalSpeech/PrincipalSpeechDetails/PrincipalSpeechDetails";
+import AdmissionInfo from "../../pages/Home/Students/AdmissionINfo/AdmissionInfo";
+import ClassRoomsClient from "../../pages/Home/Students/ClassRoomsClient/ClassRoomsClient";
+import SeatNumbers from "../../pages/Home/Students/SeatNumbers/SeatNumbers";
+import StudentsInfo from "../../pages/Home/Students/StudentsInfo/StudentsInfo";
+import HeadmasterList from "../../pages/Home/Teachers/HeadmasterList/HeadmasterList";
+import HolidayList from "../../pages/Home/Teachers/HolidayList/HolidayList";
+import TeachersList from "../../pages/Home/Teachers/TeachersList/TeachersList";
+import WorkersList from "../../pages/Home/Teachers/WorkersList/WorkersList";
+import Results from "../../pages/Results/Results";
+import SchoolHistoryDetails from "../../pages/SchoolHistoryDetails/SchoolHistoryDetails";
 
 export const route = createBrowserRouter([
   {
@@ -61,7 +61,7 @@ export const route = createBrowserRouter([
         { path: "/seat-numbers", element: <SeatNumbers></SeatNumbers>},
         { path: "/class-rooms", element: <ClassRoomsClient></ClassRoomsClient>},
         { path: "/admission-info", element: <AdmissionInfo></AdmissionInfo>},
-        { path: "/admission-form", element: <AdmissionForm></AdmissionForm>},
+        { path: "/admission-form", element: <AdmissionFormAdmin></AdmissionFormAdmin>},
         { path: "/teachers-list", element: <TeachersList></TeachersList>},
         { path: "/staff-list", element: <WorkersList></WorkersList>},
         { path: "/head-teachers-list", element: <HeadmasterList></HeadmasterList>},

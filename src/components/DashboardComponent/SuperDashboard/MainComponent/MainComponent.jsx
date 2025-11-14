@@ -41,6 +41,7 @@ import StudentAttendanceShift from "../Sidebar/Attendance/StudentAttendanceShift
 import SummeryReport from "../Sidebar/Attendance/SummeryReport/SummeryReport";
 import TteacherShift from "../Sidebar/Attendance/TeacherShift/TteacherShift";
 import TeachersLeave from "../Sidebar/Attendance/TeachersLeave/TeachersLeave";
+import BasicSettings from "../Sidebar/BasicSettings/BasicSettings";
 import Batch from "../Sidebar/Class/Batch/Batch";
 import Class from "../Sidebar/Class/ClassId/Class";
 import ClassWiseTeacher from "../Sidebar/Class/ClassWiseTeacher/ClassWiseTeacher";
@@ -70,8 +71,17 @@ import ExpenseItems from "../Sidebar/Hisab/ExpenseCategory/ExpenseItems/ExpenseI
 import AnnualReports from "../Sidebar/HomePristha/AnnualReports/AnnualReports";
 import ContactHome from "../Sidebar/HomePristha/ContactHome/ContactHome";
 import ContactMain from "../Sidebar/Institute/ContactMain/ContactMain";
+import InstituteJobs from "../Sidebar/Institute/InstituteJobs/InstituteJobs";
 import InstituteMessage from "../Sidebar/Institute/InstituteMessage/InstituteMessage";
 import ServicesSomuho from "../Sidebar/Institute/ServicesSomuho/ServicesSomuho";
+import MediaList from "../Sidebar/instituteMedia/MediaList/MediaList";
+import NewMedia from "../Sidebar/instituteMedia/NewMedia/NewMedia";
+import NewVideo from "../Sidebar/instituteMedia/NewVideo/NewVideo";
+import VideoList from "../Sidebar/instituteMedia/VideoList/VideoList";
+import DepartmentList from "../Sidebar/Onusod/DepertmentList/DepertmentList";
+import FacultyList from "../Sidebar/Onusod/FacultyList/FacultyList";
+import NewDepartment from "../Sidebar/Onusod/NewDepartment/NewDepartment";
+import NewFaculty from "../Sidebar/Onusod/NewFaculty/NewFaculty";
 import AdmissionToken from "../Sidebar/Print/AdmissionToken/AdmissionToken";
 import AdmitCard from "../Sidebar/Print/AdmitCard/AdmitCard";
 import EmployeeSalaryReport from "../Sidebar/Print/EmployeeSalaryReport/EmployeeSalaryReport";
@@ -83,6 +93,7 @@ import SalarySheet from "../Sidebar/Print/SalarySheet/SalarySheet";
 import SummaryIncomeStatement from "../Sidebar/Print/SummaryIncomeStatement/SummaryIncomeStatement";
 import TabularResult from "../Sidebar/Print/TabularResult/TabularResult";
 import TeacherSalaryReport from "../Sidebar/Print/TeacherSalaryReport/TeacherSalaryReport";
+import BlogCategory from "../Sidebar/Prokashona/BlogCategory/BlogCategory";
 import CombinedResult from "../Sidebar/results/CombinedResult/CombinedResult";
 import ResultSheetUpload from "../Sidebar/results/ResultSheetUpload/ResultSheetUpload";
 import AcademicManagement from "../Sidebar/SDashboardItems/AcademicManagement/AcademicManagement";
@@ -91,6 +102,7 @@ import Assignments from "../Sidebar/SDashboardItems/AcademicManagement/Assignmen
 import Category from "../Sidebar/SDashboardItems/AcademicManagement/Category/Category";
 import ClassReport from "../Sidebar/SDashboardItems/AcademicManagement/ClassReport/ClassReport";
 import ClassReportList from "../Sidebar/SDashboardItems/AcademicManagement/ClassReportList/ClassReportList";
+import Students from "../Sidebar/SDashboardItems/AcademicManagement/Students/Students";
 import AccountsManagement from "../Sidebar/SDashboardItems/AccountsManagement/AccountsManagement";
 import BalanceSheet from "../Sidebar/SDashboardItems/AccountsManagement/BalanceSheet/BalanceSheet";
 import BankAccounts from "../Sidebar/SDashboardItems/AccountsManagement/BankAccounts/BankAccounts";
@@ -121,7 +133,11 @@ import FeeManagement from "../Sidebar/SDashboardItems/FeeManagement/FeeManagemen
 import PrintManagement from "../Sidebar/SDashboardItems/PrintManagement/PrintManagement";
 import SalaryBonusManagement from "../Sidebar/SDashboardItems/SalaryBonusManagement/SalaryBonusManagement";
 import SMSManagement from "../Sidebar/SDashboardItems/SMSManagement/SMSManagement";
+import Authors from "../Sidebar/SDashboardItems/WebsiteManagement/Authors/Authors";
+import Events from "../Sidebar/SDashboardItems/WebsiteManagement/Events/Events";
 import InstituteInfo from "../Sidebar/SDashboardItems/WebsiteManagement/InstitueInfo/InstituteInfo";
+import Menu from "../Sidebar/SDashboardItems/WebsiteManagement/Menu/Menu";
+import Pages from "../Sidebar/SDashboardItems/WebsiteManagement/Pages/Pages";
 import PrivacyPolicy from "../Sidebar/SDashboardItems/WebsiteManagement/PrivacyPolicy/PrivacyPolicy";
 import SocialLinks from "../Sidebar/SDashboardItems/WebsiteManagement/SocialLinks/SocialLinks";
 import WebsiteManagement from "../Sidebar/SDashboardItems/WebsiteManagement/WebsiteManagement";
@@ -140,6 +156,8 @@ import StudentsClassUpdate from "../Sidebar/Students/StudentsClassUpdate/Student
 import StudentsLeave from "../Sidebar/Students/StudentsLeave/StudentsLeave";
 import AddNewStudent from "../Sidebar/Students/StudentsMenu/AddNewStudent/AddNewStudent";
 import StudentsMenu from "../Sidebar/Students/StudentsMenu/StudentsMenu";
+import MainAdmissionInfo from "../Sidebar/Vorti/MainAdmissionInfo/MainAdmissionInfo";
+import OnlineApplication from "../Sidebar/Vorti/OnlineApplication/OnlineApplication";
 
 const MainComponent = ({ activeMenu, onDashboardItemClick }) => { // প্রপ রিসিভ করা হলো
   const renderContent = () => {
@@ -269,6 +287,52 @@ const MainComponent = ({ activeMenu, onDashboardItemClick }) => { // প্র�
         return <ContactMain></ContactMain>
       case "services":
         return <ServicesSomuho></ServicesSomuho>
+      case "management-committee":
+        return <ManagingCommitteeAdmin></ManagingCommitteeAdmin>
+      case "jobs":
+        return <InstituteJobs></InstituteJobs>
+      case "notices":
+        return <NoticesAdmin></NoticesAdmin>
+      case "event":
+        return <Events></Events>
+      case "author":
+        return <Authors></Authors>
+      case "blog-category":
+        return <BlogCategory></BlogCategory>
+      case "blog":
+        return <BlogsAdmin></BlogsAdmin>
+      case "menu":
+        return <Menu></Menu>
+      case "page":
+        return <Pages></Pages>
+      case "admission-infos":
+        return <MainAdmissionInfo></MainAdmissionInfo>
+      case "online-application":
+        return <OnlineApplication></OnlineApplication>
+      case "new-faculty":
+        return <NewFaculty></NewFaculty>
+      case "faculty-list":
+        return <FacultyList></FacultyList>
+      case "new-department":
+        return <NewDepartment></NewDepartment>
+      case "department-list":
+        return <DepartmentList></DepartmentList>
+      case "new-media":
+        return <NewMedia></NewMedia>
+      case "media-list":
+        return <MediaList></MediaList>
+      case "studentss":
+        return <Students></Students>
+      case "basic-settings":
+        return <BasicSettings></BasicSettings>
+      case "new-video":
+        return <NewVideo></NewVideo>
+      case "video-list":
+        return <VideoList></VideoList>
+      case "officers":
+        return <TeacherListAdmin></TeacherListAdmin>
+      case "teachers":
+        return <TeacherListAdmin></TeacherListAdmin>
       case "document-category":
         return <Category></Category>
       case "fine-type":
