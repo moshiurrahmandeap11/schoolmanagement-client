@@ -3,6 +3,7 @@ import {
   LucideUsers2,
   LucideUserSquare2,
   Notebook,
+  Users,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AiOutlinePercentage } from "react-icons/ai";
@@ -641,6 +642,7 @@ const MENU_ITEMS = [
     color: "blue",
     submenu: [
       { id: "basic-settings", label: "প্রাথমিক সেটিং", icon: RiSettings3Line },
+      { id: "users-settings", label: "ইউজার সেটিংস", icon: Users},
     ],
   },
   {

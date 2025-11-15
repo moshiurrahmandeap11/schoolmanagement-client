@@ -156,6 +156,7 @@ import StudentsClassUpdate from "../Sidebar/Students/StudentsClassUpdate/Student
 import StudentsLeave from "../Sidebar/Students/StudentsLeave/StudentsLeave";
 import AddNewStudent from "../Sidebar/Students/StudentsMenu/AddNewStudent/AddNewStudent";
 import StudentsMenu from "../Sidebar/Students/StudentsMenu/StudentsMenu";
+import UserSettings from "../Sidebar/UserSettings/UserSettings";
 import MainAdmissionInfo from "../Sidebar/Vorti/MainAdmissionInfo/MainAdmissionInfo";
 import OnlineApplication from "../Sidebar/Vorti/OnlineApplication/OnlineApplication";
 
@@ -283,6 +284,8 @@ const MainComponent = ({ activeMenu, onDashboardItemClick }) => { // প্র�
         return <AllDocument></AllDocument>
       case "institute-messages":
         return <InstituteMessage></InstituteMessage>
+      case "users-settings":
+        return <UserSettings></UserSettings>
       case "contact-home":
         return <ContactMain></ContactMain>
       case "services":

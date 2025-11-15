@@ -17,6 +17,7 @@ import ManagingCommittee from "../../components/sharedItems/Footer/SubFooter/Man
 import UpazillaHistory from "../../components/sharedItems/Footer/SubFooter/UpazillaHistory/UpazillaHistory";
 import ZillaHistory from "../../components/sharedItems/Footer/SubFooter/ZillaHistory/ZillaHistory";
 import TermsAndConditions from "../../components/TermsAndCondtions/TermsAndConditions";
+import AdminProtectedRoute from "../../hooks/ProtectedRoute/ProtectedRoute";
 import AuthLayout from "../../layouts/AuthLayout/AuthLayout";
 import DashboardLayout from "../../layouts/DashboardLayout/DashboardLayout";
 import RootLayout from "../../layouts/RootLayout/RootLayout";
@@ -96,18 +97,22 @@ export const route = createBrowserRouter([
         }
     ]
   },
-  {
-    path: "/",
-    element: <DashboardLayout></DashboardLayout>,
-    children: [
-      {
-        path: "dashboard",
-        element: <NormalDashboard></NormalDashboard>
-      },
-      {
-        path: "super/dashboard",
-        element: <SuperDashboard></SuperDashboard>
-      }
-    ]
-  }
+{
+  path: "/",
+  element: <DashboardLayout />,
+  children: [
+    {
+      path: "dashboard",
+      element: <NormalDashboard />
+    },
+    {
+      path: "super/dashboard",
+      element: (
+        <AdminProtectedRoute>
+          <SuperDashboard />
+        </AdminProtectedRoute>
+      )
+    }
+  ]
+}
 ]);
