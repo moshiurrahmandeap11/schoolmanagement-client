@@ -106,7 +106,7 @@ const BuySms = ({ onClose }) => {
 
     return (
         <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto">
+            <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
                     <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4 flex justify-between items-center">
