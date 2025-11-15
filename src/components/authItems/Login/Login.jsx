@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { FaEye, FaEyeSlash, FaGoogle, FaFacebook } from "react-icons/fa";
+import { useState } from "react";
+import { FaEye, FaEyeSlash, FaFacebook, FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router"; // Updated to react-router-dom
-import useAuth from "../../../hooks/useAuth/useAuth";
-import Loader from "../../sharedItems/Loader/Loader";
-import CustomButton from "../../sharedItems/CustomButton/CustomButton";
 import axiosInstance from "../../../hooks/axiosInstance/axiosInstance";
+import useAuth from "../../../hooks/useAuth/useAuth";
+import CustomButton from "../../sharedItems/CustomButton/CustomButton";
+import Loader from "../../sharedItems/Loader/Loader";
 
 const Login = () => {
   const { loading, user, googleLogin, facebookLogin, logIn } = useAuth();
@@ -39,10 +39,10 @@ if (res.data.success) {
   const backendUser = res.data.user; // <-- backend user
   console.log("Login success:", backendUser);
 
-  if (backendUser.email === "admin@schoolmanageps.com") {
-    navigate("/dashboard/superadmin");
+  if (backendUser.email === "admin@school.com") {
+    navigate("/super/dashboard");
   } else {
-    navigate("/dashboard");
+    navigate("/");
   }
 }
 

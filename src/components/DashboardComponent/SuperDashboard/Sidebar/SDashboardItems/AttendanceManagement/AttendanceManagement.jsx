@@ -11,8 +11,7 @@ import {
 // Import all the attendance components (you'll need to create these)
 import DetailReport from '../../Attendance/DetailedReport/DetailedReport';
 import SummaryReport from '../../Attendance/SummeryReport/SummeryReport';
-import AttendanceSMS from './AttendanceSMS/AttendanceSMS';
-import SMSSettings from './SMSSettings/SMSSettings';
+import { default as AttendanceSMS, default as SMSSettings } from '../../sms/MessageForAdmin/MessageForAdmin';
 import SubjectWiseAttendance from './SubjectWiseAttendance/SubjectWiseAttendance';
 
 const AttendanceManagement = () => {

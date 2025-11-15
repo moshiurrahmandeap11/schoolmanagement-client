@@ -4,6 +4,7 @@ import SignUp from "../../components/authItems/SignUp/SignUp";
 import BlogDetails from "../../components/BlogNav/BlogDetails/BlogDetails";
 import BlogNav from "../../components/BlogNav/BlogNav";
 import NormalDashboard from "../../components/DashboardComponent/NormalDashboard/NormalDashboard";
+import Profile from "../../components/DashboardComponent/SuperDashboard/Header/Profile/Profile";
 import AdmissionFormAdmin from "../../components/DashboardComponent/SuperDashboard/Sidebar/AdmissionFormAdmin/AdmissionFormAdmin";
 import SuperDashboard from "../../components/DashboardComponent/SuperDashboard/SuperDashboard";
 import Downloads from "../../components/Downloads/Downloads";
@@ -112,6 +113,10 @@ export const route = createBrowserRouter([
           <SuperDashboard />
         </AdminProtectedRoute>
       )
+    },
+    {
+      path: "super/dashboard/profile",
+      element: <Profile></Profile>
     }
   ]
 }

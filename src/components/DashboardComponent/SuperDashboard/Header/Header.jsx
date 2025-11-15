@@ -6,7 +6,6 @@ import {
   FaChevronDown,
   FaClipboardList,
   FaCodeBranch,
-  FaCog,
   FaEnvelope,
   FaHome,
   FaPlus,
@@ -41,8 +40,8 @@ const Header = ({ onMenuClick, activeMenu, setActiveMenu, onToggleSidebar }) => 
       items: [
         { id: 'homepage-management', label: 'হোম পেজ পরিচালনা করুন' },
         { id: 'institution-message', label: 'প্রতিষ্ঠানের বার্তা' },
-        { id: 'history', label: 'ইতিহাস' },
-        { id: 'contact', label: 'যোগাযোগ' },
+        { id: 'historys', label: 'ইতিহাস' },
+        { id: 'contacts', label: 'যোগাযোগ' },
         { id: 'facilities', label: 'সুবিধা' },
         { id: 'teachers', label: 'শিক্ষক' },
         { id: 'jobs', label: 'চাকুরী' },
@@ -53,7 +52,7 @@ const Header = ({ onMenuClick, activeMenu, setActiveMenu, onToggleSidebar }) => 
       category: 'শিক্ষার্থী',
       icon: FaUserGraduate,
       items: [
-        { id: 'classes', label: 'ক্লাস' },
+        { id: 'classess', label: 'ক্লাস' },
         { id: 'batches', label: 'ব্যাচ' },
         { id: 'admission-info', label: 'ভর্তি তথ্য' },
         { id: 'students', label: 'শিক্ষার্থী' },
@@ -137,15 +136,7 @@ const Header = ({ onMenuClick, activeMenu, setActiveMenu, onToggleSidebar }) => 
   // Handle profile click
   const handleProfileClick = () => {
     setIsProfileDropdownOpen(false);
-    // Add your profile navigation logic here
-    console.log('Profile clicked');
-  };
-
-  // Handle settings click
-  const handleSettingsClick = () => {
-    setIsProfileDropdownOpen(false);
-    // Add your settings navigation logic here
-    console.log('Settings clicked');
+    navigate("/super/dashboard/profile");
   };
 
   // Get user initials for avatar - FIXED
@@ -391,14 +382,6 @@ const Header = ({ onMenuClick, activeMenu, setActiveMenu, onToggleSidebar }) => 
                       >
                         <FaUser className="mr-3 text-gray-400" />
                         প্রোফাইল
-                      </button>
-                      
-                      <button
-                        onClick={handleSettingsClick}
-                        className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                      >
-                        <FaCog className="mr-3 text-gray-400" />
-                        সেটিংস
                       </button>
                     </div>
 

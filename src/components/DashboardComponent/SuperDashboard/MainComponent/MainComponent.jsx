@@ -112,7 +112,8 @@ import IncomeSources from "../Sidebar/SDashboardItems/AccountsManagement/IncomeS
 import PaymentTypes from "../Sidebar/SDashboardItems/AccountsManagement/PaymentTypes/PaymentTypes";
 import Transactions from "../Sidebar/SDashboardItems/AccountsManagement/Transactions/Transactions";
 import AttendanceManagement from "../Sidebar/SDashboardItems/AttendanceManagement/AttendanceManagement";
-import BranchManagement from "../Sidebar/SDashboardItems/Branch/Branch";
+import { default as Branch, default as BranchManagement } from "../Sidebar/SDashboardItems/Branch/Branch";
+import NewBranch from "../Sidebar/SDashboardItems/Branch/NewBranch/NewBranch";
 import CertificateCategory from "../Sidebar/SDashboardItems/CertificateManagement/CertificateCategory/CertificateCategory";
 import CertificateManagement from "../Sidebar/SDashboardItems/CertificateManagement/CertificateManagement";
 import CreateCertificate from "../Sidebar/SDashboardItems/CertificateManagement/CreateCertificate/CreateCertificate";
@@ -135,6 +136,7 @@ import SalaryBonusManagement from "../Sidebar/SDashboardItems/SalaryBonusManagem
 import SMSManagement from "../Sidebar/SDashboardItems/SMSManagement/SMSManagement";
 import Authors from "../Sidebar/SDashboardItems/WebsiteManagement/Authors/Authors";
 import Events from "../Sidebar/SDashboardItems/WebsiteManagement/Events/Events";
+import Facilities from "../Sidebar/SDashboardItems/WebsiteManagement/Facilities/Facilities";
 import InstituteInfo from "../Sidebar/SDashboardItems/WebsiteManagement/InstitueInfo/InstituteInfo";
 import Menu from "../Sidebar/SDashboardItems/WebsiteManagement/Menu/Menu";
 import Pages from "../Sidebar/SDashboardItems/WebsiteManagement/Pages/Pages";
@@ -286,6 +288,38 @@ const MainComponent = ({ activeMenu, onDashboardItemClick }) => { // প্র�
         return <InstituteMessage></InstituteMessage>
       case "users-settings":
         return <UserSettings></UserSettings>
+      case "all-branch":
+        return <Branch></Branch>
+      case "new-branch":
+        return <NewBranch></NewBranch>
+      case "homepage-management":
+        return <InstituteInfo></InstituteInfo>
+      case "institution-message":
+        return <InstituteMessage></InstituteMessage>
+      case "historys":
+        return <SchoolHistory></SchoolHistory>
+      case "contacts":
+        return <ContactHome></ContactHome>
+      case "facilities":
+        return <Facilities></Facilities>
+      case "batches":
+        return <Batch></Batch>
+      case "syllabus":
+        return <DividePathokrom></DividePathokrom>
+      case "events":
+        return <Events></Events>
+      case "authors":
+        return <Authors></Authors>
+      case "exams":
+        return <Exam></Exam>
+      case "results":
+        return <Result></Result>
+      case "result-sheet":
+        return <ResultSheetUpload></ResultSheetUpload>
+      case "officials":
+        return <TeacherListAdmin></TeacherListAdmin>
+      case "classess":
+        return <Class></Class>
       case "contact-home":
         return <ContactMain></ContactMain>
       case "services":
