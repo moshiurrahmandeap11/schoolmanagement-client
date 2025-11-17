@@ -5,7 +5,7 @@ import {
   Notebook,
   Users,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AiOutlinePercentage } from "react-icons/ai";
 import { BsCoin, BsPatchCheckFill } from "react-icons/bs";
 import { CgChevronDown, CgClose, CgFormatBold } from "react-icons/cg";
@@ -732,142 +732,105 @@ const MENU_ITEMS = [
 // ====================================
 // মূল কম্পোনেন্ট
 // ====================================
-const Sidebar = ({
-  activeMenu,
-  setActiveMenu,
-  isSidebarOpen,
-  setIsSidebarOpen,
-}) => {
-  const [openSubmenus, setOpenSubmenus] = useState({});
+const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen }) => {
+  const [openSubmenus, setOpenSubmenus] = useState(() => {
+    const saved = localStorage.getItem("sidebar_open_submenus");
+    return saved ? JSON.parse(saved) : {};
+  });
 
-  const handleMenuClick = (menuId) => {
+  const sidebarRef = useRef(null);
+
+  useEffect(() => {
+    localStorage.setItem("sidebar_active_menu", activeMenu);
+  }, [activeMenu]);
+
+  useEffect(() => {
+    localStorage.setItem("sidebar_open_submenus", JSON.stringify(openSubmenus));
+  }, [openSubmenus]);
+
+  const handleMenuClick = (e, menuId) => {
+    e.preventDefault();
+    e.stopPropagation();
     setActiveMenu(menuId);
-    if (window.innerWidth < 1024) {
-      setIsSidebarOpen(false);
-    }
+    if (window.innerWidth < 1024) setIsSidebarOpen(false);
   };
 
-  const toggleSubmenu = (menuId) => {
-    setOpenSubmenus((prev) => ({
-      ...prev,
-      [menuId]: !prev[menuId],
-    }));
+  const toggleSubmenu = (e, menuId) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setOpenSubmenus(prev => {
+      const newState = {};
+      // শুধু একটা সাবমেনু ওপেন থাকবে
+      newState[menuId] = !prev[menuId];
+      return newState;
+    });
   };
 
+  // Mobile click outside close
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (window.innerWidth < 1024 && isSidebarOpen) {
-        const sidebar = document.getElementById("sidebar");
-        const mobileToggle = document.querySelector("[data-mobile-toggle]");
-        if (
-          sidebar &&
-          !sidebar.contains(event.target) &&
-          !mobileToggle?.contains(event.target)
-        ) {
-          setIsSidebarOpen(false);
-        }
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isSidebarOpen, setIsSidebarOpen]);
-
-  useEffect(() => {
-    const handleEscape = (event) => {
-      if (event.key === "Escape" && isSidebarOpen) {
+    const handleOutside = (e) => {
+      if (window.innerWidth < 1024 && isSidebarOpen && sidebarRef.current && !sidebarRef.current.contains(e.target)) {
         setIsSidebarOpen(false);
       }
     };
-    document.addEventListener("keydown", handleEscape);
-    return () => document.removeEventListener("keydown", handleEscape);
-  }, [isSidebarOpen, setIsSidebarOpen]);
+    document.addEventListener("mousedown", handleOutside);
+    return () => document.removeEventListener("mousedown", handleOutside);
+  }, [isSidebarOpen]);
 
-  // সিম্পল মেনু আইটেম
   const MenuItem = ({ item, isSubmenuItem = false, level = 0 }) => {
     const Icon = item.icon;
     const isActive = activeMenu === item.id;
 
     return (
       <button
-        onClick={() => handleMenuClick(item.id)}
+        onClick={(e) => handleMenuClick(e, item.id)}
         className={`
-          w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200
-          text-left hover:scale-[1.02] active:scale-[0.98]
-          ${
-            isActive
-              ? "bg-blue-50 text-blue-600 border-r-2 border-blue-600"
-              : "text-gray-600 hover:bg-gray-50 hover:text-gray-800"
+          w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-left
+          ${isActive 
+            ? "bg-blue-50 text-blue-600 border-r-4 border-blue-600 font-semibold shadow-sm" 
+            : "text-gray-600 hover:bg-gray-50"
           }
-          ${isSubmenuItem ? `text-sm pl-${8 + level * 4}` : "pl-4"}
+          ${isSubmenuItem ? "text-sm" : ""}
         `}
-        style={{ paddingLeft: isSubmenuItem ? `${16 + level * 16}px` : "16px" }}
+        style={{ paddingLeft: isSubmenuItem ? `${28 + level * 16}px` : "16px" }}
       >
-        {Icon && (
-          <Icon
-            className={`text-xl ${
-              isActive ? "text-blue-600" : "text-gray-500"
-            }`}
-          />
-        )}
-        <span className="font-medium flex-1">{item.label}</span>
+        {Icon && <Icon className={`text-xl ${isActive ? "text-blue-600" : "text-gray-500"}`} />}
+        <span className="flex-1">{item.label}</span>
       </button>
     );
   };
 
-  // সাবমেনু সহ মেনু আইটেম
   const MenuWithSubmenu = ({ item, level = 0 }) => {
     const Icon = item.icon;
-    const isOpen = openSubmenus[item.id];
-    const hasActiveItem = item.submenu?.some((sub) => sub.id === activeMenu);
-    const colorClass = item.color || "blue";
+    const isOpen = !!openSubmenus[item.id];
+    const hasActiveChild = item.submenu?.some(sub => 
+      sub.submenu ? sub.submenu.some(s => s.id === activeMenu) : sub.id === activeMenu
+    );
 
     return (
-      <div className="mt-2">
+      <div className="mt-1">
         <button
-          onClick={() => toggleSubmenu(item.id)}
+          onClick={(e) => toggleSubmenu(e, item.id)}
           className={`
-            w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg transition-all duration-200
-            ${
-              hasActiveItem
-                ? `bg-${colorClass}-50 text-${colorClass}-600`
-                : "text-gray-600 hover:bg-gray-50 hover:text-gray-800"
-            }
+            w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg transition-all
+            ${(hasActiveChild || isOpen) ? "bg-blue-50 text-blue-600 font-semibold" : "text-gray-600 hover:bg-gray-50"}
           `}
           style={{ paddingLeft: `${16 + level * 16}px` }}
         >
           <div className="flex items-center gap-3">
-            {Icon && (
-              <Icon
-                className={`text-xl ${
-                  hasActiveItem ? `text-${colorClass}-600` : "text-gray-500"
-                }`}
-              />
-            )}
-            <span className="font-medium">{item.label}</span>
+            {Icon && <Icon className={`text-xl ${(hasActiveChild || isOpen) ? "text-blue-600" : "text-gray-500"}`} />}
+            <span>{item.label}</span>
           </div>
-          <CgChevronDown
-            className={`text-lg transition-transform duration-200 ${
-              isOpen ? "rotate-0" : "-rotate-90"
-            }`}
-          />
+          <CgChevronDown className={`transition-transform ${isOpen ? "rotate-0" : "-rotate-90"}`} />
         </button>
 
         {isOpen && (
-          <div className="mt-1 space-y-1 animate-fadeIn">
-            {item.submenu.map((subItem) =>
-              subItem.submenu ? (
-                <MenuWithSubmenu
-                  key={subItem.id}
-                  item={subItem}
-                  level={level + 1}
-                />
+          <div className="mt-1 space-y-1 animate-in fade-in slide-in-from-top-2 duration-200">
+            {item.submenu.map(sub => 
+              sub.submenu ? (
+                <MenuWithSubmenu key={sub.id} item={sub} level={level + 1} />
               ) : (
-                <MenuItem
-                  key={subItem.id}
-                  item={subItem}
-                  isSubmenuItem={true}
-                  level={level + 1}
-                />
+                <MenuItem key={sub.id} item={sub} isSubmenuItem={true} level={level + 1} />
               )
             )}
           </div>
@@ -879,40 +842,30 @@ const Sidebar = ({
   return (
     <>
       {isSidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden animate-fadeIn"
-          onClick={() => setIsSidebarOpen(false)}
-        />
+        <div className="fixed inset-0 bg-black/50 z-40 lg:hidden" onClick={() => setIsSidebarOpen(false)} />
       )}
 
       <aside
-        id="sidebar"
+        ref={sidebarRef}
         className={`
-          fixed lg:sticky top-16 left-0 h-[calc(100vh-4rem)] w-80 bg-white shadow-xl lg:shadow-lg 
-          transform transition-transform duration-300 ease-in-out flex flex-col border-r border-gray-200
-          ${
-            isSidebarOpen
-              ? "translate-x-0"
-              : "-translate-x-full lg:translate-x-0"
-          } z-40
+          fixed lg:sticky top-16 left-0 h-[calc(100vh-4rem)] w-80 bg-white shadow-xl border-r border-gray-200 z-50
+          transition-transform duration-300 flex flex-col
+          ${isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
         `}
       >
-        <div className="lg:hidden flex justify-between items-center p-4 border-b border-gray-200">
-          <h2 className="text-lg font-bold text-gray-800">মেনু</h2>
-          <button
-            onClick={() => setIsSidebarOpen(false)}
-            className="p-2 rounded-lg hover:bg-gray-100"
-          >
-            <CgClose className="text-xl text-gray-600" />
+        <div className="lg:hidden flex justify-between items-center p-4 border-b">
+          <h2 className="text-lg font-bold">মেনু</h2>
+          <button onClick={() => setIsSidebarOpen(false)} className="p-2 hover:bg-gray-100 rounded">
+            <CgClose className="text-xl" />
           </button>
         </div>
 
-        <div className="hidden lg:flex items-center justify-between p-6 border-b border-gray-200">
+        <div className="hidden lg:block p-6 border-b">
           <h2 className="text-xl font-bold text-gray-800">সুপার ড্যাশবোর্ড</h2>
         </div>
 
-        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
-          {MENU_ITEMS.map((item) =>
+        <nav className="flex-1 overflow-y-auto p-4 space-y-1">
+          {MENU_ITEMS.map(item => 
             item.submenu ? (
               <MenuWithSubmenu key={item.id} item={item} />
             ) : (
@@ -921,62 +874,6 @@ const Sidebar = ({
           )}
         </nav>
       </aside>
-
-      <style jsx>{`
-        .bg-blue-50 {
-          background-color: #eff6ff;
-        }
-        .text-blue-600 {
-          color: #2563eb;
-        }
-        .border-blue-600 {
-          border-color: #2563eb;
-        }
-        .bg-green-50 {
-          background-color: #f0fdf4;
-        }
-        .text-green-600 {
-          color: #16a34a;
-        }
-        .bg-purple-50 {
-          background-color: #faf5ff;
-        }
-        .text-purple-600 {
-          color: #9333ea;
-        }
-        .bg-orange-50 {
-          background-color: #fff7ed;
-        }
-        .text-orange-600 {
-          color: #ea580c;
-        }
-        .bg-red-50 {
-          background-color: #fef2f2;
-        }
-        .text-red-600 {
-          color: #dc2626;
-        }
-        .bg-indigo-50 {
-          background-color: #eef2ff;
-        }
-        .text-indigo-600 {
-          color: #4f46e5;
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.2s ease-out;
-        }
-      `}</style>
     </>
   );
 };

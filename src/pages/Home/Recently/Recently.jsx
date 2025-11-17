@@ -72,14 +72,14 @@ const Recently = () => {
     return (
         <div className="w-full bg-[#F1FCFF] text-white h-10 sm:h-12 md:h-14 flex items-center justify-between relative overflow-hidden">
             {/* Left Side - সাম্প্রতিক Text with Triangle */}
-            <div className="relative flex items-center px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-6 bg-[#051939] text-white text-xs font-semibold shadow-[0_5px_15px_rgba(0,0,0,0.3)] sm:shadow-[0_10px_30px_rgba(0,0,0,0.45)] transition-all duration-300 hover:shadow-[0_8px_25px_rgba(0,0,0,0.4)] sm:hover:shadow-[0_14px_40px_rgba(0,0,0,0.55)] min-w-[80px] sm:min-w-[100px] md:min-w-[120px]">
+            <div className="relative flex items-center px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-6 bg-[#016496] text-white text-lg font-semibold shadow-[0_5px_15px_rgba(0,0,0,0.3)] sm:shadow-[0_10px_30px_rgba(0,0,0,0.45)] transition-all duration-300 hover:shadow-[0_8px_25px_rgba(0,0,0,0.4)] sm:hover:shadow-[0_14px_40px_rgba(0,0,0,0.55)] min-w-[80px] sm:min-w-[100px] md:min-w-[120px]">
                 <span className="whitespace-nowrap">সাম্প্রতিক</span>
                 
                 <span
                     aria-hidden="true"
                     className="absolute right-[-12px] sm:right-[-15px] md:right-[-18px] top-1/2 -translate-y-1/2 w-0 h-0
                                border-t-[20px] border-b-[20px] border-l-[12px] sm:border-t-[24px] sm:border-b-[24px] sm:border-l-[15px] md:border-t-[28px] md:border-b-[28px] md:border-l-[18px]
-                               border-t-transparent border-b-transparent border-l-[#051939]"
+                               border-t-transparent border-b-transparent border-l-[#016496]"
                 />
             </div>
 
@@ -106,7 +106,7 @@ const Recently = () => {
             {/* Right Side - Close Button */}
             <button
                 onClick={handleClose}
-                className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 flex items-center justify-center bg-[#051939] cursor-pointer transition-colors duration-200 focus:outline-none focus:ring-1 hover:bg-[#0a2a5a]"
+                className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 flex items-center justify-center bg-[#016496] cursor-pointer transition-colors duration-200 focus:outline-none focus:ring-1 hover:bg-[#016496]"
                 aria-label="Close announcement"
             >
                 <svg 

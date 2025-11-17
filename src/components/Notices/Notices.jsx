@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { useNavigate } from 'react-router';
 import axiosInstance from '../../hooks/axiosInstance/axiosInstance';
@@ -39,7 +39,7 @@ const Notices = () => {
     return (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
             {/* Header */}
-            <h2 className="text-xl sm:text-xl px-4 sm:px-5 bg-[#051939] py-3 font-bold text-white leading-tight flex items-center gap-2 sm:gap-3 rounded">
+            <h2 className="text-xl sm:text-xl px-4 sm:px-5 bg-[#016496] py-3 font-bold text-white leading-tight flex items-center gap-2 sm:gap-3 rounded">
                 <GiHamburgerMenu className="text-white text-lg sm:text-xl flex-shrink-0" />
                 নোটিশ
             </h2>
@@ -56,9 +56,9 @@ const Notices = () => {
                             <div 
                                 key={notice._id}
                                 onClick={() => handleNoticeClick(notice._id)}
-                                className="p-2 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 cursor-pointer transition-colors duration-150 group"
+                                className="p-2 border-b border-gray-100 bg-[#016496] rounded-md last:border-b-0  cursor-pointer transition-colors duration-150 group"
                             >
-                                <p className="text-gray-700 text-sm line-clamp-2 group-hover:text-blue-600 transition-colors duration-150">
+                                <p className="text-white text-sm line-clamp-2 group-hover:text-white transition-colors duration-150">
                                     {notice.title}
                                 </p>
                                 {/* Optional: Show date */}
@@ -81,7 +81,7 @@ const Notices = () => {
                 <div className="px-4 pb-4">
                     <button 
                         onClick={() => navigate('/all-notices')}
-                        className="w-full py-2 text-sm text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors duration-150 border border-blue-200"
+                        className="w-full py-2 text-sm text-white bg-[#016496] cursor-pointer rounded-lg transition-colors duration-150 border border-blue-200"
                     >
                         সব নোটিশ দেখুন
                     </button>

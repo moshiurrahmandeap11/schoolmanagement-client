@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import axiosInstance from '../../hooks/axiosInstance/axiosInstance';
 
@@ -35,7 +35,7 @@ const FacebookPage = () => {
     return (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
             {/* Header */}
-            <h2 className="text-xl sm:text-xl my-2 mx-2 px-4 sm:px-5 bg-[#051939] py-3 font-bold text-white leading-tight flex items-center gap-2 sm:gap-3 rounded">
+            <h2 className="text-xl sm:text-xl my-2 mx-2 px-4 sm:px-5 bg-[#016496] py-3 font-bold text-white leading-tight flex items-center gap-2 sm:gap-3 rounded">
                 <GiHamburgerMenu className="text-white text-xl sm:text-xl flex-shrink-0" />
                 ফেইসবুক পেইজ
             </h2>

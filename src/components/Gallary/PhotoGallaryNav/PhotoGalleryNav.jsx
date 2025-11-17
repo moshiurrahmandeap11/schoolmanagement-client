@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axiosInstance from '../../../hooks/axiosInstance/axiosInstance';
+import { useEffect, useState } from 'react';
 import Loader from '../../../components/sharedItems/Loader/Loader';
+import axiosInstance from '../../../hooks/axiosInstance/axiosInstance';
 
 const PhotoGalleryNav = () => {
     const [photos, setPhotos] = useState([]);
@@ -86,7 +86,7 @@ const PhotoGalleryNav = () => {
 
                 {/* Header */}
                 <div className="text-center mb-10">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    <h1 className="text-3xl sm:text-4xl font-bold text-white bg-[#016496] py-2 rounded-md mb-4">
                         ফটো গ্যালারি
                     </h1>
                     <div className="w-32 h-1 bg-black mx-auto"></div>

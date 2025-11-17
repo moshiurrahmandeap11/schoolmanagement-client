@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { GrContact } from 'react-icons/gr';
 import { useNavigate } from 'react-router';
-import axiosInstance from '../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../components/sharedItems/Loader/Loader';
 import MainButton from '../../../components/sharedItems/Mainbutton/Mainbutton';
+import axiosInstance from '../../../hooks/axiosInstance/axiosInstance';
 
 const President = () => {
     const [speech, setSpeech] = useState(null);
@@ -84,7 +84,7 @@ const President = () => {
 
     return (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <h2 className="text-2xl my-2 mx-2 px-5 bg-[#051939] sm:text-xl py-3 font-bold text-white leading-tight flex items-center gap-2 rounded">
+            <h2 className="text-2xl my-2 mx-2 px-5 bg-[#016496] sm:text-xl py-3 font-bold text-white leading-tight flex items-center gap-2 rounded">
                 <GrContact className="text-white text-xl" />
                 সভাপতির বাণী
             </h2>
@@ -106,7 +106,7 @@ const President = () => {
 
                     {/* Speech Content */}
                     <div className={`${speech.image ? 'md:w-2/3 order-1 md:order-1' : 'w-full'}`}>
-                        <div className="text-gray-700 leading-relaxed text-justify">
+                        <div className="text-gray-700  leading-relaxed text-justify">
                             <p className="mb-4">{displayText}</p>
                             
                             {isTruncated && (

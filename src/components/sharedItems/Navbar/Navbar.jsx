@@ -87,8 +87,8 @@ const Navbar = () => {
                           key={subItem.name}
                           to={subItem.path}
                           className={({ isActive }) =>
-                            `block px-2 py-1 text-lg text-gray-800 hover:text-[#016496] text-left border-b border-gray-100 last:border-b-0 transition-colors duration-150 ${
-                              isActive ? " text-yellow-600 font-medium" : ""
+                            `block px-2 py-1 bg-[#016496] text-lg text-white hover:text-black text-left   transition-colors duration-150 border-none ${
+                              isActive ? " text-black font-medium" : ""
                             }`
                           }
                         >
@@ -103,8 +103,8 @@ const Navbar = () => {
                     className={({ isActive }) =>
                       `flex items-center justify-center w-full text-lg font-medium px-1 py-1 transition-colors duration-200 ${
                         isActive
-                          ? "text-white bg-[#800505] py-2 font-semibold"
-                          : "text-white hover:text-yellow-400 "
+                          ? "text-black bg-white py-2 font-semibold"
+                          : "text-white hover:text-black "
                       }`
                     }
                   >

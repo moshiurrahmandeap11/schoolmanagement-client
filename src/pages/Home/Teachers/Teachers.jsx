@@ -1,7 +1,6 @@
-import React from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { useNavigate } from 'react-router';
-import icon from "../../../../public/Teacher-Icon.png"
+import icon from "../../../../public/Teacher-Icon.png";
 
 const Teachers = () => {
     const navigate = useNavigate();
@@ -36,7 +35,7 @@ const Teachers = () => {
     return (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
             {/* Header */}
-            <h2 className="text-xl sm:text-2xl my-2 mx-2 px-4 sm:px-5 bg-[#06874A] py-3 font-bold text-white leading-tight flex items-center gap-2 sm:gap-3 rounded">
+            <h2 className="text-2xl my-2 mx-2 px-5 bg-[#016496] sm:text-xl py-3 font-bold text-white leading-tight flex items-center gap-2 rounded">
                 <GiHamburgerMenu className="text-white text-lg sm:text-xl flex-shrink-0" />
                 শিক্ষক ও কর্মচারীবৃন্দ
             </h2>

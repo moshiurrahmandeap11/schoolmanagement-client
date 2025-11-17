@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import axiosInstance, { baseImageURL } from '../../../../../hooks/axiosInstance/axiosInstance';
 import useAuth from '../../../../../hooks/useAuth/useAuth';
 
-const Profile = ({ onBack }) => {
+const Profile = () => {
     const { user: authUser } = useAuth();
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
@@ -40,7 +40,7 @@ const Profile = ({ onBack }) => {
                     // Check if it's already a full URL or needs base URL
                     const imageUrl = user.profileImage.startsWith('http') 
                         ? user.profileImage 
-                        : `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}${user.profileImage}`;
+                        : `${baseImageURL || axiosInstance.defaults.baseURL}${user.profileImage}`;
                     setImagePreview(imageUrl);
                 } else {
                     setImagePreview('');
@@ -258,25 +258,6 @@ const Profile = ({ onBack }) => {
         <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                    {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4">
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <h1 className="text-2xl font-bold text-white">
-                                    প্রোফাইল ব্যবস্থাপনা
-                                </h1>
-                                <p className="text-blue-100 text-sm mt-1">
-                                    আপনার প্রোফাইল তথ্য আপডেট করুন
-                                </p>
-                            </div>
-                            <button
-                                onClick={onBack}
-                                className="px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-white transition-colors duration-200 font-medium"
-                            >
-                                পিছনে যান
-                            </button>
-                        </div>
-                    </div>
 
                     {/* Content */}
                     <div className="p-6">
@@ -300,7 +281,7 @@ const Profile = ({ onBack }) => {
                                                         }}
                                                     />
                                                 ) : (
-                                                    <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold border-4 border-white shadow-lg mx-auto">
+                                                    <div className="w-32 h-32 bg-linear-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold border-4 border-white shadow-lg mx-auto">
                                                         {getUserInitials()}
                                                     </div>
                                                 )}

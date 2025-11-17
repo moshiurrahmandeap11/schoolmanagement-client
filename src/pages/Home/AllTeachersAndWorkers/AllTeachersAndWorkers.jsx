@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import axiosInstance, { baseImageURL } from '../../../hooks/axiosInstance/axiosInstance';
+import { useEffect, useRef, useState } from 'react';
 import Loader from '../../../components/sharedItems/Loader/Loader';
+import axiosInstance, { baseImageURL } from '../../../hooks/axiosInstance/axiosInstance';
 
 const AllTeachersAndWorkers = () => {
     const [teachers, setTeachers] = useState([]);
@@ -155,7 +155,7 @@ const AllTeachersAndWorkers = () => {
                 
                 {/* Header Section */}
                 <div className="text-center mb-8">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    <h1 className="text-3xl sm:text-4xl font-bold text-white bg-[#016496] py-2 rounded-md mb-4">
                         শিক্ষক ও কর্মচারীবৃন্দ
                     </h1>
                     <div className="w-32 h-1 bg-black mx-auto"></div>

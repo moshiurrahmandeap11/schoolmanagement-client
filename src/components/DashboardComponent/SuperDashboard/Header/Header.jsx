@@ -347,7 +347,7 @@ const Header = ({ onMenuClick, activeMenu, setActiveMenu, onToggleSidebar }) => 
                     {/* User Info Section */}
                     <div className="px-4 py-3 border-b border-gray-100">
                       <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
+                        <div className="w-10 h-10 bg-linear-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
                           <span className="text-white text-sm font-bold">
                             {getUserInitials()}
                           </span>

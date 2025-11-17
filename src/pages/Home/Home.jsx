@@ -64,7 +64,7 @@ const Home = () => {
           
           {/* Right Side - Sidebar (w-3/12) */}
           <div onClick={() => navigate("/auth/login")} className="lg:w-3/12 space-y-6 cursor-pointer">
-            <div className="flex items-center gap-2 border-2 px-2 py-2">
+            <div className="flex bg-[#016496] text-white font-medium items-center gap-2 border-2 px-2 py-2">
                 <span><BsArrowRight></BsArrowRight></span>
                 <span> লগইন</span>
             </div>

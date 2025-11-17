@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { Mail, Map, MapPin, Phone, Star } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
-import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../components/sharedItems/Loader/Loader';
-import { MapPin, Phone, Mail, Star } from 'lucide-react';
+import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
 
 const ContactInfoAdmin = () => {
     const [contactData, setContactData] = useState(null);
@@ -13,7 +13,8 @@ const ContactInfoAdmin = () => {
         phone1: '',
         phone2: '',
         email: '',
-        eiin: ''
+        eiin: '',
+        googleMapLink: ''
     });
 
     useEffect(() => {
@@ -33,7 +34,8 @@ const ContactInfoAdmin = () => {
                         phone1: response.data.data.phone1 || '',
                         phone2: response.data.data.phone2 || '',
                         email: response.data.data.email || '',
-                        eiin: response.data.data.eiin || ''
+                        eiin: response.data.data.eiin || '',
+                        googleMapLink: response.data.data.googleMapLink || ''
                     });
                 }
             }
@@ -58,7 +60,8 @@ const ContactInfoAdmin = () => {
                 phone1: formData.phone1,
                 phone2: formData.phone2,
                 email: formData.email,
-                eiin: formData.eiin
+                eiin: formData.eiin,
+                googleMapLink: formData.googleMapLink
             });
 
             if (response.data.success) {
@@ -86,7 +89,8 @@ const ContactInfoAdmin = () => {
                 phone1: formData.phone1,
                 phone2: formData.phone2,
                 email: formData.email,
-                eiin: formData.eiin
+                eiin: formData.eiin,
+                googleMapLink: formData.googleMapLink
             });
 
             if (response.data.success) {
@@ -198,6 +202,24 @@ const ContactInfoAdmin = () => {
                                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                             />
                         </div>
+
+                        {/* Google Map Link */}
+                        <div className="md:col-span-2">
+                            <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                                <Map className="w-4 h-4 text-yellow-500" />
+                                গুগল ম্যাপ লিঙ্ক
+                            </label>
+                            <input
+                                type="url"
+                                value={formData.googleMapLink}
+                                onChange={(e) => handleInputChange('googleMapLink', e.target.value)}
+                                placeholder="https://maps.google.com/?q=23.8103,90.4125"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            />
+                            <p className="text-xs text-gray-500 mt-1">
+                                গুগল ম্যাপের embed URL বা শেয়ার লিঙ্ক দিন (ঐচ্ছিক)
+                            </p>
+                        </div>
                     </div>
 
                     {/* Save/Update Button */}
@@ -231,24 +253,40 @@ const ContactInfoAdmin = () => {
                                 </h4>
                                 <ul className="space-y-4 text-sm">
                                     <li className="flex items-start">
-                                        <MapPin className="w-4 h-4 text-yellow-400 mr-3 mt-1 flex-shrink-0" />
+                                        <MapPin className="w-4 h-4 text-yellow-400 mr-3 mt-1 shrink-0" />
                                         <span>{contactData.address}</span>
                                     </li>
                                     <li className="flex items-start">
-                                        <Phone className="w-4 h-4 text-yellow-400 mr-3 mt-1 flex-shrink-0" />
+                                        <Phone className="w-4 h-4 text-yellow-400 mr-3 mt-1 shrink-0" />
                                         <span>
                                             {contactData.phone1}
                                             {contactData.phone2 && `, ${contactData.phone2}`}
                                         </span>
                                     </li>
                                     <li className="flex items-start">
-                                        <Mail className="w-4 h-4 text-yellow-400 mr-3 mt-1 flex-shrink-0" />
+                                        <Mail className="w-4 h-4 text-yellow-400 mr-3 mt-1 shrink-0" />
                                         <span>{contactData.email}</span>
                                     </li>
                                     <li className="flex items-start">
-                                        <Star className="w-4 h-4 text-yellow-400 mr-3 mt-1 flex-shrink-0" />
+                                        <Star className="w-4 h-4 text-yellow-400 mr-3 mt-1 shrink-0" />
                                         <span>EIIN- {contactData.eiin}</span>
                                     </li>
+                                    {contactData.googleMapLink && (
+                                        <li className="flex items-start">
+                                            <Map className="w-4 h-4 text-yellow-400 mr-3 mt-1 shrink-0" />
+                                            <div>
+                                                <span className="block">গুগল ম্যাপ লিঙ্ক:</span>
+                                                <a 
+                                                    href={contactData.googleMapLink} 
+                                                    target="_blank" 
+                                                    rel="noopener noreferrer"
+                                                    className="text-blue-500 hover:underline text-xs break-all"
+                                                >
+                                                    {contactData.googleMapLink}
+                                                </a>
+                                            </div>
+                                        </li>
+                                    )}
                                 </ul>
                             </div>
                         </div>
