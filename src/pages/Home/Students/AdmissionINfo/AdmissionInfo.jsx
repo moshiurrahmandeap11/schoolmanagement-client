@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../hooks/axiosInstance/axiosInstance';
 
 
@@ -83,7 +83,6 @@ const AdmissionInfo = () => {
                 <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
                     Admission Information
                 </h1>
-                <div className="w-20 h-1 bg-blue-500 mx-auto mb-4"></div>
                 <p className="text-gray-600 text-lg">
                     Everything you need to know about our admission process
                 </p>
@@ -93,10 +92,10 @@ const AdmissionInfo = () => {
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
                 <div className="flex flex-wrap items-center justify-between">
                     <div className="flex items-center space-x-2">
-                        <svg className="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                        <svg className="w-5 h-5 text-[#1e90c9]" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
                         </svg>
-                        <span className="text-blue-700 font-medium">
+                        <span className="text-[#1e90c9] font-medium">
                             Last updated: {new Date(admissionData.updatedAt).toLocaleDateString('en-US', {
                                 year: 'numeric',
                                 month: 'long',
@@ -106,7 +105,7 @@ const AdmissionInfo = () => {
                             })}
                         </span>
                     </div>
-                    <div className="text-blue-600 text-sm">
+                    <div className="text-[#1e90c9] text-sm">
                         Created: {new Date(admissionData.createdAt).toLocaleDateString()}
                     </div>
                 </div>

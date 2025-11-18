@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axiosInstance, { baseImageURL } from '../../../../hooks/axiosInstance/axiosInstance';
 
 
@@ -229,7 +229,7 @@ const WorkersList = () => {
                                     {/* Status Badge */}
                                     <div className={`absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-medium ${
                                         worker.isActive 
-                                            ? 'bg-green-100 text-green-800' 
+                                            ? 'bg-[#1e90c9] text-white' 
                                             : 'bg-red-100 text-red-800'
                                     }`}>
                                         {worker.isActive ? 'Active' : 'Inactive'}

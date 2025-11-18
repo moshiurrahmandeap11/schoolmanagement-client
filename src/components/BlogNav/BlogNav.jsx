@@ -214,7 +214,6 @@ const BlogNav = () => {
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
                         জ্ঞান, তথ্য এবং আপডেটের সংগ্রহশালা
                     </p>
-                    <div className="w-24 h-1 bg-blue-500 mx-auto"></div>
                 </div>
 
                 {/* Search Bar */}
@@ -225,7 +224,7 @@ const BlogNav = () => {
                             placeholder="ব্লগ খুঁজুন..."
                             value={searchTerm}
                             onChange={handleSearch}
-                            className="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            className="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                         />
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -265,7 +264,7 @@ const BlogNav = () => {
                                 
                                 {/* Date Badge */}
                                 <div className="absolute top-4 left-4">
-                                    <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                                    <span className="bg-[#1e90c9] text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
                                         {formatDate(blog.createdAt)}
                                     </span>
                                 </div>

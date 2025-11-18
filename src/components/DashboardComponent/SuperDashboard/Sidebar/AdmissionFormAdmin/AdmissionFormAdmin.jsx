@@ -300,7 +300,7 @@ const AdmissionFormAdmin = () => {
             <div className="max-w-4xl mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-linear-to-r from-blue-600 to-blue-800 px-6 py-4">
+                    <div className="bg-linear-to-r from-[#1e90c9] to-[#1e90c9]/90 px-6 py-4">
                         <h1 className="text-2xl font-bold text-white">
                             ভর্তি ফর্ম
                         </h1>

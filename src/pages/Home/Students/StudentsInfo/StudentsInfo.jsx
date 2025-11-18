@@ -125,7 +125,7 @@ const StudentsInfo = () => {
                                 className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"
                             >
                                 {/* Class Header */}
-                                <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
+                                <div className="bg-gradient-to-r from-[#1e90c9] to-[#1e90c9]/90 px-6 py-4">
                                     <h2 className="text-2xl font-bold text-white flex items-center gap-3">
                                         {className} শ্রেণী
                                         <span className="text-blue-200 text-lg ml-2">

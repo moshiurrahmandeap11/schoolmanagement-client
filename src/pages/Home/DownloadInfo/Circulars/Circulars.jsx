@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { FaArrowLeft, FaCalendarAlt, FaDownload, FaEye, FaSearch } from 'react-icons/fa';
 import { useNavigate } from 'react-router';
-import { FaCalendarAlt, FaArrowLeft, FaSearch, FaDownload, FaEye } from 'react-icons/fa';
+import MainButton from '../../../../components/sharedItems/Mainbutton/Mainbutton';
 import axiosInstance, { baseImageURL } from '../../../../hooks/axiosInstance/axiosInstance';
 
 
@@ -192,17 +193,17 @@ const AllCirculars = () => {
         // Page numbers
         for (let i = startPage; i <= endPage; i++) {
             pages.push(
-                <button
+                <MainButton
                     key={i}
                     onClick={() => handlePageChange(i)}
                     className={`px-3 py-2 rounded-lg border ${
                         currentPage === i
-                            ? 'bg-blue-600 text-white border-blue-600'
+                            ? 'bg-[#1e90c9] text-white border-[#1e90c9]'
                             : 'border-gray-300 text-gray-600 hover:bg-gray-50'
                     }`}
                 >
                     {i}
-                </button>
+                </MainButton>
             );
         }
 
@@ -229,7 +230,7 @@ const AllCirculars = () => {
                     <div className="flex items-center gap-3">
                         <button 
                             onClick={() => navigate(-1)}
-                            className="flex items-center gap-2 text-blue-600 hover:text-blue-700"
+                            className="flex items-center gap-2 text-[#1e90c9] hover:text-[#1e90c9]"
                         >
                             <FaArrowLeft />
                             Back
@@ -246,22 +247,22 @@ const AllCirculars = () => {
                                     placeholder="Search circulars..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-64"
+                                    className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] w-full sm:w-64"
                                 />
                                 <FaSearch className="absolute left-3 top-3 text-gray-400" />
                             </div>
-                            <button
+                            <MainButton
                                 type="submit"
-                                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                                className='rounded-md'
                             >
                                 Search
-                            </button>
+                            </MainButton>
                         </form>
                         
                         <select
                             value={filterCategory}
                             onChange={(e) => handleFilterChange('category', e.target.value)}
-                            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                         >
                             <option value="all">All Categories</option>
                             {categories.map(cat => (
@@ -274,7 +275,7 @@ const AllCirculars = () => {
                         <select
                             value={filterFileType}
                             onChange={(e) => handleFilterChange('fileType', e.target.value)}
-                            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                         >
                             <option value="all">All File Types</option>
                             <option value="pdf">PDF</option>
@@ -355,7 +356,7 @@ const AllCirculars = () => {
                                                     )}
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap">
-                                                    <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                    <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-[#1e90c9] text-white">
                                                         {circular.category}
                                                     </span>
                                                 </td>
@@ -386,7 +387,7 @@ const AllCirculars = () => {
                                                     </button>
                                                     <button
                                                         onClick={(e) => handleDownload(circular, e)}
-                                                        className="text-green-600 hover:text-green-900"
+                                                        className="text-[#1e90c9] hover:text-[#1e90c9]"
                                                     >
                                                         Download
                                                     </button>

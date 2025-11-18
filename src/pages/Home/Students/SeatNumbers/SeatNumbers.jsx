@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  FaSchool, 
-  FaUsers, 
-  FaChair, 
-  FaUserCheck, 
-  FaUserPlus,
-  FaSearch,
-  FaSync
+import { useEffect, useState } from 'react';
+import {
+    FaChair,
+    FaSchool,
+    FaSearch,
+    FaSync,
+    FaUserCheck,
+    FaUserPlus,
+    FaUsers
 } from 'react-icons/fa';
 import axiosInstance from '../../../../hooks/axiosInstance/axiosInstance';
 
@@ -87,7 +87,7 @@ const SeatNumbers = () => {
     const getStatusColor = (availableSeats) => {
         if (availableSeats === 0) return 'bg-red-100 text-red-800 border-red-200';
         if (availableSeats < 5) return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-        return 'bg-green-100 text-green-800 border-green-200';
+        return 'bg-[#1e90c9] text-white border-green-200';
     };
 
     // Get status text
@@ -116,7 +116,7 @@ const SeatNumbers = () => {
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <div className="flex items-center">
                             <div className="bg-blue-100 p-3 rounded-lg">
-                                <FaChair className="text-2xl text-blue-600" />
+                                <FaChair className="text-2xl text-[#1e90c9]" />
                             </div>
                             <div className="ml-4">
                                 <h1 className="text-2xl font-bold text-gray-900">Seat Information</h1>
@@ -134,7 +134,7 @@ const SeatNumbers = () => {
                                     placeholder="Search classes..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 />
                             </div>
                             <button
@@ -156,7 +156,7 @@ const SeatNumbers = () => {
                     <div className="bg-white rounded-lg border border-gray-200 p-6">
                         <div className="flex items-center">
                             <div className="bg-blue-100 p-3 rounded-lg">
-                                <FaSchool className="text-blue-600 text-xl" />
+                                <FaSchool className="text-[#1e90c9] text-xl" />
                             </div>
                             <div className="ml-4">
                                 <p className="text-sm font-medium text-gray-600">Total Classes</p>
@@ -167,8 +167,8 @@ const SeatNumbers = () => {
 
                     <div className="bg-white rounded-lg border border-gray-200 p-6">
                         <div className="flex items-center">
-                            <div className="bg-green-100 p-3 rounded-lg">
-                                <FaUsers className="text-green-600 text-xl" />
+                            <div className="bg-blue-100 p-3 rounded-lg">
+                                <FaUsers className="text-[#1e90c9] text-xl" />
                             </div>
                             <div className="ml-4">
                                 <p className="text-sm font-medium text-gray-600">Total Students</p>
@@ -181,8 +181,8 @@ const SeatNumbers = () => {
 
                     <div className="bg-white rounded-lg border border-gray-200 p-6">
                         <div className="flex items-center">
-                            <div className="bg-purple-100 p-3 rounded-lg">
-                                <FaUserCheck className="text-purple-600 text-xl" />
+                            <div className="bg-blue-100 p-3 rounded-lg">
+                                <FaUserCheck className="text-[#1e90c9] text-xl" />
                             </div>
                             <div className="ml-4">
                                 <p className="text-sm font-medium text-gray-600">Available Seats</p>

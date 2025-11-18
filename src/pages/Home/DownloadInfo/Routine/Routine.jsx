@@ -172,7 +172,7 @@ const AllRoutines = () => {
                                     placeholder="Search routines..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-64"
+                                    className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] w-full sm:w-64"
                                 />
                                 <FaSearch className="absolute left-3 top-3 text-gray-400" />
                             </div>
@@ -187,7 +187,7 @@ const AllRoutines = () => {
                         <select
                             value={filterPublished}
                             onChange={handleFilterChange}
-                            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                         >
                             <option value="all">All Status</option>
                             <option value="published">Published</option>
@@ -246,8 +246,8 @@ const AllRoutines = () => {
                                                     <span
                                                         className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                                                             routine.isPublished
-                                                                ? 'bg-green-100 text-green-800'
-                                                                : 'bg-yellow-100 text-yellow-800'
+                                                                ? 'bg-[#1e90c9] text-white'
+                                                                : 'bg-[#1e90c9] text-yellow-800'
                                                         }`}
                                                     >
                                                         {routine.isPublished ? 'Published' : 'Draft'}

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import MainButton from '../../../../components/sharedItems/Mainbutton/Mainbutton';
 import axiosInstance from '../../../../hooks/axiosInstance/axiosInstance';
 
 const HolidayList = () => {
@@ -287,8 +288,8 @@ const HolidayList = () => {
                                     isToday(holiday.date) 
                                         ? 'bg-yellow-100 text-yellow-800'
                                         : isPast(holiday.date)
-                                        ? 'bg-gray-100 text-gray-600'
-                                        : 'bg-green-100 text-green-700'
+                                        ? 'bg-gray-100 text-black'
+                                        : 'bg-[#1e90c9] text-white'
                                 }`}>
                                     {isToday(holiday.date) ? (
                                         <span className="font-semibold">🎉 Holiday Today!</span>
@@ -385,7 +386,7 @@ const HolidayList = () => {
 
                 {/* Upcoming Holidays Banner */}
                 {getUpcomingHolidays().length > 0 && (
-                    <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl shadow-lg p-6 mb-8 text-black">
+                    <div className="bg-gradient-to-r from-[#1e90c9] to-[#1e90c9]/90 rounded-2xl shadow-lg p-6 mb-8 text-black">
                         <div className="flex items-center justify-between mb-4">
                             <h2 className="text-xl font-bold">🎯 Upcoming Holidays</h2>
                             <span className="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">
@@ -423,43 +424,43 @@ const HolidayList = () => {
                             <label className="text-sm font-medium text-gray-700">Year:</label>
                             <div className="flex gap-2">
                                 {years.map(year => (
-                                    <button
+                                    <MainButton
                                         key={year}
                                         onClick={() => setSelectedYear(year)}
                                         className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                                             selectedYear === year
-                                                ? 'bg-blue-500 text-white'
-                                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                                ? 'bg-[#1e90c9] text-white'
+                                                : 'bg-gray-300 text-black hover:bg-gray-400'
                                         }`}
                                     >
                                         {year}
-                                    </button>
+                                    </MainButton>
                                 ))}
                             </div>
                         </div>
 
                         {/* View Toggle */}
                         <div className="flex gap-2">
-                            <button
+                            <MainButton
                                 onClick={() => setView('grid')}
                                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                                     view === 'grid'
-                                        ? 'bg-blue-500 text-white'
+                                        ? 'bg-[#1e90c9] text-white'
                                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                 }`}
                             >
-                                📄 Grid View
-                            </button>
-                            <button
+                                Grid View
+                            </MainButton>
+                            <MainButton
                                 onClick={() => setView('calendar')}
                                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                                     view === 'calendar'
-                                        ? 'bg-blue-500 text-white'
-                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                        ? 'bg-[#1e90c9] text-black'
+                                        : 'bg-gray-300 text-black hover:bg-gray-400'
                                 }`}
                             >
-                                📅 Calendar View
-                            </button>
+                                Calendar View
+                            </MainButton>
                         </div>
                     </div>
 
@@ -475,7 +476,7 @@ const HolidayList = () => {
                                 placeholder="Search by title or description..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                             />
                         </div>
 
@@ -487,7 +488,7 @@ const HolidayList = () => {
                             <select
                                 value={filterType}
                                 onChange={(e) => setFilterType(e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                             >
                                 <option value="">All Types</option>
                                 {holidayTypes.map(type => (
@@ -506,7 +507,7 @@ const HolidayList = () => {
                             <select
                                 value={filterMonth}
                                 onChange={(e) => setFilterMonth(e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                             >
                                 <option value="">All Months</option>
                                 {months.map(month => (

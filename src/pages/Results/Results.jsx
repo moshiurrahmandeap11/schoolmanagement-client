@@ -142,7 +142,7 @@ const Results = () => {
 
   return (
     <section className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-20">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -164,7 +164,7 @@ const Results = () => {
               <select
                 value={formData.session}
                 onChange={(e) => handleInputChange("session", e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                 required
               >
                 <option value="">সিলেক্ট করুন</option>
@@ -184,7 +184,7 @@ const Results = () => {
               <select
                 value={formData.class}
                 onChange={(e) => handleInputChange("class", e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                 required
               >
                 <option value="">সিলেক্ট করুন</option>
@@ -206,7 +206,7 @@ const Results = () => {
                 onChange={(e) =>
                   handleInputChange("examCategory", e.target.value)
                 }
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                 required
               >
                 <option value="">সিলেক্ট করুন</option>
@@ -230,7 +230,7 @@ const Results = () => {
                   handleInputChange("studentName", e.target.value)
                 }
                 placeholder="নাম বা আইডি লিখুন"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                 required
               />
 

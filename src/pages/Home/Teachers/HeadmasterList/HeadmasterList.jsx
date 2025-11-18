@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axiosInstance, { baseImageURL } from '../../../../hooks/axiosInstance/axiosInstance';
 
 const HeadmasterList = () => {
@@ -112,7 +112,7 @@ const HeadmasterList = () => {
                 {currentHeadmaster && (
                     <div className="bg-gradient-to-r from-blue-50 to-indigo-100 rounded-2xl shadow-lg border border-blue-200 p-6 sm:p-8 mb-8">
                         <div className="text-center mb-4">
-                            <span className="inline-block px-4 py-2 bg-blue-500 text-white text-sm font-medium rounded-full mb-2">
+                            <span className="inline-block px-4 py-2 bg-[#1e90c9] text-white text-sm font-medium rounded-full mb-2">
                                 Current Headmaster
                             </span>
                             <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">
