@@ -89,12 +89,8 @@ const WorkersList = () => {
                 {/* Header Section */}
                 <div className="text-center mb-8">
                     <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
-                        Our Dedicated Workers
+                        কর্মকর্তা ও কর্মচারীদের তালিকা
                     </h1>
-                    <div className="w-24 h-1 bg-green-500 mx-auto mb-4"></div>
-                    <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                        Meet our hardworking support staff who ensure the smooth operation of our institution.
-                    </p>
                 </div>
 
                 {/* Stats Section */}
@@ -243,7 +239,7 @@ const WorkersList = () => {
                                         <h3 className="text-lg font-bold text-gray-800 mb-1 line-clamp-1">
                                             {worker.name}
                                         </h3>
-                                        <p className="text-sm text-green-600 font-medium">
+                                        <p className="text-sm text-[#1e90c9] font-medium">
                                             {worker.designation}
                                         </p>
                                     </div>

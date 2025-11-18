@@ -216,7 +216,7 @@ const HolidayList = () => {
                             className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                         >
                             {/* Header with type and date */}
-                            <div className={`bg-gradient-to-r from-${getTypeColor(holiday.type)}-500 to-${getTypeColor(holiday.type)}-600 p-4 text-white`}>
+                            <div className={`bg-${getTypeColor(holiday.type)}-400  p-4 text-white`}>
                                 <div className="flex justify-between items-start">
                                     <div className="text-2xl">{getTypeIcon(holiday.type)}</div>
                                     <div className="text-right">
@@ -350,12 +350,8 @@ const HolidayList = () => {
                 {/* Header Section */}
                 <div className="text-center mb-8">
                     <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
-                        School Holiday Calendar
+                        স্কুল ছুটির তালিকা
                     </h1>
-                    <div className="w-24 h-1 bg-blue-500 mx-auto mb-4"></div>
-                    <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                        Stay updated with all school holidays and academic events throughout the year
-                    </p>
                 </div>
 
                 {/* Stats Section */}

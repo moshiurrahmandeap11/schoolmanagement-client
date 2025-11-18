@@ -1,5 +1,4 @@
-import React from 'react';
-import image from "../../../public/hotline-389x1024-Copy-1.jpg"
+import image from "../../../public/govtimage.jpg";
 
 const GovtImage = () => {
     return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../sharedItems/Loader/Loader';
@@ -54,7 +54,7 @@ const StudentsAdmin = () => {
 
     const fetchClasses = async () => {
         try {
-            const response = await axiosInstance.get('/classes');
+            const response = await axiosInstance.get('/class');
             if (response.data.success) {
                 setClasses(response.data.data);
             }
@@ -125,7 +125,7 @@ const StudentsAdmin = () => {
 
         if (className) {
             try {
-                const response = await axiosInstance.post('/classes', { name: className });
+                const response = await axiosInstance.post('/class', { name: className });
                 if (response.data.success) {
                     Swal.fire({
                         icon: 'success',

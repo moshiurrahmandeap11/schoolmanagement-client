@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { FaPlus, FaEdit, FaTrash, FaTimes } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
+import { FaEdit, FaPlus, FaTimes, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
-import RichTextEditor from '../../../../../../sharedItems/RichTextEditor/RichTextEditor';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
+import RichTextEditor from '../../../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 const CategoryModal = ({ isOpen, onClose, category, onSuccess }) => {
   const [name, setName] = useState('');
@@ -74,7 +75,7 @@ const CategoryModal = ({ isOpen, onClose, category, onSuccess }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 bg-black/40 bg-opacity-50 z-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-screen overflow-y-auto">
         <div className="flex items-center justify-between p-6 border-b">
           <h2 className="text-2xl font-bold text-gray-800">
@@ -98,7 +99,7 @@ const CategoryModal = ({ isOpen, onClose, category, onSuccess }) => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent outline-none transition"
               placeholder="যেমন: সাধারণ দাতা"
               required
             />
@@ -124,13 +125,13 @@ const CategoryModal = ({ isOpen, onClose, category, onSuccess }) => {
             >
               বাতিল
             </button>
-            <button
+            <MainButton
               type="submit"
               disabled={loading}
-              className="px-8 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition shadow-lg disabled:opacity-70"
+              className='rounded-md'
             >
               {loading ? 'সংরক্ষণ হচ্ছে...' : category ? 'আপডেট করুন' : 'যোগ করুন'}
-            </button>
+            </MainButton>
           </div>
         </form>
       </div>
@@ -157,7 +158,7 @@ const DonorCategory = () => {
         text: 'ক্যাটাগরি লোড করতে সমস্যা হয়েছে',
         icon: 'error',
         confirmButtonText: 'ঠিক আছে',
-        confirmButtonColor: '#2563eb', // Blue-600
+        confirmButtonColor: '#1e90c9', // Blue-600
       });
     } finally {
       setLoading(false);
@@ -186,7 +187,7 @@ const DonorCategory = () => {
       showCancelButton: true,
       confirmButtonText: 'হ্যাঁ, মুছে ফেলুন',
       cancelButtonText: 'বাতিল করুন',
-      confirmButtonColor: '#dc2626',
+      confirmButtonColor: '#1e90c9',
       cancelButtonColor: '#6b7280',
       reverseButtons: true,
       customClass: {
@@ -208,7 +209,7 @@ const DonorCategory = () => {
           text: 'ক্যাটাগরি সফলভাবে মুছে ফেলা হয়েছে',
           icon: 'success',
           confirmButtonText: 'ঠিক আছে',
-          confirmButtonColor: '#2563eb', // Blue-600
+          confirmButtonColor: '#1e90c9', 
           customClass: {
             popup: 'bangla-font',
             title: 'bangla-font',
@@ -248,35 +249,33 @@ const DonorCategory = () => {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h2 className="text-3xl font-bold text-gray-800">দাতা ক্যাটাগরি</h2>
-              <p className="text-gray-600 mt-1">মোট: <strong className="text-blue-600">{categories.length}</strong> টি</p>
+              <p className="text-gray-600 mt-1">মোট: <strong className="text-[#1e90c9]">{categories.length}</strong> টি</p>
             </div>
-            <button
+            <MainButton
               onClick={() => openModal()}
-              className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:shadow-xl transform hover:scale-105 transition-all duration-200 font-semibold"
               type="button"
             >
               <FaPlus /> নতুন ক্যাটাগরি
-            </button>
+            </MainButton>
           </div>
 
           {categories.length === 0 ? (
             <div className="text-center py-20">
               <div className="text-8xl text-gray-200 mb-6">Empty</div>
               <p className="text-2xl text-gray-500">এখনো কোনো ক্যাটাগরি তৈরি হয়নি</p>
-              <button
+              <MainButton
                 onClick={() => openModal()}
-                className="mt-6 px-8 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
                 type="button"
               >
                 প্রথম ক্যাটাগরি যোগ করুন
-              </button>
+              </MainButton>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {categories.map((cat) => (
                 <div
                   key={cat._id}
-                  className="group bg-gradient-to-br from-blue-50 via-sky-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-6 hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer"
+                  className="group bg-[#1e90c9]/10 border-2 border-blue-200 rounded-2xl p-6 hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer"
                 >
                   <h3 className="text-xl font-bold text-gray-800 mb-3">{cat.name}</h3>
                   {cat.description ? (

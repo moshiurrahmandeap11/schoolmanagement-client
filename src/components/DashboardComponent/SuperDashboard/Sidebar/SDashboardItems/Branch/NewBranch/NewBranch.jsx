@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-import { FaUpload, FaTimes, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
+import { FaCheckCircle, FaExclamationCircle, FaTimes, FaUpload } from 'react-icons/fa';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const NewBranch = () => {
   const [formData, setFormData] = useState({
@@ -121,7 +122,7 @@ const NewBranch = () => {
               name="name"
               value={formData.name}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
               placeholder="যেমন: মিরপুর শাখা"
               required
             />
@@ -132,7 +133,7 @@ const NewBranch = () => {
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               শাখার লোগো (অপশনাল)
             </label>
-            <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-blue-400 transition-colors">
+            <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-[#1e90c9] transition-colors">
               {logoPreview ? (
                 <div className="relative inline-block">
                   <img
@@ -164,7 +165,7 @@ const NewBranch = () => {
               />
               <label
                 htmlFor="logo-input"
-                className="mt-4 inline-block px-6 py-2 bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-blue-700 transition-colors text-sm font-medium"
+                className="mt-4 inline-block px-6 py-2 bg-[#1e90c9] text-white rounded-lg cursor-pointer  transition-colors text-sm font-medium"
               >
                 ফাইল নির্বাচন করুন
               </label>
@@ -181,7 +182,7 @@ const NewBranch = () => {
               value={formData.address}
               onChange={handleInputChange}
               rows="3"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all resize-none"
               placeholder="পূর্ণ ঠিকানা লিখুন (যেমন: বাড়ি নং, রোড, উপজেলা, জেলা)"
             />
           </div>
@@ -196,7 +197,7 @@ const NewBranch = () => {
               name="phone"
               value={formData.phone}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
               placeholder="যেমন: 01700000000"
               required
             />
@@ -204,10 +205,10 @@ const NewBranch = () => {
 
           {/* Submit Button */}
           <div className="flex flex-wrap gap-4 pt-6">
-            <button
+            <MainButton
               type="submit"
               disabled={loading}
-              className={`px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all flex items-center gap-3 ${
+              className={`px-8 py-3 bg-[#1e90c9] text-white font-semibold rounded-lg  transition-all flex items-center gap-3 ${
                 loading ? 'opacity-70 cursor-not-allowed' : ''
               }`}
             >
@@ -233,7 +234,7 @@ const NewBranch = () => {
               ) : (
                 'শাখা তৈরি করুন'
               )}
-            </button>
+            </MainButton>
 
             <button
               type="button"

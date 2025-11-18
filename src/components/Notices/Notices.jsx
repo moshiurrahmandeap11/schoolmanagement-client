@@ -59,7 +59,7 @@ const handleNoticeClick = (id) => {
               <div
                 key={notice._id}
                 onClick={() => handleNoticeClick(notice._id)}
-                className="py-1 px-2 border border-gray-200 bg-gray-50 shadow-sm rounded-md last:border-b-0  cursor-pointer transition-colors duration-150 group"
+                className="py-2 px-2  bg-gray-50 hover:shadow-sm hover:bg-gray-200 rounded-md last:border-b-0  cursor-pointer transition-colors duration-150 group"
               >
                 <div className="flex items-center gap-2 ">
                   <GrDocument className="text-purple-600" />

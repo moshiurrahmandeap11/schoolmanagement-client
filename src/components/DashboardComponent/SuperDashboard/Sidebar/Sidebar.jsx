@@ -787,14 +787,14 @@ const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen })
         className={`
           w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-left
           ${isActive 
-            ? "bg-blue-50 text-blue-600 border-r-4 border-blue-600 font-semibold shadow-sm" 
+            ? "bg-blue-50 text-[#1e90c9] border-r-4 border-[#1e90c9] font-semibold shadow-sm" 
             : "text-gray-600 hover:bg-gray-50"
           }
           ${isSubmenuItem ? "text-sm" : ""}
         `}
         style={{ paddingLeft: isSubmenuItem ? `${28 + level * 16}px` : "16px" }}
       >
-        {Icon && <Icon className={`text-xl ${isActive ? "text-blue-600" : "text-gray-500"}`} />}
+        {Icon && <Icon className={`text-xl ${isActive ? "text-[#1e90c9]" : "text-gray-500"}`} />}
         <span className="flex-1">{item.label}</span>
       </button>
     );
@@ -813,12 +813,12 @@ const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen })
           onClick={(e) => toggleSubmenu(e, item.id)}
           className={`
             w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg transition-all
-            ${(hasActiveChild || isOpen) ? "bg-blue-50 text-blue-600 font-semibold" : "text-gray-600 hover:bg-gray-50"}
+            ${(hasActiveChild || isOpen) ? "bg-blue-50 text-[#1e90c9] font-semibold" : "text-gray-600 hover:bg-gray-50"}
           `}
           style={{ paddingLeft: `${16 + level * 16}px` }}
         >
           <div className="flex items-center gap-3">
-            {Icon && <Icon className={`text-xl ${(hasActiveChild || isOpen) ? "text-blue-600" : "text-gray-500"}`} />}
+            {Icon && <Icon className={`text-xl ${(hasActiveChild || isOpen) ? "text-[#1e90c9]" : "text-gray-500"}`} />}
             <span>{item.label}</span>
           </div>
           <CgChevronDown className={`transition-transform ${isOpen ? "rotate-0" : "-rotate-90"}`} />

@@ -35,7 +35,12 @@ const SuperDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header onToggleSidebar={handleToggleSidebar} activeMenu={activeMenu} />
+      // SuperDashboard.jsx (এই লাইনটা ফিক্স করো)
+<Header 
+  onToggleSidebar={handleToggleSidebar} 
+  activeMenu={activeMenu}
+  setActiveMenu={setActiveMenu}   // <-- এটা যোগ করো (খুবই জরুরি!)
+/>
       <div className="flex pt-16">
         <Sidebar
           activeMenu={activeMenu}

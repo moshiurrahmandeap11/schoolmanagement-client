@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axiosInstance, { baseImageURL } from '../../../../hooks/axiosInstance/axiosInstance';
+import { useEffect, useState } from 'react';
 import Loader from '../../../../components/sharedItems/Loader/Loader';
+import axiosInstance, { baseImageURL } from '../../../../hooks/axiosInstance/axiosInstance';
 
 
 const TeachersList = () => {
@@ -79,12 +79,8 @@ const TeachersList = () => {
                 {/* Header Section */}
                 <div className="text-center mb-8">
                     <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
-                        Our Esteemed Teachers
+                        শিক্ষকবৃন্দের তালিকা 
                     </h1>
-                    <div className="w-24 h-1 bg-blue-500 mx-auto mb-4"></div>
-                    <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                        Meet our dedicated and experienced teaching faculty who are committed to providing quality education.
-                    </p>
                 </div>
 
                 {/* Stats Section */}
@@ -219,7 +215,7 @@ const TeachersList = () => {
                                     {/* Status Badge */}
                                     <div className={`absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-medium ${
                                         teacher.isActive 
-                                            ? 'bg-green-100 text-green-800' 
+                                            ? 'bg-[#1e90c9] text-white' 
                                             : 'bg-red-100 text-red-800'
                                     }`}>
                                         {teacher.isActive ? 'Active' : 'Inactive'}
@@ -234,7 +230,7 @@ const TeachersList = () => {
                                             {teacher.name}
                                         </h3>
                                         {teacher.designation && (
-                                            <p className="text-sm text-blue-600 font-medium">
+                                            <p className="text-sm text-[#1e90c9] font-medium">
                                                 {teacher.designation}
                                             </p>
                                         )}

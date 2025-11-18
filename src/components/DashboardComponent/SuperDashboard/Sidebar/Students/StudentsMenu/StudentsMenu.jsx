@@ -50,7 +50,7 @@ const StudentsMenu = ({ onBack }) => {
 
     const fetchClasses = async () => {
         try {
-            const response = await axiosInstance.get('/classes');
+            const response = await axiosInstance.get('/class');
             if (response.data.success) {
                 setClasses(response.data.data || []);
             }

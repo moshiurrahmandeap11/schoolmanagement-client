@@ -115,7 +115,6 @@ const Downloads = () => {
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                         প্রয়োজনীয় ফরম এবং সার্কুলার ডাউনলোড করুন
                     </p>
-                    <div className="w-32 h-1 bg-blue-500 mx-auto mt-6"></div>
                 </div>
 
                 {/* Admission Form Section */}

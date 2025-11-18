@@ -106,12 +106,9 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Contact Us
+          <h2 className=" mb-4">
+            যোগাযোগ করুন
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Any questions? Just drop your message 👇
-          </p>
         </div>
 
         {/* Contact Content */}

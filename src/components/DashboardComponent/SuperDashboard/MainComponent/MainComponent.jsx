@@ -162,12 +162,11 @@ import UserSettings from "../Sidebar/UserSettings/UserSettings";
 import MainAdmissionInfo from "../Sidebar/Vorti/MainAdmissionInfo/MainAdmissionInfo";
 import OnlineApplication from "../Sidebar/Vorti/OnlineApplication/OnlineApplication";
 
-const MainComponent = ({ activeMenu, onDashboardItemClick }) => { // প্রপ রিসিভ করা হলো
+const MainComponent = ({ activeMenu, onDashboardItemClick }) => { 
   const renderContent = () => {
     switch (activeMenu) {
       case "dashboard":
-        return <SDashboardItems onItemClick={onDashboardItemClick} />; // প্রপ পাস
-
+        return <SDashboardItems onItemClick={onDashboardItemClick} />; 
       case "branch-management":
         return <BranchManagement />;
       case "donation-management":

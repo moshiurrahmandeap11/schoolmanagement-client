@@ -113,7 +113,7 @@ const PrincipalSpeech = () => {
                                 <MainButton
                                     onClick={handleReadMore}
                                 >
-                                    আরও পড়ুন
+                                    আরো জানুন...
                                 </MainButton>
                             )}
                         </div>

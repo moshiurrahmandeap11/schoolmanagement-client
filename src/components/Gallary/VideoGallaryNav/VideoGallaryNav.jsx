@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axiosInstance from '../../../hooks/axiosInstance/axiosInstance';
+import { useEffect, useState } from 'react';
 import Loader from '../../../components/sharedItems/Loader/Loader';
+import axiosInstance from '../../../hooks/axiosInstance/axiosInstance';
 
 const VideoGallaryNav = () => {
     const [videos, setVideos] = useState([]);
@@ -87,10 +87,9 @@ const VideoGallaryNav = () => {
 
                 {/* Header */}
                 <div className="text-center mb-10">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
                         ভিডিও গ্যালারি
                     </h1>
-                    <div className="w-32 h-1 bg-black mx-auto"></div>
                 </div>
 
                 {/* Video Grid */}

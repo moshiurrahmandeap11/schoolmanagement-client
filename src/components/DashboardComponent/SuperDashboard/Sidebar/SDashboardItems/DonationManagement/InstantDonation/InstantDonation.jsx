@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { FaDonate, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
+import { useState } from 'react';
+import { FaCheckCircle, FaDonate, FaExclamationCircle } from 'react-icons/fa';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const InstantDonation = () => {
   const [formData, setFormData] = useState({
@@ -58,8 +59,8 @@ const InstantDonation = () => {
     <div className="max-w-full mx-auto">
       <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-8 sm:p-10">
         <div className="text-center mb-10">
-          <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <FaDonate className="text-4xl text-purple-600" />
+          <div className="w-20 h-20 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-4">
+            <FaDonate className="text-4xl text-[#1e90c9]" />
           </div>
           <h2 className="text-3xl font-bold text-gray-800">ইনস্ট্যান্ট দান গ্রহণ</h2>
           <p className="text-gray-600 mt-2">তাৎক্ষণিক দান সংগ্রহ করুন</p>
@@ -88,7 +89,7 @@ const InstantDonation = () => {
               name="donorName"
               value={formData.donorName}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
               placeholder="যেমন: আব্দুল্লাহ আল মামুন"
             />
           </div>
@@ -103,7 +104,7 @@ const InstantDonation = () => {
               name="address"
               value={formData.address}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
               placeholder="গ্রাম/এলাকা, উপজেলা, জেলা"
             />
           </div>
@@ -118,7 +119,7 @@ const InstantDonation = () => {
               name="mobile"
               value={formData.mobile}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
               placeholder="যেমন: 01700000000"
             />
           </div>
@@ -133,7 +134,7 @@ const InstantDonation = () => {
               name="amount"
               value={formData.amount}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
               placeholder="যেমন: 5000"
               min="1"
             />
@@ -149,20 +150,20 @@ const InstantDonation = () => {
               name="collectedBy"
               value={formData.collectedBy}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
               placeholder="যেমন: রহিম উদ্দিন"
             />
           </div>
 
           {/* Submit */}
           <div className="pt-6">
-            <button
+            <MainButton
               type="submit"
               disabled={loading}
               className={`w-full py-4 rounded-xl font-bold text-white transition-all duration-300 flex items-center justify-center gap-3 ${
                 loading
-                  ? 'bg-purple-400 cursor-not-allowed'
-                  : 'bg-purple-600 hover:bg-purple-700 shadow-lg hover:shadow-xl'
+                  ? 'bg-[#1e90c9] cursor-not-allowed'
+                  : 'bg-[#1e90c9]  shadow-lg hover:shadow-xl'
               }`}
             >
               {loading ? (
@@ -179,7 +180,7 @@ const InstantDonation = () => {
                   দান গ্রহণ করুন
                 </>
               )}
-            </button>
+            </MainButton>
           </div>
         </form>
       </div>
