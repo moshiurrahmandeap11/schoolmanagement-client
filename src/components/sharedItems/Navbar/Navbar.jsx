@@ -16,7 +16,7 @@ const Navbar = () => {
         { name: "প্রধান শিক্ষকগণের নামের তালিকা", path: "/head-teachers-list" }
       ]
     },
-    { name: "শিক্ষার্থীদের তথ্য", path: "/students-info" },
+    { name: "শিক্ষার্থী", path: "/students-info" },
     {
       name: "ভর্তি",
       submenu: [
@@ -62,7 +62,7 @@ const Navbar = () => {
                 {item.submenu ? (
                   <>
                     <button
-                      className="flex items-center justify-center w-full text-lg font-medium text-white hover:text-yellow-400 px-1 py-1 transition-colors duration-200"
+                      className="flex items-center justify-center w-full text-sm font-medium text-white hover:text-yellow-400 px-1 py-1 transition-colors duration-200"
                     >
                       {item.name}
                       <svg
@@ -87,8 +87,8 @@ const Navbar = () => {
                           key={subItem.name}
                           to={subItem.path}
                           className={({ isActive }) =>
-                            `block px-2 py-1 bg-[#016496] text-lg text-white hover:text-black text-left   transition-colors duration-150 border-none ${
-                              isActive ? " text-black font-medium" : ""
+                            `block px-2 py-1 bg-[#016496] text-sm text-white hover:text-yellow-400 text-left   transition-colors duration-150 border-none ${
+                              isActive ? " text-yellow-400 font-medium" : ""
                             }`
                           }
                         >
@@ -101,10 +101,10 @@ const Navbar = () => {
                   <NavLink
                     to={item.path}
                     className={({ isActive }) =>
-                      `flex items-center justify-center w-full text-lg font-medium px-1 py-1 transition-colors duration-200 ${
+                      `flex items-center justify-center w-full text-sm font-medium px-1 py-1 transition-colors duration-200 ${
                         isActive
-                          ? "text-black bg-white py-2 font-semibold"
-                          : "text-white hover:text-black "
+                          ? "text-yellow-400 py-2 font-semibold"
+                          : "text-white hover:text-yellow-400 "
                       }`
                     }
                   >

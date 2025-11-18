@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { FaArrowLeft, FaCalendarAlt, FaFileImage, FaSearch } from 'react-icons/fa';
 import { useNavigate } from 'react-router';
-import { FaCalendarAlt, FaArrowLeft, FaSearch, FaFileImage } from 'react-icons/fa';
+import MainButton from '../../../../components/sharedItems/Mainbutton/Mainbutton';
 import axiosInstance, { baseImageURL } from '../../../../hooks/axiosInstance/axiosInstance';
 
 
@@ -154,7 +155,7 @@ const AllRoutines = () => {
                     <div className="flex items-center gap-3">
                         <button 
                             onClick={() => navigate(-1)}
-                            className="flex items-center gap-2 text-blue-600 hover:text-blue-700"
+                            className="flex items-center gap-2 text-[#1e90c9]"
                         >
                             <FaArrowLeft />
                             Back
@@ -175,12 +176,12 @@ const AllRoutines = () => {
                                 />
                                 <FaSearch className="absolute left-3 top-3 text-gray-400" />
                             </div>
-                            <button
+                            <MainButton
                                 type="submit"
-                                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                                className='w-full rounded-md'
                             >
                                 Search
-                            </button>
+                            </MainButton>
                         </form>
                         
                         <select

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import axiosInstance, { baseImageURL } from '../../hooks/axiosInstance/axiosInstance';
 import Loader from '../sharedItems/Loader/Loader';
+import MainButton from '../sharedItems/Mainbutton/Mainbutton';
 
 const BlogNav = () => {
     const [blogs, setBlogs] = useState([]);
@@ -281,12 +282,12 @@ const BlogNav = () => {
                                 </p>
 
                                 <div className="flex items-center justify-between">
-                                    <span className="text-blue-500 text-sm font-semibold group-hover:text-blue-700 transition-colors flex items-center gap-1">
+                                    <MainButton >
                                         আরও পড়ুন
                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                         </svg>
-                                    </span>
+                                    </MainButton>
                                 </div>
                             </div>
                         </div>

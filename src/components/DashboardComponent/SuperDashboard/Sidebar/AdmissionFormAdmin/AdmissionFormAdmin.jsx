@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AdmissionFormAdmin = () => {
@@ -666,13 +667,13 @@ const AdmissionFormAdmin = () => {
 
                         {/* Submit Button */}
                         <div className="flex justify-center pt-6">
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={loading}
                                 className={`px-8 py-4 rounded-lg font-medium text-white transition-colors duration-200 flex items-center justify-center space-x-2 ${
                                     loading
                                         ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
+                                        : 'bg-[#1e90c9]  focus:outline-none focus:ring-2  focus:ring-offset-2'
                                 }`}
                             >
                                 {loading ? (
@@ -688,7 +689,7 @@ const AdmissionFormAdmin = () => {
                                         <span>ভর্তি ফর্ম জমা দিন</span>
                                     </>
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
                     </form>
                 </div>

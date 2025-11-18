@@ -19,22 +19,20 @@ import Teachers from "./Teachers/Teachers";
 import VideoGallery from "./VideoGallery/VideoGallery";
 
 const Home = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-gray-50">
       <Banner />
       <Recently />
-      
+
       {/* Main Content Area */}
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
-          
           {/* Left Side - Main Content (w-9/12) */}
           <div className="lg:w-9/12 space-y-8">
-            
             {/* History Section */}
             <HistorySchool />
-            
+
             {/* President and Principal Section - Side by Side */}
             <div className="flex flex-col md:flex-row gap-6 shadow-md bg-gray-50 p-2">
               <div className="md:w-1/2">
@@ -44,7 +42,7 @@ const Home = () => {
                 <PrincipalSpeech />
               </div>
             </div>
-            
+
             {/* Grid 4 Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
               <div className="col-span-1">
@@ -61,25 +59,31 @@ const Home = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Right Side - Sidebar (w-3/12) */}
-          <div onClick={() => navigate("/auth/login")} className="lg:w-3/12 space-y-6 cursor-pointer">
-            <div className="flex bg-[#016496] text-white font-medium items-center gap-2 border-2 px-2 py-2">
-                <span><BsArrowRight></BsArrowRight></span>
-                <span> লগইন</span>
+          {/* Right Side - Sidebar (w-3/12) */}
+          <div className="lg:w-3/12 space-y-6">
+            {/* শুধুমাত্র login button-এ onClick দিন */}
+            <div
+              onClick={() => navigate("/auth/login")}
+              className="flex bg-[#016496] text-white font-medium items-center gap-2 border-2 px-2 py-2 cursor-pointer"
+            >
+              <span>
+                <BsArrowRight />
+              </span>
+              <span> লগইন</span>
             </div>
+
             <Notices />
             <FacebookPage />
             <GovtImage />
           </div>
-          <div>
-          </div>
         </div>
-            <AllTeachersAndWorkers></AllTeachersAndWorkers>
-            <BrilliantStudents></BrilliantStudents>
-            <PhotoGalleryNav></PhotoGalleryNav>
-            <VideoGallery></VideoGallery>
-            <LatestBlogs></LatestBlogs>
+        <AllTeachersAndWorkers></AllTeachersAndWorkers>
+        <BrilliantStudents></BrilliantStudents>
+        <PhotoGalleryNav></PhotoGalleryNav>
+        <VideoGallery></VideoGallery>
+        <LatestBlogs></LatestBlogs>
       </div>
     </div>
   );

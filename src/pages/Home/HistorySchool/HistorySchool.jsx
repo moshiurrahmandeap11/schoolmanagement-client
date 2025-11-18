@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FaHistory } from "react-icons/fa";
 import { useNavigate } from "react-router";
 import Loader from "../../../components/sharedItems/Loader/Loader";
+import MainButton from "../../../components/sharedItems/Mainbutton/Mainbutton";
 import axiosInstance from "../../../hooks/axiosInstance/axiosInstance";
 
 const HistorySchool = () => {
@@ -100,12 +101,11 @@ const HistorySchool = () => {
         </div>
 
         {/* Read More Button */}
-        <button
+        <MainButton
           onClick={handleReadMore}
-          className="inline-flex items-center px-4 py-2 bg-[#016496] text-white font-medium rounded-full cursor-pointer shadow-md "
         >
           <span> আরো জানুন...</span>
-        </button>
+        </MainButton>
       </div>
     </div>
   );

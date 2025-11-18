@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 import Swal from "sweetalert2";
+import MainButton from "../../components/sharedItems/Mainbutton/Mainbutton";
 import axiosInstance from "../../hooks/axiosInstance/axiosInstance";
 
 const Contact = () => {
@@ -201,12 +202,12 @@ const Contact = () => {
                 ></textarea>
               </div>
 
-              <button
+              <MainButton
                 type="submit"
-                className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300"
+                className="w-full flex items-center justify-center"
               >
                 Send Message
-              </button>
+              </MainButton>
             </form>
           </div>
 
@@ -219,7 +220,7 @@ const Contact = () => {
             <div className="space-y-6">
               {/* Location */}
               <div className="flex items-start space-x-4">
-                <FaMapMarkerAlt className="w-6 h-6 text-blue-600 mt-1 shrink-0" />
+                <FaMapMarkerAlt className="w-6 h-6 text-[#1e90c9] mt-1 shrink-0" />
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-1">লোকেশন</h4>
                   <p className="text-gray-600">
@@ -230,7 +231,7 @@ const Contact = () => {
 
               {/* Mobile */}
               <div className="flex items-start space-x-4">
-                <FaPhone className="w-6 h-6 text-blue-600 mt-1 shrink-0" />
+                <FaPhone className="w-6 h-6 text-[#1e90c9] mt-1 shrink-0" />
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-1">মোবাইল</h4>
                   <p className="text-gray-600">
@@ -244,7 +245,7 @@ const Contact = () => {
 
               {/* Email */}
               <div className="flex items-start space-x-4">
-                <FaEnvelope className="w-6 h-6 text-blue-600 mt-1 shrink-0" />
+                <FaEnvelope className="w-6 h-6 text-[#1e90c9] mt-1 shrink-0" />
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-1">ইমেইল</h4>
                   <p className="text-gray-600">
@@ -286,7 +287,7 @@ const Contact = () => {
                     href={contactInfo.googleMapLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 text-sm font-medium inline-flex items-center gap-1"
+                    className="text-[#1e90c9] hover:text-[#1e90c9] text-sm font-medium inline-flex items-center gap-1"
                   >
                     <span>গুগল ম্যাপে দেখুন</span>
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">

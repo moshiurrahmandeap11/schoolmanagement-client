@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axiosInstance, { baseImageURL } from '../../hooks/axiosInstance/axiosInstance';
 import Loader from '../sharedItems/Loader/Loader';
+import MainButton from '../sharedItems/Mainbutton/Mainbutton';
 
 const Downloads = () => {
     const [admissionForm, setAdmissionForm] = useState(null);
@@ -93,12 +94,11 @@ const Downloads = () => {
                     <div className="text-red-500 text-4xl mb-3">⚠️</div>
                     <h3 className="text-lg font-semibold text-gray-800 mb-2">লোড করতে সমস্যা</h3>
                     <p className="text-red-500 text-sm mb-4">{error}</p>
-                    <button
+                    <MainButton
                         onClick={fetchDownloadData}
-                        className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-medium text-sm"
                     >
                         আবার চেষ্টা করুন
-                    </button>
+                    </MainButton>
                 </div>
             </div>
         );
@@ -142,17 +142,15 @@ const Downloads = () => {
                                         </p>
                                     </div>
                                 </div>
-                                <button
+                                <MainButton
                                     onClick={() => handleDownload(
                                         admissionForm.path, 
                                         `admission-form.${admissionForm.originalName.split('.').pop()}`,
                                         admissionForm.mimetype
                                     )}
-                                    className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors font-semibold flex items-center gap-2"
                                 >
-                                    <span>⬇️</span>
                                     ডাউনলোড করুন
-                                </button>
+                                </MainButton>
                             </div>
                         </div>
                     ) : (
@@ -206,18 +204,16 @@ const Downloads = () => {
                                             </div>
                                         </div>
                                         <div className="flex gap-2">
-                                            <button
+                                            <MainButton
                                                 onClick={() => handleDownload(
                                                     circular.filePath,
                                                     circular.fileName,
                                                     circular.fileType,
                                                     circular._id
                                                 )}
-                                                className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors font-semibold flex items-center gap-2"
                                             >
-                                                <span>⬇️</span>
                                                 ডাউনলোড
-                                            </button>
+                                            </MainButton>
                                         </div>
                                     </div>
                                 </div>

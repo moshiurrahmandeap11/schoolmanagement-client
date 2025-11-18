@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import axiosInstance from '../../hooks/axiosInstance/axiosInstance';
+import { useEffect, useState } from "react";
+import MainButton from "../../components/sharedItems/Mainbutton/Mainbutton";
+import axiosInstance from "../../hooks/axiosInstance/axiosInstance";
 
 const Results = () => {
   const [sessions, setSessions] = useState([]);
@@ -12,11 +13,11 @@ const Results = () => {
   const [searchLoading, setSearchLoading] = useState(false);
 
   const [formData, setFormData] = useState({
-    session: '',
-    class: '',
-    examCategory: '',
-    studentId: '',
-    studentName: ''
+    session: "",
+    class: "",
+    examCategory: "",
+    studentId: "",
+    studentName: "",
   });
 
   // Fetch initial data
@@ -29,60 +30,61 @@ const Results = () => {
 
   const fetchSessions = async () => {
     try {
-      const response = await axiosInstance.get('/sessions');
+      const response = await axiosInstance.get("/sessions");
       if (response.data.success) {
         setSessions(response.data.data);
       }
     } catch (error) {
-      console.error('Error fetching sessions:', error);
+      console.error("Error fetching sessions:", error);
     }
   };
 
   const fetchClasses = async () => {
     try {
-      const response = await axiosInstance.get('/class');
+      const response = await axiosInstance.get("/class");
       if (response.data.success) {
         setClasses(response.data.data);
       }
     } catch (error) {
-      console.error('Error fetching classes:', error);
+      console.error("Error fetching classes:", error);
     }
   };
 
   const fetchExamCategories = async () => {
     try {
-      const response = await axiosInstance.get('/exam-categories');
+      const response = await axiosInstance.get("/exam-categories");
       if (response.data.success) {
         setExamCategories(response.data.data);
       }
     } catch (error) {
-      console.error('Error fetching exam categories:', error);
+      console.error("Error fetching exam categories:", error);
     }
   };
 
   const fetchStudents = async () => {
     try {
-      const response = await axiosInstance.get('/students');
+      const response = await axiosInstance.get("/students");
       if (response.data.success) {
         setStudents(response.data.data);
       }
     } catch (error) {
-      console.error('Error fetching students:', error);
+      console.error("Error fetching students:", error);
     }
   };
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
 
     // Student search functionality
-    if (field === 'studentName') {
+    if (field === "studentName") {
       if (value.length > 2) {
-        const filtered = students.filter(student =>
-          student.name?.toLowerCase().includes(value.toLowerCase()) ||
-          student.studentId?.toLowerCase().includes(value.toLowerCase())
+        const filtered = students.filter(
+          (student) =>
+            student.name?.toLowerCase().includes(value.toLowerCase()) ||
+            student.studentId?.toLowerCase().includes(value.toLowerCase())
         );
         setFilteredStudents(filtered);
       } else {
@@ -92,42 +94,47 @@ const Results = () => {
   };
 
   const handleStudentSelect = (student) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       studentId: student._id,
-      studentName: student.name
+      studentName: student.name,
     }));
     setFilteredStudents([]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!formData.session || !formData.class || !formData.examCategory || !formData.studentId) {
-      alert('দয়া করে সবগুলো ফিল্ড পূরণ করুন');
+
+    if (
+      !formData.session ||
+      !formData.class ||
+      !formData.examCategory ||
+      !formData.studentId
+    ) {
+      alert("দয়া করে সবগুলো ফিল্ড পূরণ করুন");
       return;
     }
 
     try {
       setLoading(true);
-      const response = await axiosInstance.get('/results', {
+      const response = await axiosInstance.get("/results", {
         params: {
           session: formData.session,
           class: formData.class,
           examCategory: formData.examCategory,
-          studentId: formData.studentId
-        }
+          studentId: formData.studentId,
+        },
       });
 
       if (response.data.success) {
         setResults(response.data.data);
       } else {
         setResults([]);
-        alert('কোন রেজাল্ট পাওয়া যায়নি');
+        alert("কোন রেজাল্ট পাওয়া যায়নি");
       }
     } catch (error) {
-      console.error('Error fetching results:', error);
-      alert('রেজাল্ট লোড করতে সমস্যা হয়েছে');
+      console.error("Error fetching results:", error);
+      alert("রেজাল্ট লোড করতে সমস্যা হয়েছে");
     } finally {
       setLoading(false);
     }
@@ -146,113 +153,117 @@ const Results = () => {
           </p>
         </div>
 
-{/* Search Form */}
-<div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-  <form onSubmit={handleSubmit} className="space-y-6">
-    
-    {/* Session Dropdown */}
-    <div>
-      <label className="block text-sm font-medium text-gray-700 mb-2">
-        সেশন *
-      </label>
-      <select
-        value={formData.session}
-        onChange={(e) => handleInputChange('session', e.target.value)}
-        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        required
-      >
-        <option value="">সিলেক্ট করুন</option>
-        {sessions.map((session) => (
-          <option key={session._id} value={session._id}>
-            {session.name}
-          </option>
-        ))}
-      </select>
-    </div>
-
-    {/* Class Dropdown */}
-    <div>
-      <label className="block text-sm font-medium text-gray-700 mb-2">
-        ক্লাস *
-      </label>
-      <select
-        value={formData.class}
-        onChange={(e) => handleInputChange('class', e.target.value)}
-        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        required
-      >
-        <option value="">সিলেক্ট করুন</option>
-        {classes.map((classItem) => (
-          <option key={classItem._id} value={classItem._id}>
-            {classItem.name}
-          </option>
-        ))}
-      </select>
-    </div>
-
-    {/* Exam Category Dropdown */}
-    <div>
-      <label className="block text-sm font-medium text-gray-700 mb-2">
-        পরীক্ষা *
-      </label>
-      <select
-        value={formData.examCategory}
-        onChange={(e) => handleInputChange('examCategory', e.target.value)}
-        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        required
-      >
-        <option value="">সিলেক্ট করুন</option>
-        {examCategories.map((exam) => (
-          <option key={exam._id} value={exam._id}>
-            {exam.name}
-          </option>
-        ))}
-      </select>
-    </div>
-
-    {/* Student Search */}
-    <div className="relative">
-      <label className="block text-sm font-medium text-gray-700 mb-2">
-        শিক্ষার্থীর নাম/আইডি *
-      </label>
-      <input
-        type="text"
-        value={formData.studentName}
-        onChange={(e) => handleInputChange('studentName', e.target.value)}
-        placeholder="নাম বা আইডি লিখুন"
-        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        required
-      />
-      
-      {/* Student Suggestions */}
-      {filteredStudents.length > 0 && (
-        <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
-          {filteredStudents.map((student) => (
-            <div
-              key={student._id}
-              className="px-3 py-2 hover:bg-blue-50 cursor-pointer border-b border-gray-100"
-              onClick={() => handleStudentSelect(student)}
-            >
-              <div className="font-medium">{student.name}</div>
-              <div className="text-sm text-gray-500">আইডি: {student.studentId}</div>
+        {/* Search Form */}
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Session Dropdown */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                সেশন *
+              </label>
+              <select
+                value={formData.session}
+                onChange={(e) => handleInputChange("session", e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              >
+                <option value="">সিলেক্ট করুন</option>
+                {sessions.map((session) => (
+                  <option key={session._id} value={session._id}>
+                    {session.name}
+                  </option>
+                ))}
+              </select>
             </div>
-          ))}
-        </div>
-      )}
-    </div>
 
-    {/* Submit Button */}
-    <div className="flex justify-center pt-4">
-      <button
-        type="submit"
-        disabled={loading}
-        className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        {loading ? 'লোড হচ্ছে...' : 'ফলাফল দেখুন'}
-      </button>
-    </div>
-  </form>
-</div>
+            {/* Class Dropdown */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                ক্লাস *
+              </label>
+              <select
+                value={formData.class}
+                onChange={(e) => handleInputChange("class", e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              >
+                <option value="">সিলেক্ট করুন</option>
+                {classes.map((classItem) => (
+                  <option key={classItem._id} value={classItem._id}>
+                    {classItem.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Exam Category Dropdown */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                পরীক্ষা *
+              </label>
+              <select
+                value={formData.examCategory}
+                onChange={(e) =>
+                  handleInputChange("examCategory", e.target.value)
+                }
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              >
+                <option value="">সিলেক্ট করুন</option>
+                {examCategories.map((exam) => (
+                  <option key={exam._id} value={exam._id}>
+                    {exam.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Student Search */}
+            <div className="relative">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                শিক্ষার্থীর নাম/আইডি *
+              </label>
+              <input
+                type="text"
+                value={formData.studentName}
+                onChange={(e) =>
+                  handleInputChange("studentName", e.target.value)
+                }
+                placeholder="নাম বা আইডি লিখুন"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
+
+              {/* Student Suggestions */}
+              {filteredStudents.length > 0 && (
+                <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                  {filteredStudents.map((student) => (
+                    <div
+                      key={student._id}
+                      className="px-3 py-2 hover:bg-blue-50 cursor-pointer border-b border-gray-100"
+                      onClick={() => handleStudentSelect(student)}
+                    >
+                      <div className="font-medium">{student.name}</div>
+                      <div className="text-sm text-gray-500">
+                        আইডি: {student.studentId}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Submit Button */}
+            <div className="flex justify-center pt-4">
+              <MainButton
+                type="submit"
+                disabled={loading}
+              >
+                {loading ? "লোড হচ্ছে..." : "ফলাফল দেখুন"}
+              </MainButton>
+            </div>
+          </form>
+        </div>
 
         {/* Results Table */}
         {results.length > 0 && (
@@ -260,28 +271,29 @@ const Results = () => {
             <div className="overflow-x-auto">
               <table className="min-w-full">
                 <thead className="bg-blue-600 text-white">
-  <tr>
-    <th className="py-3 px-6 text-left">শিক্ষার্থী</th>
-    <th className="py-3 px-6 text-left">গড় নম্বর</th>
-    <th className="py-3 px-6 text-left">গ্রেড</th>
-    <th className="py-3 px-6 text-left">উপস্থিতি</th>
-    <th className="py-3 px-6 text-left">অনুপস্থিতি</th>
-  </tr>
-</thead>
+                  <tr>
+                    <th className="py-3 px-6 text-left">শিক্ষার্থী</th>
+                    <th className="py-3 px-6 text-left">গড় নম্বর</th>
+                    <th className="py-3 px-6 text-left">গ্রেড</th>
+                    <th className="py-3 px-6 text-left">উপস্থিতি</th>
+                    <th className="py-3 px-6 text-left">অনুপস্থিতি</th>
+                  </tr>
+                </thead>
 
-<tbody>
-  {results.map((result, index) => (
-    <tr key={result._id} className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}>
-      <td className="py-3 px-6">{result.studentName}</td>
-      <td className="py-3 px-6">{result.averageMarks}</td>
-      <td className="py-3 px-6">{result.averageLetterGrade}</td>
-      <td className="py-3 px-6">{result.totalPresent}</td>
-      <td className="py-3 px-6">{result.totalAbsent}</td>
-    </tr>
-  ))}
-</tbody>
-
-
+                <tbody>
+                  {results.map((result, index) => (
+                    <tr
+                      key={result._id}
+                      className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
+                    >
+                      <td className="py-3 px-6">{result.studentName}</td>
+                      <td className="py-3 px-6">{result.averageMarks}</td>
+                      <td className="py-3 px-6">{result.averageLetterGrade}</td>
+                      <td className="py-3 px-6">{result.totalPresent}</td>
+                      <td className="py-3 px-6">{result.totalAbsent}</td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </div>
           </div>

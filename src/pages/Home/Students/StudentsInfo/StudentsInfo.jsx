@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import Loader from '../../../../components/sharedItems/Loader/Loader';
+import MainButton from '../../../../components/sharedItems/Mainbutton/Mainbutton';
 import axiosInstance from '../../../../hooks/axiosInstance/axiosInstance';
 
 const StudentsInfo = () => {
@@ -87,29 +88,29 @@ const StudentsInfo = () => {
                         </h2>
 
                         <div className="flex flex-wrap gap-2">
-                            <button
+                            <MainButton
                                 onClick={() => setSelectedClass('all')}
                                 className={`px-4 py-2 rounded-md transition-colors ${
                                     selectedClass === 'all'
-                                        ? 'bg-blue-600 text-white'
-                                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                                        ? 'bg-[#1e90c9] text-white'
+                                        : 'bg-gray-200 text-black hover:bg-gray-300'
                                 }`}
                             >
                                 সকল শ্রেণী
-                            </button>
+                            </MainButton>
 
                             {sortedClasses.map((cls) => (
-                                <button
+                                <MainButton
                                     key={cls}
                                     onClick={() => setSelectedClass(cls)}
                                     className={`px-4 py-2 rounded-md transition-colors ${
                                         selectedClass === cls
-                                            ? 'bg-blue-600 text-white'
-                                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                                            ? 'bg-[#1e90c9] text-white'
+                                            : 'bg-gray-200 text-black hover:bg-gray-300'
                                     }`}
                                 >
                                     {cls}
-                                </button>
+                                </MainButton>
                             ))}
                         </div>
                     </div>

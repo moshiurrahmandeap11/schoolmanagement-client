@@ -27,7 +27,7 @@ const AcademicInfo = () => {
     return (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
             {/* Header */}
-            <h2 className="text-2xl my-2 mx-2 px-5 bg-[#016496] sm:text-xl py-3 font-bold text-white leading-tight flex items-center gap-2 rounded">
+            <h2 className="text-2xl my-2 mx-2 px-5 bg-[#088da5] sm:text-xl py-3 font-bold text-white leading-tight flex items-center gap-2 rounded">
                 <GiHamburgerMenu className="text-white text-lg sm:text-xl flex-shrink-0" />
                 একাডেমিক পেপার
             </h2>
@@ -57,14 +57,14 @@ const AcademicInfo = () => {
                                     className="flex items-center gap-3 cursor-pointer group"
                                 >
                                     {/* Check Mark */}
-                                    <svg className="w-3 h-3 text-[#81D742]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-3 h-3 text-[#088da5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                                     </svg>
                                     
                                     {/* Text with Hover Underline */}
-                                    <span className="text-gray-700 text-sm sm:text-base font-medium leading-relaxed group-hover:text-[#81D742] transition-colors duration-200 relative">
+                                    <span className="text-gray-700 text-sm sm:text-base font-medium leading-relaxed group-hover:text-[#088da5] transition-colors duration-200 relative">
                                         {item.text}
-                                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#81D742] transition-all duration-200 group-hover:w-full"></span>
+                                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#088da5] transition-all duration-200 group-hover:w-full"></span>
                                     </span>
                                 </div>
                             ))}
