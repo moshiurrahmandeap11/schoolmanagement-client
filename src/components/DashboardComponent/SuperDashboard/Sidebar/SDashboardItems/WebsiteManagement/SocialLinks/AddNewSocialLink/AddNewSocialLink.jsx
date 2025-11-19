@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaFacebook, FaInstagram, FaLink, FaLinkedin, FaSave, FaTwitter, FaYoutube } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddNewSocialLink = ({ editingSocialLink, onBack }) => {
@@ -288,7 +289,7 @@ const AddNewSocialLink = ({ editingSocialLink, onBack }) => {
                                         name="url"
                                         value={formData.url}
                                         onChange={handleInputChange}
-                                        className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                                        className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] text-sm"
                                         placeholder={getPlatformPlaceholder(formData.platform)}
                                         required
                                     />
@@ -321,17 +322,17 @@ const AddNewSocialLink = ({ editingSocialLink, onBack }) => {
 
                             {/* Form Actions */}
                             <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-gray-200">
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="flex-1 px-5 py-2.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 transition-colors font-medium flex items-center justify-center gap-2 text-sm"
+                                    className="flex-1 px-5 py-2.5  text-white rounded-lg disabled:opacity-50 transition-colors font-medium flex items-center justify-center gap-2 text-sm"
                                 >
                                     <FaSave className="text-sm" />
                                     {loading 
                                         ? (editingSocialLink ? 'Updating...' : 'Creating...') 
                                         : (editingSocialLink ? 'Update Link' : 'Create Link')
                                     }
-                                </button>
+                                </MainButton>
                                 <button
                                     type="button"
                                     onClick={handleReset}

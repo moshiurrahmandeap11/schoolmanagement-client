@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaMoneyBillWave, FaPercentage, FaSave } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const AddNewDiscountJog = ({ discount, onBack, onSuccess }) => {
     const [formData, setFormData] = useState({
@@ -280,13 +281,10 @@ const AddNewDiscountJog = ({ discount, onBack, onSuccess }) => {
                 <div className="max-w-full mx-auto">
                     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8">
                         <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="bg-green-50 p-4 rounded-lg mb-6">
-                                <h3 className="text-lg font-semibold text-green-800 mb-2">
+                            <div className="bg-blue-50 p-4 rounded-lg mb-6">
+                                <h3 className="text-lg font-semibold text-[#1e90c9] mb-2">
                                     ডিসকাউন্ট তথ্য:
                                 </h3>
-                                <p className="text-sm text-green-600">
-                                    সেশন, ক্লাস, ব্যাচ এবং ফি টাইপ নির্বাচন করে ডিসকাউন্ট বরাদ্দ করুন
-                                </p>
                             </div>
 
                             {/* Session and Class */}
@@ -299,7 +297,7 @@ const AddNewDiscountJog = ({ discount, onBack, onSuccess }) => {
                                         name="sessionId"
                                         value={formData.sessionId}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.sessionId ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         disabled={loading}
@@ -324,7 +322,7 @@ const AddNewDiscountJog = ({ discount, onBack, onSuccess }) => {
                                         name="classId"
                                         value={formData.classId}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.classId ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         disabled={loading}
@@ -352,7 +350,7 @@ const AddNewDiscountJog = ({ discount, onBack, onSuccess }) => {
                                         name="batchId"
                                         value={formData.batchId}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     >
                                         <option value="">সকল ব্যাচ (ঐচ্ছিক)</option>
@@ -372,7 +370,7 @@ const AddNewDiscountJog = ({ discount, onBack, onSuccess }) => {
                                         name="feeTypeId"
                                         value={formData.feeTypeId}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.feeTypeId ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         disabled={loading}
@@ -400,7 +398,7 @@ const AddNewDiscountJog = ({ discount, onBack, onSuccess }) => {
                                         name="discountTypeId"
                                         value={formData.discountTypeId}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.discountTypeId ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         disabled={loading}
@@ -429,7 +427,7 @@ const AddNewDiscountJog = ({ discount, onBack, onSuccess }) => {
                                                 value={formData.discountAmount}
                                                 onChange={handleChange}
                                                 placeholder="0.00"
-                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all ${
+                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                     errors.discountAmount ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                                 }`}
                                                 disabled={loading}
@@ -451,7 +449,7 @@ const AddNewDiscountJog = ({ discount, onBack, onSuccess }) => {
                                                 placeholder="0"
                                                 min="0"
                                                 max="100"
-                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all ${
+                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                     errors.discountAmount ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                                 }`}
                                                 disabled={loading}
@@ -477,7 +475,7 @@ const AddNewDiscountJog = ({ discount, onBack, onSuccess }) => {
                                     onChange={handleChange}
                                     rows="3"
                                     placeholder="ছাড় সম্পর্কে অতিরিক্ত তথ্য..."
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                     disabled={loading}
                                 />
                             </div>
@@ -531,10 +529,10 @@ const AddNewDiscountJog = ({ discount, onBack, onSuccess }) => {
                                 >
                                     বাতিল করুন
                                 </button>
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="inline-flex items-center gap-2 px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md"
                                 >
                                     {loading ? (
                                         <>
@@ -543,11 +541,11 @@ const AddNewDiscountJog = ({ discount, onBack, onSuccess }) => {
                                         </>
                                     ) : (
                                         <>
-                                            <FaSave className="text-sm" />
+                                            <FaSave className="text-sm mr-2" />
                                             {discount ? 'আপডেট করুন' : 'সংরক্ষণ করুন'}
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
                     </div>

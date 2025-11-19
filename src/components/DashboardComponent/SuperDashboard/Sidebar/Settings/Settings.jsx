@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance, { baseImageURL } from '../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState('banner');
@@ -274,10 +275,9 @@ const Settings = () => {
       <div className="max-w-full mx-auto">
         {/* Header */}
         <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold bg-black bg-clip-text text-transparent">
+          <h1 className="text-4xl font-bold ">
             Settings Dashboard
           </h1>
-          <p className="text-gray-600 mt-2 text-lg">Manage banners and sliders with ease</p>
         </div>
 
         {/* Tab Navigation */}
@@ -286,7 +286,7 @@ const Settings = () => {
             <button
               className={`flex-1 py-5 px-6 text-center font-semibold transition-all duration-300 ${
                 activeTab === 'banner'
-                  ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
+                  ? 'text-[#1e90c9] border-b-2 border-[#1e90c9] bg-blue-50'
                   : 'text-gray-600 hover:text-blue-500 hover:bg-gray-50'
               }`}
               onClick={() => setActiveTab('banner')}
@@ -298,7 +298,7 @@ const Settings = () => {
             <button
               className={`flex-1 py-5 px-6 text-center font-semibold transition-all duration-300 ${
                 activeTab === 'slider'
-                  ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
+                  ? 'text-[#1e90c9] border-b-2 border-[#1e90c9] bg-blue-50'
                   : 'text-gray-600 hover:text-blue-500 hover:bg-gray-50'
               }`}
               onClick={() => setActiveTab('slider')}
@@ -313,10 +313,6 @@ const Settings = () => {
         {/* Loading Spinner */}
         {(loading || uploading) && (
           <div className="flex justify-center items-center py-12">
-            {/* <div className="relative">
-              <div className="w-16 h-16 border-4 border-blue-200 rounded-full animate-spin"></div>
-              <div className="w-16 h-16 border-4 border-blue-600 rounded-full animate-spin absolute top-0 left-0 border-t-transparent"></div>
-            </div> */}
             <Loader></Loader>
           </div>
         )}
@@ -327,7 +323,7 @@ const Settings = () => {
             {/* Add New Banner Form */}
             <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-2 h-8 bg-blue-600 rounded-full"></div>
+                <div className="w-2 h-8 bg-[#1e90c9] rounded-full"></div>
                 <h3 className="text-2xl font-bold text-gray-800">Create New Banner</h3>
               </div>
               
@@ -338,7 +334,7 @@ const Settings = () => {
                     type="text"
                     value={newBanner.title}
                     onChange={(e) => setNewBanner({...newBanner, title: e.target.value})}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                     placeholder="Enter banner title"
                   />
                 </div>
@@ -350,7 +346,7 @@ const Settings = () => {
                       type="file"
                       accept="image/*"
                       onChange={handleBannerImageChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-all"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-[#1e90c9] hover:file:bg-blue-100 transition-all"
                     />
                   </div>
                   {newBanner.image && (
@@ -360,10 +356,10 @@ const Settings = () => {
                   )}
                 </div>
                 <div className="flex items-end">
-                  <button
+                  <MainButton
                     onClick={handleAddBanner}
                     disabled={uploading}
-                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-6 rounded-xl hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed font-semibold shadow-lg hover:shadow-xl"
+                    className="w-full text-white py-4 mb-1 px-6 rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed font-semibold shadow-lg hover:shadow-xl"
                   >
                     {uploading ? (
                       <div className="flex items-center justify-center gap-2">
@@ -373,7 +369,7 @@ const Settings = () => {
                     ) : (
                       'Create Banner'
                     )}
-                  </button>
+                  </MainButton>
                 </div>
               </div>
             </div>
@@ -383,7 +379,7 @@ const Settings = () => {
               <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
                 <div className="flex items-center justify-between">
                   <h3 className="text-2xl font-bold text-gray-800">All Banners</h3>
-                  <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">
+                  <span className="bg-[#1e90c9] text-white px-3 py-1 rounded-full text-sm font-semibold">
                     {banners.length} items
                   </span>
                 </div>
@@ -404,7 +400,7 @@ const Settings = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                     {banners.map((banner) => (
                       <div key={banner._id} className="border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 bg-white">
-                        <div className="h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative">
+                        <div className="h-48 bg-linear-to-br from-gray-100 to-gray-200 flex items-center justify-center relative">
                           {banner.image ? (
                             <img 
                               src={getImageUrl(banner.image)} 
@@ -465,7 +461,7 @@ const Settings = () => {
             {/* Add New Slider Form */}
             <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-2 h-8 bg-blue-600 rounded-full"></div>
+                <div className="w-2 h-8 bg-[#1e90c9] rounded-full"></div>
                 <h3 className="text-2xl font-bold text-gray-800">Create New Slider</h3>
               </div>
               
@@ -477,7 +473,7 @@ const Settings = () => {
                       type="text"
                       value={newSlider.title}
                       onChange={(e) => setNewSlider({...newSlider, title: e.target.value})}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                       placeholder="Enter slider name"
                     />
                   </div>
@@ -487,7 +483,7 @@ const Settings = () => {
                       type="number"
                       value={newSlider.speed}
                       onChange={(e) => setNewSlider({...newSlider, speed: parseInt(e.target.value) || 3000})}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                       placeholder="3000"
                     />
                   </div>
@@ -503,7 +499,7 @@ const Settings = () => {
                         className="sr-only"
                       />
                       <div className={`w-12 h-6 rounded-full transition-all duration-300 ${
-                        newSlider.autoPlay ? 'bg-blue-600' : 'bg-gray-300'
+                        newSlider.autoPlay ? 'bg-[#1e90c9]' : 'bg-gray-300'
                       }`}>
                         <div className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-white transition-all duration-300 ${
                           newSlider.autoPlay ? 'transform translate-x-6' : ''
@@ -523,7 +519,7 @@ const Settings = () => {
                     accept="image/*"
                     multiple
                     onChange={handleSliderImagesChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-blue-700 hover:file:bg-purple-100 transition-all"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-[#1e90c9] hover:file:bg-purple-100 transition-all"
                   />
                   {newSlider.images.length > 0 && (
                     <div className="mt-4">
@@ -550,10 +546,10 @@ const Settings = () => {
                   )}
                 </div>
 
-                <button
+                <MainButton
                   onClick={handleAddSlider}
                   disabled={uploading}
-                  className="w-full bg-blue-600 text-white py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed font-semibold text-lg shadow-lg hover:shadow-xl"
+                  className="w-full flex items-center justify-center text-white py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed font-semibold text-lg shadow-lg hover:shadow-xl"
                 >
                   {uploading ? (
                     <div className="flex items-center justify-center gap-3">
@@ -563,16 +559,16 @@ const Settings = () => {
                   ) : (
                     'Create Slider'
                   )}
-                </button>
+                </MainButton>
               </div>
             </div>
 
             {/* Slider List */}
             <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
-              <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
+              <div className="p-6 border-b border-gray-200 bg-linear-to-r from-gray-50 to-gray-100">
                 <div className="flex items-center justify-between">
                   <h3 className="text-2xl font-bold text-gray-800">All Sliders</h3>
-                  <span className="bg-purple-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">
+                  <span className="bg-[#1e90c9] text-white px-3 py-1 rounded-full text-sm font-semibold">
                     {sliders.length} items
                   </span>
                 </div>

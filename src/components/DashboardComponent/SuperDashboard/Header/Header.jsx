@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
   FaBars,
-  FaBell,
   FaBook,
   FaChevronDown,
   FaClipboardList,
@@ -116,7 +115,7 @@ const Header = ({ onToggleSidebar, activeMenu, setActiveMenu }) => {
       await axiosInstance.post('/users/logout');
       logOut();
       navigate('/auth/login');
-    } catch (error) {
+    } catch  {
       localStorage.removeItem('user');
       logOut();
       navigate('/auth/login');
@@ -148,8 +147,7 @@ const Header = ({ onToggleSidebar, activeMenu, setActiveMenu }) => {
 
   return (
     <>
-      {/* Header - সবচেয়ে উপরে থাকবে */}
-      <header className="fixed top-0 left-0 right-0 bg-white shadow-sm border-b border-gray-200 z-[70] h-16">
+      <header className="fixed top-0 left-0 right-0 bg-white shadow-sm border-b border-gray-200 z-70 h-16">
         <div className="px-4 sm:px-6 lg:px-8 h-full">
           <div className="flex justify-between items-center h-full">
 
@@ -162,10 +160,10 @@ const Header = ({ onToggleSidebar, activeMenu, setActiveMenu }) => {
               {/* Dashboard */}
               <button
                 onClick={handleDashboardClick}
-                className={`flex items-center space-x-2 px-3 lg:px-4 py-2 rounded-lg transition-all ${
+                className={`flex items-center space-x-2 px-3 lg:px-4 py-2 rounded-lg transition-all border ${
                   activeMenu === 'dashboard'
-                    ? 'bg-blue-50 text-blue-600 border border-blue-200'
-                    : 'text-gray-700 hover:bg-gray-50'
+                    ? 'bg-[#1e90c9] text-white border-blue-200'
+                    : 'text-gray-700 hover:bg-gray-50 border-transparent'
                 }`}
               >
                 <FaHome className="text-lg" />
@@ -176,8 +174,8 @@ const Header = ({ onToggleSidebar, activeMenu, setActiveMenu }) => {
               <div className="relative hidden lg:block nav-dropdown">
                 <button
                   onClick={() => toggleDropdown('branch')}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all ${
-                    activeDropdown === 'branch' ? 'bg-blue-50 text-blue-600 border border-blue-200' : 'text-gray-700 hover:bg-gray-50'
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all border ${
+                    activeDropdown === 'branch' ? 'bg-[#1e90c9] text-white border-blue-200' : 'text-gray-700 hover:bg-gray-50 border-transparent'
                   }`}
                 >
                   <FaCodeBranch className="text-lg" />
@@ -186,7 +184,7 @@ const Header = ({ onToggleSidebar, activeMenu, setActiveMenu }) => {
                 </button>
 
                 {activeDropdown === 'branch' && (
-                  <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-[80] animate-fadeIn">
+                  <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-80 animate-fadeIn">
                     {branchItems.map((item) => (
                       <button
                         key={item.id}
@@ -204,8 +202,8 @@ const Header = ({ onToggleSidebar, activeMenu, setActiveMenu }) => {
               <div className="relative hidden lg:block nav-dropdown">
                 <button
                   onClick={() => toggleDropdown('new')}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all ${
-                    activeDropdown === 'new' ? 'bg-blue-50 text-blue-600 border border-blue-200' : 'text-gray-700 hover:bg-gray-50'
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all border ${
+                    activeDropdown === 'new' ? 'bg-[#1e90c9] text-white border-blue-200' : 'text-gray-700 hover:bg-gray-50 border-transparent'
                   }`}
                 >
                   <FaPlus className="text-lg" />
@@ -214,7 +212,7 @@ const Header = ({ onToggleSidebar, activeMenu, setActiveMenu }) => {
                 </button>
 
                 {activeDropdown === 'new' && (
-                  <div className="absolute top-full left-0 mt-2 w-max bg-white rounded-lg shadow-lg border border-gray-200 py-4 z-[80] animate-fadeIn max-w-4xl">
+                  <div className="absolute top-full left-0 mt-2 w-max bg-white rounded-lg shadow-lg border border-gray-200 py-4 z-80 animate-fadeIn max-w-4xl">
                     <div className="flex gap-6 px-4">
                       {newItems.map((section) => {
                         const Icon = section.icon;
@@ -252,18 +250,13 @@ const Header = ({ onToggleSidebar, activeMenu, setActiveMenu }) => {
                 <FaHome className="text-xl" />
               </button>
 
-              <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg relative">
-                <FaBell className="text-xl" />
-                <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
-              </button>
-
               {/* Profile Dropdown */}
               <div className="relative profile-dropdown">
                 <button
                   onClick={toggleProfileDropdown}
                   className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50"
                 >
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-sm">
+                  <div className="w-8 h-8 bg-[#1e90c9] rounded-full flex items-center justify-center shadow-sm">
                     <span className="text-white text-sm font-bold">{getUserInitials()}</span>
                   </div>
                   <div className="hidden md:block text-left">
@@ -276,10 +269,10 @@ const Header = ({ onToggleSidebar, activeMenu, setActiveMenu }) => {
                 </button>
 
                 {isProfileDropdownOpen && (
-                  <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-[80] animate-fadeIn">
+                  <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-80 animate-fadeIn">
                     <div className="px-4 py-3 border-b border-gray-100">
                       <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
+                        <div className="w-10 h-10 bg-[#1e90c9] rounded-full flex items-center justify-center">
                           <span className="text-white font-bold">{getUserInitials()}</span>
                         </div>
                         <div>
@@ -288,7 +281,7 @@ const Header = ({ onToggleSidebar, activeMenu, setActiveMenu }) => {
                           <span className={`mt-1 inline-block px-2 py-0.5 rounded text-xs font-medium ${
                             user?.role === 'admin' ? 'bg-red-100 text-red-800' :
                             user?.role === 'moderator' ? 'bg-purple-100 text-purple-800' :
-                            'bg-green-100 text-green-800'
+                            'bg-[#1e90c9] text-white'
                           }`}>
                             {getUserRoleDisplay()}
                           </span>
@@ -316,13 +309,13 @@ const Header = ({ onToggleSidebar, activeMenu, setActiveMenu }) => {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <>
-          <div className="lg:hidden fixed top-16 left-0 right-0 bg-white border-b border-gray-200 shadow-lg z-[65] animate-fadeIn">
+          <div className="lg:hidden fixed top-16 left-0 right-0 bg-white border-b border-gray-200 shadow-lg z-65 animate-fadeIn">
             <div className="p-4 space-y-4 max-h-[calc(100vh-4rem)] overflow-y-auto">
               {/* Mobile শাখা & নতুন মেনু তোমার আগের মতোই রাখতে পারো */}
               {/* (এখানে তোমার আগের মোবাইল মেনু কোড রাখো) */}
             </div>
           </div>
-          <div className="fixed inset-0 bg-black/50 z-[60] lg:hidden" onClick={() => setIsMobileMenuOpen(false)} />
+          <div className="fixed inset-0 bg-black/50 z-60 lg:hidden" onClick={() => setIsMobileMenuOpen(false)} />
         </>
       )}
 

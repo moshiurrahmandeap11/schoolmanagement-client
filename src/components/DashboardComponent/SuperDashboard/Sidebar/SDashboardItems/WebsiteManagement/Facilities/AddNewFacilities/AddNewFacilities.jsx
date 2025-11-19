@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaSave, FaUpload } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance, { baseImageURL } from '../../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 
@@ -209,7 +210,7 @@ const AddNewFacilities = ({ editingFacility, onBack }) => {
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Header with Back Button */}
-            <div className="sticky top-0 z-10 bg-white border-b border-gray-200 shadow-sm">
+            <div className=" bg-white border-b border-gray-200 shadow-sm">
                 <div className="flex items-center gap-4 p-4 sm:p-6">
                     <button
                         onClick={onBack}
@@ -243,7 +244,7 @@ const AddNewFacilities = ({ editingFacility, onBack }) => {
                                     name="name"
                                     value={formData.name}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] text-sm"
                                     placeholder="সুবিধার নাম লিখুন"
                                     required
                                 />
@@ -286,7 +287,7 @@ const AddNewFacilities = ({ editingFacility, onBack }) => {
                                         <div className="mt-4">
                                             <div className="bg-gray-200 rounded-full h-2">
                                                 <div 
-                                                    className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+                                                    className="bg-[#1e90c9] h-2 rounded-full transition-all duration-300"
                                                     style={{ width: `${uploadProgress}%` }}
                                                 ></div>
                                             </div>
@@ -326,22 +327,22 @@ const AddNewFacilities = ({ editingFacility, onBack }) => {
 
                             {/* Form Actions */}
                             <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-gray-200">
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="flex-1 px-5 py-2.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 transition-colors font-medium flex items-center justify-center gap-2 text-sm"
+                                    className='rounded-md'
                                 >
                                     <FaSave className="text-sm" />
                                     {loading 
                                         ? (editingFacility ? 'Updating...' : 'Creating...') 
                                         : (editingFacility ? 'Update Facility' : 'Create Facility')
                                     }
-                                </button>
+                                </MainButton>
                                 <button
                                     type="button"
                                     onClick={handleReset}
                                     disabled={loading}
-                                    className="flex-1 px-5 py-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 transition-colors font-medium text-sm"
+                                    className=" px-5 py-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 transition-colors font-medium text-sm"
                                 >
                                     Reset
                                 </button>
@@ -349,7 +350,7 @@ const AddNewFacilities = ({ editingFacility, onBack }) => {
                                     type="button"
                                     onClick={onBack}
                                     disabled={loading}
-                                    className="flex-1 px-5 py-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 transition-colors font-medium text-sm"
+                                    className=" px-5 py-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 transition-colors font-medium text-sm"
                                 >
                                     Cancel
                                 </button>

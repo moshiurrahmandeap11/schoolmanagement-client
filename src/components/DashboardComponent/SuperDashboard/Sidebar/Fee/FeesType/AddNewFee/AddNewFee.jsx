@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaCalendarAlt, FaMoneyBillWave, FaSave } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 const AddNewFee = ({ feeType, onBack, onSuccess }) => {
@@ -229,12 +230,9 @@ const AddNewFee = ({ feeType, onBack, onSuccess }) => {
                     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8">
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="bg-teal-50 p-4 rounded-lg mb-6">
-                                <h3 className="text-lg font-semibold text-teal-800 mb-2">
+                                <h3 className="text-lg font-semibold text-[#1e90c9] mb-2">
                                     ফি টাইপের তথ্য:
                                 </h3>
-                                <p className="text-sm text-teal-600">
-                                    ফি টাইপের বিস্তারিত তথ্য প্রদান করুন
-                                </p>
                             </div>
 
                             {/* Basic Information */}
@@ -249,7 +247,7 @@ const AddNewFee = ({ feeType, onBack, onSuccess }) => {
                                         name="name"
                                         value={formData.name}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.name ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         placeholder="ফি টাইপের নাম লিখুন"
@@ -273,7 +271,7 @@ const AddNewFee = ({ feeType, onBack, onSuccess }) => {
                                             onChange={handleChange}
                                             min="0"
                                             step="0.01"
-                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all ${
+                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                 errors.amount ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                             }`}
                                             placeholder="0.00"
@@ -295,7 +293,7 @@ const AddNewFee = ({ feeType, onBack, onSuccess }) => {
                                         name="isMonthly"
                                         checked={formData.isMonthly}
                                         onChange={handleChange}
-                                        className="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500"
+                                        className="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-[#1e90c9]0"
                                         disabled={loading}
                                     />
                                     <label className="ml-2 text-sm font-medium text-gray-700">
@@ -311,7 +309,7 @@ const AddNewFee = ({ feeType, onBack, onSuccess }) => {
                                         name="feeApplicable"
                                         value={formData.feeApplicable}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     >
                                         {feeApplicableOptions.map((option) => (
@@ -336,7 +334,7 @@ const AddNewFee = ({ feeType, onBack, onSuccess }) => {
                                             name="feeEndsDate"
                                             value={formData.feeEndsDate}
                                             onChange={handleChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                             disabled={loading}
                                         />
                                         <FaCalendarAlt className="absolute right-3 top-3.5 text-gray-400" />
@@ -352,7 +350,7 @@ const AddNewFee = ({ feeType, onBack, onSuccess }) => {
                                         name="sessionId"
                                         value={formData.sessionId}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.sessionId ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         disabled={loading}
@@ -378,7 +376,7 @@ const AddNewFee = ({ feeType, onBack, onSuccess }) => {
                                         name="classId"
                                         value={formData.classId}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.classId ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         disabled={loading}
@@ -452,10 +450,10 @@ const AddNewFee = ({ feeType, onBack, onSuccess }) => {
                                 >
                                     বাতিল করুন
                                 </button>
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="inline-flex items-center gap-2 px-8 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md"
                                 >
                                     {loading ? (
                                         <>
@@ -464,11 +462,11 @@ const AddNewFee = ({ feeType, onBack, onSuccess }) => {
                                         </>
                                     ) : (
                                         <>
-                                            <FaSave className="text-sm" />
+                                            <FaSave className="text-sm mr-2" />
                                             {feeType ? 'আপডেট করুন' : 'সংরক্ষণ করুন'}
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
 

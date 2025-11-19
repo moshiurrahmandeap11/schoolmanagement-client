@@ -3,6 +3,7 @@ import { FaArrowLeft, FaEdit, FaFileDownload, FaFilter, FaPlus, FaTrash } from '
 import Swal from 'sweetalert2';
 import axiosInstance, { baseImageURL } from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddExpenses from './AddExpenses/AddExpenses';
 
 
@@ -260,13 +261,13 @@ const Expenses = ({ onBack }) => {
                             <FaFilter className="text-sm" />
                             Toggle Filters
                         </button>
-                        <button
+                        <MainButton
                             onClick={handleAddNew}
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
+                            className="rounded-md"
                         >
-                            <FaPlus className="text-sm" />
+                            <FaPlus className="text-sm mr-2" />
                             Add Expense
-                        </button>
+                        </MainButton>
                     </div>
                 </div>
             </div>
@@ -286,7 +287,7 @@ const Expenses = ({ onBack }) => {
                                     name="expenseCategory"
                                     value={filters.expenseCategory}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 >
                                     <option value="all">সব ক্যাটাগরি</option>
                                     {expenseCategories.map(category => (
@@ -306,7 +307,7 @@ const Expenses = ({ onBack }) => {
                                     name="month"
                                     value={filters.month}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 >
                                     <option value="all">সব মাস</option>
                                     {months.map(month => (
@@ -326,7 +327,7 @@ const Expenses = ({ onBack }) => {
                                     name="year"
                                     value={filters.year}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 >
                                     <option value="all">সব বছর</option>
                                     {years.map(year => (
@@ -346,7 +347,7 @@ const Expenses = ({ onBack }) => {
                                     name="accountId"
                                     value={filters.accountId}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 >
                                     <option value="all">সব একাউন্ট</option>
                                     {bankAccounts.map(account => (
@@ -369,7 +370,7 @@ const Expenses = ({ onBack }) => {
                                     name="fromDate"
                                     value={filters.fromDate}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 />
                             </div>
 
@@ -383,7 +384,7 @@ const Expenses = ({ onBack }) => {
                                     name="toDate"
                                     value={filters.toDate}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 />
                             </div>
 
@@ -396,7 +397,7 @@ const Expenses = ({ onBack }) => {
                                     name="userId"
                                     value={filters.userId}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 >
                                     <option value="all">সব সদস্য</option>
                                     {users.map(user => (
@@ -409,12 +410,12 @@ const Expenses = ({ onBack }) => {
                         </div>
 
                         <div className="flex items-center gap-3">
-                            <button
+                            <MainButton
                                 onClick={handleApplyFilters}
-                                className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
+                                className="rounded-md"
                             >
                                 Apply Filters
-                            </button>
+                            </MainButton>
                             <button
                                 onClick={handleClearFilters}
                                 className="px-6 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium"

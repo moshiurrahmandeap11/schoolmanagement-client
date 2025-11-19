@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaSave } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 
@@ -53,7 +54,7 @@ const AddNewExam = ({ exam, onBack, onSuccess }) => {
         try {
             const [categoriesRes, classesRes, sectionsRes, sessionsRes, gradingRes] = await Promise.all([
                 axiosInstance.get('/exam-categories'),
-                axiosInstance.get('/classes'),
+                axiosInstance.get('/class'),
                 axiosInstance.get('/sections'),
                 axiosInstance.get('/sessions'),
                 axiosInstance.get('/grading')
@@ -233,7 +234,7 @@ const AddNewExam = ({ exam, onBack, onSuccess }) => {
                                         name="name"
                                         value={formData.name}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         placeholder="পরীক্ষার নাম"
                                         required
                                     />
@@ -248,7 +249,7 @@ const AddNewExam = ({ exam, onBack, onSuccess }) => {
                                         name="categoryId"
                                         value={formData.categoryId}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         required
                                     >
                                         <option value="">পরীক্ষার ধরণ নির্বাচন করুন</option>
@@ -269,7 +270,7 @@ const AddNewExam = ({ exam, onBack, onSuccess }) => {
                                         name="classId"
                                         value={formData.classId}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         required
                                     >
                                         <option value="">ক্লাস নির্বাচন করুন</option>
@@ -290,7 +291,7 @@ const AddNewExam = ({ exam, onBack, onSuccess }) => {
                                         name="sectionId"
                                         value={formData.sectionId}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         required
                                     >
                                         <option value="">সেকশন নির্বাচন করুন</option>
@@ -311,7 +312,7 @@ const AddNewExam = ({ exam, onBack, onSuccess }) => {
                                         name="sessionId"
                                         value={formData.sessionId}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         required
                                     >
                                         <option value="">সেশন নির্বাচন করুন</option>
@@ -332,7 +333,7 @@ const AddNewExam = ({ exam, onBack, onSuccess }) => {
                                         name="gradingId"
                                         value={formData.gradingId}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         required
                                     >
                                         <option value="">গ্রেডিং সিস্টেম নির্বাচন করুন</option>
@@ -354,7 +355,7 @@ const AddNewExam = ({ exam, onBack, onSuccess }) => {
                                         name="year"
                                         value={formData.year}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         min="2000"
                                         max="2100"
                                         required
@@ -371,7 +372,7 @@ const AddNewExam = ({ exam, onBack, onSuccess }) => {
                                         name="date"
                                         value={formData.date}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         required
                                     />
                                 </div>
@@ -386,7 +387,7 @@ const AddNewExam = ({ exam, onBack, onSuccess }) => {
                                         name="startTime"
                                         value={formData.startTime}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         required
                                     />
                                 </div>
@@ -401,7 +402,7 @@ const AddNewExam = ({ exam, onBack, onSuccess }) => {
                                         name="endTime"
                                         value={formData.endTime}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         required
                                     />
                                 </div>
@@ -416,7 +417,7 @@ const AddNewExam = ({ exam, onBack, onSuccess }) => {
                                         name="combinedPercentage"
                                         value={formData.combinedPercentage}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         placeholder="0-100"
                                         min="0"
                                         max="100"
@@ -433,7 +434,7 @@ const AddNewExam = ({ exam, onBack, onSuccess }) => {
                                         name="status"
                                         value={formData.status}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         required
                                     >
                                         <option value="Draft">খসড়া</option>
@@ -456,14 +457,14 @@ const AddNewExam = ({ exam, onBack, onSuccess }) => {
 
                             {/* Submit Buttons */}
                             <div className="flex gap-4">
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="flex-1 flex items-center justify-center rounded-md"
                                 >
                                     <FaSave className="text-sm" />
                                     {loading ? 'সেভ হচ্ছে...' : (exam ? 'আপডেট করুন' : 'সেভ করুন')}
-                                </button>
+                                </MainButton>
                                 <button
                                     type="button"
                                     onClick={onBack}

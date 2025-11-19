@@ -3,6 +3,7 @@ import { FaArrowLeft, FaEdit, FaMoneyBillWave, FaPercentage, FaPlus, FaTrash } f
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewFine from './AddNewFine/AddNewFine';
 
 
@@ -131,13 +132,12 @@ const FineTypes = ({ onBack }) => {
                             ফাইন টাইপ ব্যবস্থাপনা
                         </h1>
                     </div>
-                    <button
+                    <MainButton
                         onClick={handleAddNew}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors font-medium"
                     >
-                        <FaPlus className="text-sm" />
+                        <FaPlus className="text-sm mr-2" />
                         নতুন ফাইন টাইপ
-                    </button>
+                    </MainButton>
                 </div>
             </div>
 

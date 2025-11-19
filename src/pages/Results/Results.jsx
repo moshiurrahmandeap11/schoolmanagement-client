@@ -148,9 +148,6 @@ const Results = () => {
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             পরীক্ষার ফলাফল
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            আপনার পরীক্ষার ফলাফল দেখতে নিচের তথ্যগুলো পূরণ করুন
-          </p>
         </div>
 
         {/* Search Form */}

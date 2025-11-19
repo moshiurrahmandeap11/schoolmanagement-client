@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const ResultSMS = () => {
     const [selectedExam, setSelectedExam] = useState('');
@@ -253,7 +254,6 @@ const ResultSMS = () => {
                 {/* Header */}
                 <div className="text-center mb-8">
                     <h1 className="text-3xl font-bold text-gray-800 mb-2">রেজাল্ট SMS ম্যানেজমেন্ট</h1>
-                    <p className="text-gray-600">শিক্ষার্থীদের রেজাল্ট SMS এর মাধ্যমে পাঠান</p>
                 </div>
 
                 {/* Exam Selection */}
@@ -265,7 +265,7 @@ const ResultSMS = () => {
                         <select
                             value={selectedExam}
                             onChange={handleExamChange}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition duration-200"
                         >
                             <option value="">পরীক্ষা নির্বাচন করুন</option>
                             {examCategories.map((category, index) => (
@@ -286,20 +286,20 @@ const ResultSMS = () => {
                                 রেজাল্ট তালিকা - {selectedExam}
                             </h3>
                             <div className="flex items-center space-x-4">
-                                <button
+                                <MainButton
                                     onClick={handleSelectAll}
-                                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                                    className="rounded-md"
                                 >
                                     {selectedStudents.length === results.length ? 'সব আনসিলেক্ট করুন' : 'সব সিলেক্ট করুন'}
-                                </button>
+                                </MainButton>
                                 <span className="text-sm text-gray-600">
                                     {selectedStudents.length} জন নির্বাচিত
                                 </span>
                                 {selectedStudents.length > 0 && (
-                                    <button
+                                    <MainButton
                                         onClick={handleSendBulkSMS}
                                         disabled={smsLoading}
-                                        className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="rounded-md"
                                     >
                                         {smsLoading ? (
                                             <div className="flex items-center">
@@ -309,14 +309,14 @@ const ResultSMS = () => {
                                         ) : (
                                             `বাল্ক SMS পাঠান (${selectedStudents.length})`
                                         )}
-                                    </button>
+                                    </MainButton>
                                 )}
                             </div>
                         </div>
 
                         {fetchLoading ? (
                             <div className="flex justify-center items-center py-8">
-                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#1e90c9]"></div>
                                 <span className="ml-2 text-gray-600">রেজাল্ট লোড হচ্ছে...</span>
                             </div>
                         ) : (
@@ -374,7 +374,7 @@ const ResultSMS = () => {
                                                                 type="checkbox"
                                                                 checked={selectedStudents.includes(result.studentId)}
                                                                 onChange={() => handleStudentSelect(result.studentId)}
-                                                                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                                                                className="h-4 w-4 text-[#1e90c9] focus:ring-[#1e90c9] border-gray-300 rounded"
                                                             />
                                                         </td>
                                                         <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
@@ -393,13 +393,13 @@ const ResultSMS = () => {
                                                             {result.averageMarks || 'N/A'}
                                                         </td>
                                                         <td className="px-4 py-4 whitespace-nowrap text-sm">
-                                                            <button
+                                                            <MainButton
                                                                 onClick={() => handleSendSingleSMS(result.studentId, guardianMobile)}
                                                                 disabled={smsLoading || guardianMobile === 'N/A'}
-                                                                className="bg-blue-600 text-white px-3 py-1 rounded text-xs hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                                                                className=" text-white px-3 py-1 rounded text-xs  focus:outline-none focus:ring-2  transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                                                             >
                                                                 SMS পাঠান
-                                                            </button>
+                                                            </MainButton>
                                                         </td>
                                                     </tr>
                                                 );
@@ -415,16 +415,16 @@ const ResultSMS = () => {
                 {/* Instructions */}
                 {!selectedExam && (
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
-                        <p className="text-blue-800">
+                        <p className="text-[#1e90c9]">
                             SMS পাঠাতে উপরের ড্রপডাউন থেকে একটি পরীক্ষা নির্বাচন করুন।
                         </p>
                     </div>
                 )}
 
                 {/* SMS Gateway Info */}
-                <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                    <h4 className="text-sm font-semibold text-yellow-800 mb-2">SMS Gateway সেটআপ প্রয়োজন:</h4>
-                    <ul className="text-sm text-yellow-700 list-disc list-inside space-y-1">
+                <div className="mt-6 bg-blue-50 border border-[#1e90c9] rounded-lg p-4">
+                    <h4 className="text-sm font-semibold text-[#1e90c9] mb-2">SMS Gateway সেটআপ প্রয়োজন:</h4>
+                    <ul className="text-sm text-[#1e90c9] list-disc list-inside space-y-1">
                         <li>SSL Wireless, Bulk SMS Bangladesh বা অন্য কোনো SMS Gateway এ অ্যাকাউন্ট তৈরি করুন</li>
                         <li>.env ফাইলে API_KEY এবং SID সংযুক্ত করুন</li>
                         <li>বাংলাদেশের মোবাইল নম্বর ফরম্যাট: 01XXXXXXXXX, +8801XXXXXXXXX, বা 8801XXXXXXXXX</li>

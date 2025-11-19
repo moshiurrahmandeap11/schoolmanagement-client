@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { 
-  FaHandHoldingHeart, 
-  FaPlus, 
-  FaUsers, 
-  FaMoneyBillWave, 
-  FaProjectDiagram, 
+import { useState } from 'react';
+import {
   FaArrowLeft,
-  FaArrowRight 
+  FaArrowRight,
+  FaHandHoldingHeart,
+  FaMoneyBillWave,
+  FaPlus,
+  FaProjectDiagram,
+  FaUsers
 } from 'react-icons/fa';
 
 // সাব-কম্পোনেন্ট ইমপোর্ট
-import InstantDonation from './InstantDonation/InstantDonation';
+import DonationAccount from './DonationAccount/DonationAccount';
+import DonationProject from './DonationProject/DonationProject';
 import DonorCategory from './DonorCategory/DonorCategory';
 import DonorList from './DonorList/DonorList';
-import DonationAccount from './DonationAccount/DonationAccount';
+import InstantDonation from './InstantDonation/InstantDonation';
 import ReceiveDonation from './ReceiveDonation/ReceiveDonation';
-import DonationProject from './DonationProject/DonationProject';
 
 const DonationManagement = () => {
   const [activeSection, setActiveSection] = useState('main');
@@ -28,54 +28,54 @@ const DonationManagement = () => {
       title: 'ইনস্ট্যান্ট দান',
       subtitle: 'তাৎক্ষণিক দান সংগ্রহ করুন',
       icon: <FaHandHoldingHeart />,
-      color: 'text-purple-600',
-      bg: 'bg-purple-50',
-      border: 'border-purple-200'
+      color: 'text-[#1e90c9]',
+      bg: 'bg-[purple-50]',
+      border: 'border-[#1e90c9]'
     },
     {
       id: 'category',
       title: 'দাতা ক্যাটাগরি',
       subtitle: 'নতুন ক্যাটাগরি তৈরি ও তালিকা',
       icon: <FaPlus />,
-      color: 'text-blue-600',
+      color: 'text-[#1e90c9]',
       bg: 'bg-blue-50',
-      border: 'border-blue-200'
+      border: 'border-[#1e90c9]'
     },
     {
       id: 'donor-list',
       title: 'দাতা তালিকা',
       subtitle: 'নতুন দাতা যোগ করুন ও তালিকা দেখুন',
       icon: <FaUsers />,
-      color: 'text-green-600',
+      color: 'text-[#1e90c9]',
       bg: 'bg-green-50',
-      border: 'border-green-200'
+      border: 'border-[#1e90c9]'
     },
     {
       id: 'account',
       title: 'দানের অ্যাকাউন্ট',
       subtitle: 'অ্যাকাউন্ট তালিকা, আপডেট, ডিলিট',
       icon: <FaMoneyBillWave />,
-      color: 'text-amber-600',
+      color: 'text-[#1e90c9]',
       bg: 'bg-amber-50',
-      border: 'border-amber-200'
+      border: 'border-[#1e90c9]'
     },
     {
       id: 'receive',
       title: 'দান গ্রহণ',
       subtitle: 'নতুন দান গ্রহণ ও তালিকা',
       icon: <FaHandHoldingHeart />,
-      color: 'text-rose-600',
+      color: 'text-[#1e90c9]',
       bg: 'bg-rose-50',
-      border: 'border-rose-200'
+      border: 'border-[#1e90c9]'
     },
     {
       id: 'project',
       title: 'দান প্রজেক্ট',
       subtitle: 'নতুন প্রজেক্ট তৈরি ও তালিকা',
       icon: <FaProjectDiagram />,
-      color: 'text-indigo-600',
+      color: 'text-[#1e90c9]',
       bg: 'bg-indigo-50',
-      border: 'border-indigo-200'
+      border: 'border-[#1e90c9]'
     },
   ];
 

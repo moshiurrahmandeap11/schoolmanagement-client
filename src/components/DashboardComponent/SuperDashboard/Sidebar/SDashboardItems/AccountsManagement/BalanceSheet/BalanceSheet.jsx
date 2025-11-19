@@ -1,4 +1,3 @@
-import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaDownload, FaFileExcel, FaFilePdf } from 'react-icons/fa';
@@ -6,6 +5,7 @@ import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const BalanceSheet = ({ onBack }) => {
     const [bankAccounts, setBankAccounts] = useState([]);
@@ -82,76 +82,6 @@ const BalanceSheet = ({ onBack }) => {
         }
     };
 
-    // Export to PDF function
-    const exportToPDF = () => {
-        try {
-            const doc = new jsPDF();
-            
-            // Title
-            doc.setFontSize(16);
-            doc.setTextColor(40, 40, 40);
-            doc.text('ব্যালেন্স শিট', 105, 15, { align: 'center' });
-            
-            // Date
-            doc.setFontSize(10);
-            doc.setTextColor(100, 100, 100);
-            doc.text(`জেনারেটেড: ${new Date().toLocaleDateString('bn-BD')}`, 105, 22, { align: 'center' });
-            
-            // Total Balance
-            doc.setFontSize(12);
-            doc.setTextColor(0, 100, 0);
-            doc.text(`মোট ব্যালেন্স: ৳${totalBalance.toLocaleString()}`, 105, 30, { align: 'center' });
-
-            // Table
-            const tableColumn = ['নাম', 'একাউন্ট নাম্বার', 'শাখা', 'ব্যালেন্স'];
-            const tableRows = bankAccounts.map(account => [
-                account.name,
-                account.accountNumber,
-                account.branchName,
-                `৳${(account.currentBalance || 0).toLocaleString()}`
-            ]);
-
-            doc.autoTable({
-                head: [tableColumn],
-                body: tableRows,
-                startY: 35,
-                theme: 'grid',
-                styles: {
-                    font: 'helvetica',
-                    fontSize: 10,
-                    cellPadding: 3,
-                },
-                headStyles: {
-                    fillColor: [41, 128, 185],
-                    textColor: 255,
-                    fontStyle: 'bold'
-                },
-                alternateRowStyles: {
-                    fillColor: [245, 245, 245]
-                },
-                columnStyles: {
-                    0: { cellWidth: 40 },
-                    1: { cellWidth: 45 },
-                    2: { cellWidth: 40 },
-                    3: { cellWidth: 35, halign: 'right' }
-                },
-                margin: { top: 35 }
-            });
-
-            // Footer
-            const finalY = doc.lastAutoTable.finalY + 10;
-            doc.setFontSize(8);
-            doc.setTextColor(150, 150, 150);
-            doc.text('স্বয়ংক্রিয়ভাবে জেনারেটেড - School Management System', 105, finalY, { align: 'center' });
-
-            doc.save(`Balance_Sheet_${new Date().toISOString().split('T')[0]}.pdf`);
-            showSweetAlert('success', 'পিডিএফ ফাইল সফলভাবে ডাউনলোড হয়েছে');
-        } catch (error) {
-            console.error('Error exporting to PDF:', error);
-            showSweetAlert('error', 'পিডিএফ ফাইল ডাউনলোড করতে সমস্যা হয়েছে');
-        }
-    };
-
     const formatBalance = (balance) => {
         return `৳${(balance || 0).toLocaleString()}`;
     };
@@ -172,26 +102,19 @@ const BalanceSheet = ({ onBack }) => {
                             <h1 className="text-2xl font-bold text-gray-800">
                                 ব্যালেন্স শিট
                             </h1>
-                            <p className="text-green-600 font-semibold mt-1">
+                            <p className="text-[#1e90c9] font-semibold mt-1">
                                 Total Balance: ৳{totalBalance.toLocaleString()}
                             </p>
                         </div>
                     </div>
                     <div className="flex items-center gap-3">
-                        <button
+                        <MainButton
                             onClick={exportToExcel}
-                            className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+                            className="rounded-md"
                         >
-                            <FaFileExcel className="text-sm" />
+                            <FaFileExcel className="text-sm mr-2" />
                             Export as Excel
-                        </button>
-                        <button
-                            onClick={exportToPDF}
-                            className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium"
-                        >
-                            <FaFilePdf className="text-sm" />
-                            Export as PDF
-                        </button>
+                        </MainButton>
                     </div>
                 </div>
             </div>
@@ -225,7 +148,7 @@ const BalanceSheet = ({ onBack }) => {
                                     <div className="flex items-center gap-2 text-sm text-gray-600">
                                         <FaDownload className="text-sm" />
                                         <span>মোট ব্যালেন্স: </span>
-                                        <span className="font-bold text-green-600">
+                                        <span className="font-bold text-[#1e90c9]">
                                             ৳{totalBalance.toLocaleString()}
                                         </span>
                                     </div>
@@ -274,7 +197,7 @@ const BalanceSheet = ({ onBack }) => {
                                                 <td className="px-6 py-4 text-right">
                                                     <span className={`font-semibold text-sm ${
                                                         (account.currentBalance || 0) >= 0 
-                                                            ? 'text-green-600' 
+                                                            ? 'text-[#1e90c9]' 
                                                             : 'text-red-600'
                                                     }`}>
                                                         {formatBalance(account.currentBalance)}
@@ -290,7 +213,7 @@ const BalanceSheet = ({ onBack }) => {
                                                 মোট ব্যালেন্স:
                                             </td>
                                             <td className="px-6 py-4 text-right">
-                                                <span className="font-bold text-lg text-green-600">
+                                                <span className="font-bold text-lg text-[#1e90c9]">
                                                     ৳{totalBalance.toLocaleString()}
                                                 </span>
                                             </td>

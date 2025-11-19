@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const RoutineAdmin = () => {
@@ -180,13 +181,12 @@ const RoutineAdmin = () => {
         <div className="p-6">
             {/* Header */}
             <div className="flex justify-between items-center mb-6">
-                <h1 className="text-2xl font-bold text-gray-800">Routine Management</h1>
-                <button
+                <h1 className="text-2xl font-bold text-gray-800">রুটিন ব্যবস্থাপনা</h1>
+                <MainButton
                     onClick={() => setShowForm(true)}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
                 >
                     Add New Routine
-                </button>
+                </MainButton>
             </div>
 
             {/* Routine Form */}
@@ -207,7 +207,7 @@ const RoutineAdmin = () => {
                                 name="title"
                                 value={formData.title}
                                 onChange={handleInputChange}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 placeholder="Enter routine title (e.g., Class 9 Routine 2024)"
                                 required
                             />
@@ -223,7 +223,7 @@ const RoutineAdmin = () => {
                                 type="file"
                                 name="attachment"
                                 onChange={handleInputChange}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 accept="image/*"
                                 required={!editingRoutine}
                             />
@@ -231,7 +231,7 @@ const RoutineAdmin = () => {
                                 Upload routine image (PDF/Image files, max 5MB)
                             </p>
                             {editingRoutine && editingRoutine.attachment && (
-                                <p className="text-sm text-blue-600 mt-1">
+                                <p className="text-sm text-[#1e90c9] mt-1">
                                     Current file: {editingRoutine.attachment.originalName}
                                 </p>
                             )}
@@ -244,7 +244,7 @@ const RoutineAdmin = () => {
                                 name="isPublished"
                                 checked={formData.isPublished}
                                 onChange={handleInputChange}
-                                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                                className="w-4 h-4 text-[#1e90c9] bg-gray-100 border-gray-300 rounded focus:ring-[#1e90c9]"
                                 id="publishCheckbox"
                             />
                             <label htmlFor="publishCheckbox" className="ml-2 text-sm text-gray-700">
@@ -254,13 +254,13 @@ const RoutineAdmin = () => {
 
                         {/* Form Actions */}
                         <div className="flex gap-3 pt-4">
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+                                className='rounded-md'
                             >
                                 {isSubmitting ? 'Saving...' : (editingRoutine ? 'Update Routine' : 'Create Routine')}
-                            </button>
+                            </MainButton>
                             <button
                                 type="button"
                                 onClick={resetForm}
@@ -327,7 +327,7 @@ const RoutineAdmin = () => {
                                             <span
                                                 className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                                                     routine.isPublished
-                                                        ? 'bg-green-100 text-green-800'
+                                                        ? 'bg-[#1e90c9] text-white'
                                                         : 'bg-yellow-100 text-yellow-800'
                                                 }`}
                                             >

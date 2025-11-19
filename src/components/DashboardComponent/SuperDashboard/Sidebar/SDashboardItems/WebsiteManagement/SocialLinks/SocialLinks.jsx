@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaEdit, FaFacebook, FaInstagram, FaLink, FaLinkedin, FaPlus, FaTrash, FaTwitter, FaYoutube } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewSocialLink from './AddNewSocialLink/AddNewSocialLink';
 
 
@@ -158,20 +159,16 @@ const SocialLinks = () => {
                         <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
                             সামাজিক লিংক ব্যবস্থাপনা
                         </h1>
-                        <p className="text-gray-600">
-                            আপনার প্রতিষ্ঠানের সামাজিক মিডিয়া লিংক নিয়ন্ত্রণ করুন
-                        </p>
                     </div>
 
                     {/* Add New Button */}
                     <div className="flex justify-end mb-6">
-                        <button
+                        <MainButton
                             onClick={handleAddNew}
-                            className="px-5 py-2.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2 text-sm"
                         >
                             <FaPlus className="text-sm" />
                             New Social Link
-                        </button>
+                        </MainButton>
                     </div>
 
                     {/* Social Links List */}

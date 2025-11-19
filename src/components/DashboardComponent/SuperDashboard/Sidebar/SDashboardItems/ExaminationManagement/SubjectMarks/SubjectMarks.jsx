@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const SubjectMarks = () => {
     const [formData, setFormData] = useState({
@@ -218,14 +219,13 @@ const SubjectMarks = () => {
                 {/* Header */}
                 <div className="text-center mb-8">
                     <h1 className="text-3xl font-bold text-gray-800 mb-2">বিষয়ভিত্তিক নম্বর</h1>
-                    <p className="text-gray-600">বিষয়ভিত্তিক নম্বর এবং উপস্থিতির তথ্য যোগ করুন</p>
                 </div>
 
                 {/* Form */}
                 <div className="bg-white rounded-lg shadow-md p-6 md:p-8">
                     {fetchLoading ? (
                         <div className="flex justify-center items-center py-8">
-                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#1e90c9]"></div>
                             <span className="ml-2 text-gray-600">ডেটা লোড হচ্ছে...</span>
                         </div>
                     ) : (
@@ -240,7 +240,7 @@ const SubjectMarks = () => {
                                     value={formData.examCategory}
                                     onChange={handleInputChange}
                                     required
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition duration-200"
                                 >
                                     <option value="">পরীক্ষা নির্বাচন করুন</option>
                                     {dropdownOptions.examCategories.map((category, index) => (
@@ -261,7 +261,7 @@ const SubjectMarks = () => {
                                     name="order"
                                     value={formData.order}
                                     onChange={handleInputChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition duration-200"
                                     placeholder="ক্রম সংখ্যা লিখুন"
                                 />
                             </div>
@@ -276,7 +276,7 @@ const SubjectMarks = () => {
                                     name="totalAbsent"
                                     value={formData.totalAbsent}
                                     onChange={handleInputChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition duration-200"
                                     placeholder="মোট অনুপস্থিত সংখ্যা"
                                 />
                             </div>
@@ -291,7 +291,7 @@ const SubjectMarks = () => {
                                     name="totalPresent"
                                     value={formData.totalPresent}
                                     onChange={handleInputChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition duration-200"
                                     placeholder="মোট উপস্থিত সংখ্যা"
                                 />
                             </div>
@@ -306,7 +306,7 @@ const SubjectMarks = () => {
                                     value={formData.subject}
                                     onChange={handleInputChange}
                                     required
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition duration-200"
                                 >
                                     <option value="">বিষয় নির্বাচন করুন</option>
                                     {dropdownOptions.subjects.map((subject, index) => (
@@ -319,10 +319,10 @@ const SubjectMarks = () => {
 
                             {/* Action Buttons */}
                             <div className="pt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md flex items-center justify-center"
                                 >
                                     {loading ? (
                                         <div className="flex items-center justify-center">
@@ -332,23 +332,23 @@ const SubjectMarks = () => {
                                     ) : (
                                         'ডেটা সংরক্ষণ করুন'
                                     )}
-                                </button>
+                                </MainButton>
                                 
-                                <button
+                                <MainButton
                                     type="button"
                                     onClick={showPreview}
-                                    className="bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-200"
+                                    className="flex items-center justify-center rounded-md"
                                 >
                                     প্রিভিউ দেখুন
-                                </button>
+                                </MainButton>
                                 
-                                <button
+                                <MainButton
                                     type="button"
                                     onClick={resetForm}
-                                    className="bg-red-600 text-white py-3 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition duration-200"
+                                    className="rounded-md flex items-center justify-center"
                                 >
                                     ফর্ম রিসেট
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
                     )}

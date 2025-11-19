@@ -300,13 +300,10 @@ const AdmissionFormAdmin = () => {
             <div className="max-w-4xl mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-linear-to-r from-[#1e90c9] to-[#1e90c9]/90 px-6 py-4">
-                        <h1 className="text-2xl font-bold text-white">
+                    <div className=" px-6 py-4">
+                        <h1 className="text-3xl text-center sm:text-4xl font-bold text-gray-900 mb-4">
                             ভর্তি ফর্ম
                         </h1>
-                        <p className="text-blue-100 text-sm mt-1">
-                            নতুন শিক্ষার্থীর ভর্তি ফর্ম পূরণ করুন
-                        </p>
                     </div>
 
                     {/* Form */}

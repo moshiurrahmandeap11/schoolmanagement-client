@@ -5,6 +5,7 @@ import { useReactToPrint } from 'react-to-print';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const InstantStudentForm = ({ onBack }) => {
   const [forms, setForms] = useState([]);
@@ -38,7 +39,7 @@ const InstantStudentForm = ({ onBack }) => {
         text: 'ফর্ম লোড করতে সমস্যা হয়েছে',
         icon: 'error',
         confirmButtonText: 'ঠিক আছে',
-        confirmButtonColor: '#2563eb',
+        confirmButtonColor: '#1e90c9',
       });
     } finally {
       setLoading(false);
@@ -65,7 +66,7 @@ const InstantStudentForm = ({ onBack }) => {
           text: 'ফর্ম তৈরি করা হয়েছে',
           icon: 'success',
           confirmButtonText: 'ঠিক আছে',
-          confirmButtonColor: '#2563eb',
+          confirmButtonColor: '#1e90c9',
         });
       }
       setEditingId(null);
@@ -83,7 +84,7 @@ const InstantStudentForm = ({ onBack }) => {
         text: err.response?.data?.message || 'সমস্যা হয়েছে',
         icon: 'error',
         confirmButtonText: 'ঠিক আছে',
-        confirmButtonColor: '#2563eb',
+        confirmButtonColor: '#1e90c9',
       });
     }
   };
@@ -103,7 +104,7 @@ const InstantStudentForm = ({ onBack }) => {
       showCancelButton: true,
       confirmButtonText: 'হ্যাঁ, মুছে ফেলুন',
       cancelButtonText: 'বাতিল করুন',
-      confirmButtonColor: '#dc2626',
+      confirmButtonColor: '#1e90c9',
       cancelButtonColor: '#6b7280',
       reverseButtons: true,
     }).then(async (result) => {
@@ -115,7 +116,7 @@ const InstantStudentForm = ({ onBack }) => {
             text: 'ফর্ম সফলভাবে মুছে ফেলা হয়েছে',
             icon: 'success',
             confirmButtonText: 'ঠিক আছে',
-            confirmButtonColor: '#2563eb',
+            confirmButtonColor: '#1e90c9',
           });
           fetchForms();
         } catch {
@@ -124,7 +125,7 @@ const InstantStudentForm = ({ onBack }) => {
             text: 'মুছে ফেলতে সমস্যা হয়েছে',
             icon: 'error',
             confirmButtonText: 'ঠিক আছে',
-            confirmButtonColor: '#2563eb',
+            confirmButtonColor: '#1e90c9',
           });
         }
       }
@@ -143,7 +144,7 @@ const InstantStudentForm = ({ onBack }) => {
       <div className="max-w-full mx-auto p-4">
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6" ref={printRef}>
           <div className="text-center mb-6">
-            <h2 className="text-2xl font-bold text-blue-700">ইনস্টিটিউট ফর্ম</h2>
+            <h2 className="text-2xl font-bold text-[#1e90c9]">ইনস্টিটিউট ফর্ম</h2>
             <p className="text-gray-600">শিক্ষার্থীর বিস্তারিত তথ্য</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
@@ -165,12 +166,11 @@ const InstantStudentForm = ({ onBack }) => {
             <div className="md:col-span-2"><strong>ঠিকানা:</strong> {previewData.address}</div>
           </div>
           <div className="mt-6 flex justify-center gap-3">
-            <button 
+            <MainButton 
               onClick={() => handleEdit(previewData)} 
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm"
             >
               <FaEdit /> এডিট
-            </button>
+            </MainButton>
             <button 
               onClick={() => handleDelete(previewData._id, previewData.name)} 
               className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition text-sm"
@@ -203,12 +203,11 @@ const InstantStudentForm = ({ onBack }) => {
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-semibold text-gray-800">ফর্ম তালিকা</h2>
-            <button 
+            <MainButton 
               onClick={() => setShowForm(true)} 
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm"
             >
               <FaPlus /> নতুন ফর্ম
-            </button>
+            </MainButton>
           </div>
           
           {forms.length === 0 ? (
@@ -261,7 +260,7 @@ const InstantStudentForm = ({ onBack }) => {
               <input 
                 value={form.studentId} 
                 onChange={e => setForm({...form, studentId: e.target.value})} 
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
               />
             </div>
             
@@ -271,7 +270,7 @@ const InstantStudentForm = ({ onBack }) => {
                 value={form.name} 
                 onChange={e => setForm({...form, name: e.target.value})} 
                 required 
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
               />
             </div>
 
@@ -282,7 +281,7 @@ const InstantStudentForm = ({ onBack }) => {
                 value={form.birthDate} 
                 onChange={e => setForm({...form, birthDate: e.target.value})} 
                 required 
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
               />
             </div>
 
@@ -291,7 +290,7 @@ const InstantStudentForm = ({ onBack }) => {
               <select 
                 value={form.gender} 
                 onChange={e => setForm({...form, gender: e.target.value})} 
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
               >
                 <option>Male</option>
                 <option>Female</option>
@@ -305,7 +304,7 @@ const InstantStudentForm = ({ onBack }) => {
                 value={form.mobile} 
                 onChange={e => setForm({...form, mobile: e.target.value})} 
                 required 
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
               />
             </div>
 
@@ -314,7 +313,7 @@ const InstantStudentForm = ({ onBack }) => {
               <select 
                 value={form.bloodGroup} 
                 onChange={e => setForm({...form, bloodGroup: e.target.value})} 
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
               >
                 <option value="">ব্লাড গ্রুপ</option>
                 {bloodGroups.map(bg => <option key={bg}>{bg}</option>)}
@@ -326,7 +325,7 @@ const InstantStudentForm = ({ onBack }) => {
               <input 
                 value={form.fatherName} 
                 onChange={e => setForm({...form, fatherName: e.target.value})} 
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
               />
             </div>
 
@@ -335,7 +334,7 @@ const InstantStudentForm = ({ onBack }) => {
               <input 
                 value={form.motherName} 
                 onChange={e => setForm({...form, motherName: e.target.value})} 
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
               />
             </div>
 
@@ -344,7 +343,7 @@ const InstantStudentForm = ({ onBack }) => {
               <input 
                 value={form.guardianName} 
                 onChange={e => setForm({...form, guardianName: e.target.value})} 
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
               />
             </div>
 
@@ -353,7 +352,7 @@ const InstantStudentForm = ({ onBack }) => {
               <input 
                 value={form.parentMobile} 
                 onChange={e => setForm({...form, parentMobile: e.target.value})} 
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
               />
             </div>
 
@@ -363,7 +362,7 @@ const InstantStudentForm = ({ onBack }) => {
                 value={form.rollNumber} 
                 onChange={e => setForm({...form, rollNumber: e.target.value})} 
                 required 
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
               />
             </div>
 
@@ -373,7 +372,7 @@ const InstantStudentForm = ({ onBack }) => {
                 value={form.className} 
                 onChange={e => setForm({...form, className: e.target.value})} 
                 required 
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
               />
             </div>
 
@@ -382,7 +381,7 @@ const InstantStudentForm = ({ onBack }) => {
               <input 
                 value={form.batch} 
                 onChange={e => setForm({...form, batch: e.target.value})} 
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
               />
             </div>
 
@@ -391,7 +390,7 @@ const InstantStudentForm = ({ onBack }) => {
               <input 
                 value={form.section} 
                 onChange={e => setForm({...form, section: e.target.value})} 
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
               />
             </div>
 
@@ -401,7 +400,7 @@ const InstantStudentForm = ({ onBack }) => {
                 value={form.session} 
                 onChange={e => setForm({...form, session: e.target.value})} 
                 required 
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
               />
             </div>
 
@@ -411,18 +410,17 @@ const InstantStudentForm = ({ onBack }) => {
                 value={form.address} 
                 onChange={e => setForm({...form, address: e.target.value})} 
                 rows="3" 
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition resize-none"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition resize-none"
               />
             </div>
           </div>
           
           <div className="flex justify-center pt-4">
-            <button 
+            <MainButton 
               type="submit" 
-              className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium"
             >
               <FaSave /> {editingId ? 'আপডেট করুন' : 'সংরক্ষণ করুন'}
-            </button>
+            </MainButton>
           </div>
         </form>
       </div>

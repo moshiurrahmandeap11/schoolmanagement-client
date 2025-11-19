@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaEdit, FaPlus, FaStar, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewAccounts from './AddNewAccounts/AddNewAccounts';
 
 
@@ -123,15 +124,14 @@ const BankAccounts = ({ onBack }) => {
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
                         <h2 className="text-2xl font-bold text-gray-800 mb-2">ব্যাংক একাউন্টস</h2>
-                        <p className="text-gray-600">আপনার সকল ব্যাংক, বিকাশ এবং অন্যান্য একাউন্টস ব্যবস্থাপনা করুন</p>
                     </div>
-                    <button
+                    <MainButton
                         onClick={() => setShowAddForm(true)}
-                        className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 flex items-center gap-2"
+                        
                     >
-                        <FaPlus className="text-sm" />
-                        + Add Account
-                    </button>
+                        <FaPlus className="text-sm mr-2" />
+                        Add Account
+                    </MainButton>
                 </div>
             </div>
 

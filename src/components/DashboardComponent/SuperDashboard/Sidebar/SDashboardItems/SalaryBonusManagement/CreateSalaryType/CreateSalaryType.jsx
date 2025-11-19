@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 const CreateSalaryType = ({ editingSalaryType, onClose }) => {
@@ -128,18 +129,15 @@ const CreateSalaryType = ({ editingSalaryType, onClose }) => {
     ];
 
     return (
-        <div className="max-w-4xl mx-auto p-6">
+        <div className="max-w-full mx-auto p-6">
             <div className="bg-white rounded-lg shadow-lg border border-gray-200">
                 {/* Header */}
                 <div className="p-6 border-b border-gray-200">
                     <div className="flex justify-between items-center">
                         <div>
                             <h1 className="text-2xl font-bold text-gray-800">
-                                {editingSalaryType ? 'Edit Salary Type' : 'Create Salary Type'}
+                                {editingSalaryType ? 'এডিট স্যালারি টাইপ' : 'নতুন স্যালারি টাইপ'}
                             </h1>
-                            <p className="text-gray-600 mt-2">
-                                {editingSalaryType ? 'Update existing salary structure' : 'Create new salary structure for teachers and staff'}
-                            </p>
                         </div>
                         {onClose && (
                             <button
@@ -164,7 +162,7 @@ const CreateSalaryType = ({ editingSalaryType, onClose }) => {
                             name="salaryName"
                             value={formData.salaryName}
                             onChange={handleInputChange}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                             placeholder="Enter salary type name (e.g., Basic Salary, House Rent, Medical Allowance)"
                             required
                         />
@@ -183,7 +181,7 @@ const CreateSalaryType = ({ editingSalaryType, onClose }) => {
                                 onChange={handleInputChange}
                                 min="0"
                                 step="0.01"
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 placeholder="Enter amount"
                                 required
                             />
@@ -195,7 +193,7 @@ const CreateSalaryType = ({ editingSalaryType, onClose }) => {
                                 name="isMonthly"
                                 checked={formData.isMonthly}
                                 onChange={handleInputChange}
-                                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                                className="h-4 w-4 text-[#1e90c9] focus:ring-blue-500 border-gray-300 rounded"
                             />
                             <label className="ml-2 block text-sm text-gray-700">
                                 Monthly Salary
@@ -214,7 +212,7 @@ const CreateSalaryType = ({ editingSalaryType, onClose }) => {
                                 name="applicableFrom"
                                 value={formData.applicableFrom}
                                 onChange={handleInputChange}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 required
                             />
                         </div>
@@ -228,7 +226,7 @@ const CreateSalaryType = ({ editingSalaryType, onClose }) => {
                                 name="applicableTo"
                                 value={formData.applicableTo}
                                 onChange={handleInputChange}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                             />
                         </div>
                     </div>
@@ -242,7 +240,7 @@ const CreateSalaryType = ({ editingSalaryType, onClose }) => {
                             name="session"
                             value={formData.session}
                             onChange={handleInputChange}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                             required
                         >
                             <option value="">Select Session</option>
@@ -266,17 +264,16 @@ const CreateSalaryType = ({ editingSalaryType, onClose }) => {
 
                     {/* Form Actions */}
                     <div className="flex gap-4 pt-6 border-t border-gray-200">
-                        <button
+                        <MainButton
                             type="submit"
                             disabled={loading}
-                            className="flex-1 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 transition-colors font-medium"
                         >
                             {loading 
                                 ? (editingSalaryType ? 'Updating...' : 'Creating...') 
                                 : (editingSalaryType ? 'Update Salary Type' : 'Create Salary Type')
                             }
-                        </button>
-                        <button
+                        </MainButton>
+                        <MainButton
                             type="button"
                             onClick={() => {
                                 setFormData({
@@ -292,10 +289,10 @@ const CreateSalaryType = ({ editingSalaryType, onClose }) => {
                                     onClose();
                                 }
                             }}
-                            className="flex-1 px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors font-medium"
+                            className=" px-6 py-3 bg-gray-500 text-white rounded-full hover:bg-gray-600 transition-colors font-medium"
                         >
                             {editingSalaryType ? 'Cancel' : 'Reset Form'}
-                        </button>
+                        </MainButton>
                     </div>
                 </form>
             </div>

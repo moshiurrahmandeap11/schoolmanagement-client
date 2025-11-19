@@ -3,6 +3,7 @@ import { FaCalendarAlt, FaSave } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const FeeSettings = ({ onBack }) => {
     const [formData, setFormData] = useState({
@@ -253,14 +254,7 @@ const FeeSettings = ({ onBack }) => {
     };
 
     if (fetchLoading) {
-        return (
-            <div className="min-h-screen bg-gray-50 flex justify-center items-center">
-                <div className="text-center">
-                    <Loader />
-                    <p className="text-gray-600 mt-3">ফি সেটিংস লোড হচ্ছে...</p>
-                </div>
-            </div>
-        );
+        return <Loader></Loader>
     }
 
     return (
@@ -273,12 +267,9 @@ const FeeSettings = ({ onBack }) => {
                     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8">
                         <form onSubmit={handleSubmit} className="space-y-8">
                             <div className="bg-blue-50 p-4 rounded-lg mb-6">
-                                <h3 className="text-lg font-semibold text-blue-800 mb-2">
+                                <h3 className="text-lg font-semibold text-[#1e90c9]">
                                     ফি সেটিংস কনফিগারেশন
                                 </h3>
-                                <p className="text-sm text-blue-600">
-                                    ফি সম্পর্কিত সকল সেটিংস এখানে কনফিগার করুন
-                                </p>
                             </div>
 
                             {/* Basic Settings */}
@@ -296,7 +287,7 @@ const FeeSettings = ({ onBack }) => {
                                             name="incomeSourceId"
                                             value={formData.incomeSourceId}
                                             onChange={handleChange}
-                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                 errors.incomeSourceId ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                             }`}
                                             disabled={loading}
@@ -321,7 +312,7 @@ const FeeSettings = ({ onBack }) => {
                                             name="accountId"
                                             value={formData.accountId}
                                             onChange={handleChange}
-                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                 errors.accountId ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                             }`}
                                             disabled={loading}
@@ -348,7 +339,7 @@ const FeeSettings = ({ onBack }) => {
                                             name="paymentTypeId"
                                             value={formData.paymentTypeId}
                                             onChange={handleChange}
-                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                 errors.paymentTypeId ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                             }`}
                                             disabled={loading}
@@ -380,7 +371,7 @@ const FeeSettings = ({ onBack }) => {
                                             name="sendMessage"
                                             checked={formData.sendMessage}
                                             onChange={handleChange}
-                                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                                            className="w-4 h-4 text-[#1e90c9] bg-gray-100 border-gray-300 rounded focus:ring-[#1e90c9]"
                                             disabled={loading}
                                         />
                                         <label className="text-sm font-medium text-gray-700">
@@ -399,7 +390,7 @@ const FeeSettings = ({ onBack }) => {
                                                 onChange={handleChange}
                                                 rows="3"
                                                 placeholder="ফি এসএমএস টেমপ্লেট লিখুন..."
-                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                     errors.feeSms ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                                 }`}
                                                 disabled={loading}
@@ -416,7 +407,7 @@ const FeeSettings = ({ onBack }) => {
                                             name="sendLateFeeSms"
                                             checked={formData.sendLateFeeSms}
                                             onChange={handleChange}
-                                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-[#1e90c9]"
                                             disabled={loading}
                                         />
                                         <label className="text-sm font-medium text-gray-700">
@@ -435,7 +426,7 @@ const FeeSettings = ({ onBack }) => {
                                                 onChange={handleChange}
                                                 rows="3"
                                                 placeholder="লেট ফি এসএমএস টেমপ্লেট লিখুন..."
-                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                     errors.lateFeeSms ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                                 }`}
                                                 disabled={loading}
@@ -465,7 +456,7 @@ const FeeSettings = ({ onBack }) => {
                                                 name="monthlyFeeStartFrom"
                                                 value={formData.monthlyFeeStartFrom}
                                                 onChange={handleChange}
-                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                     errors.monthlyFeeStartFrom ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                                 }`}
                                                 disabled={loading}
@@ -487,7 +478,7 @@ const FeeSettings = ({ onBack }) => {
                                                 name="monthlyFeeEnd"
                                                 value={formData.monthlyFeeEnd}
                                                 onChange={handleChange}
-                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                     errors.monthlyFeeEnd ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                                 }`}
                                                 disabled={loading}
@@ -511,7 +502,7 @@ const FeeSettings = ({ onBack }) => {
                                                 name="boardingFeeStartFrom"
                                                 value={formData.boardingFeeStartFrom}
                                                 onChange={handleChange}
-                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                     errors.boardingFeeStartFrom ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                                 }`}
                                                 disabled={loading}
@@ -533,7 +524,7 @@ const FeeSettings = ({ onBack }) => {
                                                 name="boardingFeeEnd"
                                                 value={formData.boardingFeeEnd}
                                                 onChange={handleChange}
-                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                     errors.boardingFeeEnd ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                                 }`}
                                                 disabled={loading}
@@ -596,10 +587,10 @@ const FeeSettings = ({ onBack }) => {
                                 >
                                     বাতিল করুন
                                 </button>
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md"
                                 >
                                     {loading ? (
                                         <>
@@ -608,11 +599,11 @@ const FeeSettings = ({ onBack }) => {
                                         </>
                                     ) : (
                                         <>
-                                            <FaSave className="text-sm" />
+                                            <FaSave className="text-sm mr-2" />
                                             সংরক্ষণ করুন
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
                     </div>

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaSave } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 const NewReceived = ({ onBack }) => {
@@ -134,7 +135,7 @@ const NewReceived = ({ onBack }) => {
         showCancelButton: true,
         confirmButtonText: 'হ্যাঁ, দান গ্রহণ করুন',
         cancelButtonText: 'বাতিল করুন',
-        confirmButtonColor: '#2563eb',
+        confirmButtonColor: '#1e90c9',
         cancelButtonColor: '#6b7280',
         reverseButtons: true,
       });
@@ -156,7 +157,7 @@ const NewReceived = ({ onBack }) => {
           `,
           icon: 'success',
           confirmButtonText: 'ঠিক আছে',
-          confirmButtonColor: '#2563eb',
+          confirmButtonColor: '#1e90c9',
         }).then(() => {
           onBack();
         });
@@ -201,7 +202,7 @@ const NewReceived = ({ onBack }) => {
             <select
               value={form.projectId}
               onChange={(e) => setForm({ ...form, projectId: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
             >
               <option value="">-- কোনো প্রজেক্ট নয় --</option>
               {projects.map(p => (
@@ -218,7 +219,7 @@ const NewReceived = ({ onBack }) => {
             <select
               value={form.donorId}
               onChange={(e) => handleDonorChange(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
               required
             >
               <option value="">-- দাতা নির্বাচন করুন --</option>
@@ -244,7 +245,7 @@ const NewReceived = ({ onBack }) => {
                     value={method}
                     checked={form.paymentMethod === method}
                     onChange={(e) => setForm({ ...form, paymentMethod: e.target.value })}
-                    className="w-4 h-4 text-blue-600"
+                    className="w-4 h-4 text-[#1e90c9]"
                   />
                   <span className="text-sm capitalize">
                     {method === 'bkash' ? 'বিকাশ' : method === 'nagad' ? 'নগদ' : method === 'rocket' ? 'রকেট' : 'ব্যাংক'}
@@ -300,7 +301,7 @@ const NewReceived = ({ onBack }) => {
                 value={form.amount}
                 onChange={(e) => setForm({ ...form, amount: e.target.value })}
                 placeholder="১০০০"
-                className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
                 required
                 min="1"
               />
@@ -317,7 +318,7 @@ const NewReceived = ({ onBack }) => {
               value={form.collectedBy}
               onChange={(e) => setForm({ ...form, collectedBy: e.target.value })}
               placeholder="যেমন: আব্দুর রহিম"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
               required
             />
           </div>
@@ -336,14 +337,13 @@ const NewReceived = ({ onBack }) => {
 
           {/* Submit */}
           <div className="flex justify-center pt-4">
-            <button
+            <MainButton
               type="submit"
               disabled={submitting}
-              className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium disabled:opacity-70 disabled:cursor-not-allowed"
             >
               <FaSave />
               {submitting ? 'সংরক্ষণ হচ্ছে...' : 'দান গ্রহণ করুন'}
-            </button>
+            </MainButton>
           </div>
         </form>
       </div>

@@ -81,11 +81,8 @@ const AdmissionInfo = () => {
             {/* Header Section */}
             <div className="text-center mb-8">
                 <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
-                    Admission Information
+                    ভর্তি তথ্য 
                 </h1>
-                <p className="text-gray-600 text-lg">
-                    Everything you need to know about our admission process
-                </p>
             </div>
 
             {/* Last Updated Info */}

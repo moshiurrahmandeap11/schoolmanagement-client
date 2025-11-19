@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaMoneyBillWave, FaPercentage, FaSave } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const AddNewFine = ({ fineType, onBack, onSuccess }) => {
     const [formData, setFormData] = useState({
@@ -148,13 +149,10 @@ const AddNewFine = ({ fineType, onBack, onSuccess }) => {
                 <div className="max-w-full mx-auto">
                     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8">
                         <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="bg-orange-50 p-4 rounded-lg mb-6">
-                                <h3 className="text-lg font-semibold text-orange-800 mb-2">
+                            <div className="bg-blue-50 p-4 rounded-lg mb-6">
+                                <h3 className="text-lg font-semibold text-[#1e90c9] mb-2">
                                     ফাইন টাইপের তথ্য:
                                 </h3>
-                                <p className="text-sm text-orange-600">
-                                    ফাইন টাইপের বিস্তারিত তথ্য প্রদান করুন
-                                </p>
                             </div>
 
                             {/* Fine Type Name */}
@@ -167,7 +165,7 @@ const AddNewFine = ({ fineType, onBack, onSuccess }) => {
                                     name="name"
                                     value={formData.name}
                                     onChange={handleChange}
-                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all ${
+                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                         errors.name ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                     }`}
                                     placeholder="ফাইন ধরণের নাম লিখুন (যেমন: লেট ফাইন, অ্যাবসেন্স ফাইন)"
@@ -185,7 +183,7 @@ const AddNewFine = ({ fineType, onBack, onSuccess }) => {
                                     name="isParcel"
                                     checked={formData.isParcel}
                                     onChange={handleChange}
-                                    className="w-4 h-4 text-orange-600 bg-gray-100 border-gray-300 rounded focus:ring-orange-500"
+                                    className="w-4 h-4 text-[#1e90c9] bg-gray-100 border-gray-300 rounded focus:ring-orange-500"
                                     disabled={loading}
                                 />
                                 <label className="ml-2 text-sm font-medium text-gray-700">
@@ -208,7 +206,7 @@ const AddNewFine = ({ fineType, onBack, onSuccess }) => {
                                                 onChange={handleChange}
                                                 min="0"
                                                 step="0.01"
-                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all ${
+                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                     errors.fineAmount ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                                 }`}
                                                 placeholder="0.00"
@@ -234,7 +232,7 @@ const AddNewFine = ({ fineType, onBack, onSuccess }) => {
                                                 min="0"
                                                 max="100"
                                                 step="0.01"
-                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all ${
+                                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                     errors.percentage ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                                 }`}
                                                 placeholder="0.00"
@@ -258,7 +256,7 @@ const AddNewFine = ({ fineType, onBack, onSuccess }) => {
                                         name="fixedDate"
                                         value={formData.fixedDate}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     />
                                 </div>
@@ -271,7 +269,7 @@ const AddNewFine = ({ fineType, onBack, onSuccess }) => {
                                     name="isAbsenceFine"
                                     checked={formData.isAbsenceFine}
                                     onChange={handleChange}
-                                    className="w-4 h-4 text-orange-600 bg-gray-100 border-gray-300 rounded focus:ring-orange-500"
+                                    className="w-4 h-4 text-[#1e90c9] bg-gray-100 border-gray-300 rounded focus:ring-orange-500"
                                     disabled={loading}
                                 />
                                 <label className="ml-2 text-sm font-medium text-gray-700">
@@ -285,7 +283,7 @@ const AddNewFine = ({ fineType, onBack, onSuccess }) => {
                                     <h4 className="text-sm font-medium text-green-800 mb-2">
                                         সারাংশ:
                                     </h4>
-                                    <div className="text-sm text-green-700 space-y-1">
+                                    <div className="text-sm text-[#1e90c9] space-y-1">
                                         <p>ফাইন ধরণ: <strong>{formData.name}</strong></p>
                                         <p>টাইপ: <strong>{formData.isParcel ? 'শতকরা ভিত্তিক' : 'নির্দিষ্ট পরিমাণ'}</strong></p>
                                         {!formData.isParcel && formData.fineAmount && (
@@ -295,7 +293,7 @@ const AddNewFine = ({ fineType, onBack, onSuccess }) => {
                                             <p>শতকরা পরিমাণ: <strong>{formData.percentage}%</strong></p>
                                         )}
                                         {formData.isAbsenceFine && (
-                                            <p className="text-red-600">⚠️ এটি একটি অনুপস্থিত জরিমানা</p>
+                                            <p className="text-[#1e90c9]">⚠️ এটি একটি অনুপস্থিত জরিমানা</p>
                                         )}
                                         {formData.fixedDate && (
                                             <p>নির্ধারিত তারিখ: <strong>{new Date(formData.fixedDate).toLocaleDateString('bn-BD')}</strong></p>
@@ -321,10 +319,10 @@ const AddNewFine = ({ fineType, onBack, onSuccess }) => {
                                 >
                                     বাতিল করুন
                                 </button>
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="inline-flex items-center gap-2 px-8 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md"
                                 >
                                     {loading ? (
                                         <>
@@ -333,20 +331,20 @@ const AddNewFine = ({ fineType, onBack, onSuccess }) => {
                                         </>
                                     ) : (
                                         <>
-                                            <FaSave className="text-sm" />
+                                            <FaSave className="text-sm mr-2" />
                                             {fineType ? 'আপডেট করুন' : 'সংরক্ষণ করুন'}
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
 
                         {/* Help Text */}
-                        <div className="mt-6 p-4 bg-orange-50 rounded-lg border border-orange-200">
-                            <h3 className="text-sm font-medium text-orange-800 mb-1">
+                        <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                            <h3 className="text-sm font-medium text-[#1e90c9] mb-1">
                                 ফাইন টাইপ সম্পর্কে:
                             </h3>
-                            <ul className="text-xs text-orange-600 space-y-1">
+                            <ul className="text-xs text-[#1e90c9] space-y-1">
                                 <li>• <strong>নির্দিষ্ট পরিমাণ:</strong> একটি নির্দিষ্ট টাকার পরিমাণ জরিমানা</li>
                                 <li>• <strong>শতকরা ভিত্তিক:</strong> মোট ফির শতকরা হারে জরিমানা</li>
                                 <li>• <strong>অনুপস্থিত জরিমানা:</strong> অনুপস্থিতির জন্য বিশেষ জরিমানা</li>

@@ -94,7 +94,7 @@ const Students = () => {
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                         <div>
                             <h1 className="text-2xl md:text-3xl font-bold text-gray-800 flex items-center gap-3">
-                                <FaUserGraduate className="text-blue-600" />
+                                <FaUserGraduate className="text-[#1e90c9]" />
                                 শিক্ষার্থী তালিকা
                             </h1>
                             <p className="text-gray-600 mt-2">
@@ -117,7 +117,7 @@ const Students = () => {
                                     type="text"
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                     placeholder="নাম, আইডি, পিতার নাম বা মোবাইল নম্বর লিখুন..."
                                 />
                                 <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -132,7 +132,7 @@ const Students = () => {
                             <select
                                 value={selectedClass}
                                 onChange={(e) => setSelectedClass(e.target.value)}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                             >
                                 <option value="">সকল ক্লাস</option>
                                 {uniqueClasses.map(classItem => (
@@ -151,7 +151,7 @@ const Students = () => {
                             <select
                                 value={selectedSession}
                                 onChange={(e) => setSelectedSession(e.target.value)}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                             >
                                 <option value="">সকল সেশন</option>
                                 {uniqueSessions.map(session => (
@@ -182,10 +182,7 @@ const Students = () => {
                 <div className="bg-white rounded-2xl shadow-lg border border-gray-200">
                     {/* Loading State */}
                     {loading && (
-                        <div className="p-8 text-center">
-                            <Loader />
-                            <p className="text-gray-600 mt-2 text-sm">শিক্ষার্থী লোড হচ্ছে...</p>
-                        </div>
+                        <Loader></Loader>
                     )}
 
                     {/* Empty State */}

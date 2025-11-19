@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaEdit, FaFileDownload, FaFilter, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
-import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import axiosInstance, { baseImageURL } from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const Transactions = ({ onBack }) => {
@@ -241,8 +242,9 @@ const Transactions = ({ onBack }) => {
     };
 
     const downloadVoucher = (voucherUrl) => {
+        
         if (voucherUrl) {
-            window.open(voucherUrl, '_blank');
+            window.open(`${baseImageURL}${voucherUrl}`, '_blank');
         }
     };
 
@@ -327,7 +329,7 @@ const Transactions = ({ onBack }) => {
                             <div>
                                 <p className="text-sm font-medium text-blue-800">Balance</p>
                                 <p className={`text-2xl font-bold ${
-                                    balance >= 0 ? 'text-blue-600' : 'text-orange-600'
+                                    balance >= 0 ? 'text-[#1e90c9]' : 'text-orange-600'
                                 }`}>
                                     ৳{balance.toLocaleString()}
                                 </p>
@@ -357,7 +359,7 @@ const Transactions = ({ onBack }) => {
                                     name="incomeSource"
                                     value={filters.incomeSource}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 >
                                     <option value="all">সব উৎস</option>
                                     {incomeSources.map(source => (
@@ -377,7 +379,7 @@ const Transactions = ({ onBack }) => {
                                     name="expenseHead"
                                     value={filters.expenseHead}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 >
                                     <option value="all">সব খাত</option>
                                     {expenseHeads.map(head => (
@@ -397,7 +399,7 @@ const Transactions = ({ onBack }) => {
                                     name="month"
                                     value={filters.month}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 >
                                     <option value="all">সব মাস</option>
                                     {months.map(month => (
@@ -417,7 +419,7 @@ const Transactions = ({ onBack }) => {
                                     name="year"
                                     value={filters.year}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 >
                                     <option value="all">সব বছর</option>
                                     {years.map(year => (
@@ -441,7 +443,7 @@ const Transactions = ({ onBack }) => {
                                     name="fromDate"
                                     value={filters.fromDate}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 />
                             </div>
 
@@ -455,7 +457,7 @@ const Transactions = ({ onBack }) => {
                                     name="toDate"
                                     value={filters.toDate}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 />
                             </div>
 
@@ -468,7 +470,7 @@ const Transactions = ({ onBack }) => {
                                     name="accountId"
                                     value={filters.accountId}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 >
                                     <option value="all">সব একাউন্ট</option>
                                     {bankAccounts.map(account => (
@@ -488,7 +490,7 @@ const Transactions = ({ onBack }) => {
                                     name="userId"
                                     value={filters.userId}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 >
                                     <option value="all">সব সদস্য</option>
                                     {users.map(user => (
@@ -502,12 +504,12 @@ const Transactions = ({ onBack }) => {
 
                         {/* Buttons */}
                         <div className="flex items-center gap-3">
-                            <button
+                            <MainButton
                                 onClick={handleApplyFilters}
-                                className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
+                                className="rounded-md"
                             >
                                 Apply Filters
-                            </button>
+                            </MainButton>
                             <button
                                 onClick={handleClearFilters}
                                 className="px-6 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium"

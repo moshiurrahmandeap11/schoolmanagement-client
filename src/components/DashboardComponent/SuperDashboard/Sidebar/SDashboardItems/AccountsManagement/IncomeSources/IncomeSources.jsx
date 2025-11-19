@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaEdit, FaPlus, FaToggleOff, FaToggleOn, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewIncomeSources from './AddNewIncomeSources/AddNewIncomeSources';
 
 
@@ -130,15 +131,13 @@ const IncomeSources = ({ onBack }) => {
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
                         <h2 className="text-2xl font-bold text-gray-800 mb-2">আয়ের উৎস</h2>
-                        <p className="text-gray-600">প্রতিষ্ঠানের আয়ের বিভিন্ন উৎস ব্যবস্থাপনা করুন (ফি, ডোনেশন ইত্যাদি)</p>
                     </div>
-                    <button
+                    <MainButton
                         onClick={() => setShowAddForm(true)}
-                        className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200 flex items-center gap-2"
                     >
-                        <FaPlus className="text-sm" />
-                        + Add Income Source
-                    </button>
+                        <FaPlus className="text-sm mr-2" />
+                        Add Income Source
+                    </MainButton>
                 </div>
             </div>
 

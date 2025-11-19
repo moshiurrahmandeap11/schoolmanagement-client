@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import CreateSalaryType from '../CreateSalaryType/CreateSalaryType';
 
 
@@ -136,23 +138,19 @@ const SalaryTypeList = () => {
         <div className="max-w-full mx-auto p-4 sm:p-6">
             {/* Header */}
             <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6">
-                <button
+                <MainButton
                     onClick={() => setShowCreateForm(true)}
-                    className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2 mt-4 lg:mt-0"
                 >
                     <span>+</span>
                     বেতনের ধরণ
-                </button>
+                </MainButton>
             </div>
 
             {/* Salary Types List */}
             <div className="bg-white rounded-lg shadow-lg border border-gray-200">
                 {/* Loading State */}
                 {loading && (
-                    <div className="p-8 text-center">
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
-                        <p className="text-gray-600 mt-2">Loading salary types...</p>
-                    </div>
+                    <Loader></Loader>
                 )}
 
                 {/* Empty State */}
@@ -161,12 +159,12 @@ const SalaryTypeList = () => {
                         <div className="text-6xl mb-4">💰</div>
                         <h3 className="text-xl font-semibold text-gray-800 mb-2">No Salary Types Found</h3>
                         <p className="text-gray-600 mb-4">Get started by creating your first salary type.</p>
-                        <button
+                        <MainButton
                             onClick={() => setShowCreateForm(true)}
-                            className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                            
                         >
                             Create Salary Type
-                        </button>
+                        </MainButton>
                     </div>
                 )}
 
@@ -193,7 +191,7 @@ const SalaryTypeList = () => {
                                                 <div className="flex items-center gap-2 mt-1">
                                                     <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
                                                         salaryType.isMonthly 
-                                                            ? 'bg-green-100 text-green-800'
+                                                            ? 'bg-[#1e90c9] text-white'
                                                             : 'bg-blue-100 text-blue-800'
                                                     }`}>
                                                         {salaryType.isMonthly ? 'Monthly' : 'One-time'}

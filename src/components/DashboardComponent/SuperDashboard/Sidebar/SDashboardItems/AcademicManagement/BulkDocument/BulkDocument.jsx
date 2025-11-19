@@ -3,6 +3,7 @@ import { FaArrowLeft, FaMinus, FaPlus, FaUpload } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const BulkDocument = ({ onBack }) => {
     const [loading, setLoading] = useState(false);
@@ -240,7 +241,7 @@ const BulkDocument = ({ onBack }) => {
                                                 type="text"
                                                 value={document.title}
                                                 onChange={(e) => handleInputChange(index, 'title', e.target.value)}
-                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                                 placeholder="ডকুমেন্টের শিরোনাম লিখুন"
                                                 required
                                             />
@@ -255,7 +256,7 @@ const BulkDocument = ({ onBack }) => {
                                                 <select
                                                     value={document.category}
                                                     onChange={(e) => handleInputChange(index, 'category', e.target.value)}
-                                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                                     required
                                                 >
                                                     <option value="">ক্যাটাগরী নির্বাচন করুন</option>
@@ -275,7 +276,7 @@ const BulkDocument = ({ onBack }) => {
                                                 <select
                                                     value={document.teacher}
                                                     onChange={(e) => handleInputChange(index, 'teacher', e.target.value)}
-                                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                                 >
                                                     <option value="">শিক্ষক নির্বাচন করুন</option>
                                                     {teachers.map(teacher => (
@@ -293,7 +294,7 @@ const BulkDocument = ({ onBack }) => {
                                                 ফাইল <span className="text-red-500">*</span>
                                             </label>
                                             
-                                            <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-blue-400 transition-colors">
+                                            <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-[#1e90c9] transition-colors">
                                                 <input
                                                     type="file"
                                                     onChange={(e) => handleFileChange(index, e.target.files[0])}
@@ -342,13 +343,12 @@ const BulkDocument = ({ onBack }) => {
                                                                 PNG, JPG, PDF, DOCX, XLSX
                                                             </p>
                                                         </div>
-                                                        <button
+                                                        <MainButton
                                                             type="button"
                                                             onClick={() => triggerFileInput(index)}
-                                                            className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors text-xs"
                                                         >
                                                             ফাইল নির্বাচন করুন
-                                                        </button>
+                                                        </MainButton>
                                                     </div>
                                                 )}
                                             </div>
@@ -358,18 +358,17 @@ const BulkDocument = ({ onBack }) => {
                             ))}
 
                             {/* Add More Button */}
-                            <button
+                            <MainButton
                                 type="button"
                                 onClick={addDocumentField}
-                                className="w-full py-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors flex items-center justify-center gap-2 text-gray-600"
                             >
-                                <FaPlus className="text-sm" />
-                                + আরও যোগ করুন
-                            </button>
+                                <FaPlus className="text-sm mr-2" />
+                                আরও যোগ করুন
+                            </MainButton>
 
                             {/* Summary */}
                             <div className="bg-blue-50 rounded-lg p-4">
-                                <div className="flex flex-wrap gap-4 text-sm text-blue-700">
+                                <div className="flex flex-wrap gap-4 text-sm text-[#1e90c9]">
                                     <span>মোট ডকুমেন্ট: {documents.length}</span>
                                     <span>ফাইল সিলেক্টেড: {documents.filter(doc => doc.file).length}</span>
                                     <span>ক্যাটাগরী সিলেক্টেড: {documents.filter(doc => doc.category).length}</span>
@@ -378,13 +377,13 @@ const BulkDocument = ({ onBack }) => {
 
                             {/* Action Buttons */}
                             <div className="flex gap-3 pt-6">
-                                <button
+                                <MainButton
                                     type="submit"
-                                    className="flex-1 bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 font-medium text-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className='flex-1 flex items-center justify-center rounded-md'
                                     disabled={loading || documents.length === 0}
                                 >
                                     {loading ? 'তৈরি হচ্ছে...' : `${documents.length}টি ডকুমেন্ট তৈরি করুন`}
-                                </button>
+                                </MainButton>
                                 <button
                                     type="button"
                                     onClick={onBack}
@@ -396,9 +395,9 @@ const BulkDocument = ({ onBack }) => {
                         </form>
 
                         {/* Help Text */}
-                        <div className="mt-6 p-4 bg-green-50 rounded-lg">
-                            <h3 className="text-sm font-medium text-green-800 mb-2">বাল্ক আপলোড সহায়তা:</h3>
-                            <ul className="text-sm text-green-700 space-y-1">
+                        <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                            <h3 className="text-sm font-medium text-[#1e90c9] mb-2">বাল্ক আপলোড সহায়তা:</h3>
+                            <ul className="text-sm text-[#1e90c9] space-y-1">
                                 <li>• একসাথে একাধিক ডকুমেন্ট আপলোড করুন</li>
                                 <li>• প্রতিটি ডকুমেন্টের জন্য শিরোনাম, ক্যাটাগরী এবং ফাইল আবশ্যক</li>
                                 <li>• সর্বোচ্চ ফাইল সাইজ: 10MB প্রতি ডকুমেন্ট</li>

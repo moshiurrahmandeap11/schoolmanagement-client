@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaPlus, FaSave, FaTrash, FaUpload } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddExpenses = ({ expense, onBack, onSuccess }) => {
@@ -313,21 +314,20 @@ const AddExpenses = ({ expense, onBack, onSuccess }) => {
                     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8">
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="bg-blue-50 p-4 rounded-lg mb-6">
-                                <h3 className="text-lg font-semibold text-blue-800 mb-2">Expense Details:</h3>
+                                <h3 className="text-lg font-semibold text-[#1e90c9] mb-2">Expense Details:</h3>
                             </div>
 
                             {/* Expense Items Section */}
                             <div className="space-y-4">
                                 <div className="flex items-center justify-between">
                                     <h4 className="text-lg font-semibold text-gray-800">Expense Items</h4>
-                                    <button
+                                    <MainButton
                                         type="button"
                                         onClick={addExpenseItem}
-                                        className="inline-flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
                                     >
-                                        <FaPlus className="text-sm" />
+                                        <FaPlus className="text-sm mr-2" />
                                         Add More Expense Item
-                                    </button>
+                                    </MainButton>
                                 </div>
 
                                 {formData.expenseItems.map((item, index) => (
@@ -354,7 +354,7 @@ const AddExpenses = ({ expense, onBack, onSuccess }) => {
                                                 <select
                                                     value={item.expenseCategoryId}
                                                     onChange={(e) => handleExpenseItemChange(index, 'expenseCategoryId', e.target.value)}
-                                                    className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                                                    className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] ${
                                                         errors[`expenseCategory_${index}`] ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                                     }`}
                                                 >
@@ -378,7 +378,7 @@ const AddExpenses = ({ expense, onBack, onSuccess }) => {
                                                 <select
                                                     value={item.expenseItemId}
                                                     onChange={(e) => handleExpenseItemChange(index, 'expenseItemId', e.target.value)}
-                                                    className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                                                    className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] ${
                                                         errors[`expenseItem_${index}`] ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                                     }`}
                                                 >
@@ -404,7 +404,7 @@ const AddExpenses = ({ expense, onBack, onSuccess }) => {
                                                     value={item.quantity}
                                                     onChange={(e) => handleExpenseItemChange(index, 'quantity', e.target.value)}
                                                     min="1"
-                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                                 />
                                             </div>
 
@@ -419,7 +419,7 @@ const AddExpenses = ({ expense, onBack, onSuccess }) => {
                                                     onChange={(e) => handleExpenseItemChange(index, 'amount', e.target.value)}
                                                     step="0.01"
                                                     min="0"
-                                                    className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                                                    className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] ${
                                                         errors[`amount_${index}`] ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                                     }`}
                                                     placeholder="পরিমাণ"
@@ -440,7 +440,7 @@ const AddExpenses = ({ expense, onBack, onSuccess }) => {
                                                     type="text"
                                                     value={`৳${item.subtotal || '0.00'}`}
                                                     readOnly
-                                                    className="w-full px-3 py-2 border border-gray-300 bg-gray-100 rounded-lg"
+                                                    className="w-full px-3 py-2 border border-[#1e90c9] bg-gray-100 rounded-lg"
                                                 />
                                             </div>
                                             <div>
@@ -451,7 +451,7 @@ const AddExpenses = ({ expense, onBack, onSuccess }) => {
                                                     type="text"
                                                     value={item.description}
                                                     onChange={(e) => handleExpenseItemChange(index, 'description', e.target.value)}
-                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                                     placeholder="আইটেম বিবরণ"
                                                 />
                                             </div>
@@ -461,10 +461,10 @@ const AddExpenses = ({ expense, onBack, onSuccess }) => {
                             </div>
 
                             {/* Total Amount */}
-                            <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                            <div className="bg-blue-50 p-4 rounded-lg border border-blue-50">
                                 <div className="flex items-center justify-between">
-                                    <span className="text-lg font-semibold text-yellow-800">Total Amount:</span>
-                                    <span className="text-2xl font-bold text-yellow-800">
+                                    <span className="text-lg font-semibold text-[#1e90c9]">Total Amount:</span>
+                                    <span className="text-2xl font-bold text-[#1e90c9]">
                                         ৳{formData.totalAmount.toLocaleString()}
                                     </span>
                                 </div>
@@ -483,7 +483,7 @@ const AddExpenses = ({ expense, onBack, onSuccess }) => {
                                         name="paymentStatus"
                                         value={formData.paymentStatus}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     >
                                         <option value="Cash">Cash</option>
                                         <option value="Due">Due</option>
@@ -499,7 +499,7 @@ const AddExpenses = ({ expense, onBack, onSuccess }) => {
                                         name="accountId"
                                         value={formData.accountId}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.accountId ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                     >
@@ -525,7 +525,7 @@ const AddExpenses = ({ expense, onBack, onSuccess }) => {
                                         name="date"
                                         value={formData.date}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.date ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                     />
@@ -585,7 +585,7 @@ const AddExpenses = ({ expense, onBack, onSuccess }) => {
                                     value={formData.description}
                                     onChange={handleChange}
                                     rows={3}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                     placeholder="খরচের বিবরণ লিখুন"
                                 />
                             </div>
@@ -600,7 +600,7 @@ const AddExpenses = ({ expense, onBack, onSuccess }) => {
                                     value={formData.note}
                                     onChange={handleChange}
                                     rows={2}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                     placeholder="অতিরিক্ত নোট লিখুন"
                                 />
                             </div>
@@ -622,10 +622,10 @@ const AddExpenses = ({ expense, onBack, onSuccess }) => {
                                 >
                                     বাতিল করুন
                                 </button>
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="inline-flex items-center gap-2 px-8 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md"
                                 >
                                     {loading ? (
                                         <>
@@ -634,11 +634,11 @@ const AddExpenses = ({ expense, onBack, onSuccess }) => {
                                         </>
                                     ) : (
                                         <>
-                                            <FaSave className="text-sm" />
+                                            <FaSave className="text-sm mr-2" />
                                             {expense ? 'আপডেট করুন' : 'আরও যোগ করুন'}
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
                     </div>

@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddMenu from './AddMenu/AddMenu';
 
 const Menu = () => {
@@ -116,23 +117,19 @@ const Menu = () => {
 
                     {/* Add New Button */}
                     <div className="flex justify-end mb-6">
-                        <button
+                        <MainButton
                             onClick={handleAddNew}
-                            className="px-5 py-2.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2 text-sm"
                         >
                             <FaPlus className="text-sm" />
                             নতুন মেনু
-                        </button>
+                        </MainButton>
                     </div>
 
                     {/* Menus List */}
                     <div className="bg-white rounded-lg shadow border border-gray-200">
                         {/* Loading State */}
                         {loading && (
-                            <div className="p-8 text-center">
-                                <Loader />
-                                <p className="text-gray-600 mt-2 text-sm">মেনু লোড হচ্ছে...</p>
-                            </div>
+                            <Loader></Loader>
                         )}
 
                         {/* Empty State */}
@@ -141,12 +138,11 @@ const Menu = () => {
                                 <div className="text-4xl mb-3">📋</div>
                                 <h3 className="text-lg font-semibold text-gray-800 mb-2">কোন মেনু পাওয়া যায়নি</h3>
                                 <p className="text-gray-600 mb-4 text-sm">আপনার প্রথম মেনু তৈরি করুন।</p>
-                                <button
+                                <MainButton
                                     onClick={handleAddNew}
-                                    className="px-5 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm"
                                 >
                                     মেনু তৈরি করুন
-                                </button>
+                                </MainButton>
                             </div>
                         )}
 
@@ -165,7 +161,7 @@ const Menu = () => {
                                             <tr key={menu._id} className="hover:bg-gray-50">
                                                 <td className="px-4 py-3">
                                                     <div className="flex items-center gap-3">
-                                                        <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                        <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center shrink-0">
                                                             <span className="text-blue-600 font-semibold text-sm">
                                                                 {menu.name.charAt(0).toUpperCase()}
                                                             </span>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaSave, FaUpload } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddIncomes = ({ income, onBack, onSuccess }) => {
@@ -219,7 +220,7 @@ const AddIncomes = ({ income, onBack, onSuccess }) => {
                     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8">
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="bg-blue-50 p-4 rounded-lg mb-6">
-                                <h3 className="text-lg font-semibold text-blue-800 mb-2">Income Details:</h3>
+                                <h3 className="text-lg font-semibold text-[#1e90c9] mb-2">Income Details:</h3>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -232,7 +233,7 @@ const AddIncomes = ({ income, onBack, onSuccess }) => {
                                         name="accountId"
                                         value={formData.accountId}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.accountId ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         disabled={loading}
@@ -259,7 +260,7 @@ const AddIncomes = ({ income, onBack, onSuccess }) => {
                                         name="date"
                                         value={formData.date}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.date ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         disabled={loading}
@@ -281,7 +282,7 @@ const AddIncomes = ({ income, onBack, onSuccess }) => {
                                         onChange={handleChange}
                                         step="0.01"
                                         min="0"
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.amount ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         placeholder="পরিমাণ লিখুন"
@@ -301,7 +302,7 @@ const AddIncomes = ({ income, onBack, onSuccess }) => {
                                         name="incomeSourceId"
                                         value={formData.incomeSourceId}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.incomeSourceId ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         disabled={loading}
@@ -327,7 +328,7 @@ const AddIncomes = ({ income, onBack, onSuccess }) => {
                                         name="paymentTypeId"
                                         value={formData.paymentTypeId}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     >
                                         <option value="">পেমেন্ট টাইপ নির্বাচন করুন</option>
@@ -390,7 +391,7 @@ const AddIncomes = ({ income, onBack, onSuccess }) => {
                                     value={formData.description}
                                     onChange={handleChange}
                                     rows={3}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                     placeholder="আয়ের বিবরণ লিখুন"
                                     disabled={loading}
                                 />
@@ -406,7 +407,7 @@ const AddIncomes = ({ income, onBack, onSuccess }) => {
                                     value={formData.note}
                                     onChange={handleChange}
                                     rows={2}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                     placeholder="অতিরিক্ত নোট লিখুন"
                                     disabled={loading}
                                 />
@@ -429,10 +430,10 @@ const AddIncomes = ({ income, onBack, onSuccess }) => {
                                 >
                                     বাতিল করুন
                                 </button>
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="inline-flex items-center gap-2 px-8 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md"
                                 >
                                     {loading ? (
                                         <>
@@ -441,11 +442,11 @@ const AddIncomes = ({ income, onBack, onSuccess }) => {
                                         </>
                                     ) : (
                                         <>
-                                            <FaSave className="text-sm" />
+                                            <FaSave className="text-sm mr-2" />
                                             {income ? 'আপডেট করুন' : 'আরও যোগ করুন'}
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
                     </div>

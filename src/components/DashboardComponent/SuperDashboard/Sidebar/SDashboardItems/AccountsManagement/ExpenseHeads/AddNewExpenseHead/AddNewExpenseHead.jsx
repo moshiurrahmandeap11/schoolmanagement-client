@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaSave } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddNewExpenseHead = ({ expenseHead, onBack, onSuccess }) => {
@@ -184,7 +185,7 @@ const AddNewExpenseHead = ({ expenseHead, onBack, onSuccess }) => {
                                         name="name"
                                         value={formData.name}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.name ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         placeholder="খরচের হেডের নাম লিখুন"
@@ -207,7 +208,7 @@ const AddNewExpenseHead = ({ expenseHead, onBack, onSuccess }) => {
                                         onChange={handleChange}
                                         step="0.01"
                                         min="0"
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.amount ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         placeholder="পরিমাণ লিখুন"
@@ -227,7 +228,7 @@ const AddNewExpenseHead = ({ expenseHead, onBack, onSuccess }) => {
                                         name="categoryId"
                                         value={formData.categoryId}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     >
                                         <option value="">ক্যাটাগরি নির্বাচন করুন</option>
@@ -248,7 +249,7 @@ const AddNewExpenseHead = ({ expenseHead, onBack, onSuccess }) => {
                                         name="sessionId"
                                         value={formData.sessionId}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     >
                                         <option value="">সেশন নির্বাচন করুন</option>
@@ -270,7 +271,7 @@ const AddNewExpenseHead = ({ expenseHead, onBack, onSuccess }) => {
                                         name="applicableFrom"
                                         value={formData.applicableFrom}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     />
                                 </div>
@@ -285,7 +286,7 @@ const AddNewExpenseHead = ({ expenseHead, onBack, onSuccess }) => {
                                         name="endsAt"
                                         value={formData.endsAt}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.endsAt ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         disabled={loading}
@@ -306,7 +307,7 @@ const AddNewExpenseHead = ({ expenseHead, onBack, onSuccess }) => {
                                     value={formData.description}
                                     onChange={handleChange}
                                     rows={4}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                     placeholder="বিবরণ লিখুন"
                                     disabled={loading}
                                 />
@@ -319,7 +320,7 @@ const AddNewExpenseHead = ({ expenseHead, onBack, onSuccess }) => {
                                     name="isMonthly"
                                     checked={formData.isMonthly}
                                     onChange={handleChange}
-                                    className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                    className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-[#1e90c9]"
                                     disabled={loading}
                                 />
                                 <label className="ml-2 text-sm font-medium text-gray-700">
@@ -344,10 +345,10 @@ const AddNewExpenseHead = ({ expenseHead, onBack, onSuccess }) => {
                                 >
                                     বাতিল করুন
                                 </button>
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="inline-flex items-center gap-2 px-8 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md"
                                 >
                                     {loading ? (
                                         <>
@@ -356,11 +357,11 @@ const AddNewExpenseHead = ({ expenseHead, onBack, onSuccess }) => {
                                         </>
                                     ) : (
                                         <>
-                                            <FaSave className="text-sm" />
+                                            <FaSave className="text-sm mr-2" />
                                             {expenseHead ? 'আপডেট করুন' : 'সংরক্ষণ করুন'}
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
                     </div>

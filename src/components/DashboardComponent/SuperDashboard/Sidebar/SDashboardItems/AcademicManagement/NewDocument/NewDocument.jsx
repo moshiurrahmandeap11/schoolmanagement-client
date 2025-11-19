@@ -3,6 +3,7 @@ import { FaArrowLeft, FaUpload } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const NewDocument = ({ onBack }) => {
     const [loading, setLoading] = useState(false);
@@ -198,7 +199,7 @@ const NewDocument = ({ onBack }) => {
                                     name="title"
                                     value={formData.title}
                                     onChange={handleInputChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                     placeholder="ডকুমেন্টের শিরোনাম লিখুন"
                                     required
                                 />
@@ -214,7 +215,7 @@ const NewDocument = ({ onBack }) => {
                                         name="category"
                                         value={formData.category}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                         required
                                     >
                                         <option value="">ক্যাটাগরী নির্বাচন করুন</option>
@@ -235,7 +236,7 @@ const NewDocument = ({ onBack }) => {
                                         name="teacher"
                                         value={formData.teacher}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                     >
                                         <option value="">শিক্ষক নির্বাচন করুন</option>
                                         {teachers.map(teacher => (
@@ -254,7 +255,7 @@ const NewDocument = ({ onBack }) => {
                                 </label>
                                 
                                 {/* File Upload Area */}
-                                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
+                                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-[#1e90c9] transition-colors">
                                     <input
                                         type="file"
                                         onChange={handleFileChange}
@@ -286,13 +287,12 @@ const NewDocument = ({ onBack }) => {
                                                 </div>
                                             )}
                                             <div className="flex gap-2 justify-center">
-                                                <button
+                                                <MainButton
                                                     type="button"
                                                     onClick={triggerFileInput}
-                                                    className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm"
                                                 >
                                                     অন্য ফাইল নির্বাচন করুন
-                                                </button>
+                                                </MainButton>
                                                 <button
                                                     type="button"
                                                     onClick={() => {
@@ -316,13 +316,12 @@ const NewDocument = ({ onBack }) => {
                                                     PNG, JPG, PDF, DOCX, XLSX ফাইল সাপোর্টেড
                                                 </p>
                                             </div>
-                                            <button
+                                            <MainButton
                                                 type="button"
                                                 onClick={triggerFileInput}
-                                                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm"
                                             >
                                                 ফাইল নির্বাচন করুন
-                                            </button>
+                                            </MainButton>
                                         </div>
                                     )}
 
@@ -335,13 +334,13 @@ const NewDocument = ({ onBack }) => {
 
                             {/* Action Buttons */}
                             <div className="flex gap-3 pt-6">
-                                <button
+                                <MainButton
                                     type="submit"
-                                    className="flex-1 bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 font-medium text-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className='flex-1 flex items-center justify-center rounded-md'
                                     disabled={loading || !formData.file}
                                 >
                                     {loading ? 'তৈরি হচ্ছে...' : 'ডকুমেন্ট তৈরি করুন'}
-                                </button>
+                                </MainButton>
                                 <button
                                     type="button"
                                     onClick={onBack}

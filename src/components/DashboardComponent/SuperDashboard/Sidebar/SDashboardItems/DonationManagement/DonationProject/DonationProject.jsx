@@ -1,9 +1,10 @@
 // src/pages/donation/DonationProject.jsx
-import React, { useState, useEffect } from 'react';
-import { FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
+import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance, { baseImageURL } from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import NewDonationProject from './NewDonationProject/NewDonationProject';
 
 const DonationProject = () => {
@@ -89,14 +90,13 @@ const DonationProject = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
           <div>
             <h2 className="text-2xl font-semibold text-gray-800">অনুদান প্রজেক্টসমূহ</h2>
-            <p className="text-gray-600 mt-1">মোট: <strong className="text-blue-600">{projects.length}</strong> টি</p>
+            <p className="text-gray-600 mt-1">মোট: <strong className="text-[#1e90c9]">{projects.length}</strong> টি</p>
           </div>
-          <button
+          <MainButton
             onClick={() => setShowForm(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium"
           >
             <FaPlus /> নতুন প্রজেক্ট
-          </button>
+          </MainButton>
         </div>
 
         {/* Projects Grid */}

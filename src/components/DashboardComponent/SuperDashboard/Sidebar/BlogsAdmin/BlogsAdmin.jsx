@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance, { baseImageURL } from '../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 import AddBlog from './AddBlog/AddBlog';
 
 const BlogsAdmin = () => {
@@ -152,12 +153,11 @@ const BlogsAdmin = () => {
             <div className="max-w-full mx-auto">
                 <div className="flex justify-between items-center mb-6">
                     <h1 className="text-3xl font-bold text-gray-800">ব্লগ ব্যবস্থাপনা</h1>
-                    <button
+                    <MainButton
                         onClick={openAddBlog}
-                        className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors font-medium"
                     >
                         + নতুন ব্লগ
-                    </button>
+                    </MainButton>
                 </div>
 
                 {/* Blog Table */}
@@ -242,7 +242,7 @@ const BlogsAdmin = () => {
                                 onClick={() => paginate(i + 1)}
                                 className={`px-4 py-2 rounded font-medium transition-colors ${
                                     currentPage === i + 1
-                                        ? 'bg-blue-600 text-white'
+                                        ? 'bg-[#1e90c9] text-white'
                                         : 'bg-white text-gray-700 border hover:bg-gray-50'
                                 }`}
                             >

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaSave, FaUpload } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 const NewInstituteForm = ({ editingInstitute, onBack }) => {
@@ -23,6 +24,7 @@ const NewInstituteForm = ({ editingInstitute, onBack }) => {
     const [classes, setClasses] = useState([]);
     const [batches, setBatches] = useState([]);
     const [sections, setSections] = useState([]);
+    const [sessions, setSessions] = useState([]);
 
     const languages = [
         { value: 'Bengali', label: 'বাংলা' },
@@ -74,7 +76,7 @@ const NewInstituteForm = ({ editingInstitute, onBack }) => {
 
     const fetchClasses = async () => {
         try {
-            const res = await axiosInstance.get('/classes');
+            const res = await axiosInstance.get('/class');
             setClasses(res.data.data || []);
         } catch (err) {
             console.error('Error fetching classes:', err);
@@ -82,9 +84,9 @@ const NewInstituteForm = ({ editingInstitute, onBack }) => {
         }
     };
 
-    const fetchBatches = async (className) => {
+    const fetchBatches = async () => {
         try {
-            const res = await axiosInstance.get(`/classes/batch?className=${encodeURIComponent(className)}`); 
+            const res = await axiosInstance.get(`/batches`); 
             setBatches(res.data.data || []);
         } catch (err) {
             console.error('Error fetching batches:', err);
@@ -92,15 +94,25 @@ const NewInstituteForm = ({ editingInstitute, onBack }) => {
         }
     };
 
-    const fetchSections = async (className, batchName) => {
+    const fetchSections = async () => {
         try {
-            const res = await axiosInstance.get(`/classes/section?className=${encodeURIComponent(className)}&batch=${encodeURIComponent(batchName)}`); // ✅ সংশোধন: /api/classes/section
+            const res = await axiosInstance.get(`/sections`); 
             setSections(res.data.data || []);
         } catch (err) {
             console.error('Error fetching sections:', err);
             Swal.fire('ত্রুটি!', 'সেকশন লোড করতে সমস্যা হয়েছে', 'error');
         }
     };
+
+    const fetchSessions = async () => {
+        try {
+            const res = await axiosInstance.get("/sessions");
+            setSessions(res.data.data || []);
+        } catch (err) {
+            console.error('Error fetching sessions:', err);
+            Swal.fire('ত্রুটি!', 'সেশন লোড করতে সমস্যা হয়েছে', 'error')
+        }
+    }
 
     useEffect(() => {
         if (editingInstitute) {
@@ -124,6 +136,9 @@ const NewInstituteForm = ({ editingInstitute, onBack }) => {
             }
             if (editingInstitute.class && editingInstitute.batch) {
                 fetchSections(editingInstitute.class, editingInstitute.batch);
+            }
+            if(editingInstitute.class && editingInstitute.batch && editingInstitute.section){
+                fetchSessions (editingInstitute.class, editingInstitute.batch, editingInstitute.section);
             }
         }
     }, [editingInstitute]);
@@ -253,7 +268,7 @@ const NewInstituteForm = ({ editingInstitute, onBack }) => {
                         >
                             <FaArrowLeft />
                         </button>
-                        <h2 className="text-xl font-bold text-blue-800">
+                        <h2 className="text-xl font-bold ">
                             {editingInstitute ? 'ইনস্টিটিউট এডিট করুন' : 'নতুন ইনস্টিটিউট ফর্ম তৈরি করুন'}
                         </h2>
                     </div>
@@ -268,7 +283,7 @@ const NewInstituteForm = ({ editingInstitute, onBack }) => {
                                 <select
                                     value={form.category}
                                     onChange={handleCategoryChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-[#1e90c9] focus:ring-2 focus:ring-[#1e90c9] transition"
                                     required
                                     disabled={loading}
                                 >
@@ -289,7 +304,7 @@ const NewInstituteForm = ({ editingInstitute, onBack }) => {
                                 <select
                                     value={form.class}
                                     onChange={handleClassChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-[#1e90c9] focus:ring-2 focus:ring-[#1e90c9] transition"
                                     required
                                     disabled={loading}
                                 >
@@ -310,7 +325,7 @@ const NewInstituteForm = ({ editingInstitute, onBack }) => {
                                 <select
                                     value={form.batch}
                                     onChange={handleBatchChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-[#1e90c9] focus:ring-2 focus:ring-[#1e90c9] transition"
                                     required
                                     disabled={loading || !form.class}
                                 >
@@ -334,7 +349,7 @@ const NewInstituteForm = ({ editingInstitute, onBack }) => {
                                 <select
                                     value={form.section}
                                     onChange={handleSectionChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-[#1e90c9] focus:ring-2 focus:ring-[#1e90c9] transition"
                                     disabled={loading || !form.batch}
                                 >
                                     <option value="">সেকশন নির্বাচন করুন</option>
@@ -349,20 +364,30 @@ const NewInstituteForm = ({ editingInstitute, onBack }) => {
                                 )}
                             </div>
 
-                            {/* সেশন (ম্যানুয়াল ইনপুট) */}
-                            <div>
-                                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                    সেশন
-                                </label>
-                                <input
-                                    type="text"
-                                    value={form.session}
-                                    onChange={(e) => setForm({ ...form, session: e.target.value })}
-                                    placeholder="সেশন বছর (যেমন: ২০২৩-২০২৪)"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
-                                    disabled={loading}
-                                />
-                            </div>
+{/* সেশন ড্রপডাউন */}
+<div>
+    <label className="block text-sm font-semibold text-gray-700 mb-2">
+        সেশন
+    </label>
+    <select
+        value={form.session}
+        onChange={(e) => setForm({ ...form, session: e.target.value })}
+        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-[#1e90c9] focus:ring-2 focus:ring-[#1e90c9] transition"
+        disabled={loading || !form.section}
+    >
+        <option value="">সেশন নির্বাচন করুন</option>
+        {sessions.map((session) => (
+            <option key={session._id} value={session.year}>
+                {session.year}
+            </option>
+        ))}
+    </select>
+
+    {!form.section && (
+        <p className="text-xs text-red-500 mt-1">প্রথমে সেকশন নির্বাচন করুন</p>
+    )}
+</div>
+
 
                             {/* অবস্থান ড্রপডাউন */}
                             <div>
@@ -372,7 +397,7 @@ const NewInstituteForm = ({ editingInstitute, onBack }) => {
                                 <select
                                     value={form.status}
                                     onChange={(e) => setForm({ ...form, status: e.target.value })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-[#1e90c9] focus:ring-2 focus:ring-[#1e90c9] transition"
                                     disabled={loading}
                                 >
                                     {statusOptions.map(option => (
@@ -391,7 +416,7 @@ const NewInstituteForm = ({ editingInstitute, onBack }) => {
                                 <select
                                     value={form.language}
                                     onChange={(e) => setForm({ ...form, language: e.target.value })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-[#1e90c9] focus:ring-2 focus:ring-[#1e90c9] transition"
                                     disabled={loading}
                                 >
                                     {languages.map(lang => (
@@ -419,7 +444,7 @@ const NewInstituteForm = ({ editingInstitute, onBack }) => {
                                     />
                                     <label
                                         htmlFor="previewImage"
-                                        className="flex items-center gap-2 px-3 py-2 bg-blue-100 text-blue-700 rounded-lg cursor-pointer hover:bg-blue-200 transition-colors"
+                                        className="flex items-center gap-2 px-3 py-2 bg-[#1e90c9] text-white rounded-lg cursor-pointer transition-colors"
                                     >
                                         <FaUpload /> আপলোড
                                     </label>
@@ -444,7 +469,7 @@ const NewInstituteForm = ({ editingInstitute, onBack }) => {
                                     />
                                     <label
                                         htmlFor="headerImage"
-                                        className="flex items-center gap-2 px-3 py-2 bg-blue-100 text-blue-700 rounded-lg cursor-pointer hover:bg-blue-200 transition-colors"
+                                        className="flex items-center gap-2 px-3 py-2 bg-[#1e90c9] text-white rounded-lg cursor-pointer transition-colors"
                                     >
                                         <FaUpload /> আপলোড
                                     </label>
@@ -469,7 +494,7 @@ const NewInstituteForm = ({ editingInstitute, onBack }) => {
                                     />
                                     <label
                                         htmlFor="backgroundImage"
-                                        className="flex items-center gap-2 px-3 py-2 bg-blue-100 text-blue-700 rounded-lg cursor-pointer hover:bg-blue-200 transition-colors"
+                                        className="flex items-center gap-2 px-3 py-2 bg-[#1e90c9] text-white rounded-lg cursor-pointer  transition-colors"
                                     >
                                         <FaUpload /> আপলোড
                                     </label>
@@ -492,14 +517,13 @@ const NewInstituteForm = ({ editingInstitute, onBack }) => {
                         </div>
 
                         <div className="text-center pt-4">
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={loading}
-                                className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white text-base font-semibold rounded-lg hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed transition-colors shadow-md"
                             >
                                 <FaSave /> 
                                 {loading ? 'সংরক্ষণ হচ্ছে...' : (editingInstitute ? 'আপডেট করুন' : 'সংরক্ষণ করুন')}
-                            </button>
+                            </MainButton>
                         </div>
                     </form>
                 </div>

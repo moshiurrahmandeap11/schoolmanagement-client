@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { FaCalendarAlt, FaEdit, FaMapMarkerAlt, FaPlus, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance, { baseImageURL } from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewEvents from './AddNewEvents/AddNewEvents';
 
 
@@ -110,7 +112,7 @@ const Events = () => {
     const getStatusColor = (status) => {
         switch (status) {
             case 'Published':
-                return 'bg-green-100 text-green-800';
+                return 'bg-[#1e90c9] text-white';
             case 'Draft':
                 return 'bg-yellow-100 text-yellow-800';
             case 'Expired':
@@ -140,30 +142,23 @@ const Events = () => {
                         <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-3">
                             ইভেন্ট ব্যবস্থাপনা
                         </h1>
-                        <p className="text-gray-600 text-lg">
-                            আপনার প্রতিষ্ঠানের সকল ইভেন্ট নিয়ন্ত্রণ করুন
-                        </p>
                     </div>
 
                     {/* Add New Button */}
                     <div className="flex justify-end mb-6">
-                        <button
+                        <MainButton
                             onClick={handleAddNew}
-                            className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2"
                         >
                             <FaPlus />
                             নতুন ইভেন্ট
-                        </button>
+                        </MainButton>
                     </div>
 
                     {/* Events List */}
                     <div className="bg-white rounded-lg shadow-lg border border-gray-200">
                         {/* Loading State */}
                         {loading && (
-                            <div className="p-8 text-center">
-                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
-                                <p className="text-gray-600 mt-2">Loading events...</p>
-                            </div>
+                            <Loader></Loader>
                         )}
 
                         {/* Empty State */}
@@ -172,12 +167,11 @@ const Events = () => {
                                 <div className="text-6xl mb-4">🎉</div>
                                 <h3 className="text-xl font-semibold text-gray-800 mb-2">No Events Found</h3>
                                 <p className="text-gray-600 mb-4">Get started by adding your first event.</p>
-                                <button
+                                <MainButton
                                     onClick={handleAddNew}
-                                    className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
                                 >
                                     Add Event
-                                </button>
+                                </MainButton>
                             </div>
                         )}
 

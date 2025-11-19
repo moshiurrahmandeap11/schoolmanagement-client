@@ -1,8 +1,9 @@
 // src/pages/donation/NewDonationProject.jsx
-import React, { useState} from 'react';
-import { FaArrowLeft, FaSave, FaImage, FaVideo } from 'react-icons/fa';
+import { useState } from 'react';
+import { FaArrowLeft, FaImage, FaSave, FaVideo } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance, { baseImageURL } from '../../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 const NewDonationProject = ({ project, onBack }) => {
@@ -108,7 +109,7 @@ const [imagePreview, setImagePreview] = useState(
                   className="hidden" 
                   disabled={loading}
                 />
-                <div className="w-24 h-24 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center hover:border-blue-500 transition">
+                <div className="w-24 h-24 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center hover:border-[#1e90c9] transition">
                   {imagePreview ? (
                     <img src={imagePreview} alt="Preview" className="w-full h-full object-cover rounded-lg" />
                   ) : (
@@ -142,7 +143,7 @@ const [imagePreview, setImagePreview] = useState(
                 value={form.videoLink}
                 onChange={(e) => setForm({ ...form, videoLink: e.target.value })}
                 placeholder="https://youtube.com/..."
-                className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm"
+                className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition text-sm"
                 disabled={loading}
               />
             </div>
@@ -158,7 +159,7 @@ const [imagePreview, setImagePreview] = useState(
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="যেমন: মসজিদ নির্মাণ"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
               disabled={loading}
               required
             />
@@ -180,7 +181,7 @@ const [imagePreview, setImagePreview] = useState(
             <select
               value={form.status}
               onChange={(e) => setForm({ ...form, status: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none transition"
               disabled={loading}
             >
               <option value="draft">ড্রাফট</option>
@@ -192,14 +193,13 @@ const [imagePreview, setImagePreview] = useState(
 
           {/* সাবমিট */}
           <div className="flex justify-center pt-4">
-            <button
+            <MainButton
               type="submit"
               disabled={loading}
-              className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium disabled:opacity-70 disabled:cursor-not-allowed"
             >
               <FaSave /> 
               {loading ? 'সংরক্ষণ হচ্ছে...' : (project?._id ? 'আপডেট করুন' : 'প্রজেক্ট তৈরি করুন')}
-            </button>
+            </MainButton>
           </div>
         </form>
       </div>

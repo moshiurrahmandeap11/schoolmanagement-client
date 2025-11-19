@@ -3,6 +3,7 @@ import { FaEdit, FaMusic, FaPlus, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewPlaylist from './AddNewPlaylist/AddNewPlaylist';
 
 
@@ -116,13 +117,12 @@ const Playlist = () => {
 
                     {/* Add New Button */}
                     <div className="flex justify-end mb-6">
-                        <button
+                        <MainButton
                             onClick={handleAddNew}
-                            className="px-5 py-2.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2 text-sm"
                         >
                             <FaPlus className="text-sm" />
                             নতুন প্লেলিস্ট
-                        </button>
+                        </MainButton>
                     </div>
 
                     {/* Playlists List */}
@@ -165,8 +165,8 @@ const Playlist = () => {
                                             <tr key={playlist._id} className="hover:bg-gray-50">
                                                 <td className="px-4 py-3">
                                                     <div className="flex items-center gap-3">
-                                                        <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                                            <FaMusic className="text-purple-600 text-sm" />
+                                                        <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center shrink-0">
+                                                            <FaMusic className="text-[#1e90c9] text-sm" />
                                                         </div>
                                                         <div>
                                                             <p className="font-medium text-gray-800 text-sm">{playlist.name}</p>

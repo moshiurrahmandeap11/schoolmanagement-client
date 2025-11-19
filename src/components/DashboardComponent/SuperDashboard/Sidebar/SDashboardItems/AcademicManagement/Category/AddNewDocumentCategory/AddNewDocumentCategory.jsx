@@ -3,6 +3,7 @@ import { FaMinus, FaPlus } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddNewDocumentCategory = ({ editingCategory, onBack }) => {
@@ -126,7 +127,7 @@ const AddNewDocumentCategory = ({ editingCategory, onBack }) => {
                                             type="text"
                                             value={category.name}
                                             onChange={(e) => handleInputChange(index, 'name', e.target.value)}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                             placeholder="ক্যাটাগরীর নাম লিখুন"
                                             required
                                         />
@@ -140,7 +141,7 @@ const AddNewDocumentCategory = ({ editingCategory, onBack }) => {
                                         <textarea
                                             value={category.description}
                                             onChange={(e) => handleInputChange(index, 'description', e.target.value)}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                             placeholder="ক্যাটাগরীর সংক্ষিপ্ত বিবরণ লিখুন (ঐচ্ছিক)"
                                             rows="3"
                                         />
@@ -151,28 +152,27 @@ const AddNewDocumentCategory = ({ editingCategory, onBack }) => {
 
                         {/* Add More Button (only for new categories, not editing) */}
                         {!editingCategory && (
-                            <button
+                            <MainButton
                                 type="button"
                                 onClick={addCategoryField}
-                                className="w-full py-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors flex items-center justify-center gap-2 text-gray-600"
                             >
                                 <FaPlus className="text-sm" />
-                                + আরও যোগ করুন
-                            </button>
+                                আরও যোগ করুন
+                            </MainButton>
                         )}
 
                         {/* Action Buttons */}
                         <div className="flex gap-3 pt-4">
-                            <button
+                            <MainButton
                                 type="submit"
-                                className="flex-1 bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 font-medium text-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                className='flex-1 flex items-center justify-center rounded-md'
                                 disabled={loading}
                             >
                                 {loading 
                                     ? (editingCategory ? 'আপডেট হচ্ছে...' : 'তৈরি হচ্ছে...') 
                                     : (editingCategory ? 'ক্যাটাগরী আপডেট করুন' : 'ক্যাটাগরী তৈরি করুন')
                                 }
-                            </button>
+                            </MainButton>
                             <button
                                 type="button"
                                 onClick={onBack}

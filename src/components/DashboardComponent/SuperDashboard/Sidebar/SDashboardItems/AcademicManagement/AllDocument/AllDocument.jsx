@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaDownload, FaEye, FaFilter, FaFolder, FaPlus, FaSearch, FaTrash, FaUpload } from 'react-icons/fa';
 import Swal from 'sweetalert2';
-import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import axiosInstance, { baseImageURL } from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import BulkDocument from '../BulkDocument/BulkDocument';
 import Categories from '../Category/Category';
 import NewDocument from '../NewDocument/NewDocument';
@@ -139,7 +140,7 @@ const AllDocument = ({ onBack }) => {
             // Create download link
             const link = document.filePath.startsWith('http') 
                 ? document.filePath 
-                : `http://localhost:3000${document.filePath}`;
+                : `${baseImageURL}${document.filePath}`;
             
             window.open(link, '_blank');
             
@@ -224,7 +225,7 @@ const AllDocument = ({ onBack }) => {
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)}
                                         onKeyPress={handleSearch}
-                                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                         placeholder="শিরোনাম লিখে Enter চাপুন..."
                                     />
                                     <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -239,7 +240,7 @@ const AllDocument = ({ onBack }) => {
                                 <select
                                     value={selectedCategory}
                                     onChange={(e) => setSelectedCategory(e.target.value)}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                 >
                                     <option value="">সকল ক্যাটাগরী</option>
                                     {categories.map(category => (
@@ -252,39 +253,39 @@ const AllDocument = ({ onBack }) => {
 
                             {/* Filter Button */}
                             <div className="flex items-end">
-                                <button
+                                <MainButton
                                     onClick={handleFilter}
-                                    className="w-full px-4 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center justify-center gap-2"
+                                    className="w-full px-4 py-3 rounded-md transition-colors font-medium flex items-center justify-center gap-2"
                                 >
                                     <FaFilter className="text-sm" />
                                     ফিল্টার প্রয়োগ করুন
-                                </button>
+                                </MainButton>
                             </div>
                         </div>
 
                         {/* Action Buttons - এই বাটনগুলোতে ক্লিক করলে respective কম্পোনেন্ট render হবে */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <button
+                            <MainButton
                                 onClick={() => setActiveComponent('new')}
-                                className="px-4 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium flex items-center justify-center gap-2"
+                                className='flex items-center  justify-center'
                             >
-                                <FaPlus className="text-sm" />
+                                <FaPlus className="text-sm mr-2" />
                                 Upload Document
-                            </button>
-                            <button
+                            </MainButton>
+                            <MainButton
                                 onClick={() => setActiveComponent('bulk')}
-                                className="px-4 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors font-medium flex items-center justify-center gap-2"
+                                className="flex items-center justify-center"
                             >
-                                <FaUpload className="text-sm" />
+                                <FaUpload className="text-sm mr-2" />
                                 Bulk Upload
-                            </button>
-                            <button
+                            </MainButton>
+                            <MainButton
                                 onClick={() => setActiveComponent('categories')}
-                                className="px-4 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-medium flex items-center justify-center gap-2"
+                                className="flex items-center justify-center"
                             >
-                                <FaFolder className="text-sm" />
+                                <FaFolder className="text-sm mr-2" />
                                 Categories
-                            </button>
+                            </MainButton>
                         </div>
                     </div>
 
@@ -292,10 +293,7 @@ const AllDocument = ({ onBack }) => {
                     <div className="bg-white rounded-2xl shadow-lg border border-gray-200">
                         {/* Loading State */}
                         {loading && (
-                            <div className="p-8 text-center">
-                                <Loader />
-                                <p className="text-gray-600 mt-2 text-sm">ডকুমেন্ট লোড হচ্ছে...</p>
-                            </div>
+                            <Loader></Loader>
                         )}
 
                         {/* Empty State */}
@@ -311,12 +309,11 @@ const AllDocument = ({ onBack }) => {
                                         : 'অন্যান্য ফিল্টার চেষ্টা করুন।'
                                     }
                                 </p>
-                                <button
+                                <MainButton
                                     onClick={() => setActiveComponent('new')}
-                                    className="px-5 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm"
                                 >
                                     ডকুমেন্ট তৈরি করুন
-                                </button>
+                                </MainButton>
                             </div>
                         )}
 
@@ -337,8 +334,8 @@ const AllDocument = ({ onBack }) => {
                                             <tr key={document._id} className="hover:bg-gray-50">
                                                 <td className="px-4 py-3">
                                                     <div className="flex items-center gap-3">
-                                                        <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                                            <span className="text-blue-600 text-lg">
+                                                        <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center shrink-0">
+                                                            <span className="text-[#1e90c9] text-lg">
                                                                 {getFileIcon(document.fileType)}
                                                             </span>
                                                         </div>
@@ -361,7 +358,7 @@ const AllDocument = ({ onBack }) => {
                                                     </div>
                                                 </td>
                                                 <td className="px-4 py-3">
-                                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#1e90c9] text-white">
                                                         {getCategoryName(document.category)}
                                                     </span>
                                                 </td>

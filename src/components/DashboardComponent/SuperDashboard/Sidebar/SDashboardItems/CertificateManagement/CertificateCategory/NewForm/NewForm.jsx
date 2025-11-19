@@ -1,8 +1,9 @@
 // src/pages/certificate/CertificateCategory/NewForm.jsx
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaSave } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const NewForm = ({ editingCategory, onBack }) => {
   const [form, setForm] = useState({
@@ -71,7 +72,7 @@ const NewForm = ({ editingCategory, onBack }) => {
             >
               <FaArrowLeft className="text-lg" />
             </button>
-            <h2 className="text-2xl font-bold text-blue-800">
+            <h2 className="text-2xl font-bold ">
               {editingCategory ? 'ক্যাটাগরি এডিট করুন' : 'নতুন ক্যাটাগরি তৈরি করুন'}
             </h2>
           </div>
@@ -86,7 +87,7 @@ const NewForm = ({ editingCategory, onBack }) => {
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 placeholder="যেমন: টেস্টিমোনিয়াল, ডিগ্রী, প্রশংসাপত্র"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-[#1e90c9] focus:ring-2 focus:ring-[#1e90c9] transition"
                 required
                 disabled={loading}
               />
@@ -99,7 +100,7 @@ const NewForm = ({ editingCategory, onBack }) => {
               <select
                 value={form.language}
                 onChange={(e) => setForm({ ...form, language: e.target.value })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-[#1e90c9] focus:ring-2 focus:ring-[#1e90c9] transition"
                 disabled={loading}
               >
                 {languages.map(lang => (
@@ -111,14 +112,13 @@ const NewForm = ({ editingCategory, onBack }) => {
             </div>
 
             <div className="text-center pt-6">
-              <button
+              <MainButton
                 type="submit"
                 disabled={loading}
-                className="flex items-center gap-3 px-8 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed transition-colors shadow-md"
               >
                 <FaSave /> 
                 {loading ? 'সংরক্ষণ হচ্ছে...' : (editingCategory ? 'আপডেট করুন' : 'সংরক্ষণ করুন')}
-              </button>
+              </MainButton>
             </div>
           </form>
         </div>

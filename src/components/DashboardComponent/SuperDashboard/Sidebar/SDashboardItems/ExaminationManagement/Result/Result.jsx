@@ -3,6 +3,7 @@ import { FaArrowLeft, FaEdit, FaEye, FaPlus, FaSearch, FaTrash } from 'react-ico
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewResult from './AddNewResult/AddNewResult';
 
 
@@ -216,13 +217,12 @@ const Result = ({ onBack }) => {
                             ফলাফল ব্যবস্থাপনা
                         </h1>
                     </div>
-                    <button
+                    <MainButton
                         onClick={handleAddNew}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
                     >
-                        <FaPlus className="text-sm" />
+                        <FaPlus className="text-sm mr-2" />
                         নতুন ফলাফল
-                    </button>
+                    </MainButton>
                 </div>
             </div>
 
@@ -241,7 +241,7 @@ const Result = ({ onBack }) => {
                                     name="studentId"
                                     value={searchData.studentId}
                                     onChange={handleSearchChange}
-                                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                     placeholder="শিক্ষার্থী আইডি"
                                 />
                                 <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -259,7 +259,7 @@ const Result = ({ onBack }) => {
                                     name="studentName"
                                     value={searchData.studentName}
                                     onChange={handleSearchChange}
-                                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                     placeholder="শিক্ষার্থীর নাম"
                                 />
                                 <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -275,7 +275,7 @@ const Result = ({ onBack }) => {
                                 name="examCategoryId"
                                 value={searchData.examCategoryId}
                                 onChange={handleSearchChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                             >
                                 <option value="all">সকল পরীক্ষা</option>
                                 {categories.map(category => (
@@ -289,14 +289,14 @@ const Result = ({ onBack }) => {
 
                     {/* Search Buttons */}
                     <div className="flex gap-4">
-                        <button
+                        <MainButton
                             onClick={handleSearch}
                             disabled={searchLoading}
-                            className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="rounded-md"
                         >
                             <FaSearch className="text-sm" />
                             {searchLoading ? 'অনুসন্ধান হচ্ছে...' : 'অনুসন্ধান'}
-                        </button>
+                        </MainButton>
                         {showSearchResults && (
                             <button
                                 onClick={handleClearSearch}

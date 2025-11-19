@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddNewVideo = ({ editingVideo, onBack }) => {
@@ -130,7 +131,7 @@ const AddNewVideo = ({ editingVideo, onBack }) => {
                                 name="title"
                                 value={formData.title}
                                 onChange={handleInputChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                 placeholder="ভিডিওর শিরোনাম লিখুন"
                                 required
                             />
@@ -146,7 +147,7 @@ const AddNewVideo = ({ editingVideo, onBack }) => {
                                 name="videoLink"
                                 value={formData.videoLink}
                                 onChange={handleInputChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                 placeholder="https://example.com/video"
                                 required
                             />
@@ -162,7 +163,7 @@ const AddNewVideo = ({ editingVideo, onBack }) => {
                                 name="videoId"
                                 value={formData.videoId}
                                 onChange={handleInputChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                 placeholder="ভিডিওর ইউনিক আইডি"
                                 required
                             />
@@ -176,7 +177,7 @@ const AddNewVideo = ({ editingVideo, onBack }) => {
                                     name="playlist"
                                     value={formData.playlist}
                                     onChange={handleInputChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                 >
                                     <option value="">প্লেলিস্ট নির্বাচন করুন</option>
                                     {playlists.map(playlist => (
@@ -194,7 +195,7 @@ const AddNewVideo = ({ editingVideo, onBack }) => {
                                     name="teacher"
                                     value={formData.teacher}
                                     onChange={handleInputChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                 >
                                     <option value="">শিক্ষক নির্বাচন করুন</option>
                                     {teachers.map(teacher => (
@@ -213,7 +214,7 @@ const AddNewVideo = ({ editingVideo, onBack }) => {
                                 name="isPremium"
                                 checked={formData.isPremium}
                                 onChange={handleInputChange}
-                                className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                className="w-4 h-4 text-[#1e90c9] border-gray-300 rounded focus:ring-[#1e90c9]"
                                 id="isPremium"
                             />
                             <label htmlFor="isPremium" className="ml-2 text-gray-700 font-medium">
@@ -228,7 +229,7 @@ const AddNewVideo = ({ editingVideo, onBack }) => {
                                 name="tags"
                                 value={formData.tags}
                                 onChange={handleInputChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                 placeholder="প্রতিটি ট্যাগ Enter চাপে আলাদা করুন"
                                 rows="3"
                             />
@@ -236,16 +237,16 @@ const AddNewVideo = ({ editingVideo, onBack }) => {
 
                         {/* Action Buttons */}
                         <div className="flex gap-3 pt-4">
-                            <button
+                            <MainButton
                                 type="submit"
-                                className="flex-1 bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 font-medium text-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                className='flex-1 flex items-center justify-center rounded-md'
                                 disabled={loading}
                             >
                                 {loading 
                                     ? (editingVideo ? 'আপডেট হচ্ছে...' : 'তৈরি হচ্ছে...') 
                                     : (editingVideo ? 'ভিডিও আপডেট করুন' : 'ভিডিও তৈরি করুন')
                                 }
-                            </button>
+                            </MainButton>
                             <button
                                 type="button"
                                 onClick={onBack}

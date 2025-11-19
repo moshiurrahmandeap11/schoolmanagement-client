@@ -3,6 +3,7 @@ import { FaArrowLeft, FaEdit, FaFilter, FaPlus, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewExam from './AddNewExam/AddNewExam';
 
 
@@ -34,7 +35,7 @@ const Exam = ({ onBack }) => {
         try {
             const [categoriesRes, classesRes, sectionsRes, sessionsRes] = await Promise.all([
                 axiosInstance.get('/exam-categories'),
-                axiosInstance.get('/classes'),
+                axiosInstance.get('/class'),
                 axiosInstance.get('/sections'),
                 axiosInstance.get('/sessions')
             ]);
@@ -214,13 +215,13 @@ const Exam = ({ onBack }) => {
                             <FaFilter className="text-sm" />
                             {showFilters ? 'ফিল্টার লুকান' : 'ফিল্টার দেখান'}
                         </button>
-                        <button
+                        <MainButton
                             onClick={handleAddNew}
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
+                            className='rounded-md'
                         >
                             <FaPlus className="text-sm" />
                             নতুন পরীক্ষা
-                        </button>
+                        </MainButton>
                     </div>
                 </div>
             </div>
@@ -239,7 +240,7 @@ const Exam = ({ onBack }) => {
                                     name="categoryId"
                                     value={filters.categoryId}
                                     onChange={handleFilterChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                 >
                                     <option value="all">সকল প্রকার</option>
                                     {categories.map(category => (
@@ -259,7 +260,7 @@ const Exam = ({ onBack }) => {
                                     name="classId"
                                     value={filters.classId}
                                     onChange={handleFilterChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                 >
                                     <option value="all">সকল ক্লাস</option>
                                     {classes.map(classItem => (
@@ -279,7 +280,7 @@ const Exam = ({ onBack }) => {
                                     name="sectionId"
                                     value={filters.sectionId}
                                     onChange={handleFilterChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                 >
                                     <option value="all">সকল সেকশন</option>
                                     {sections.map(section => (
@@ -299,7 +300,7 @@ const Exam = ({ onBack }) => {
                                     name="sessionId"
                                     value={filters.sessionId}
                                     onChange={handleFilterChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                 >
                                     <option value="all">সকল সেশন</option>
                                     {sessions.map(session => (
@@ -313,12 +314,12 @@ const Exam = ({ onBack }) => {
 
                         {/* Filter Buttons */}
                         <div className="flex gap-4">
-                            <button
+                            <MainButton
                                 onClick={handleApplyFilters}
-                                className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
+                                className='rounded-md'
                             >
                                 ফিল্টার প্রয়োগ করুন
-                            </button>
+                            </MainButton>
                             <button
                                 onClick={handleClearFilters}
                                 className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"

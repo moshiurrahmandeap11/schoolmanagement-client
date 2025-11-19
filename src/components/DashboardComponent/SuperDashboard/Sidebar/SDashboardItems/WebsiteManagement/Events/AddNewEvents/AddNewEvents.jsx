@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaSave, FaTimes, FaUpload } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 const AddNewEvents = ({ editingEvent, onBack }) => {
@@ -251,7 +252,7 @@ const AddNewEvents = ({ editingEvent, onBack }) => {
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Header with Back Button */}
-            <div className="sticky top-0 z-10 bg-white border-b border-gray-200 shadow-sm">
+            <div className=" bg-white border-b border-gray-200 shadow-sm">
                 <div className="flex items-center gap-4 p-4 sm:p-6">
                     <button
                         onClick={onBack}
@@ -285,7 +286,7 @@ const AddNewEvents = ({ editingEvent, onBack }) => {
                                     name="name"
                                     value={formData.name}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     placeholder="ইভেন্টের নাম লিখুন"
                                     required
                                 />
@@ -303,7 +304,7 @@ const AddNewEvents = ({ editingEvent, onBack }) => {
                                         name="date"
                                         value={formData.date}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         required
                                     />
                                 </div>
@@ -318,7 +319,7 @@ const AddNewEvents = ({ editingEvent, onBack }) => {
                                         name="startTime"
                                         value={formData.startTime}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     />
                                 </div>
 
@@ -332,7 +333,7 @@ const AddNewEvents = ({ editingEvent, onBack }) => {
                                         name="endTime"
                                         value={formData.endTime}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     />
                                 </div>
                             </div>
@@ -347,7 +348,7 @@ const AddNewEvents = ({ editingEvent, onBack }) => {
                                     value={formData.address}
                                     onChange={handleInputChange}
                                     rows="2"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     placeholder="ইভেন্টের ঠিকানা লিখুন"
                                 />
                             </div>
@@ -361,7 +362,7 @@ const AddNewEvents = ({ editingEvent, onBack }) => {
                                     name="status"
                                     value={formData.status}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 >
                                     {statusOptions.map(option => (
                                         <option key={option.value} value={option.value}>
@@ -435,7 +436,7 @@ const AddNewEvents = ({ editingEvent, onBack }) => {
                                                             alt={`Existing ${index + 1}`}
                                                             className="w-full h-24 object-cover rounded-lg border"
                                                         />
-                                                        <span className="absolute top-1 left-1 bg-blue-500 text-white text-xs px-1 rounded">
+                                                        <span className="absolute top-1 left-1 bg-[#1e90c9] text-white text-xs px-1 rounded">
                                                             Existing
                                                         </span>
                                                     </div>
@@ -466,22 +467,22 @@ const AddNewEvents = ({ editingEvent, onBack }) => {
 
                             {/* Form Actions */}
                             <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="flex-1 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 transition-colors font-medium flex items-center justify-center gap-2"
+       
                                 >
                                     <FaSave />
                                     {loading 
                                         ? (editingEvent ? 'Updating...' : 'Creating...') 
                                         : (editingEvent ? 'Update Event' : 'Create Event')
                                     }
-                                </button>
+                                </MainButton>
                                 <button
                                     type="button"
                                     onClick={handleReset}
                                     disabled={loading}
-                                    className="flex-1 px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 transition-colors font-medium"
+                                    className=" px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 transition-colors font-medium"
                                 >
                                     Reset
                                 </button>
@@ -489,7 +490,7 @@ const AddNewEvents = ({ editingEvent, onBack }) => {
                                     type="button"
                                     onClick={onBack}
                                     disabled={loading}
-                                    className="flex-1 px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 transition-colors font-medium"
+                                    className=" px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 transition-colors font-medium"
                                 >
                                     Cancel
                                 </button>

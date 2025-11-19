@@ -3,6 +3,7 @@ import { FaArrowLeft, FaDownload, FaEdit, FaPlus, FaSearch, FaTrash } from 'reac
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewTeacherLessons from './AddNewTeacherLessons/AddNewTeacherLessons';
 import EditTeacherLesson from './EditTeacherLesson/EditTeacherLesson';
 
@@ -175,13 +176,12 @@ const TeacherLessons = ({ onBack }) => {
                         </h1>
                     </div>
                     
-                    <button
+                    <MainButton
                         onClick={() => setActiveComponent('new')}
-                        className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium flex items-center gap-2"
                     >
-                        <FaPlus className="text-sm" />
+                        <FaPlus className="text-sm mr-2" />
                         নতুন লেসন প্ল্যান
-                    </button>
+                    </MainButton>
                 </div>
             </div>
 
@@ -200,7 +200,7 @@ const TeacherLessons = ({ onBack }) => {
                                         type="text"
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)}
-                                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                         placeholder="শিরোনাম, বিবরণ, শিক্ষক বা ক্লাস দ্বারা খুঁজুন..."
                                     />
                                     <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -227,10 +227,7 @@ const TeacherLessons = ({ onBack }) => {
                     <div className="bg-white rounded-2xl shadow-lg border border-gray-200">
                         {/* Loading State */}
                         {loading && (
-                            <div className="p-8 text-center">
-                                <Loader />
-                                <p className="text-gray-600 mt-2 text-sm">লেসন প্ল্যান লোড হচ্ছে...</p>
-                            </div>
+                            <Loader></Loader>
                         )}
 
                         {/* Empty State */}
@@ -246,12 +243,11 @@ const TeacherLessons = ({ onBack }) => {
                                         : 'অন্যান্য ফিল্টার চেষ্টা করুন।'
                                     }
                                 </p>
-                                <button
+                                <MainButton
                                     onClick={() => setActiveComponent('new')}
-                                    className="px-5 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm"
                                 >
                                     লেসন প্ল্যান তৈরি করুন
-                                </button>
+                                </MainButton>
                             </div>
                         )}
 

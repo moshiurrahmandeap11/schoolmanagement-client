@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaPlus, FaSave, FaTimes, FaUpload } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 const AddNewHomeWork = ({ onBack, onSuccess }) => {
@@ -37,7 +38,7 @@ const AddNewHomeWork = ({ onBack, onSuccess }) => {
 
     const fetchClasses = async () => {
         try {
-            const response = await axiosInstance.get('/classes');
+            const response = await axiosInstance.get('/class');
             if (response.data.success) {
                 setClasses(response.data.data || []);
             }
@@ -314,7 +315,7 @@ const AddNewHomeWork = ({ onBack, onSuccess }) => {
                                             name="title"
                                             value={formData.title}
                                             onChange={handleInputChange}
-                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                                                 errors.title ? 'border-red-500' : 'border-gray-300'
                                             }`}
                                             placeholder="হোমওয়ার্কের শিরোনাম লিখুন..."
@@ -333,7 +334,7 @@ const AddNewHomeWork = ({ onBack, onSuccess }) => {
                                             name="classId"
                                             value={formData.classId}
                                             onChange={handleInputChange}
-                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                                                 errors.classId ? 'border-red-500' : 'border-gray-300'
                                             }`}
                                         >
@@ -358,7 +359,7 @@ const AddNewHomeWork = ({ onBack, onSuccess }) => {
                                             name="teacherId"
                                             value={formData.teacherId}
                                             onChange={handleInputChange}
-                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                                                 errors.teacherId ? 'border-red-500' : 'border-gray-300'
                                             }`}
                                         >
@@ -383,7 +384,7 @@ const AddNewHomeWork = ({ onBack, onSuccess }) => {
                                             name="sectionId"
                                             value={formData.sectionId}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         >
                                             <option value="">সেকশন নির্বাচন করুন</option>
                                             {sections.map(section => (
@@ -422,7 +423,7 @@ const AddNewHomeWork = ({ onBack, onSuccess }) => {
                                             name="status"
                                             value={formData.status}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         >
                                             <option value="draft">খসড়া</option>
                                             <option value="publish">প্রকাশিত</option>
@@ -435,14 +436,13 @@ const AddNewHomeWork = ({ onBack, onSuccess }) => {
                             <div>
                                 <div className="flex items-center justify-between mb-6 pb-2 border-b">
                                     <h2 className="text-xl font-bold text-gray-800">হোমওয়ার্ক বিবরণ</h2>
-                                    <button
+                                    <MainButton
                                         type="button"
                                         onClick={addHomeworkDetail}
-                                        className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors text-sm flex items-center gap-2"
                                     >
-                                        <FaPlus className="text-xs" />
+                                        <FaPlus className="text-xs mr-2" />
                                         আরও যোগ করুন
-                                    </button>
+                                    </MainButton>
                                 </div>
 
                                 <div className="space-y-6">
@@ -473,7 +473,7 @@ const AddNewHomeWork = ({ onBack, onSuccess }) => {
                                                     <select
                                                         value={detail.subjectId}
                                                         onChange={(e) => handleHomeworkDetailChange(index, 'subjectId', e.target.value)}
-                                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                                                             errors[`homeworkDetail_${index}_subject`] ? 'border-red-500' : 'border-gray-300'
                                                         }`}
                                                     >
@@ -497,7 +497,7 @@ const AddNewHomeWork = ({ onBack, onSuccess }) => {
                                                     <select
                                                         value={detail.homeworkType}
                                                         onChange={(e) => handleHomeworkDetailChange(index, 'homeworkType', e.target.value)}
-                                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                                     >
                                                         <option value="written">লিখিত</option>
                                                         <option value="oral">মৌখিক</option>
@@ -533,7 +533,7 @@ const AddNewHomeWork = ({ onBack, onSuccess }) => {
                                     <label className="block text-gray-700 font-medium mb-2 text-sm">
                                         ফাইল আপলোড (ঐচ্ছিক)
                                     </label>
-                                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
+                                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-[#1e90c9] transition-colors">
                                         <input
                                             type="file"
                                             onChange={handleFileChange}
@@ -591,14 +591,14 @@ const AddNewHomeWork = ({ onBack, onSuccess }) => {
                                 >
                                     বাতিল করুন
                                 </button>
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className='rounded-md'
                                 >
                                     <FaSave className="text-sm" />
                                     {loading ? 'সেভ হচ্ছে...' : 'হোমওয়ার্ক সেভ করুন'}
-                                </button>
+                                </MainButton>
                             </div>
                         </div>
                     </form>

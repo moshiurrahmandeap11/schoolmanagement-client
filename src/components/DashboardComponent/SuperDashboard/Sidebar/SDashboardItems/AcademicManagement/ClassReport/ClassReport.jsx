@@ -54,7 +54,7 @@ const ClassReport = () => {
     const fetchDropdownData = async () => {
         try {
             const [classesRes, subjectsRes, teachersRes] = await Promise.all([
-                axiosInstance.get('/classes'),
+                axiosInstance.get('/class'),
                 axiosInstance.get('/subjects'),
                 axiosInstance.get('/teacher-list')
             ]);
@@ -269,11 +269,11 @@ const ClassReport = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 p-4 md:p-6 lg:p-8">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-full mx-auto">
                 {/* Header */}
                 <div className="mb-8">
                     <h1 className="text-2xl md:text-3xl font-bold text-gray-800 flex items-center gap-3">
-                        <FaUsers className="text-blue-600" />
+                        <FaUsers className="text-[#1e90c9]" />
                         ক্লাস রিপোর্ট
                     </h1>
                 </div>
@@ -290,7 +290,7 @@ const ClassReport = () => {
                                 name="classId"
                                 value={filters.classId}
                                 onChange={handleFilterChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                             >
                                 <option value="">সকল ক্লাস</option>
                                 {classes.map(classItem => (
@@ -312,7 +312,7 @@ const ClassReport = () => {
                                     name="studentId"
                                     value={filters.studentId}
                                     onChange={handleFilterChange}
-                                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                     placeholder="শিক্ষার্থী আইডি"
                                 />
                                 <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -330,7 +330,7 @@ const ClassReport = () => {
                                     name="studentName"
                                     value={filters.studentName}
                                     onChange={handleFilterChange}
-                                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                     placeholder="শিক্ষার্থীর নাম"
                                 />
                                 <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -346,7 +346,7 @@ const ClassReport = () => {
                                 name="subjectId"
                                 value={filters.subjectId}
                                 onChange={handleFilterChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                             >
                                 <option value="">সকল সিলেবাস</option>
                                 {subjects.map(subject => (

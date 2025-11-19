@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaPlus, FaSave, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 
@@ -137,11 +138,6 @@ const AddNewIncomeSources = ({ onBack, editingSource, onSuccess }) => {
                         <h2 className="text-2xl font-bold text-gray-800">
                             {editingSource ? 'আয়ের উৎস এডিট করুন' : 'নতুন আয়ের উৎস যোগ করুন'}
                         </h2>
-                        <p className="text-gray-600">
-                            {editingSource 
-                                ? 'আপনার আয়ের উৎসের তথ্য আপডেট করুন' 
-                                : 'প্রতিষ্ঠানের নতুন আয়ের উৎস যোগ করুন (ফি, ডোনেশন, সার্ভিস চার্জ ইত্যাদি)'}
-                        </p>
                     </div>
                 </div>
 
@@ -149,20 +145,20 @@ const AddNewIncomeSources = ({ onBack, editingSource, onSuccess }) => {
                 {!editingSource && (
                     <div className="flex items-center justify-between mt-4 p-4 bg-blue-50 rounded-lg">
                         <div>
-                            <p className="text-blue-800 font-medium">একাধিক উৎস যোগ করুন</p>
-                            <p className="text-blue-600 text-sm">একসাথে অনেকগুলো আয়ের উৎস যোগ করতে এই অপশনটি ব্যবহার করুন</p>
+                            <p className="text-[#1e90c9] font-medium">একাধিক উৎস যোগ করুন</p>
+                            <p className="text-[#1e90c9] text-sm">একসাথে অনেকগুলো আয়ের উৎস যোগ করতে এই অপশনটি ব্যবহার করুন</p>
                         </div>
-                        <button
+                        <MainButton
                             type="button"
                             onClick={toggleBulkAdd}
                             className={`px-4 py-2 rounded-lg transition duration-200 ${
                                 isBulkAdd 
-                                    ? 'bg-blue-600 text-white hover:bg-blue-700' 
-                                    : 'bg-white text-blue-600 border border-blue-600 hover:bg-blue-50'
+                                    ? 'bg-[#1e90c9] text-white' 
+                                    : ' text-blue-600'
                             }`}
                         >
                             {isBulkAdd ? 'সিঙ্গেল মোড' : 'বাল্ক মোড'}
-                        </button>
+                        </MainButton>
                     </div>
                 )}
             </div>
@@ -199,7 +195,7 @@ const AddNewIncomeSources = ({ onBack, editingSource, onSuccess }) => {
                                             value={source.name}
                                             onChange={(e) => handleInputChange(index, 'name', e.target.value)}
                                             required
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition duration-200"
                                             placeholder="যেমন: শিক্ষার্থী ফি, ডোনেশন, পরীক্ষা ফি, সার্ভিস চার্জ"
                                         />
                                     </div>
@@ -224,23 +220,22 @@ const AddNewIncomeSources = ({ onBack, editingSource, onSuccess }) => {
                     {/* Add More Button (for bulk mode) */}
                     {isBulkAdd && !editingSource && (
                         <div className="mt-6 flex justify-center">
-                            <button
+                            <MainButton
                                 type="button"
                                 onClick={addNewSource}
-                                className="bg-gray-100 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-200 flex items-center gap-2"
                             >
-                                <FaPlus className="text-sm" />
+                                <FaPlus className="text-sm mr-2" />
                                 আরও যোগ করুন
-                            </button>
+                            </MainButton>
                         </div>
                     )}
 
                     {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4 pt-8">
-                        <button
+                        <MainButton
                             type="submit"
                             disabled={loading}
-                            className="flex-1 bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                            className="flex-1 flex items-center justify-center rounded-md"
                         >
                             <FaSave className="text-sm" />
                             {loading ? (
@@ -252,7 +247,7 @@ const AddNewIncomeSources = ({ onBack, editingSource, onSuccess }) => {
                             ) : (
                                 'সংরক্ষণ করুন'
                             )}
-                        </button>
+                        </MainButton>
                         <button
                             type="button"
                             onClick={onBack}

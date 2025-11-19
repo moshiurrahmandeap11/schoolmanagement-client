@@ -24,30 +24,30 @@ const SalaryManagement = () => {
       title: 'শিক্ষকদের বেতন প্রদান',
       subtitle: 'Search by ID',
       icon: <FaMoneyBillWave className="text-3xl" />,
-      color: 'text-green-600',
+      color: 'text-[#1e90c9]',
       bg: 'bg-green-50',
-      border: 'border-green-200',
-      gradient: 'from-green-500 to-green-600'
+      border: 'border-[#1e90c9]',
+      gradient: 'from-green-50 to-green-100'
     },
     {
       id: 'type',
       title: 'বেতনের ধরণ',
       subtitle: 'Create Salary Type',
       icon: <FaEdit className="text-3xl" />,
-      color: 'text-blue-600',
+      color: 'text-[#1e90c9]',
       bg: 'bg-blue-50',
-      border: 'border-blue-200',
-      gradient: 'from-blue-500 to-cyan-600'
+      border: 'border-[#1e90c9]',
+      gradient: 'from-blue-50 to-cyan-100'
     },
     {
       id: 'list',
       title: 'বেতনের তালিকা',
       subtitle: 'Delete or Update Salary Type',
       icon: <FaListAlt className="text-3xl" />,
-      color: 'text-purple-600',
+      color: 'text-[#1e90c9]',
       bg: 'bg-purple-50',
-      border: 'border-purple-200',
-      gradient: 'from-purple-500 to-indigo-600'
+      border: 'border-[#1e90c9]',
+      gradient: 'from-purple-50 to-indigo-100'
     },
   ];
 
@@ -63,7 +63,7 @@ const SalaryManagement = () => {
     return (
       <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
         {/* Sticky Header */}
-        <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-lg">
+        <div className=" bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-lg">
           <div className="flex items-center gap-4 px-6 py-5">
             <button
               onClick={handleBack}
@@ -95,16 +95,13 @@ const SalaryManagement = () => {
 
   // মেইন ড্যাশবোর্ড
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
+    <div className="min-h-screen">
       <div className="max-w-6xl mx-auto px-6 py-12">
         {/* Hero Header */}
         <div className="text-center mb-16">
-          <h1 className="text-5xl sm:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-blue-600 to-purple-700 mb-6">
+          <h1 className="text-4xl sm:text-5xl font-extrabold  mb-6">
             বেতন ব্যবস্থাপনা
           </h1>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto font-medium">
-            শিক্ষকদের বেতন প্রদান, বেতনের ধরণ তৈরি এবং বেতন তালিকা ব্যবস্থাপনা করুন
-          </p>
         </div>
 
         {/* Elegant Cards Grid */}
@@ -115,10 +112,7 @@ const SalaryManagement = () => {
               onClick={() => setActiveSection(item.id)}
               className="group cursor-pointer transition-all duration-500 hover:-translate-y-3"
             >
-              <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-lg border-2 border-transparent hover:border-green-200 hover:shadow-2xl transition-all duration-500 p-8 h-full flex flex-col relative overflow-hidden">
-                
-                {/* Gradient Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+              <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-lg border-2 border-transparent hover:border-green-50 hover:shadow-2xl transition-all duration-500 p-8 h-full flex flex-col relative overflow-hidden">
                 
                 {/* Icon Circle */}
                 <div className={`w-20 h-20 ${item.bg} ${item.border} border-4 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg`}>

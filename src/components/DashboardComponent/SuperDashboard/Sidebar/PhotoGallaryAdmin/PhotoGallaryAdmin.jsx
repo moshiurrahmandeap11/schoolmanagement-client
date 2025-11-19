@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Swal from 'sweetalert2';
-import axiosInstance, { baseImageURL } from '../../../../../hooks/axiosInstance/axiosInstance';
+import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
+import Loader from '../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 
 const PhotoGalleryAdmin = () => {
     const [photos, setPhotos] = useState([]);
@@ -114,7 +116,7 @@ const PhotoGalleryAdmin = () => {
 
     const imageu = axiosInstance.defaults.baseURL;
 
-    const handleDelete = async (id, imageUrl) => {
+    const handleDelete = async (id) => {
         const result = await Swal.fire({
             title: 'নিশ্চিত করুন',
             text: 'আপনি কি এই ফটো ডিলিট করতে চান?',
@@ -154,11 +156,7 @@ const PhotoGalleryAdmin = () => {
     };
 
     if (loading) {
-        return (
-            <div className="flex justify-center items-center min-h-screen">
-                <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-500"></div>
-            </div>
-        );
+        return <Loader></Loader>
     }
 
     return (
@@ -166,12 +164,11 @@ const PhotoGalleryAdmin = () => {
             <div className="max-w-7xl mx-auto">
                 <div className="flex justify-between items-center mb-6">
                     <h1 className="text-3xl font-bold text-gray-800">Photo Gallery</h1>
-                    <button
+                    <MainButton
                         onClick={() => setShowAddModal(true)}
-                        className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors font-medium"
                     >
                         + Add New Photos
-                    </button>
+                    </MainButton>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -191,7 +188,7 @@ const PhotoGalleryAdmin = () => {
                                 <div className="flex items-center justify-between">
                                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                                         photo.isActive 
-                                            ? 'bg-green-100 text-green-800' 
+                                            ? 'bg-[#1e90c9] text-white' 
                                             : 'bg-red-100 text-red-800'
                                     }`}>
                                         {photo.isActive ? 'Active' : 'Inactive'}
@@ -224,7 +221,7 @@ const PhotoGalleryAdmin = () => {
                 )}
 
                 {showAddModal && (
-                    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                    <div className="fixed inset-0 bg-black/40 bg-opacity-50 flex items-center justify-center z-50 p-4">
                         <div className="bg-white rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
                             <h2 className="text-2xl font-bold mb-4">Add New Photos</h2>
                             
@@ -235,7 +232,7 @@ const PhotoGalleryAdmin = () => {
                                         type="text"
                                         value={caption}
                                         onChange={(e) => setCaption(e.target.value)}
-                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         placeholder="Enter photo caption"
                                     />
                                 </div>
@@ -252,7 +249,7 @@ const PhotoGalleryAdmin = () => {
                                         onClick={() => fileInputRef.current?.click()}
                                         className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
                                             dragActive 
-                                                ? 'border-blue-500 bg-blue-50' 
+                                                ? 'border-[#1e90c9] bg-blue-50' 
                                                 : 'border-gray-300 hover:border-blue-400'
                                         }`}
                                     >
@@ -303,17 +300,17 @@ const PhotoGalleryAdmin = () => {
                                 )}
 
                                 <div className="flex gap-3 pt-4">
-                                    <button
+                                    <MainButton
                                         onClick={handleSubmit}
                                         disabled={uploading}
-                                        className={`flex-1 px-6 py-2 rounded-lg transition-colors font-medium ${
+                                        className={`flex-1 flex items-center justify-center px-6 py-2 rounded-lg transition-colors font-medium ${
                                             uploading 
-                                                ? 'bg-gray-400 cursor-not-allowed' 
-                                                : 'bg-blue-500 hover:bg-blue-600'
+                                                ? 'bg-[#1e90c9] cursor-not-allowed' 
+                                                : 'bg-[#1e90c9]'
                                         } text-white`}
                                     >
                                         {uploading ? 'Uploading...' : 'Upload Photos'}
-                                    </button>
+                                    </MainButton>
                                     <button
                                         onClick={() => {
                                             setShowAddModal(false);

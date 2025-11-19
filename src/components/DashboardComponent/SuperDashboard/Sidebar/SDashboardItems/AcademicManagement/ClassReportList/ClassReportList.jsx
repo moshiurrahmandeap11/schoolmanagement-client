@@ -3,6 +3,7 @@ import { FaArrowLeft, FaCalendarAlt, FaDownload, FaFilter, FaPlus, FaSearch, FaT
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import ClassReport from '../ClassReport/ClassReport';
 
 const ClassReportList = () => {
@@ -44,7 +45,7 @@ const ClassReportList = () => {
     const fetchDropdownData = async () => {
         try {
             const [classesRes, subjectsRes] = await Promise.all([
-                axiosInstance.get('/classes'),
+                axiosInstance.get('/class'),
                 axiosInstance.get('/subjects')
             ]);
 
@@ -240,7 +241,7 @@ const ClassReportList = () => {
     if (showCreateForm) {
         return (
             <div className="min-h-screen bg-gray-50 p-4 md:p-6 lg:p-8">
-                <div className="max-w-7xl mx-auto">
+                <div className="max-w-full mx-auto">
                     {/* Back Button */}
                     <div className="mb-6">
                         <button
@@ -276,13 +277,12 @@ const ClassReportList = () => {
                     </div>
                     
                     {/* নতুন রিপোর্ট বাটন - Link এর পরিবর্তে onClick ব্যবহার করুন */}
-                    <button
+                    <MainButton
                         onClick={() => setShowCreateForm(true)}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium whitespace-nowrap"
                     >
-                        <FaPlus className="text-sm" />
+                        <FaPlus className="text-sm mr-2" />
                         নতুন রিপোর্ট
-                    </button>
+                    </MainButton>
                 </div>
 
                 {/* Filter Section */}
@@ -300,7 +300,7 @@ const ClassReportList = () => {
                                 name="classId"
                                 value={filters.classId}
                                 onChange={handleFilterChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                             >
                                 <option value="">সকল ক্লাস</option>
                                 {classes.map(classItem => (
@@ -320,7 +320,7 @@ const ClassReportList = () => {
                                 name="subjectId"
                                 value={filters.subjectId}
                                 onChange={handleFilterChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                             >
                                 <option value="">সকল বিষয়</option>
                                 {subjects.map(subject => (
@@ -342,7 +342,7 @@ const ClassReportList = () => {
                                     name="studentId"
                                     value={filters.studentId}
                                     onChange={handleFilterChange}
-                                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                     placeholder="শিক্ষার্থী আইডি"
                                 />
                                 <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -360,7 +360,7 @@ const ClassReportList = () => {
                                     name="studentName"
                                     value={filters.studentName}
                                     onChange={handleFilterChange}
-                                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                     placeholder="শিক্ষার্থীর নাম"
                                 />
                                 <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -377,7 +377,7 @@ const ClassReportList = () => {
                                 name="fromDate"
                                 value={filters.fromDate}
                                 onChange={handleFilterChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                             />
                         </div>
 
@@ -391,20 +391,20 @@ const ClassReportList = () => {
                                 name="toDate"
                                 value={filters.toDate}
                                 onChange={handleFilterChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                             />
                         </div>
                     </div>
 
                     {/* Filter Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4">
-                        <button
+                        <MainButton
                             onClick={handleApplyFilter}
-                            className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2 justify-center"
+                            className='rounded-md'
                         >
-                            <FaFilter className="text-sm" />
+                            <FaFilter className="text-sm mr-2" />
                             ফিল্টার করুন
-                        </button>
+                        </MainButton>
                         <button
                             onClick={handleClearFilter}
                             className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -413,14 +413,14 @@ const ClassReportList = () => {
                         </button>
                         
                         {/* Bulk Download Button */}
-                        <button
+                        <MainButton
                             onClick={handleBulkDownload}
                             disabled={reports.length === 0}
-                            className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="rounded-md"
                         >
-                            <FaDownload className="text-sm" />
+                            <FaDownload className="text-sm mr-2" />
                             সব রিপোর্ট ডাউনলোড ({reports.length})
-                        </button>
+                        </MainButton>
                     </div>
                 </div>
 

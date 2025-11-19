@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import {
-    FaArrowLeft,
-    FaBars,
-    FaBell,
-    FaBlog,
-    FaBus,
-    FaCalendarAlt,
-    FaCamera,
-    FaFacebook,
-    FaFileAlt,
-    FaHistory,
-    FaImage,
-    FaInfoCircle,
-    FaListOl,
-    FaPhone,
-    FaPlayCircle,
-    FaQuoteLeft,
-    FaShieldAlt,
-    FaUserEdit,
-    FaVideo
+  FaArrowLeft,
+  FaBars,
+  FaBell,
+  FaBlog,
+  FaBus,
+  FaCalendarAlt,
+  FaCamera,
+  FaFacebook,
+  FaFileAlt,
+  FaHistory,
+  FaImage,
+  FaInfoCircle,
+  FaListOl,
+  FaPhone,
+  FaPlayCircle,
+  FaQuoteLeft,
+  FaShieldAlt,
+  FaUserEdit,
+  FaVideo
 } from 'react-icons/fa';
 
 // Import your actual components here (you'll need to create these)
@@ -50,7 +50,7 @@ const WebsiteAdmin = () => {
       title: 'Institute Info',
       subtitle: 'Add Institute basic information',
       icon: FaInfoCircle,
-      color: 'blue',
+      color: '#1e90c9',
       component: InstituteInfo
     },
     {
@@ -193,17 +193,17 @@ const WebsiteAdmin = () => {
 
   const getColorClasses = (color) => {
     const colorMap = {
-      blue: { bg: 'bg-blue-100', hoverBg: 'bg-blue-200', text: 'text-blue-600', border: 'border-blue-400' },
-      purple: { bg: 'bg-purple-100', hoverBg: 'bg-purple-200', text: 'text-purple-600', border: 'border-purple-400' },
-      amber: { bg: 'bg-amber-100', hoverBg: 'bg-amber-200', text: 'text-amber-600', border: 'border-amber-400' },
-      green: { bg: 'bg-green-100', hoverBg: 'bg-green-200', text: 'text-green-600', border: 'border-green-400' },
-      red: { bg: 'bg-red-100', hoverBg: 'bg-red-200', text: 'text-red-600', border: 'border-red-400' },
-      pink: { bg: 'bg-pink-100', hoverBg: 'bg-pink-200', text: 'text-pink-600', border: 'border-pink-400' },
-      indigo: { bg: 'bg-indigo-100', hoverBg: 'bg-indigo-200', text: 'text-indigo-600', border: 'border-indigo-400' },
-      teal: { bg: 'bg-teal-100', hoverBg: 'bg-teal-200', text: 'text-teal-600', border: 'border-teal-400' },
-      gray: { bg: 'bg-gray-100', hoverBg: 'bg-gray-200', text: 'text-gray-600', border: 'border-gray-400' },
-      yellow: { bg: 'bg-yellow-100', hoverBg: 'bg-yellow-200', text: 'text-yellow-600', border: 'border-yellow-400' },
-      orange: { bg: 'bg-orange-100', hoverBg: 'bg-orange-200', text: 'text-orange-600', border: 'border-orange-400' }
+      blue: { bg: 'bg-blue-50', hoverBg: 'bg-blue-200', text: 'text-[#1e90c9]', border: 'border-[#1e90c9]' },
+      purple: { bg: 'bg-purple-50', hoverBg: 'bg-purple-200', text: 'text-[#1e90c9]', border: 'border-[#1e90c9]' },
+      amber: { bg: 'bg-amber-50', hoverBg: 'bg-amber-200', text: 'text-[#1e90c9]', border: 'border-[#1e90c9]' },
+      green: { bg: 'bg-green-50', hoverBg: 'bg-green-200', text: 'text-[#1e90c9]', border: 'border-[#1e90c9]' },
+      red: { bg: 'bg-red-50', hoverBg: 'bg-red-200', text: 'text-[#1e90c9]', border: 'border-[#1e90c9]' },
+      pink: { bg: 'bg-pink-50', hoverBg: 'bg-pink-200', text: 'text-[#1e90c9]', border: 'border-[#1e90c9]' },
+      indigo: { bg: 'bg-indigo-50', hoverBg: 'bg-indigo-200', text: 'text-[#1e90c9]', border: 'border-[#1e90c9]' },
+      teal: { bg: 'bg-teal-50', hoverBg: 'bg-teal-200', text: 'text-[#1e90c9]', border: 'border-[#1e90c9]' },
+      gray: { bg: 'bg-gray-50', hoverBg: 'bg-gray-200', text: 'text-[#1e90c9]', border: 'border-[#1e90c9]' },
+      yellow: { bg: 'bg-yellow-50', hoverBg: 'bg-yellow-200', text: 'text-[#1e90c9]', border: 'border-[#1e90c9]' },
+      orange: { bg: 'bg-orange-50', hoverBg: 'bg-orange-200', text: 'text-[#1e90c9]', border: 'border-[#1e90c9]' }
     };
     return colorMap[color] || colorMap.blue;
   };
@@ -279,15 +279,12 @@ const WebsiteAdmin = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Main Content */}
       <div className="p-4 sm:p-6 lg:p-8">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-full mx-auto">
           {/* Header Section - Branch component এর মতো */}
           <div className="text-center mb-10">
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-3">
               Website Administration
             </h1>
-            <p className="text-gray-600 text-lg">
-              Manage all aspects of your institute website
-            </p>
           </div>
 
           {/* Option Cards - Responsive Grid - Branch component এর মতো */}

@@ -75,9 +75,6 @@ const StudentsInfo = () => {
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">
                         ছাত্র-ছাত্রীদের তথ্য
                     </h1>
-                    <p className="text-gray-600">
-                        শ্রেণীভিত্তিক সকল ছাত্র-ছাত্রীর তালিকা
-                    </p>
                 </div>
 
                 {/* Class Filter */}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const Marksheet = () => {
     const [selectedExam, setSelectedExam] = useState('');
@@ -352,7 +353,6 @@ const Marksheet = () => {
                 {/* Header */}
                 <div className="text-center mb-8">
                     <h1 className="text-3xl font-bold text-gray-800 mb-2">মার্কশিট ম্যানেজমেন্ট</h1>
-                    <p className="text-gray-600">পরীক্ষার রেজাল্ট থেকে মার্কশিট ডাউনলোড করুন</p>
                 </div>
 
                 {/* Exam Selection */}
@@ -364,7 +364,7 @@ const Marksheet = () => {
                         <select
                             value={selectedExam}
                             onChange={handleExamChange}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition duration-200"
                         >
                             <option value="">পরীক্ষা নির্বাচন করুন</option>
                             {examCategories.map((category, index) => (
@@ -384,18 +384,18 @@ const Marksheet = () => {
                             <h3 className="text-lg font-semibold text-gray-800">
                                 রেজাল্ট তালিকা - {selectedExam}
                                 {studentFetchLoading && (
-                                    <span className="ml-2 text-sm text-blue-600">
+                                    <span className="ml-2 text-sm text-[#1e90c9]">
                                         (শিক্ষার্থী তথ্য লোড হচ্ছে...)
                                     </span>
                                 )}
                             </h3>
                             <div className="flex items-center space-x-4">
-                                <button
+                                <MainButton
                                     onClick={handleSelectAll}
-                                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                                    className="rounded-md"
                                 >
                                     {selectedStudents.length === results.length ? 'সব আনসিলেক্ট করুন' : 'সব সিলেক্ট করুন'}
-                                </button>
+                                </MainButton>
                                 <span className="text-sm text-gray-600">
                                     {selectedStudents.length} জন নির্বাচিত
                                 </span>
@@ -404,7 +404,7 @@ const Marksheet = () => {
 
                         {fetchLoading ? (
                             <div className="flex justify-center items-center py-8">
-                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#1e90c9]"></div>
                                 <span className="ml-2 text-gray-600">রেজাল্ট লোড হচ্ছে...</span>
                             </div>
                         ) : (
@@ -500,10 +500,10 @@ const Marksheet = () => {
                                         {selectedStudents.length} জন শিক্ষার্থী নির্বাচিত হয়েছে
                                     </span>
                                     <div className="flex space-x-2">
-                                        <button
+                                        <MainButton
                                             onClick={handleDownloadPDF}
                                             disabled={loading}
-                                            className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                                            className="rounded-md"
                                         >
                                             {loading ? (
                                                 <div className="flex items-center">
@@ -513,7 +513,7 @@ const Marksheet = () => {
                                             ) : (
                                                 'মার্কশিট ডাউনলোড (PDF)'
                                             )}
-                                        </button>
+                                        </MainButton>
                                     </div>
                                 </div>
                             </div>

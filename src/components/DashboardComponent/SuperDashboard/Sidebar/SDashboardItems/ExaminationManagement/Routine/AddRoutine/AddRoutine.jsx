@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaSave, FaUpload } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddRoutine = ({ routine, onBack, onSuccess }) => {
@@ -41,7 +42,7 @@ const AddRoutine = ({ routine, onBack, onSuccess }) => {
     const fetchDropdownData = async () => {
         try {
             const [classesRes, subjectsRes, sessionsRes] = await Promise.all([
-                axiosInstance.get('/classes'),
+                axiosInstance.get('/class'),
                 axiosInstance.get('/subjects'),
                 axiosInstance.get('/sessions')
             ]);
@@ -228,7 +229,7 @@ const AddRoutine = ({ routine, onBack, onSuccess }) => {
                                         name="classId"
                                         value={formData.classId}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         required
                                     >
                                         <option value="">ক্লাস নির্বাচন করুন</option>
@@ -249,7 +250,7 @@ const AddRoutine = ({ routine, onBack, onSuccess }) => {
                                         name="subjectId"
                                         value={formData.subjectId}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         required
                                     >
                                         <option value="">বিষয় নির্বাচন করুন</option>
@@ -270,7 +271,7 @@ const AddRoutine = ({ routine, onBack, onSuccess }) => {
                                         name="sessionId"
                                         value={formData.sessionId}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         required
                                     >
                                         <option value="">সেশন নির্বাচন করুন</option>
@@ -292,7 +293,7 @@ const AddRoutine = ({ routine, onBack, onSuccess }) => {
                                         name="date"
                                         value={formData.date}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         required
                                     />
                                 </div>
@@ -307,7 +308,7 @@ const AddRoutine = ({ routine, onBack, onSuccess }) => {
                                         name="startTime"
                                         value={formData.startTime}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         required
                                     />
                                 </div>
@@ -322,7 +323,7 @@ const AddRoutine = ({ routine, onBack, onSuccess }) => {
                                         name="endTime"
                                         value={formData.endTime}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         required
                                     />
                                 </div>
@@ -387,14 +388,14 @@ const AddRoutine = ({ routine, onBack, onSuccess }) => {
 
                             {/* Submit Buttons */}
                             <div className="flex gap-4">
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className='flex-1 flex items-center justify-center rounded-md'
                                 >
                                     <FaSave className="text-sm" />
                                     {loading ? 'সেভ হচ্ছে...' : (routine ? 'আপডেট করুন' : 'সেভ করুন')}
-                                </button>
+                                </MainButton>
                                 <button
                                     type="button"
                                     onClick={onBack}

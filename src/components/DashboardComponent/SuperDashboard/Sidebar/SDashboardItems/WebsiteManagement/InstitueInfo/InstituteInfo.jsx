@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 
@@ -245,7 +246,6 @@ const InstituteInfo = () => {
                 {/* Header */}
                 <div className="p-6 border-b border-gray-200">
                     <h1 className="text-2xl font-bold text-gray-800">Institute Information</h1>
-                    <p className="text-gray-600 mt-2">Manage your institute's basic information and settings</p>
                 </div>
 
                 {/* Form */}
@@ -264,7 +264,7 @@ const InstituteInfo = () => {
                                     name="name"
                                     value={formData.name}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     placeholder="Enter institute name"
                                     required
                                 />
@@ -280,7 +280,7 @@ const InstituteInfo = () => {
                                     name="founder"
                                     value={formData.founder}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     placeholder="Enter founder name"
                                     required
                                 />
@@ -299,7 +299,7 @@ const InstituteInfo = () => {
                                         onChange={handleInputChange}
                                         min="1800"
                                         max="2030"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         placeholder="Year"
                                         required
                                     />
@@ -314,7 +314,7 @@ const InstituteInfo = () => {
                                         name="eiin"
                                         value={formData.eiin}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         placeholder="Enter EIIN number"
                                     />
                                 </div>
@@ -330,7 +330,7 @@ const InstituteInfo = () => {
                                     name="slogan"
                                     value={formData.slogan}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     placeholder="Enter institute slogan"
                                 />
                             </div>
@@ -345,7 +345,7 @@ const InstituteInfo = () => {
                                     value={formData.shortDescription}
                                     onChange={handleInputChange}
                                     rows="3"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     placeholder="Brief description about the institute"
                                 />
                             </div>
@@ -364,7 +364,7 @@ const InstituteInfo = () => {
                                         name="mobile"
                                         value={formData.mobile}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         placeholder="01XXXXXXXXX"
                                         required
                                     />
@@ -379,7 +379,7 @@ const InstituteInfo = () => {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         placeholder="institute@email.com"
                                     />
                                 </div>
@@ -395,7 +395,7 @@ const InstituteInfo = () => {
                                     value={formData.address}
                                     onChange={handleInputChange}
                                     rows="2"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     placeholder="Full address"
                                 />
                             </div>
@@ -410,7 +410,7 @@ const InstituteInfo = () => {
                                         name="thanaDistrict"
                                         value={formData.thanaDistrict}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         placeholder="Thana and District"
                                     />
                                 </div>
@@ -424,7 +424,7 @@ const InstituteInfo = () => {
                                         name="postOffice"
                                         value={formData.postOffice}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         placeholder="Post office name"
                                     />
                                 </div>
@@ -440,7 +440,7 @@ const InstituteInfo = () => {
                                         name="country"
                                         value={formData.country}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     >
                                         {countries.map(country => (
                                             <option key={country} value={country}>{country}</option>
@@ -456,7 +456,7 @@ const InstituteInfo = () => {
                                         name="language"
                                         value={formData.language}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     >
                                         {languages.map(lang => (
                                             <option key={lang.value} value={lang.value}>{lang.label}</option>
@@ -517,7 +517,7 @@ const InstituteInfo = () => {
                                     <div className="mt-2">
                                         <div className="bg-gray-200 rounded-full h-2">
                                             <div 
-                                                className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+                                                className="bg-[#1e90c9] h-2 rounded-full transition-all duration-300"
                                                 style={{ width: `${uploadProgress.logo}%` }}
                                             ></div>
                                         </div>
@@ -563,7 +563,7 @@ const InstituteInfo = () => {
                                     <div className="mt-2">
                                         <div className="bg-gray-200 rounded-full h-2">
                                             <div 
-                                                className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+                                                className="bg-[#1e90c9] h-2 rounded-full transition-all duration-300"
                                                 style={{ width: `${uploadProgress.favicon}%` }}
                                             ></div>
                                         </div>
@@ -609,7 +609,7 @@ const InstituteInfo = () => {
                                     <div className="mt-2">
                                         <div className="bg-gray-200 rounded-full h-2">
                                             <div 
-                                                className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+                                                className="bg-[#1e90c9] h-2 rounded-full transition-all duration-300"
                                                 style={{ width: `${uploadProgress.principalSignature}%` }}
                                             ></div>
                                         </div>
@@ -655,7 +655,7 @@ const InstituteInfo = () => {
                                     <div className="mt-2">
                                         <div className="bg-gray-200 rounded-full h-2">
                                             <div 
-                                                className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+                                                className="bg-[#1e90c9] h-2 rounded-full transition-all duration-300"
                                                 style={{ width: `${uploadProgress.educationSecretarySignature}%` }}
                                             ></div>
                                         </div>
@@ -668,17 +668,17 @@ const InstituteInfo = () => {
 
                     {/* Form Actions */}
                     <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
-                        <button
+                        <MainButton
                             type="submit"
                             disabled={loading}
-                            className="flex-1 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 transition-colors font-medium"
+                            className='rounded-md'
                         >
                             {loading ? 'Saving...' : (existingData ? 'Update Institute Info' : 'Save Institute Info')}
-                        </button>
+                        </MainButton>
                         <button
                             type="button"
                             onClick={() => window.location.reload()}
-                            className="flex-1 px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+                            className=" px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium"
                         >
                             Cancel
                         </button>

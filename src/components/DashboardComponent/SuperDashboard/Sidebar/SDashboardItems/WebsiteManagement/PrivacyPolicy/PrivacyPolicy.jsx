@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { FaSave, FaSpinner } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 
@@ -127,9 +129,6 @@ const PrivacyPolicy = () => {
                         <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
                             গোপনীয়তা নীতি ব্যবস্থাপনা
                         </h1>
-                        <p className="text-gray-600">
-                            আপনার ওয়েবসাইটের গোপনীয়তা নীতি তৈরি এবং পরিচালনা করুন
-                        </p>
                     </div>
 
                     {/* Last Updated Info */}
@@ -137,14 +136,14 @@ const PrivacyPolicy = () => {
                         <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
                             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                                 <div>
-                                    <p className="text-sm font-medium text-blue-800">
+                                    <p className="text-sm font-medium text-[#1e90c9]">
                                         Last Updated
                                     </p>
-                                    <p className="text-sm text-blue-600">
+                                    <p className="text-sm text-[#1e90c9]">
                                         {formatLastUpdated(existingPolicy.updatedAt)}
                                     </p>
                                 </div>
-                                <div className="text-sm text-blue-600">
+                                <div className="text-sm text-[#1e90c9]">
                                     Created: {formatLastUpdated(existingPolicy.createdAt)}
                                 </div>
                             </div>
@@ -155,10 +154,7 @@ const PrivacyPolicy = () => {
                     <div className="bg-white rounded-lg shadow border border-gray-200">
                         {/* Loading State */}
                         {loading && (
-                            <div className="p-8 text-center">
-                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
-                                <p className="text-gray-600 mt-2">Loading privacy policy...</p>
-                            </div>
+                            <Loader></Loader>
                         )}
 
                         {/* Editor Content */}
@@ -200,10 +196,10 @@ const PrivacyPolicy = () => {
 
                                 {/* Action Buttons */}
                                 <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-gray-200">
-                                    <button
+                                    <MainButton
                                         onClick={handleSave}
                                         disabled={saving || !content.trim()}
-                                        className="flex-1 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium flex items-center justify-center gap-2"
+                                        className="flex-1 px-6 py-3 text-white rounded-lg  disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium flex items-center justify-center gap-2"
                                     >
                                         {saving ? (
                                             <>
@@ -216,7 +212,7 @@ const PrivacyPolicy = () => {
                                                 {existingPolicy ? 'Update Policy' : 'Save Policy'}
                                             </>
                                         )}
-                                    </button>
+                                    </MainButton>
                                     <button
                                         onClick={handleReset}
                                         disabled={saving}

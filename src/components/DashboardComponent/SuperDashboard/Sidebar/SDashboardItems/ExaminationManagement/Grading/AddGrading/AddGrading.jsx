@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaPlus, FaSave, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddGrading = ({ grading, onBack, onSuccess }) => {
@@ -214,7 +215,7 @@ const AddGrading = ({ grading, onBack, onSuccess }) => {
                                         name="name"
                                         value={formData.name}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         placeholder="গ্রেডিং সিস্টেমের নাম"
                                         required
                                     />
@@ -230,7 +231,7 @@ const AddGrading = ({ grading, onBack, onSuccess }) => {
                                         name="totalMarks"
                                         value={formData.totalMarks}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         placeholder="100"
                                         step="0.1"
                                         min="0"
@@ -248,7 +249,7 @@ const AddGrading = ({ grading, onBack, onSuccess }) => {
                                         name="passMarks"
                                         value={formData.passMarks}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         placeholder="33.0"
                                         step="0.1"
                                         min="0"
@@ -266,7 +267,7 @@ const AddGrading = ({ grading, onBack, onSuccess }) => {
                                         name="optionalSubjectDeduction"
                                         value={formData.optionalSubjectDeduction}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         placeholder="2.0"
                                         step="0.1"
                                         min="0"
@@ -281,7 +282,7 @@ const AddGrading = ({ grading, onBack, onSuccess }) => {
                                             name="isSpecialGrading"
                                             checked={formData.isSpecialGrading}
                                             onChange={handleInputChange}
-                                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                                            className="w-4 h-4 text-[#1e90c9] bg-gray-100 border-gray-300 rounded focus:ring-[#1e90c9]"
                                         />
                                         <span className="ml-2 text-gray-700 font-medium text-sm">
                                             বিশেষ গ্রেডিং সিস্টেম
@@ -296,14 +297,13 @@ const AddGrading = ({ grading, onBack, onSuccess }) => {
                                     <h3 className="text-lg font-semibold text-gray-800">
                                         গ্রেডিং মার্কস
                                     </h3>
-                                    <button
+                                    <MainButton
                                         type="button"
                                         onClick={addGradeRange}
-                                        className="inline-flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors text-sm"
                                     >
                                         <FaPlus className="text-xs" />
                                         আরও যোগ করুন
-                                    </button>
+                                    </MainButton>
                                 </div>
 
                                 <div className="space-y-4">
@@ -318,7 +318,7 @@ const AddGrading = ({ grading, onBack, onSuccess }) => {
                                                     type="text"
                                                     value={range.letterGrade}
                                                     onChange={(e) => handleGradeRangeChange(index, 'letterGrade', e.target.value)}
-                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                                     placeholder="A+"
                                                     required
                                                 />
@@ -333,7 +333,7 @@ const AddGrading = ({ grading, onBack, onSuccess }) => {
                                                     type="number"
                                                     value={range.minMarks}
                                                     onChange={(e) => handleGradeRangeChange(index, 'minMarks', e.target.value)}
-                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                                     placeholder="0"
                                                     step="0.1"
                                                     min="0"
@@ -349,7 +349,7 @@ const AddGrading = ({ grading, onBack, onSuccess }) => {
                                                     type="number"
                                                     value={range.maxMarks}
                                                     onChange={(e) => handleGradeRangeChange(index, 'maxMarks', e.target.value)}
-                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                                     placeholder="100"
                                                     step="0.1"
                                                     min="0"
@@ -367,7 +367,7 @@ const AddGrading = ({ grading, onBack, onSuccess }) => {
                                                         type="number"
                                                         value={range.gradePoint}
                                                         onChange={(e) => handleGradeRangeChange(index, 'gradePoint', e.target.value)}
-                                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                                         placeholder="5.0"
                                                         step="0.1"
                                                         min="0"
@@ -392,14 +392,14 @@ const AddGrading = ({ grading, onBack, onSuccess }) => {
 
                             {/* Submit Buttons */}
                             <div className="flex gap-4">
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className='flex-1 flex items-center justify-center rounded-md'
                                 >
                                     <FaSave className="text-sm" />
                                     {loading ? 'সেভ হচ্ছে...' : (grading ? 'আপডেট করুন' : 'সেভ করুন')}
-                                </button>
+                                </MainButton>
                                 <button
                                     type="button"
                                     onClick={onBack}

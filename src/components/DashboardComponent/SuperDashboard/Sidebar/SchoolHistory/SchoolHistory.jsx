@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 const SchoolHistory = () => {
@@ -182,16 +183,15 @@ const SchoolHistory = () => {
             <div className="max-w-full mx-auto">
                 {/* Header */}
                 <div className="mb-8 text-center">
-                    <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    <h1 className="text-3xl sm:text-4xl font-bold ">
                         School History Management
                     </h1>
-                    <p className="text-gray-600 mt-2 text-lg">Manage your school's history and legacy</p>
                 </div>
 
                 {/* Form Section */}
                 <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 mb-8">
                     <div className="flex items-center gap-3 mb-6">
-                        <div className="w-2 h-8 bg-blue-600 rounded-full"></div>
+                        <div className="w-2 h-8 bg-[#1e90c9] rounded-full"></div>
                         <h2 className="text-2xl font-bold text-gray-800">
                             {historyData ? 'Edit School History' : 'Create School History'}
                         </h2>
@@ -208,7 +208,7 @@ const SchoolHistory = () => {
                                 name="title"
                                 value={formData.title}
                                 onChange={handleInputChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                 placeholder="Enter school history title"
                                 required
                             />
@@ -270,10 +270,10 @@ const SchoolHistory = () => {
 
                         {/* Submit Button */}
                         <div className="flex justify-end pt-4">
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={saving || loading}
-                                className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-8 rounded-xl hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed font-semibold shadow-lg hover:shadow-xl"
+                                className=" text-white py-3 px-8 rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed font-semibold shadow-lg hover:shadow-xl"
                             >
                                 {saving ? (
                                     <div className="flex items-center justify-center gap-2">
@@ -283,7 +283,7 @@ const SchoolHistory = () => {
                                 ) : (
                                     historyData ? 'Update History' : 'Create History'
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
                     </form>
                 </div>
@@ -291,7 +291,7 @@ const SchoolHistory = () => {
                 {/* Preview Section */}
                 {historyData && (
                     <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
-                        <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
+                        <div className="p-6 border-b border-gray-200 bg-linear-to-r from-gray-50 to-gray-100">
                             <h2 className="text-2xl font-bold text-gray-800">History Preview</h2>
                         </div>
                         

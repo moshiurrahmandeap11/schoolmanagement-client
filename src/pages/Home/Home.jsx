@@ -1,7 +1,6 @@
 import { BsArrowRight } from "react-icons/bs";
 import { useNavigate } from "react-router";
 import FacebookPage from "../../components/FacebookPage/FacebookPage";
-import PhotoGalleryNav from "../../components/Gallary/PhotoGallaryNav/PhotoGalleryNav";
 import GovtImage from "../../components/GovtImage/GovtImage";
 import Notices from "../../components/Notices/Notices";
 import AcademicInfo from "./AcademincInfo/AcademicInfo";
@@ -11,6 +10,7 @@ import BrilliantStudents from "./BrilliantStudents/BrilliantStudents";
 import DownloadInfo from "./DownloadInfo/DownloadInfo";
 import HistorySchool from "./HistorySchool/HistorySchool";
 import LatestBlogs from "./LatestBlogs/LatestBlogs";
+import PhotoGalleryForHome from "./PhotoGalleryForHome/PhotoGalleryForHome";
 import President from "./President/President";
 import PrincipalSpeech from "./PrincipalSpeech/PrincipalSpeech";
 import Recently from "./Recently/Recently";
@@ -81,7 +81,7 @@ const Home = () => {
         </div>
         <AllTeachersAndWorkers></AllTeachersAndWorkers>
         <BrilliantStudents></BrilliantStudents>
-        <PhotoGalleryNav></PhotoGalleryNav>
+        <PhotoGalleryForHome></PhotoGalleryForHome>
         <VideoGallery></VideoGallery>
         <LatestBlogs></LatestBlogs>
       </div>

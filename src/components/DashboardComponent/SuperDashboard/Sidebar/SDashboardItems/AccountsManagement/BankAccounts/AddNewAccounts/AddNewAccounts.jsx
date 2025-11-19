@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaSave } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddNewAccounts = ({ onBack, editingAccount, onSuccess }) => {
@@ -122,7 +123,7 @@ const AddNewAccounts = ({ onBack, editingAccount, onSuccess }) => {
                                 value={formData.name}
                                 onChange={handleInputChange}
                                 required
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition duration-200"
                                 placeholder="ব্যাংকের নাম (যেমন: DBBL, Bkash, Cash)"
                             />
                         </div>
@@ -138,7 +139,7 @@ const AddNewAccounts = ({ onBack, editingAccount, onSuccess }) => {
                                 value={formData.accountNumber}
                                 onChange={handleInputChange}
                                 required
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition duration-200"
                                 placeholder="একাউন্ট নাম্বার"
                             />
                         </div>
@@ -155,7 +156,7 @@ const AddNewAccounts = ({ onBack, editingAccount, onSuccess }) => {
                                 name="branchName"
                                 value={formData.branchName}
                                 onChange={handleInputChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition duration-200"
                                 placeholder="শাখার নাম (যদি থাকে)"
                             />
                         </div>
@@ -171,7 +172,7 @@ const AddNewAccounts = ({ onBack, editingAccount, onSuccess }) => {
                                 value={formData.currentBalance}
                                 onChange={handleInputChange}
                                 step="0.01"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition duration-200"
                                 placeholder="বর্তমান ব্যালেন্স"
                             />
                         </div>
@@ -187,7 +188,7 @@ const AddNewAccounts = ({ onBack, editingAccount, onSuccess }) => {
                             value={formData.details}
                             onChange={handleInputChange}
                             rows="3"
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition duration-200"
                             placeholder="অতিরিক্ত তথ্য (ঐচ্ছিক)"
                         />
                     </div>
@@ -199,7 +200,7 @@ const AddNewAccounts = ({ onBack, editingAccount, onSuccess }) => {
                             name="isDefault"
                             checked={formData.isDefault}
                             onChange={handleInputChange}
-                            className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                            className="h-4 w-4 text-[#1e90c9] focus:ring-[#1e90c9] border-gray-300 rounded"
                         />
                         <label className="ml-2 block text-sm text-gray-700">
                             ডিফল্ট একাউন্ট হিসেবে সেট করুন
@@ -208,12 +209,12 @@ const AddNewAccounts = ({ onBack, editingAccount, onSuccess }) => {
 
                     {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                        <button
+                        <MainButton
                             type="submit"
                             disabled={loading}
-                            className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                            className="flex-1 flex items-center justify-center rounded-md"
                         >
-                            <FaSave className="text-sm" />
+                            <FaSave className="text-sm mr-2" />
                             {loading ? (
                                 'সংরক্ষণ হচ্ছে...'
                             ) : editingAccount ? (
@@ -221,7 +222,7 @@ const AddNewAccounts = ({ onBack, editingAccount, onSuccess }) => {
                             ) : (
                                 'সংরক্ষণ করুন'
                             )}
-                        </button>
+                        </MainButton>
                         <button
                             type="button"
                             onClick={onBack}

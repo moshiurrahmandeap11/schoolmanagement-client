@@ -141,79 +141,79 @@ const AcademicManagement = () => {
         blue: {
             bg: 'bg-blue-100',
             hoverBg: 'hover:bg-blue-200',
-            text: 'text-blue-600',
-            border: 'border-blue-400',
-            icon: 'text-blue-600'
+            text: 'text-[#1e90c9]',
+            border: 'border-[#1e90c9]',
+            icon: 'text-[#1e90c9]'
         },
         green: {
-            bg: 'bg-green-100',
-            hoverBg: 'hover:bg-green-200',
-            text: 'text-green-600',
-            border: 'border-green-400',
-            icon: 'text-green-600'
+            bg: 'bg-blue-100',
+            hoverBg: 'hover:bg-blue-200',
+            text: 'text-[#1e90c9]',
+            border: 'border-[#1e90c9]',
+            icon: 'text-[#1e90c9]'
         },
         purple: {
-            bg: 'bg-purple-100',
-            hoverBg: 'hover:bg-purple-200',
-            text: 'text-purple-600',
-            border: 'border-purple-400',
-            icon: 'text-purple-600'
+            bg: 'bg-blue-100',
+            hoverBg: 'hover:bg-blue-200',
+            text: 'text-[#1e90c9]',
+            border: 'border-[#1e90c9]',
+            icon: 'text-[#1e90c9]'
         },
         indigo: {
-            bg: 'bg-indigo-100',
-            hoverBg: 'hover:bg-indigo-200',
-            text: 'text-indigo-600',
-            border: 'border-indigo-400',
-            icon: 'text-indigo-600'
+            bg: 'bg-blue-100',
+            hoverBg: 'hover:bg-blue200',
+            text: 'text-[#1e90c9]',
+            border: 'border-[#1e90c9]',
+            icon: 'text-[#1e90c9]'
         },
         yellow: {
-            bg: 'bg-yellow-100',
-            hoverBg: 'hover:bg-yellow-200',
-            text: 'text-yellow-600',
-            border: 'border-yellow-400',
-            icon: 'text-yellow-600'
+            bg: 'bg-blue-100',
+            hoverBg: 'hover:bg-blue-200',
+            text: 'text-[#1e90c9]',
+            border: 'border-[#1e90c9]',
+            icon: 'text-[#1e90c9]'
         },
         red: {
-            bg: 'bg-red-100',
-            hoverBg: 'hover:bg-red-200',
-            text: 'text-red-600',
-            border: 'border-red-400',
-            icon: 'text-red-600'
+            bg: 'bg-blue-100',
+            hoverBg: 'hover:bg-blue-200',
+            text: 'text-[#1e90c9]',
+            border: 'border-[#1e90c9]',
+            icon: 'text-[#1e90c9]'
         },
         pink: {
-            bg: 'bg-pink-100',
-            hoverBg: 'hover:bg-pink-200',
-            text: 'text-pink-600',
-            border: 'border-pink-400',
-            icon: 'text-pink-600'
+            bg: 'bg-blue-100',
+            hoverBg: 'hover:bg-blue-200',
+            text: 'text-[#1e90c9]',
+            border: 'border-[#1e90c9]',
+            icon: 'text-[#1e90c9]'
         },
         orange: {
-            bg: 'bg-orange-100',
-            hoverBg: 'hover:bg-orange-200',
-            text: 'text-orange-600',
-            border: 'border-orange-400',
-            icon: 'text-orange-600'
+            bg: 'bg-blue-100',
+            hoverBg: 'hover:bg-blue-200',
+            text: 'text-[#1e90c9]',
+            border: 'border-[#1e90c9]',
+            icon: 'text-[#1e90c9]'
         },
         teal: {
-            bg: 'bg-teal-100',
-            hoverBg: 'hover:bg-teal-200',
-            text: 'text-teal-600',
-            border: 'border-teal-400',
-            icon: 'text-teal-600'
+            bg: 'bg-blue-100',
+            hoverBg: 'hover:bg-blue-200',
+            text: 'text-[#1e90c9]',
+            border: 'border-[#1e90c9]',
+            icon: 'text-[#1e90c9]'
         },
         cyan: {
-            bg: 'bg-cyan-100',
-            hoverBg: 'hover:bg-cyan-200',
-            text: 'text-cyan-600',
-            border: 'border-cyan-400',
-            icon: 'text-cyan-600'
+            bg: 'bg-blue-100',
+            hoverBg: 'hover:bg-blue-200',
+            text: 'text-[#1e90c9]',
+            border: 'border-[#1e90c9]',
+            icon: 'text-[#1e90c9]'
         },
         gray: {
-            bg: 'bg-gray-100',
-            hoverBg: 'hover:bg-gray-200',
-            text: 'text-gray-600',
-            border: 'border-gray-400',
-            icon: 'text-gray-600'
+            bg: 'bg-blue-100',
+            hoverBg: 'hover:bg-blue-200',
+            text: 'text-[#1e90c9]',
+            border: 'border-[#1e90c9]',
+            icon: 'text-[#1e90c9]'
         }
     };
 

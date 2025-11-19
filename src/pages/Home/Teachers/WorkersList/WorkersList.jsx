@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Loader from '../../../../components/sharedItems/Loader/Loader';
 import axiosInstance, { baseImageURL } from '../../../../hooks/axiosInstance/axiosInstance';
 
 
@@ -49,18 +50,7 @@ const WorkersList = () => {
     const designations = [...new Set(workers.map(worker => worker.designation).filter(Boolean))];
 
     if (loading) {
-        return (
-            <div className="min-h-screen bg-gray-50 py-8">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-center items-center py-20">
-                        <div className="text-center">
-                            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-green-500 mx-auto mb-4"></div>
-                            <p className="text-gray-600 text-lg">Loading workers...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
+        return <Loader></Loader>
     }
 
     if (error) {

@@ -3,6 +3,7 @@ import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewPage from './AddNewPage/AddNewPage';
 
 
@@ -123,13 +124,12 @@ const Pages = () => {
 
                     {/* Add New Button */}
                     <div className="flex justify-end mb-6">
-                        <button
+                        <MainButton
                             onClick={handleAddNew}
-                            className="px-5 py-2.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2 text-sm"
                         >
                             <FaPlus className="text-sm" />
                             নতুন পৃষ্ঠা
-                        </button>
+                        </MainButton>
                     </div>
 
                     {/* Pages List */}

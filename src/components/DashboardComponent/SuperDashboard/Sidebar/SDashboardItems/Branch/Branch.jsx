@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { FaPlus, FaListUl, FaArrowLeft } from 'react-icons/fa';
-import NewBranch from './NewBranch/NewBranch';
+import { useState } from 'react';
+import { FaArrowLeft, FaListUl, FaPlus } from 'react-icons/fa';
 import AllBranches from './AllBranch/AllBranch';
+import NewBranch from './NewBranch/NewBranch';
 
 const Branch = () => {
   const [activeTab, setActiveTab] = useState('list'); // 'new' or 'list'
@@ -47,11 +47,11 @@ const Branch = () => {
               {/* নতুন শাখা */}
               <div
                 onClick={() => setActiveTab('new')}
-                className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 cursor-pointer transition-all duration-300 hover:shadow-2xl hover:border-blue-400 hover:-translate-y-2 group"
+                className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 cursor-pointer transition-all duration-300 hover:shadow-2xl  hover:-translate-y-2 group"
               >
                 <div className="text-center">
                   <div className="w-20 h-20 mx-auto mb-5 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                    <FaPlus className="text-3xl text-blue-600 group-hover:text-blue-700" />
+                    <FaPlus className="text-3xl text-[#1e90c9] " />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-800 mb-2">
                     নতুন শাখা
@@ -65,11 +65,11 @@ const Branch = () => {
               {/* সকল শাখা */}
               <div
                 onClick={() => setActiveTab('all')}
-                className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 cursor-pointer transition-all duration-300 hover:shadow-2xl hover:border-green-400 hover:-translate-y-2 group"
+                className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 cursor-pointer transition-all duration-300 hover:shadow-2xl  hover:-translate-y-2 group"
               >
                 <div className="text-center">
-                  <div className="w-20 h-20 mx-auto mb-5 bg-green-100 rounded-full flex items-center justify-center group-hover:bg-green-200 transition-colors">
-                    <FaListUl className="text-3xl text-green-600 group-hover:text-green-700" />
+                  <div className="w-20 h-20 mx-auto mb-5 bg-blue-100 rounded-full flex items-center justify-center  transition-colors">
+                    <FaListUl className="text-3xl text-[#1e90c9] " />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-800 mb-2">
                     সকল শাখা

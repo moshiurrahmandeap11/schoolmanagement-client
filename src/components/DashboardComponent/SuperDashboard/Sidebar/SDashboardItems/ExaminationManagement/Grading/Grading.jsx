@@ -3,6 +3,7 @@ import { FaArrowLeft, FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddGrading from './AddGrading/AddGrading';
 
 
@@ -118,13 +119,12 @@ const Grading = ({ onBack }) => {
                             গ্রেডিং ব্যবস্থাপনা
                         </h1>
                     </div>
-                    <button
+                    <MainButton
                         onClick={handleAddNew}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
                     >
-                        <FaPlus className="text-sm" />
+                        <FaPlus className="text-sm mr-2" />
                         নতুন গ্রেডিং
-                    </button>
+                    </MainButton>
                 </div>
             </div>
 

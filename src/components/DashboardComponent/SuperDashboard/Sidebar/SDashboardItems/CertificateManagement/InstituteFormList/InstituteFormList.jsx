@@ -3,6 +3,7 @@ import { FaEdit, FaEye, FaPlus, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import NewInstituteForm from './NewInstituteForm/NewInstituteForm';
 
 const InstituteFormListC = () => {
@@ -36,7 +37,7 @@ const InstituteFormListC = () => {
             showCancelButton: true,
             confirmButtonText: 'হ্যাঁ, মুছুন',
             cancelButtonText: 'বাতিল',
-            confirmButtonColor: '#dc2626',
+            confirmButtonColor: '#1e90c9',
             cancelButtonColor: '#6b7280'
         }).then(async (result) => {
             if (result.isConfirmed) {
@@ -92,13 +93,12 @@ const InstituteFormListC = () => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
                     <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
-                        <h2 className="text-2xl font-bold text-blue-800">ইনস্টিটিউট ফর্ম তালিকা</h2>
-                        <button
+                        <h2 className="text-2xl font-bold">ইনস্টিটিউট ফর্ম তালিকা</h2>
+                        <MainButton
                             onClick={() => setShowForm(true)}
-                            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-md"
                         >
                             <FaPlus /> নতুন ইনস্টিটিউট ফর্ম
-                        </button>
+                        </MainButton>
                     </div>
 
                     {institutes.length === 0 ? (
@@ -110,7 +110,7 @@ const InstituteFormListC = () => {
                         <div className="overflow-x-auto">
                             <table className="w-full table-auto border-collapse">
                                 <thead>
-                                    <tr className="bg-blue-700 text-white">
+                                    <tr className="bg-[#1e90c9] text-white">
                                         <th className="px-4 py-3 text-left rounded-tl-lg">ক্রম</th>
                                         <th className="px-4 py-3 text-left">ক্যাটাগরী</th>
                                         <th className="px-4 py-3 text-left">ক্লাস</th>
@@ -125,17 +125,17 @@ const InstituteFormListC = () => {
                                     {institutes.map((institute, idx) => (
                                         <tr key={institute._id} className="border-b border-gray-200 hover:bg-blue-50 transition-colors">
                                             <td className="px-4 py-3 font-medium text-gray-700">{idx + 1}</td>
-                                            <td className="px-4 py-3 text-blue-700 font-semibold">{institute.category}</td>
+                                            <td className="px-4 py-3  font-semibold">{institute.category}</td>
                                             <td className="px-4 py-3">{institute.class}</td>
                                             <td className="px-4 py-3">{institute.batch}</td>
                                             <td className="px-4 py-3">{institute.section}</td>
                                             <td className="px-4 py-3">{institute.session}</td>
                                             <td className="px-4 py-3">
                                                 <span className={`inline-block px-3 py-1 rounded-full text-white text-xs font-medium ${
-                                                    institute.language === 'Bengali' ? 'bg-blue-600' :
-                                                    institute.language === 'English' ? 'bg-blue-500' :
-                                                    institute.language === 'Arabic' ? 'bg-blue-400' :
-                                                    institute.language === 'Hindi' ? 'bg-blue-300' :
+                                                    institute.language === 'Bengali' ? 'bg-[#1e90c9]' :
+                                                    institute.language === 'English' ? 'bg-[#1e90c9]' :
+                                                    institute.language === 'Arabic' ? 'bg-[#1e90c9]' :
+                                                    institute.language === 'Hindi' ? 'bg-[#1e90c9]' :
                                                     'bg-blue-200'
                                                 }`}>
                                                     {institute.language}

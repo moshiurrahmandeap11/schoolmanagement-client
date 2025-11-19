@@ -358,7 +358,7 @@ const CollectFee = ({ onBack }) => {
                                             value={searchData.studentId}
                                             onChange={handleChange}
                                             placeholder="স্টুডেন্ট আইডি লিখুন"
-                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                             disabled={searching}
                                         />
                                         <FaIdCard className="absolute left-3 top-3.5 text-gray-400" />
@@ -374,7 +374,7 @@ const CollectFee = ({ onBack }) => {
                                         name="classId"
                                         value={searchData.classId}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={searching}
                                     >
                                         <option value="">ক্লাস নির্বাচন করুন</option>
@@ -395,7 +395,7 @@ const CollectFee = ({ onBack }) => {
                                         name="sessionId"
                                         value={searchData.sessionId}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={searching}
                                     >
                                         <option value="">সেশন নির্বাচন করুন</option>

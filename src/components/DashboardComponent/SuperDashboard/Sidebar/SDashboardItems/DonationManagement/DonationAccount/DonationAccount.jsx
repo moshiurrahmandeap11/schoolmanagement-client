@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { FaEdit, FaTrash, FaCopy, FaPhone, FaPlus } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
+import { FaCopy, FaEdit, FaPhone, FaPlus, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
-import Loader from '../../../../../../sharedItems/Loader/Loader';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const DonationAccount = () => {
   const [accounts, setAccounts] = useState([]);
@@ -39,31 +40,31 @@ const DonationAccount = () => {
         <div class="space-y-3 text-left">
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">ব্যাংকের নাম</label>
-            <input id="bankName" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" value="${account.bankName || ''}">
+            <input id="bankName" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none" value="${account.bankName || ''}">
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">শাখা</label>
-            <input id="bankBranch" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" value="${account.bankBranch || ''}">
+            <input id="bankBranch" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none" value="${account.bankBranch || ''}">
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">ব্যাংক একাউন্ট নম্বর</label>
-            <input id="bankAccountNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" value="${account.bankAccountNumber || ''}">
+            <input id="bankAccountNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none" value="${account.bankAccountNumber || ''}">
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">বিকাশ নম্বর</label>
-            <input id="bkashNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" value="${account.bkashNumber || ''}">
+            <input id="bkashNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none" value="${account.bkashNumber || ''}">
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">নগদ নম্বর</label>
-            <input id="nagadNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" value="${account.nagadNumber || ''}">
+            <input id="nagadNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none" value="${account.nagadNumber || ''}">
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">রকেট নম্বর</label>
-            <input id="rocketNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" value="${account.rocketNumber || ''}">
+            <input id="rocketNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none" value="${account.rocketNumber || ''}">
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">যোগাযোগের নম্বর <span class="text-red-500">*</span></label>
-            <input id="contactNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" value="${account.contactNumber}" required>
+            <input id="contactNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none" value="${account.contactNumber}" required>
           </div>
         </div>
       `,
@@ -71,7 +72,7 @@ const DonationAccount = () => {
       showCancelButton: true,
       confirmButtonText: 'আপডেট করুন',
       cancelButtonText: 'বাতিল করুন',
-      confirmButtonColor: '#2563eb',
+      confirmButtonColor: '#1e90c9',
       cancelButtonColor: '#6b7280',
       reverseButtons: true,
       preConfirm: () => {
@@ -102,7 +103,7 @@ const DonationAccount = () => {
             text: 'একাউন্ট আপডেট করা হয়েছে',
             icon: 'success',
             confirmButtonText: 'ঠিক আছে',
-            confirmButtonColor: '#2563eb',
+            confirmButtonColor: '#1e90c9',
           });
         }
       } catch {
@@ -117,7 +118,7 @@ const DonationAccount = () => {
     }
   };
 
-  const handleDelete = async (id, name) => {
+  const handleDelete = async (id) => {
     const result = await Swal.fire({
       title: 'আপনি কি নিশ্চিত?',
       html: `এই একাউন্ট মুছে ফেলবেন?`,
@@ -160,31 +161,31 @@ const DonationAccount = () => {
         <div class="space-y-3 text-left">
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">ব্যাংকের নাম</label>
-            <input id="bankName" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="যেমন: সোনালী ব্যাংক">
+            <input id="bankName" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none" placeholder="যেমন: সোনালী ব্যাংক">
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">শাখা</label>
-            <input id="bankBranch" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="যেমন: মিরপুর শাখা">
+            <input id="bankBranch" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none" placeholder="যেমন: মিরপুর শাখা">
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">ব্যাংক একাউন্ট নম্বর</label>
-            <input id="bankAccountNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="১২৩৪৫৬৭৮৯০">
+            <input id="bankAccountNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none" placeholder="১২৩৪৫৬৭৮৯০">
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">বিকাশ নম্বর</label>
-            <input id="bkashNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="০১৭০০০০০০০০">
+            <input id="bkashNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none" placeholder="০১৭০০০০০০০০">
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">নগদ নম্বর</label>
-            <input id="nagadNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="০১৮০০০০০০০০">
+            <input id="nagadNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none" placeholder="০১৮০০০০০০০০">
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">রকেট নম্বর</label>
-            <input id="rocketNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="০১৯০00০০০০০">
+            <input id="rocketNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none" placeholder="0190000000">
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">যোগাযোগের নম্বর <span class="text-red-500">*</span></label>
-            <input id="contactNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="০১৭০০০০০০০০" required>
+            <input id="contactNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e90c9] focus:border-[#1e90c9] outline-none" placeholder="০১৭০০০০০০০০" required>
           </div>
         </div>
       `,
@@ -192,7 +193,7 @@ const DonationAccount = () => {
       showCancelButton: true,
       confirmButtonText: 'যোগ করুন',
       cancelButtonText: 'বাতিল করুন',
-      confirmButtonColor: '#2563eb',
+      confirmButtonColor: '#1e90c9',
       cancelButtonColor: '#6b7280',
       reverseButtons: true,
       preConfirm: () => {
@@ -222,7 +223,7 @@ const DonationAccount = () => {
             text: 'একাউন্ট যোগ করা হয়েছে',
             icon: 'success',
             confirmButtonText: 'ঠিক আছে',
-            confirmButtonColor: '#2563eb',
+            confirmButtonColor: '#1e90c9',
           });
           setAccounts([res.data.data, ...accounts]);
         }
@@ -245,7 +246,7 @@ const DonationAccount = () => {
       text: 'নম্বর ক্লিপবোর্ডে কপি হয়েছে',
       icon: 'success',
       confirmButtonText: 'ঠিক আছে',
-      confirmButtonColor: '#2563eb',
+      confirmButtonColor: '#1e90c9',
     });
   };
 
@@ -258,14 +259,13 @@ const DonationAccount = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
           <div>
             <h2 className="text-2xl font-semibold text-gray-800">দানের একাউন্ট সমূহ</h2>
-            <p className="text-gray-600 mt-1">মোট: <strong className="text-blue-600">{accounts.length}</strong> টি</p>
+            <p className="text-gray-600 mt-1">মোট: <strong className="text-[#1e90c9]">{accounts.length}</strong> টি</p>
           </div>
-          <button
+          <MainButton
             onClick={handleAdd}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium"
           >
             <FaPlus /> নতুন একাউন্ট
-          </button>
+          </MainButton>
         </div>
 
         {/* Table */}

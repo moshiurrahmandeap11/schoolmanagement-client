@@ -59,11 +59,7 @@ const InstantDonation = () => {
     <div className="max-w-full mx-auto">
       <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-8 sm:p-10">
         <div className="text-center mb-10">
-          <div className="w-20 h-20 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-4">
-            <FaDonate className="text-4xl text-[#1e90c9]" />
-          </div>
           <h2 className="text-3xl font-bold text-gray-800">ইনস্ট্যান্ট দান গ্রহণ</h2>
-          <p className="text-gray-600 mt-2">তাৎক্ষণিক দান সংগ্রহ করুন</p>
         </div>
 
         {/* Message */}

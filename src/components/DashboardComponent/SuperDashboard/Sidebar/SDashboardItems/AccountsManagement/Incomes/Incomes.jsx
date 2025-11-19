@@ -3,6 +3,7 @@ import { FaArrowLeft, FaEdit, FaFileDownload, FaFilter, FaPlus, FaTrash } from '
 import Swal from 'sweetalert2';
 import axiosInstance, { baseImageURL } from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddIncomes from './AddIncomes/AddIncomes';
 
 
@@ -230,7 +231,7 @@ const Incomes = ({ onBack }) => {
                             <h1 className="text-2xl font-bold text-gray-800">
                                 আয় ব্যবস্থাপনা
                             </h1>
-                            <p className="text-green-600 font-semibold mt-1">
+                            <p className="text-[#1e90c9] font-semibold mt-1">
                                 Total Income: ৳{totalIncome.toLocaleString()}
                             </p>
                         </div>
@@ -243,13 +244,13 @@ const Incomes = ({ onBack }) => {
                             <FaFilter className="text-sm" />
                             Toggle Filters
                         </button>
-                        <button
+                        <MainButton
                             onClick={handleAddNew}
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
+                            className="rounded-md"
                         >
-                            <FaPlus className="text-sm" />
+                            <FaPlus className="text-sm mr-2" />
                             Add Income
-                        </button>
+                        </MainButton>
                     </div>
                 </div>
             </div>
@@ -269,7 +270,7 @@ const Incomes = ({ onBack }) => {
                                     name="incomeSource"
                                     value={filters.incomeSource}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 >
                                     <option value="all">সব উৎস</option>
                                     {incomeSources.map(source => (
@@ -289,7 +290,7 @@ const Incomes = ({ onBack }) => {
                                     name="month"
                                     value={filters.month}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 >
                                     <option value="all">সব মাস</option>
                                     {months.map(month => (
@@ -309,7 +310,7 @@ const Incomes = ({ onBack }) => {
                                     name="year"
                                     value={filters.year}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 >
                                     <option value="all">সব বছর</option>
                                     {years.map(year => (
@@ -329,7 +330,7 @@ const Incomes = ({ onBack }) => {
                                     name="accountId"
                                     value={filters.accountId}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 >
                                     <option value="all">সব একাউন্ট</option>
                                     {bankAccounts.map(account => (
@@ -352,7 +353,7 @@ const Incomes = ({ onBack }) => {
                                     name="fromDate"
                                     value={filters.fromDate}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 />
                             </div>
 
@@ -366,7 +367,7 @@ const Incomes = ({ onBack }) => {
                                     name="toDate"
                                     value={filters.toDate}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 />
                             </div>
 
@@ -379,7 +380,7 @@ const Incomes = ({ onBack }) => {
                                     name="userId"
                                     value={filters.userId}
                                     onChange={handleFilterChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 >
                                     <option value="all">সব সদস্য</option>
                                     {users.map(user => (
@@ -392,12 +393,12 @@ const Incomes = ({ onBack }) => {
                         </div>
 
                         <div className="flex items-center gap-3">
-                            <button
+                            <MainButton
                                 onClick={handleApplyFilters}
-                                className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
+                                className="px-6 py-2  text-white rounded-lg transition-colors font-medium"
                             >
                                 Apply Filters
-                            </button>
+                            </MainButton>
                             <button
                                 onClick={handleClearFilters}
                                 className="px-6 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium"
@@ -426,13 +427,13 @@ const Incomes = ({ onBack }) => {
                             <p className="text-gray-600 text-sm mb-4">
                                 নতুন আয়ের তথ্য যোগ করুন
                             </p>
-                            <button
+                            <MainButton
                                 onClick={handleAddNew}
                                 className="inline-flex items-center gap-2 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
                             >
-                                <FaPlus className="text-sm" />
+                                <FaPlus className="text-sm mr-2" />
                                 নতুন আয় যোগ করুন
-                            </button>
+                            </MainButton>
                         </div>
                     ) : (
                         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">

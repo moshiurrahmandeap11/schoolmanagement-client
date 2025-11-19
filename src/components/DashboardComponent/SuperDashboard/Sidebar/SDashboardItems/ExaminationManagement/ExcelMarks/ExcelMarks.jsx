@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const ExcelMarks = () => {
     const [formData, setFormData] = useState({
@@ -272,12 +273,11 @@ const ExcelMarks = () => {
                 {/* Header */}
                 <div className="text-center mb-8">
                     <h1 className="text-3xl font-bold text-gray-800 mb-2">এক্সেল মার্কস ম্যানেজমেন্ট</h1>
-                    <p className="text-gray-600">এক্সেল শীটের মাধ্যমে মার্কস আপলোড ও ডাউনলোড করুন</p>
                 </div>
 
                 {/* Note Section */}
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
-                    <p className="text-yellow-800 text-sm">
+                <div className="bg-blue-50  rounded-lg p-4 mb-6">
+                    <p className="text-[#1e90c9] text-sm">
                         <strong>Note:</strong> Please select exam and download the excel sheet. After you update the marksheet with student results, upload it here. Please don't change the excel format.
                     </p>
                 </div>
@@ -286,7 +286,7 @@ const ExcelMarks = () => {
                 <div className="bg-white rounded-lg shadow-md p-6 md:p-8">
                     {fetchLoading ? (
                         <div className="flex justify-center items-center py-8">
-                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#1e90c9]"></div>
                             <span className="ml-2 text-gray-600">পরীক্ষার লিস্ট লোড হচ্ছে...</span>
                         </div>
                     ) : (
@@ -301,7 +301,7 @@ const ExcelMarks = () => {
                                     value={formData.examCategory}
                                     onChange={handleInputChange}
                                     required
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition duration-200"
                                 >
                                     <option value="">পরীক্ষা নির্বাচন করুন</option>
                                     {dropdownOptions.examCategories.map((category, index) => (
@@ -326,7 +326,7 @@ const ExcelMarks = () => {
                                         name="averageMarks"
                                         value={formData.averageMarks}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition duration-200"
                                         placeholder="গড় নম্বর"
                                     />
                                 </div>
@@ -341,7 +341,7 @@ const ExcelMarks = () => {
                                         name="averageLetterGrade"
                                         value={formData.averageLetterGrade}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition duration-200"
                                         placeholder="গড় লেটার গ্রেড"
                                     />
                                 </div>
@@ -358,7 +358,7 @@ const ExcelMarks = () => {
                                         name="order"
                                         value={formData.order}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition duration-200"
                                         placeholder="ক্রম"
                                     />
                                 </div>
@@ -373,7 +373,7 @@ const ExcelMarks = () => {
                                         name="totalAbsent"
                                         value={formData.totalAbsent}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition duration-200"
                                         placeholder="মোট অনুপস্থিত"
                                     />
                                 </div>
@@ -388,7 +388,7 @@ const ExcelMarks = () => {
                                         name="totalPresent"
                                         value={formData.totalPresent}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition duration-200"
                                         placeholder="মোট উপস্থিত"
                                     />
                                 </div>
@@ -400,13 +400,13 @@ const ExcelMarks = () => {
                                 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     {/* Download Template Button */}
-                                    <button
+                                    <MainButton
                                         type="button"
                                         onClick={handleDownloadTemplate}
-                                        className="bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-200"
+                                        className='flex items-center justify-center rounded-md'
                                     >
                                         এক্সেল ডাউনলোড করুন
-                                    </button>
+                                    </MainButton>
 
                                     {/* File Upload Section */}
                                     <div>
@@ -418,7 +418,7 @@ const ExcelMarks = () => {
                                             id="excelFile"
                                             onChange={handleFileChange}
                                             accept=".xlsx, .xls"
-                                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                         />
                                         {excelFile && (
                                             <p className="text-sm text-green-600 mt-1">
@@ -430,11 +430,11 @@ const ExcelMarks = () => {
 
                                 {/* Upload Button */}
                                 <div className="mt-4">
-                                    <button
+                                    <MainButton
                                         type="button"
                                         onClick={handleUploadExcel}
                                         disabled={uploadLoading}
-                                        className="bg-purple-600 text-white py-3 px-6 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="rounded-md"
                                     >
                                         {uploadLoading ? (
                                             <div className="flex items-center justify-center">
@@ -444,16 +444,16 @@ const ExcelMarks = () => {
                                         ) : (
                                             'এক্সেল শীট আপলোড করুন'
                                         )}
-                                    </button>
+                                    </MainButton>
                                 </div>
                             </div>
 
                             {/* Submit Button */}
                             <div className="pt-4">
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="w-full flex items-center justify-center rounded-md"
                                 >
                                     {loading ? (
                                         <div className="flex items-center justify-center">
@@ -463,7 +463,7 @@ const ExcelMarks = () => {
                                     ) : (
                                         'ডেটা সংরক্ষণ করুন'
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
                     )}

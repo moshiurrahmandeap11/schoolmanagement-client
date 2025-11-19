@@ -3,6 +3,7 @@ import { FaCrown, FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewVideo from './AddNewVideo/AddNewVideo';
 
 
@@ -116,23 +117,19 @@ const Video = () => {
 
                     {/* Add New Button */}
                     <div className="flex justify-end mb-6">
-                        <button
+                        <MainButton
                             onClick={handleAddNew}
-                            className="px-5 py-2.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2 text-sm"
                         >
                             <FaPlus className="text-sm" />
                             নতুন ভিডিও
-                        </button>
+                        </MainButton>
                     </div>
 
                     {/* Videos List */}
                     <div className="bg-white rounded-lg shadow border border-gray-200">
                         {/* Loading State */}
                         {loading && (
-                            <div className="p-8 text-center">
-                                <Loader />
-                                <p className="text-gray-600 mt-2 text-sm">ভিডিও লোড হচ্ছে...</p>
-                            </div>
+                            <Loader></Loader>
                         )}
 
                         {/* Empty State */}
@@ -141,12 +138,11 @@ const Video = () => {
                                 <div className="text-4xl mb-3">🎬</div>
                                 <h3 className="text-lg font-semibold text-gray-800 mb-2">কোন ভিডিও পাওয়া যায়নি</h3>
                                 <p className="text-gray-600 mb-4 text-sm">আপনার প্রথম ভিডিও তৈরি করুন।</p>
-                                <button
+                                <MainButton
                                     onClick={handleAddNew}
-                                    className="px-5 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm"
                                 >
                                     ভিডিও তৈরি করুন
-                                </button>
+                                </MainButton>
                             </div>
                         )}
 
@@ -166,8 +162,8 @@ const Video = () => {
                                             <tr key={video._id} className="hover:bg-gray-50">
                                                 <td className="px-4 py-3">
                                                     <div className="flex items-center gap-3">
-                                                        <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                                            <span className="text-red-600 font-semibold text-sm">
+                                                        <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center shrink-0">
+                                                            <span className="text-[#1e90c9] font-semibold text-sm">
                                                                 🎬
                                                             </span>
                                                         </div>
@@ -182,8 +178,8 @@ const Video = () => {
                                                 <td className="px-4 py-3">
                                                     <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium w-fit ${
                                                         video.isPremium 
-                                                            ? 'bg-purple-100 text-purple-800' 
-                                                            : 'bg-green-100 text-green-800'
+                                                            ? 'bg-[#1e90c9] text-white' 
+                                                            : 'bg-[#1e90c9] text-white'
                                                     }`}>
                                                         {video.isPremium && <FaCrown className="text-xs" />}
                                                         {video.isPremium ? 'Premium' : 'Free'}

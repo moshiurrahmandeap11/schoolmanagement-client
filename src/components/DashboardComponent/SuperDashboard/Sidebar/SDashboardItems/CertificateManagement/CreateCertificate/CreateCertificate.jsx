@@ -1,10 +1,11 @@
 // src/pages/certificate/CreateCertificate/CreateCertificate.jsx
-import React, { useState, useRef } from 'react';
-import { FaPrint, FaDownload, FaSave } from 'react-icons/fa';
+import { useRef, useState } from 'react';
+import { FaPrint, FaSave } from 'react-icons/fa';
 import { useReactToPrint } from 'react-to-print';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const CreateCertificate = () => {
   const [loading, setLoading] = useState(false);
@@ -56,7 +57,7 @@ const CreateCertificate = () => {
           </div>
 
           {/* Certificate Body */}
-          <div className="relative border-8 border-double border-amber-600 p-16 bg-gradient-to-br from-amber-50 to-yellow-50">
+          <div className="relative border-8 border-double border-amber-600 p-16 bg-linear-to-br from-amber-50 to-yellow-50">
             {/* Header */}
             <div className="text-center mb-12">
               <h1 className="text-6xl font-bold text-amber-800 mb-4">সার্টিফিকেট</h1>
@@ -111,21 +112,21 @@ const CreateCertificate = () => {
 
         {/* Action Buttons */}
         <div className="text-center mt-12 space-x-6">
-          <button onClick={handlePrint} className="px-10 py-5 bg-green-600 text-white rounded-2xl flex items-center gap-3 mx-auto text-xl font-bold hover:bg-green-700">
+          <MainButton onClick={handlePrint} >
             <FaPrint /> প্রিন্ট করুন
-          </button>
-          <button onClick={() => setCertificate(null)} className="px-10 py-5 bg-blue-600 text-white rounded-2xl flex items-center gap-3 mx-auto text-xl font-bold hover:bg-blue-700">
+          </MainButton>
+          <MainButton onClick={() => setCertificate(null)} >
             <FaSave /> নতুন সার্টিফিকেট
-          </button>
+          </MainButton>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-8">
+    <div className="max-w-5xl mx-auto p-8">
       <div className="bg-white rounded-3xl shadow-2xl p-12 border border-gray-200">
-        <h2 className="text-4xl font-bold text-center mb-12 text-blue-800">সার্টিফিকেট তৈরি করুন</h2>
+        <h2 className="text-4xl font-bold text-center mb-12">সার্টিফিকেট তৈরি করুন</h2>
         
         <form onSubmit={handleSubmit} className="space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -140,9 +141,9 @@ const CreateCertificate = () => {
           </div>
 
           <div className="text-center pt-10">
-            <button type="submit" className="px-16 py-6 bg-blue-600 text-white text-base font-bold rounded-3xl  transform hover:scale-105 transition">
+            <MainButton type="submit">
               সার্টিফিকেট জেনারেট করুন
-            </button>
+            </MainButton>
           </div>
         </form>
       </div>

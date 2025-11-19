@@ -209,11 +209,8 @@ const BlogNav = () => {
                 {/* Header Section */}
                 <div className="text-center mb-8">
                     <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
-                        আমাদের সব ব্লগ
+                        আমাদের ব্লগসমূহ
                     </h1>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
-                        জ্ঞান, তথ্য এবং আপডেটের সংগ্রহশালা
-                    </p>
                 </div>
 
                 {/* Search Bar */}

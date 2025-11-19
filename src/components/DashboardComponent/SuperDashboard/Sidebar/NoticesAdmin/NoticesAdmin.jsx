@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import RichTextEditor from '../../../../sharedItems/RichTextEditor/RichTextEditor';
+import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
+import Loader from '../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
+import RichTextEditor from '../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 
 const NoticesAdmin = () => {
@@ -189,12 +191,12 @@ const NoticesAdmin = () => {
             {/* Header */}
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-bold text-gray-800">Notices Management</h1>
-                <button
+                <MainButton
                     onClick={() => setShowForm(true)}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                    
                 >
                     Add New Notice
-                </button>
+                </MainButton>
             </div>
 
             {/* Notice Form */}
@@ -215,7 +217,7 @@ const NoticesAdmin = () => {
                                 name="title"
                                 value={formData.title}
                                 onChange={handleInputChange}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 placeholder="Enter notice title"
                                 required
                             />
@@ -242,7 +244,7 @@ const NoticesAdmin = () => {
                                 type="file"
                                 name="attachment"
                                 onChange={handleInputChange}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 accept="image/*"
                             />
                             <p className="text-sm text-gray-500 mt-1">
@@ -257,7 +259,7 @@ const NoticesAdmin = () => {
                                 name="isPublished"
                                 checked={formData.isPublished}
                                 onChange={handleInputChange}
-                                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                                className="w-4 h-4 text-[#1e90c9] bg-gray-100 border-gray-300 rounded focus:ring-[#1e90c9]"
                                 id="publishCheckbox"
                             />
                             <label htmlFor="publishCheckbox" className="ml-2 text-sm text-gray-700">
@@ -267,13 +269,13 @@ const NoticesAdmin = () => {
 
                         {/* Form Actions */}
                         <div className="flex gap-3 pt-4">
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+                                className='rounded-md'
                             >
                                 {isSubmitting ? 'Saving...' : (editingNotice ? 'Update Notice' : 'Create Notice')}
-                            </button>
+                            </MainButton>
                             <button
                                 type="button"
                                 onClick={resetForm}
@@ -289,10 +291,7 @@ const NoticesAdmin = () => {
             {/* Notices List */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
                 {isLoading ? (
-                    <div className="p-8 text-center">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-                        <p className="mt-4 text-gray-600">Loading notices...</p>
-                    </div>
+                    <Loader></Loader>
                 ) : notices.length === 0 ? (
                     <div className="p-8 text-center text-gray-500">
                         No notices found. Create your first notice!
@@ -328,7 +327,7 @@ const NoticesAdmin = () => {
                                             <span
                                                 className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                                                     notice.isPublished
-                                                        ? 'bg-green-100 text-green-800'
+                                                        ? 'bg-[#1e90c9] text-white'
                                                         : 'bg-yellow-100 text-yellow-800'
                                                 }`}
                                             >

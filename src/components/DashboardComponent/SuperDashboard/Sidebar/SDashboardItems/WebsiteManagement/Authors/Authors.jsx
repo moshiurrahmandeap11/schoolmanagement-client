@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { FaBriefcase, FaEdit, FaPlus, FaTrash, FaUser } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance, { baseImageURL } from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewAuthors from './AddNewAuthors/AddNewAuthors';
 
 
@@ -123,30 +125,23 @@ const Authors = () => {
                         <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
                             লেখক ব্যবস্থাপনা
                         </h1>
-                        <p className="text-gray-600">
-                            আপনার ব্লগের লেখকদের তথ্য নিয়ন্ত্রণ করুন
-                        </p>
                     </div>
 
                     {/* Add New Button */}
                     <div className="flex justify-end mb-6">
-                        <button
+                        <MainButton
                             onClick={handleAddNew}
-                            className="px-5 py-2.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2 text-sm"
                         >
                             <FaPlus className="text-sm" />
                             নতুন লেখক
-                        </button>
+                        </MainButton>
                     </div>
 
                     {/* Authors List */}
                     <div className="bg-white rounded-lg shadow border border-gray-200">
                         {/* Loading State */}
                         {loading && (
-                            <div className="p-8 text-center">
-                                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
-                                <p className="text-gray-600 mt-2 text-sm">Loading authors...</p>
-                            </div>
+                            <Loader></Loader>
                         )}
 
                         {/* Empty State */}

@@ -109,12 +109,9 @@ const Downloads = () => {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header Section */}
                 <div className="text-center mb-12">
-                    <h1 className="text-4xl sm:text-5xl font-bold text-gray-800 mb-4">
+                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
                         ডাউনলোড সেকশন
                     </h1>
-                    <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                        প্রয়োজনীয় ফরম এবং সার্কুলার ডাউনলোড করুন
-                    </p>
                 </div>
 
                 {/* Admission Form Section */}

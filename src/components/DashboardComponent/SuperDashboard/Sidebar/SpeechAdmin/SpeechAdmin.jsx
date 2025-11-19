@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
+import Loader from '../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 const SpeechAdmin = () => {
@@ -274,9 +276,6 @@ const SpeechAdmin = () => {
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">
                         স্পিচ ম্যানেজমেন্ট
                     </h1>
-                    <p className="text-gray-600">
-                        প্রিন্সিপাল এবং প্রেসিডেন্টের স্পিচ ম্যানেজ করুন
-                    </p>
                 </div>
 
                 {/* Tabs */}
@@ -286,7 +285,7 @@ const SpeechAdmin = () => {
                             onClick={() => handleTabChange('principal')}
                             className={`flex-1 py-4 px-6 text-center font-medium transition-colors ${
                                 activeTab === 'principal'
-                                    ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
+                                    ? 'text-[#1e90c9] border-b-2 border-[#1e90c9] bg-blue-50'
                                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                             }`}
                         >
@@ -296,7 +295,7 @@ const SpeechAdmin = () => {
                             onClick={() => handleTabChange('president')}
                             className={`flex-1 py-4 px-6 text-center font-medium transition-colors ${
                                 activeTab === 'president'
-                                    ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
+                                    ? 'text-[#1e90c9] border-b-2 border-[#1e90c9] bg-blue-50'
                                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                             }`}
                         >
@@ -307,10 +306,7 @@ const SpeechAdmin = () => {
                     {/* Form */}
                     <div className="p-6">
                         {loading ? (
-                            <div className="text-center py-8">
-                                <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                                <p className="mt-2 text-gray-600">লোড হচ্ছে...</p>
-                            </div>
+                            <Loader></Loader>
                         ) : (
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 {/* Image Upload */}
@@ -324,7 +320,7 @@ const SpeechAdmin = () => {
                                                 type="file"
                                                 accept="image/*"
                                                 onChange={handleImageChange}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-[#1e90c9] hover:file:bg-[#1e90c9]"
                                             />
                                             <p className="text-xs text-gray-500 mt-1">
                                                 JPG, PNG, WebP (max 5MB)
@@ -359,13 +355,13 @@ const SpeechAdmin = () => {
 
                                 {/* Action Buttons */}
                                 <div className="flex flex-wrap gap-3 pt-4">
-                                    <button
+                                    <MainButton
                                         type="submit"
                                         disabled={loading}
-                                        className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                        className="px-6 py-2 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                                     >
                                         {speeches[activeTab] ? 'আপডেট করুন' : 'সেভ করুন'}
-                                    </button>
+                                    </MainButton>
                                     
                                     {speeches[activeTab] && (
                                         <button

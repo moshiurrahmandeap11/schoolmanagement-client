@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { FaEdit, FaImage, FaPlus, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance, { baseImageURL } from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewFacilities from './AddNewFacilities/AddNewFacilities';
 
 
@@ -123,30 +125,23 @@ const Facilities = () => {
                         <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
                             সুবিধা ব্যবস্থাপনা
                         </h1>
-                        <p className="text-gray-600">
-                            আপনার প্রতিষ্ঠানের সকল সুবিধা নিয়ন্ত্রণ করুন
-                        </p>
                     </div>
 
                     {/* Add New Button */}
                     <div className="flex justify-end mb-6">
-                        <button
+                        <MainButton
                             onClick={handleAddNew}
-                            className="px-5 py-2.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2 text-sm"
                         >
                             <FaPlus className="text-sm" />
                             নতুন সুবিধা
-                        </button>
+                        </MainButton>
                     </div>
 
                     {/* Facilities List */}
                     <div className="bg-white rounded-lg shadow border border-gray-200">
                         {/* Loading State */}
                         {loading && (
-                            <div className="p-8 text-center">
-                                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
-                                <p className="text-gray-600 mt-2 text-sm">Loading facilities...</p>
-                            </div>
+                            <Loader></Loader>
                         )}
 
                         {/* Empty State */}
@@ -155,12 +150,11 @@ const Facilities = () => {
                                 <div className="text-4xl mb-3">🏫</div>
                                 <h3 className="text-lg font-semibold text-gray-800 mb-2">No Facilities Found</h3>
                                 <p className="text-gray-600 mb-4 text-sm">Get started by adding your first facility.</p>
-                                <button
+                                <MainButton
                                     onClick={handleAddNew}
-                                    className="px-5 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm"
                                 >
                                     Add Facility
-                                </button>
+                                </MainButton>
                             </div>
                         )}
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddNewPlaylist = ({ editingPlaylist, onBack }) => {
@@ -80,7 +81,7 @@ const AddNewPlaylist = ({ editingPlaylist, onBack }) => {
                                 type="text"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                 placeholder="প্লেলিস্টের নাম লিখুন"
                                 required
                                 autoFocus
@@ -89,16 +90,16 @@ const AddNewPlaylist = ({ editingPlaylist, onBack }) => {
 
                         {/* Action Buttons */}
                         <div className="flex gap-3 pt-6">
-                            <button
+                            <MainButton
                                 type="submit"
-                                className="flex-1 bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 font-medium text-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                className='flex-1 flex items-center justify-center rounded-md'
                                 disabled={loading}
                             >
                                 {loading 
                                     ? (editingPlaylist ? 'আপডেট হচ্ছে...' : 'তৈরি হচ্ছে...') 
                                     : (editingPlaylist ? 'প্লেলিস্ট আপডেট করুন' : 'প্লেলিস্ট তৈরি করুন')
                                 }
-                            </button>
+                            </MainButton>
                             <button
                                 type="button"
                                 onClick={onBack}

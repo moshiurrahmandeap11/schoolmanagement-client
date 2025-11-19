@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AdvanceFees = ({ onBack }) => {
@@ -169,19 +171,16 @@ const AdvanceFees = ({ onBack }) => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4">
+                    <div className=" px-6 py-4">
                         <div className="flex items-center justify-between">
                             <div>
-                                <h1 className="text-2xl font-bold text-white">
+                                <h1 className="text-2xl font-bold">
                                     অগ্রিম ফি তৈরি করুন
                                 </h1>
-                                <p className="text-blue-100 text-sm mt-1">
-                                    শিক্ষার্থীদের জন্য অগ্রিম ফি জেনারেট করুন
-                                </p>
                             </div>
                             <button
                                 onClick={onBack}
-                                className="px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-white transition-colors duration-200 font-medium"
+                                className="px-4 py-2 bg-white text-[#1e90c9] cursor-pointer rounded-lg hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-white transition-colors duration-200 font-medium"
                             >
                                 পিছনে যান
                             </button>
@@ -191,9 +190,7 @@ const AdvanceFees = ({ onBack }) => {
                     {/* Form */}
                     <form onSubmit={handleSubmit} className="p-6">
                         {loading ? (
-                            <div className="flex justify-center items-center py-12">
-                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-                            </div>
+                            <Loader></Loader>
                         ) : (
                             <div className="space-y-6">
                                 {/* Class, Batch, Section, Session */}
@@ -207,7 +204,7 @@ const AdvanceFees = ({ onBack }) => {
                                             name="classId"
                                             value={formData.classId}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                             required
                                         >
                                             <option value="">ক্লাস নির্বাচন করুন</option>
@@ -228,7 +225,7 @@ const AdvanceFees = ({ onBack }) => {
                                             name="batchId"
                                             value={formData.batchId}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                             required
                                         >
                                             <option value="">ব্যাচ নির্বাচন করুন</option>
@@ -249,7 +246,7 @@ const AdvanceFees = ({ onBack }) => {
                                             name="sectionId"
                                             value={formData.sectionId}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                             required
                                         >
                                             <option value="">সেকশন নির্বাচন করুন</option>
@@ -270,7 +267,7 @@ const AdvanceFees = ({ onBack }) => {
                                             name="sessionId"
                                             value={formData.sessionId}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                             required
                                         >
                                             <option value="">সেশন নির্বাচন করুন</option>
@@ -296,7 +293,7 @@ const AdvanceFees = ({ onBack }) => {
                                         placeholder="মাসিক ফি লিখুন"
                                         min="0"
                                         step="0.01"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     />
                                     <p className="text-xs text-gray-500 mt-1">
@@ -313,7 +310,7 @@ const AdvanceFees = ({ onBack }) => {
                                             name="sendAttendanceSMS"
                                             checked={formData.sendAttendanceSMS}
                                             onChange={handleInputChange}
-                                            className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                                            className="h-5 w-5 text-[#1e90c9] focus:ring-[#1e90c9] border-gray-300 rounded"
                                             id="sendAttendanceSMS"
                                         />
                                         <label htmlFor="sendAttendanceSMS" className="ml-2 block text-sm text-gray-700">
@@ -330,7 +327,7 @@ const AdvanceFees = ({ onBack }) => {
                                             name="generateFeesTo"
                                             value={formData.generateFeesTo}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         >
                                             {months.map(month => (
                                                 <option key={month.value} value={month.value}>
@@ -394,10 +391,10 @@ const AdvanceFees = ({ onBack }) => {
                                     >
                                         রিসেট করুন
                                     </button>
-                                    <button
+                                    <MainButton
                                         type="submit"
                                         disabled={saving}
-                                        className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="rounded-md"
                                     >
                                         {saving ? (
                                             <span className="flex items-center justify-center">
@@ -410,7 +407,7 @@ const AdvanceFees = ({ onBack }) => {
                                         ) : (
                                             'অগ্রিম ফি তৈরি করুন'
                                         )}
-                                    </button>
+                                    </MainButton>
                                 </div>
                             </div>
                         )}
