@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  FaBuilding, 
-  FaUsers, 
-  FaChair, 
-  FaDoorOpen, 
-  FaWrench,
-  FaSearch,
-  FaFilter,
-  FaMapMarkerAlt,
-  FaDesktop,
-  FaWifi,
-  FaVideo,
-  FaVolumeUp,
-  FaSnowflake
+import { useEffect, useState } from 'react';
+import {
+    FaBuilding,
+    FaChair,
+    FaDesktop,
+    FaDoorOpen,
+    FaFilter,
+    FaMapMarkerAlt,
+    FaSearch,
+    FaSnowflake,
+    FaUsers,
+    FaVideo,
+    FaVolumeUp,
+    FaWifi,
+    FaWrench
 } from 'react-icons/fa';
+import Loader from '../../../../components/sharedItems/Loader/Loader';
 import axiosInstance from '../../../../hooks/axiosInstance/axiosInstance';
 
 
@@ -60,15 +61,15 @@ const ClassRoomsClient = () => {
     const getStatusInfo = (status) => {
         switch (status) {
             case 'Available':
-                return { color: 'bg-green-100 text-green-800 border-green-200', icon: FaDoorOpen };
+                return { color: 'bg-[#1e90c9] text-white border-[#1e90c9]', icon: FaDoorOpen };
             case 'Occupied':
-                return { color: 'bg-blue-100 text-blue-800 border-blue-200', icon: FaUsers };
+                return { color: 'bg-[#1e90c9] text-white border-[#1e90c9]', icon: FaUsers };
             case 'Maintenance':
-                return { color: 'bg-yellow-100 text-yellow-800 border-yellow-200', icon: FaWrench };
+                return { color: 'bg-[#1e90c9] text-white border-[#1e90c9]', icon: FaWrench };
             case 'Reserved':
-                return { color: 'bg-purple-100 text-purple-800 border-purple-200', icon: FaChair };
+                return { color: 'bg-[#1e90c9] text-white border-[#1e90c9]', icon: FaChair };
             default:
-                return { color: 'bg-gray-100 text-gray-800 border-gray-200', icon: FaBuilding };
+                return { color: 'bg-[#1e90c9] text-white border-[#1e90c9]', icon: FaBuilding };
         }
     };
 
@@ -110,45 +111,32 @@ const ClassRoomsClient = () => {
     const statusOptions = ['Available', 'Occupied', 'Maintenance', 'Reserved'];
 
     if (loading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
-                <div className="text-center">
-                    <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                    <p className="text-gray-600 text-lg">Loading classrooms...</p>
-                </div>
-            </div>
-        );
+        return <Loader></Loader>
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100">
             {/* Header */}
             <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200/50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
                     <div className="text-center">
                         <div className="flex justify-center mb-4">
-                            <div className="bg-blue-100 p-4 rounded-2xl">
-                                <FaBuilding className="text-4xl text-blue-600" />
-                            </div>
                         </div>
                         <h1 className="text-4xl font-bold text-gray-900 mb-3">
-                            School Classrooms
+                            কক্ষ সংখ্যা
                         </h1>
-                        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                            Explore our modern classrooms and facilities designed for optimal learning experience
-                        </p>
                     </div>
                 </div>
             </div>
 
             {/* Main Content */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 {/* Quick Stats */}
                 <div className="grid grid-cols-1 md:grid-rows-2 lg:grid-rows-1 lg:grid-cols-4 gap-6 mb-8">
                     <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200/50 p-6 shadow-sm">
                         <div className="flex items-center">
                             <div className="bg-blue-100 p-3 rounded-xl">
-                                <FaBuilding className="text-blue-600 text-xl" />
+                                <FaBuilding className="text-[#1e90c9] text-xl" />
                             </div>
                             <div className="ml-4">
                                 <p className="text-sm font-medium text-gray-600">Total Classrooms</p>
@@ -159,8 +147,8 @@ const ClassRoomsClient = () => {
 
                     <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200/50 p-6 shadow-sm">
                         <div className="flex items-center">
-                            <div className="bg-green-100 p-3 rounded-xl">
-                                <FaDoorOpen className="text-green-600 text-xl" />
+                            <div className="bg-blue-100 p-3 rounded-xl">
+                                <FaDoorOpen className="text-[#1e90c9] text-xl" />
                             </div>
                             <div className="ml-4">
                                 <p className="text-sm font-medium text-gray-600">Available Now</p>
@@ -173,8 +161,8 @@ const ClassRoomsClient = () => {
 
                     <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200/50 p-6 shadow-sm">
                         <div className="flex items-center">
-                            <div className="bg-purple-100 p-3 rounded-xl">
-                                <FaUsers className="text-purple-600 text-xl" />
+                            <div className="bg-blue-100 p-3 rounded-xl">
+                                <FaUsers className="text-[#1e90c9] text-xl" />
                             </div>
                             <div className="ml-4">
                                 <p className="text-sm font-medium text-gray-600">Total Capacity</p>
@@ -187,8 +175,8 @@ const ClassRoomsClient = () => {
 
                     <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200/50 p-6 shadow-sm">
                         <div className="flex items-center">
-                            <div className="bg-orange-100 p-3 rounded-xl">
-                                <FaChair className="text-orange-600 text-xl" />
+                            <div className="bg-blue-100 p-3 rounded-xl">
+                                <FaChair className="text-[#1e90c9] text-xl" />
                             </div>
                             <div className="ml-4">
                                 <p className="text-sm font-medium text-gray-600">Room Types</p>
@@ -215,7 +203,7 @@ const ClassRoomsClient = () => {
                                     placeholder="Search by room number or name..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="pl-10 pr-4 py-3 border border-gray-300 rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/50"
+                                    className="pl-10 pr-4 py-3 border border-gray-300 rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent bg-white/50"
                                 />
                             </div>
                         </div>
@@ -229,7 +217,7 @@ const ClassRoomsClient = () => {
                             <select
                                 value={filterFloor}
                                 onChange={(e) => setFilterFloor(e.target.value)}
-                                className="w-full px-3 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/50"
+                                className="w-full px-3 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent bg-white/50"
                             >
                                 <option value="all">All Floors</option>
                                 {uniqueFloors.map(floor => (
@@ -247,7 +235,7 @@ const ClassRoomsClient = () => {
                             <select
                                 value={filterType}
                                 onChange={(e) => setFilterType(e.target.value)}
-                                className="w-full px-3 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/50"
+                                className="w-full px-3 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent bg-white/50"
                             >
                                 <option value="all">All Types</option>
                                 {uniqueTypes.map(type => (
@@ -267,7 +255,7 @@ const ClassRoomsClient = () => {
                                 onClick={() => setFilterStatus('all')}
                                 className={`px-4 py-2 rounded-lg border transition-all ${
                                     filterStatus === 'all' 
-                                        ? 'bg-blue-600 text-white border-blue-600' 
+                                        ? 'bg-[#1e90c9] text-white border-[#1e90c9]' 
                                         : 'bg-white/50 text-gray-700 border-gray-300 hover:bg-gray-50'
                                 }`}
                             >
@@ -311,7 +299,7 @@ const ClassRoomsClient = () => {
                                 <div className="p-6 border-b border-gray-200/50">
                                     <div className="flex justify-between items-start mb-3">
                                         <div>
-                                            <h3 className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                                            <h3 className="text-2xl font-bold text-gray-900 group-hover:text-[#1e90c9] transition-colors">
                                                 {classroom.roomNumber}
                                             </h3>
                                             <p className="text-lg text-gray-600 font-medium">
@@ -340,7 +328,7 @@ const ClassRoomsClient = () => {
                                     {/* Capacity and Usage */}
                                     <div className="grid grid-cols-2 gap-4 mb-4">
                                         <div className="text-center p-3 bg-blue-50 rounded-xl">
-                                            <FaUsers className="text-blue-600 text-xl mx-auto mb-2" />
+                                            <FaUsers className="text-[#1e90c9] text-xl mx-auto mb-2" />
                                             <p className="text-sm text-gray-600">Capacity</p>
                                             <p className="text-lg font-bold text-gray-900">{classroom.capacity}</p>
                                         </div>

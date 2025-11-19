@@ -96,21 +96,21 @@ const WorkersList = () => {
                 {/* Stats Section */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-green-600 mb-1">{workers.length}</div>
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">{workers.length}</div>
                         <div className="text-sm text-gray-600">Total Workers</div>
                     </div>
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-blue-600 mb-1">
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">
                             {workers.filter(w => w.isActive).length}
                         </div>
                         <div className="text-sm text-gray-600">Active Workers</div>
                     </div>
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-purple-600 mb-1">{departments.length}</div>
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">{departments.length}</div>
                         <div className="text-sm text-gray-600">Departments</div>
                     </div>
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-orange-600 mb-1">{designations.length}</div>
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">{designations.length}</div>
                         <div className="text-sm text-gray-600">Designations</div>
                     </div>
                 </div>
@@ -128,7 +128,7 @@ const WorkersList = () => {
                                 placeholder="Search by name, designation, or department..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                             />
                         </div>
 
@@ -140,7 +140,7 @@ const WorkersList = () => {
                             <select
                                 value={filterDepartment}
                                 onChange={(e) => setFilterDepartment(e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                             >
                                 <option value="">All Departments</option>
                                 {departments.map(dept => (
@@ -157,7 +157,7 @@ const WorkersList = () => {
                             <select
                                 value={filterDesignation}
                                 onChange={(e) => setFilterDesignation(e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                             >
                                 <option value="">All Designations</option>
                                 {designations.map(designation => (
@@ -180,7 +180,7 @@ const WorkersList = () => {
                                 setFilterDepartment('');
                                 setFilterDesignation('');
                             }}
-                            className="text-green-500 hover:text-green-700 text-sm font-medium"
+                            className="text-[#1e90c9] text-sm font-medium"
                         >
                             Clear Filters
                         </button>
@@ -207,7 +207,7 @@ const WorkersList = () => {
                                 className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                             >
                                 {/* Worker Photo */}
-                                <div className="relative h-48 bg-gradient-to-br from-green-50 to-emerald-100">
+                                <div className="relative h-48 bg-linear-to-br from-green-50 to-emerald-100">
                                     {worker.photo ? (
                                         <img
                                             src={`${baseImageURL}${worker.photo}`}
@@ -329,7 +329,7 @@ const WorkersList = () => {
                                 >
                                     <div className="flex items-start space-x-4">
                                         {/* Worker Avatar */}
-                                        <div className="flex-shrink-0">
+                                        <div className="shrink-0">
                                             {worker.photo ? (
                                                 <img
                                                     src={worker.photo}
@@ -373,58 +373,6 @@ const WorkersList = () => {
                         </div>
                     </div>
                 )}
-
-                {/* Departments Overview */}
-                {departments.length > 0 && (
-                    <div className="mt-12">
-                        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Departments Overview</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {departments.map(dept => {
-                                const deptWorkers = workers.filter(w => w.department === dept);
-                                const activeWorkers = deptWorkers.filter(w => w.isActive);
-                                
-                                return (
-                                    <div key={dept} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                                        <h3 className="text-lg font-semibold text-gray-800 mb-3">{dept}</h3>
-                                        <div className="space-y-2">
-                                            <div className="flex justify-between text-sm">
-                                                <span className="text-gray-600">Total Workers:</span>
-                                                <span className="font-medium">{deptWorkers.length}</span>
-                                            </div>
-                                            <div className="flex justify-between text-sm">
-                                                <span className="text-gray-600">Active Workers:</span>
-                                                <span className="font-medium text-green-600">{activeWorkers.length}</span>
-                                            </div>
-                                            <div className="flex justify-between text-sm">
-                                                <span className="text-gray-600">Designations:</span>
-                                                <span className="font-medium">
-                                                    {[...new Set(deptWorkers.map(w => w.designation))].length}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
-                )}
-
-                {/* Footer Info */}
-                <div className="mt-12 text-center">
-                    <div className="bg-green-50 rounded-lg p-6 border border-green-200">
-                        <h3 className="text-lg font-semibold text-green-800 mb-2">
-                            Need Assistance?
-                        </h3>
-                        <p className="text-green-700 mb-4">
-                            Our support staff is here to help with any administrative or maintenance needs.
-                        </p>
-                        <div className="flex flex-col sm:flex-row justify-center gap-4 text-sm text-green-600">
-                            <span>📞 (555) 123-4567</span>
-                            <span>✉️ support@school.edu</span>
-                            <span>🏢 Administration Office</span>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             {/* Custom Styles */}

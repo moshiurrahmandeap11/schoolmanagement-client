@@ -106,7 +106,7 @@ const HeadmasterList = () => {
 
                 {/* Current Headmaster Highlight */}
                 {currentHeadmaster && (
-                    <div className="bg-gradient-to-r from-blue-50 to-indigo-100 rounded-2xl shadow-lg border border-blue-200 p-6 sm:p-8 mb-8">
+                    <div className="bg-linear-to-r from-blue-50 to-indigo-100 rounded-2xl shadow-lg border border-blue-200 p-6 sm:p-8 mb-8">
                         <div className="text-center mb-4">
                             <span className="inline-block px-4 py-2 bg-[#1e90c9] text-white text-sm font-medium rounded-full mb-2">
                                 Current Headmaster
@@ -137,7 +137,7 @@ const HeadmasterList = () => {
                                 <h3 className="text-2xl font-bold text-gray-800 mb-2">
                                     {currentHeadmaster.name}
                                 </h3>
-                                <p className="text-blue-600 text-lg font-medium mb-3">
+                                <p className="text-[#1e90c9] text-lg font-medium mb-3">
                                     {currentHeadmaster.qualification}
                                 </p>
                                 
@@ -176,21 +176,21 @@ const HeadmasterList = () => {
                 {/* Stats Section */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-blue-600 mb-1">{headmasters.length}</div>
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">{headmasters.length}</div>
                         <div className="text-sm text-gray-600">Total Headmasters</div>
                     </div>
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-green-600 mb-1">
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">
                             {headmasters.filter(h => h.isCurrent).length}
                         </div>
                         <div className="text-sm text-gray-600">Current Headmaster</div>
                     </div>
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-purple-600 mb-1">{periods.length}</div>
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">{periods.length}</div>
                         <div className="text-sm text-gray-600">Different Eras</div>
                     </div>
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-orange-600 mb-1">
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">
                             {Math.max(...headmasters.map(h => {
                                 const years = h.period?.split('-');
                                 return years && years.length === 2 ? parseInt(years[1]) - parseInt(years[0]) : 0;
@@ -213,7 +213,7 @@ const HeadmasterList = () => {
                                 placeholder="Search by name, qualification, or period..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                             />
                         </div>
 
@@ -225,7 +225,7 @@ const HeadmasterList = () => {
                             <select
                                 value={filterPeriod}
                                 onChange={(e) => setFilterPeriod(e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                             >
                                 <option value="">All Periods</option>
                                 {periods.map(period => (
@@ -298,7 +298,7 @@ const HeadmasterList = () => {
                                         <div className="w-5/12 bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
                                             <div className="flex">
                                                 {/* Photo */}
-                                                <div className="w-1/3 bg-gradient-to-br from-blue-50 to-indigo-100">
+                                                <div className="w-1/3 bg-linear-to-br from-blue-50 to-indigo-100">
                                                     {headmaster.photo ? (
                                                         <img
                                                             src={`${baseImageURL}${headmaster.photo}`}
@@ -363,7 +363,7 @@ const HeadmasterList = () => {
                                     className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300"
                                 >
                                     {/* Header with period */}
-                                    <div className="bg-gradient-to-r from-blue-500 to-indigo-600 p-4 text-white">
+                                    <div className="bg-linear-to-r from-blue-500 to-indigo-600 p-4 text-white">
                                         <div className="flex justify-between items-start">
                                             <h3 className="text-lg font-bold">{headmaster.name}</h3>
                                             {headmaster.isCurrent && (
@@ -429,55 +429,6 @@ const HeadmasterList = () => {
                         </div>
                     </div>
                 )}
-
-                {/* Legacy Section */}
-                <div className="mt-12 bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
-                    <div className="text-center mb-6">
-                        <h2 className="text-2xl font-bold text-gray-800 mb-2">Institutional Legacy</h2>
-                        <p className="text-gray-600">
-                            Celebrating {headmasters.length} years of educational leadership and excellence
-                        </p>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="text-center p-4">
-                            <div className="text-4xl text-blue-500 mb-2">🏛️</div>
-                            <h3 className="font-semibold text-gray-800 mb-2">Foundation</h3>
-                            <p className="text-sm text-gray-600">
-                                Established with a vision for quality education and character building
-                            </p>
-                        </div>
-                        
-                        <div className="text-center p-4">
-                            <div className="text-4xl text-green-500 mb-2">📈</div>
-                            <h3 className="font-semibold text-gray-800 mb-2">Growth</h3>
-                            <p className="text-sm text-gray-600">
-                                Continuous expansion and modernization under successive leadership
-                            </p>
-                        </div>
-                        
-                        <div className="text-center p-4">
-                            <div className="text-4xl text-purple-500 mb-2">⭐</div>
-                            <h3 className="font-semibold text-gray-800 mb-2">Excellence</h3>
-                            <p className="text-sm text-gray-600">
-                                Maintaining academic excellence and holistic development
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Footer Info */}
-                <div className="mt-8 text-center">
-                    <div className="bg-blue-50 rounded-lg p-6 border border-blue-200">
-                        <h3 className="text-lg font-semibold text-blue-800 mb-2">
-                            Leadership Legacy
-                        </h3>
-                        <p className="text-blue-700">
-                            Each headmaster has contributed uniquely to our institution's journey, 
-                            building upon the foundation laid by their predecessors.
-                        </p>
-                    </div>
-                </div>
             </div>
 
             {/* Custom Styles */}

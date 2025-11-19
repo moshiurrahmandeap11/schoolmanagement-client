@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axiosInstance, { baseImageURL } from '../../../../hooks/axiosInstance/axiosInstance';
 
 
@@ -53,9 +53,8 @@ const NavbarBanner = () => {
     }
 
     const currentBanner = banners[currentBannerIndex];
-    const bannerUrl = currentBanner.image.startsWith('http') 
-        ? currentBanner.image 
-        : `${baseImageURL}${currentBanner.image}`;
+    console.log(currentBanner);
+    const bannerUrl = `${baseImageURL}${currentBanner?.image}`;
 
     return (
         <div className="w-full overflow-hidden">
@@ -63,10 +62,6 @@ const NavbarBanner = () => {
             <div className="relative w-full h-16 sm:h-20 md:h-24 lg:h-52 xl:h-52">
                 {/* Banner Images with transition */}
                 {banners.map((banner, index) => {
-                    const bannerImageUrl = banner.image.startsWith('http') 
-                        ? banner.image 
-                        : `${baseImageURL}${banner.image}`;
-                    
                     return (
                         <div
                             key={banner._id}
@@ -75,7 +70,7 @@ const NavbarBanner = () => {
                             }`}
                         >
                             <img 
-                                src={bannerImageUrl} 
+                                src={bannerUrl} 
                                 alt={banner.title || "Banner"}
                                 className="w-full h-full object-cover"
                                 onError={(e) => {

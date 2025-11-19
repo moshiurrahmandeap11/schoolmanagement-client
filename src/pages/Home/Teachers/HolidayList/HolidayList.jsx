@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Loader from '../../../../components/sharedItems/Loader/Loader';
 import MainButton from '../../../../components/sharedItems/Mainbutton/Mainbutton';
 import axiosInstance from '../../../../hooks/axiosInstance/axiosInstance';
 
@@ -133,7 +134,7 @@ const HolidayList = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {months.map(month => (
                     <div key={month.value} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-                        <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-4 text-white">
+                        <div className="bg-linear-to-r from-blue-500 to-blue-600 p-4 text-white">
                             <h3 className="text-lg font-bold text-center">{month.label} {selectedYear}</h3>
                         </div>
                         <div className="p-4">
@@ -310,23 +311,12 @@ const HolidayList = () => {
     };
 
     if (loading) {
-        return (
-            <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-center items-center py-20">
-                        <div className="text-center">
-                            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-500 mx-auto mb-4"></div>
-                            <p className="text-gray-600 text-lg">Loading holidays...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
+        return <Loader></Loader>
     }
 
     if (error) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8">
+            <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-8">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="bg-white rounded-lg shadow-sm border border-red-200 p-8 text-center">
                         <div className="text-red-500 text-6xl mb-4">⚠️</div>
@@ -345,7 +335,7 @@ const HolidayList = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8">
+        <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-8">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header Section */}
                 <div className="text-center mb-8">
@@ -357,23 +347,23 @@ const HolidayList = () => {
                 {/* Stats Section */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-blue-600 mb-1">{holidays.length}</div>
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">{holidays.length}</div>
                         <div className="text-sm text-gray-600">Total Holidays</div>
                     </div>
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-green-600 mb-1">
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">
                             {holidays.filter(h => !isPast(h.date)).length}
                         </div>
                         <div className="text-sm text-gray-600">Upcoming</div>
                     </div>
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-purple-600 mb-1">
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">
                             {holidays.filter(h => h.isGovernmentHoliday).length}
                         </div>
                         <div className="text-sm text-gray-600">Govt Holidays</div>
                     </div>
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-orange-600 mb-1">
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">
                             {new Set(holidays.map(h => h.type)).size}
                         </div>
                         <div className="text-sm text-gray-600">Categories</div>
@@ -382,7 +372,7 @@ const HolidayList = () => {
 
                 {/* Upcoming Holidays Banner */}
                 {getUpcomingHolidays().length > 0 && (
-                    <div className="bg-gradient-to-r from-[#1e90c9] to-[#1e90c9]/90 rounded-2xl shadow-lg p-6 mb-8 text-black">
+                    <div className="bg-linear-to-r from-[#1e90c9] to-[#1e90c9]/90 rounded-2xl shadow-lg p-6 mb-8 text-black">
                         <div className="flex items-center justify-between mb-4">
                             <h2 className="text-xl font-bold">🎯 Upcoming Holidays</h2>
                             <span className="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">
@@ -583,25 +573,25 @@ const HolidayList = () => {
                 <div className="mt-12 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <div className="text-center">
-                            <div className="text-2xl font-bold text-blue-600 mb-1">
+                            <div className="text-2xl font-bold text-[#1e90c9] mb-1">
                                 {holidays.filter(h => h.type === 'national').length}
                             </div>
                             <div className="text-sm text-gray-600">National Holidays</div>
                         </div>
                         <div className="text-center">
-                            <div className="text-2xl font-bold text-purple-600 mb-1">
+                            <div className="text-2xl font-bold text-[#1e90c9] mb-1">
                                 {holidays.filter(h => h.type === 'religious').length}
                             </div>
                             <div className="text-sm text-gray-600">Religious Holidays</div>
                         </div>
                         <div className="text-center">
-                            <div className="text-2xl font-bold text-green-600 mb-1">
+                            <div className="text-2xl font-bold text-[#1e90c9] mb-1">
                                 {holidays.filter(h => h.type === 'cultural').length}
                             </div>
                             <div className="text-sm text-gray-600">Cultural Events</div>
                         </div>
                         <div className="text-center">
-                            <div className="text-2xl font-bold text-orange-600 mb-1">
+                            <div className="text-2xl font-bold text-[#1e90c9] mb-1">
                                 {holidays.filter(h => h.isRecurring).length}
                             </div>
                             <div className="text-sm text-gray-600">Yearly Events</div>

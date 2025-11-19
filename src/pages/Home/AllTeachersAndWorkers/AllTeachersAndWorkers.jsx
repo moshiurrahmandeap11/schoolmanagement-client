@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import Loader from "../../../components/sharedItems/Loader/Loader";
 import MainButton from "../../../components/sharedItems/Mainbutton/Mainbutton";
 import axiosInstance, {
-    baseImageURL,
+  baseImageURL,
 } from "../../../hooks/axiosInstance/axiosInstance";
 
 const AllTeachersAndWorkers = () => {
@@ -110,9 +110,9 @@ const AllTeachersAndWorkers = () => {
 
   const getStaffType = (staff) => {
     if (teachers.some((teacher) => teacher._id === staff._id)) {
-      return { type: "Teacher", badge: "👨‍🏫" };
+      return { type: "Teacher", badge: "Teacher" };
     } else {
-      return { type: "Staff", badge: "👷" };
+      return { type: "Staff", badge: "Staff" };
     }
   };
 
@@ -122,7 +122,7 @@ const AllTeachersAndWorkers = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
+      <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-lg shadow-sm border border-red-200 p-8 text-center">
             <div className="text-red-500 text-6xl mb-4">⚠️</div>
@@ -144,7 +144,7 @@ const AllTeachersAndWorkers = () => {
 
   if (allStaff.length === 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
+      <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 text-center">
             <div className="text-6xl mb-4">👥</div>
@@ -194,7 +194,7 @@ const AllTeachersAndWorkers = () => {
                   style={{ pointerEvents: isDragging ? "none" : "auto" }}
                 >
                   {/* Image Section */}
-                  <div className="relative h-52 sm:h-64 bg-gradient-to-br from-gray-50 to-gray-100">
+                  <div className="relative h-52 sm:h-64 bg-linear-to-br from-gray-50 to-gray-100">
                     {staff.photo ? (
                       <img
                         src={`${baseImageURL}${staff.photo}`}
@@ -215,8 +215,8 @@ const AllTeachersAndWorkers = () => {
                       <span
                         className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-bold ${
                           staffType.type === "Teacher"
-                            ? "bg-blue-500 text-white"
-                            : "bg-green-500 text-white"
+                            ? "bg-[#1e90c9] text-white"
+                            : "bg-[#1e90c9] text-white"
                         } shadow-lg`}
                       >
                         {staffType.badge}

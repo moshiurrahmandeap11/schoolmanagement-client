@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router';
+import { useEffect, useState } from 'react';
 import { GrContact, GrFormPrevious } from 'react-icons/gr';
-import axiosInstance from '../../../../hooks/axiosInstance/axiosInstance';
+import { useNavigate, useParams } from 'react-router';
 import Loader from '../../../../components/sharedItems/Loader/Loader';
+import MainButton from '../../../../components/sharedItems/Mainbutton/Mainbutton';
+import axiosInstance from '../../../../hooks/axiosInstance/axiosInstance';
 
 const PrincipalSpeechDetails = () => {
     const { id } = useParams();
@@ -45,13 +46,7 @@ const PrincipalSpeechDetails = () => {
     const image = imageUrl + imageLink;
 
     if (loading) {
-        return (
-            <div className="min-h-screen bg-gray-50 py-8">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <Loader />
-                </div>
-            </div>
-        );
+        return <Loader></Loader>
     }
 
     if (error) {
@@ -108,12 +103,12 @@ const PrincipalSpeechDetails = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 py-8">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Back Button */}
                 <div className="mb-6">
                     <button
                         onClick={handleGoBack}
-                        className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors text-gray-700"
+                        className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors text-gray-700"
                     >
                         <GrFormPrevious className="text-lg" />
                         পিছনে যান
@@ -172,7 +167,7 @@ const PrincipalSpeechDetails = () => {
                                 </div>
                                 <div className={`px-3 py-1 rounded-full text-sm font-medium ${
                                     speech.isActive 
-                                        ? 'bg-green-100 text-green-800' 
+                                        ? 'bg-[#1e90c9] text-white' 
                                         : 'bg-red-100 text-red-800'
                                 }`}>
                                     {speech.isActive ? 'সক্রিয়' : 'নিষ্ক্রিয়'}
@@ -184,12 +179,11 @@ const PrincipalSpeechDetails = () => {
 
                 {/* Related Actions */}
                 <div className="mt-6 flex justify-center">
-                    <button
+                    <MainButton
                         onClick={handleGoBack}
-                        className="px-6 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors"
                     >
                         হোমপেজে ফিরে যান
-                    </button>
+                    </MainButton>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axiosInstance, { baseImageURL } from '../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../Loader/Loader';
 
@@ -73,10 +73,6 @@ const ManagingCommittee = () => {
                     <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
                         পরিচালনা কমিটি
                     </h1>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        আমাদের বিদ্যালয়ের পরিচালনা কমিটির সম্মানিত সদস্যগণ
-                    </p>
-                    <div className="w-24 h-1 bg-blue-500 mx-auto mt-4"></div>
                 </div>
 
                 {/* Members Grid */}
@@ -106,7 +102,7 @@ const ManagingCommittee = () => {
                                     {member.name}
                                 </h3>
                                 
-                                <p className="text-blue-600 font-semibold text-lg mb-3">
+                                <p className="text-[#1e90c9] font-semibold text-lg mb-3">
                                     {member.designation}
                                 </p>
                                 

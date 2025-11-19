@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router';
+import { useEffect, useState } from 'react';
 import { GrContact, GrFormPrevious } from 'react-icons/gr';
-import axiosInstance from '../../../../hooks/axiosInstance/axiosInstance';
+import { useNavigate, useParams } from 'react-router';
 import Loader from '../../../../components/sharedItems/Loader/Loader';
+import MainButton from '../../../../components/sharedItems/Mainbutton/Mainbutton';
+import axiosInstance from '../../../../hooks/axiosInstance/axiosInstance';
 
 const PresidentDetails = () => {
     const { id } = useParams();
@@ -49,20 +50,12 @@ const PresidentDetails = () => {
     const image = imageUrl + imageLink;
 
     if (loading) {
-        return (
-            <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30 py-4 sm:py-6 lg:py-8">
-                <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8">
-                    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6">
-                        <Loader />
-                    </div>
-                </div>
-            </div>
-        );
+        return <Loader></Loader>
     }
 
     if (error) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30 py-4 sm:py-6 lg:py-8">
+            <div className="min-h-screen bg-linear-to-br from-gray-50 to-blue-50/30 py-4 sm:py-6 lg:py-8">
                 <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8">
                     {/* Back Button */}
                     <div className="mb-4 sm:mb-6">
@@ -108,7 +101,7 @@ const PresidentDetails = () => {
 
     if (!speech) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30 py-4 sm:py-6 lg:py-8">
+            <div className="min-h-screen bg-linear-to-br from-gray-50 to-blue-50/30 py-4 sm:py-6 lg:py-8">
                 <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8">
                     {/* Back Button */}
                     <div className="mb-4 sm:mb-6">
@@ -155,13 +148,13 @@ const PresidentDetails = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30 py-4 sm:py-6 lg:py-8">
+        <div className="min-h-screen bg-linear-to-br from-gray-50 to-blue-50/30 py-4 sm:py-6 lg:py-8">
             <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8">
                 {/* Back Button */}
                 <div className="mb-4 sm:mb-6">
                     <button
                         onClick={handleGoBack}
-                        className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-gray-700 text-sm sm:text-base shadow-sm hover:shadow-md"
+                        className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-all duration-200 text-gray-700 text-sm sm:text-base shadow-sm hover:shadow-md"
                     >
                         <GrFormPrevious className="text-lg" />
                         <span className="hidden xs:inline">পিছনে যান</span>
@@ -172,9 +165,9 @@ const PresidentDetails = () => {
                 {/* Main Content Card */}
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-[#051939] to-[#0d2b52] text-white p-4 sm:p-6">
+                    <div className="p-4 sm:p-6">
                         <div className="flex items-center gap-3 mb-2 sm:mb-3">
-                            <GrContact className="text-white text-xl sm:text-2xl flex-shrink-0" />
+                            <GrContact className="text-white text-xl sm:text-2xl shrink-0" />
                             <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight">
                                 সভাপতির বাণী
                             </h1>
@@ -260,18 +253,16 @@ const PresidentDetails = () => {
 
                 {/* Related Actions */}
                 <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-                    <button
+                    <MainButton
                         onClick={handleGoBack}
-                        className="px-4 sm:px-6 py-2 sm:py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-sm sm:text-base font-medium shadow-sm hover:shadow-md"
                     >
                         পিছনে যান
-                    </button>
-                    <button
+                    </MainButton>
+                    <MainButton
                         onClick={handleGoHome}
-                        className="px-4 sm:px-6 py-2 sm:py-2.5 bg-gray-600 text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-200 text-sm sm:text-base font-medium shadow-sm hover:shadow-md"
                     >
                         হোমপেজে ফিরে যান
-                    </button>
+                    </MainButton>
                 </div>
             </div>
         </div>

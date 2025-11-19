@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router';
-import axiosInstance, { baseImageURL } from '../../../hooks/axiosInstance/axiosInstance';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router';
 import Loader from '../../../components/sharedItems/Loader/Loader';
+import axiosInstance, { baseImageURL } from '../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../sharedItems/Mainbutton/Mainbutton';
 
 const BlogDetails = () => {
     const [blog, setBlog] = useState(null);
@@ -43,7 +44,7 @@ const BlogDetails = () => {
                 day: 'numeric',
                 weekday: 'long'
             });
-        } catch (error) {
+        } catch {
             return 'তারিখ নেই';
         }
     };
@@ -127,12 +128,12 @@ const BlogDetails = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 py-8">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Back Button */}
                 <div className="mb-6">
                     <button
                         onClick={handleGoBack}
-                        className="flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors font-medium"
+                        className="flex items-center gap-2 text-[#1e90c9] transition-colors font-medium"
                     >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -154,7 +155,7 @@ const BlogDetails = () => {
                                 e.target.className = 'w-full h-full object-cover bg-gray-200';
                             }}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent"></div>
                         
                         {/* Overlay Content */}
                         <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
@@ -187,19 +188,18 @@ const BlogDetails = () => {
                     <div className="p-6 sm:p-8 lg:p-12">
                         {/* Action Buttons */}
                         <div className="flex flex-wrap gap-3 mb-8 pb-6 border-b border-gray-200">
-                            <button
+                            <MainButton
                                 onClick={handleShare}
-                                className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium text-sm"
                             >
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
                                 </svg>
                                 শেয়ার করুন
-                            </button>
+                            </MainButton>
                             
-                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${
+                            <span className={`inline-flex items-center px-4 py-1 rounded-3xl text-xs font-semibold ${
                                 blog.isActive 
-                                    ? 'bg-green-100 text-green-800' 
+                                    ? 'bg-[#1e90c9] text-white' 
                                     : 'bg-red-100 text-red-800'
                             }`}>
                                 {blog.isActive ? 'সক্রিয়' : 'নিষ্ক্রিয়'}
@@ -256,15 +256,14 @@ const BlogDetails = () => {
 
                 {/* Call to Action */}
                 <div className="mt-8 text-center">
-                    <button
+                    <MainButton
                         onClick={handleGoBack}
-                        className="inline-flex items-center gap-2 px-8 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-semibold shadow-lg hover:shadow-xl"
                     >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                         </svg>
                         সব ব্লগ দেখুন
-                    </button>
+                    </MainButton>
                 </div>
             </div>
 

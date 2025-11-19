@@ -86,21 +86,21 @@ const TeachersList = () => {
                 {/* Stats Section */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-blue-600 mb-1">{teachers.length}</div>
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">{teachers.length}</div>
                         <div className="text-sm text-gray-600">Total Teachers</div>
                     </div>
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-green-600 mb-1">
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">
                             {teachers.filter(t => t.isActive).length}
                         </div>
                         <div className="text-sm text-gray-600">Active Teachers</div>
                     </div>
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-purple-600 mb-1">{subjects.length}</div>
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">{subjects.length}</div>
                         <div className="text-sm text-gray-600">Subjects</div>
                     </div>
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-orange-600 mb-1">{departments.length}</div>
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">{departments.length}</div>
                         <div className="text-sm text-gray-600">Departments</div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@ const TeachersList = () => {
                                 placeholder="Search by name, subject, or designation..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                             />
                         </div>
 
@@ -130,7 +130,7 @@ const TeachersList = () => {
                             <select
                                 value={filterSubject}
                                 onChange={(e) => setFilterSubject(e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                             >
                                 <option value="">All Subjects</option>
                                 {subjects.map(subject => (
@@ -147,7 +147,7 @@ const TeachersList = () => {
                             <select
                                 value={filterDepartment}
                                 onChange={(e) => setFilterDepartment(e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                             >
                                 <option value="">All Departments</option>
                                 {departments.map(dept => (
@@ -170,7 +170,7 @@ const TeachersList = () => {
                                 setFilterSubject('');
                                 setFilterDepartment('');
                             }}
-                            className="text-blue-500 hover:text-blue-700 text-sm font-medium"
+                            className="text-[#1e90c9]  text-sm font-medium"
                         >
                             Clear Filters
                         </button>
@@ -197,7 +197,7 @@ const TeachersList = () => {
                                 className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                             >
                                 {/* Teacher Photo */}
-                                <div className="relative h-48 bg-gradient-to-br from-blue-50 to-indigo-100">
+                                <div className="relative h-48 bg-linear-to-br from-blue-50 to-indigo-100">
                                     {teacher.photo ? (
                                         <img
                                             src={`${baseImageURL}${teacher.photo}`}
@@ -319,7 +319,7 @@ const TeachersList = () => {
                                 >
                                     <div className="flex items-start space-x-4">
                                         {/* Teacher Avatar */}
-                                        <div className="flex-shrink-0">
+                                        <div className="shrink-0">
                                             {teacher.photo ? (
                                                 <img
                                                     src={teacher.photo}
@@ -363,24 +363,6 @@ const TeachersList = () => {
                         </div>
                     </div>
                 )}
-
-                {/* Footer Info */}
-                <div className="mt-12 text-center">
-                    <div className="bg-blue-50 rounded-lg p-6 border border-blue-200">
-                        <h3 className="text-lg font-semibold text-blue-800 mb-2">
-                            Need More Information?
-                        </h3>
-                        <p className="text-blue-700 mb-4">
-                            For detailed information about our teaching faculty and academic programs, 
-                            please contact our administration office.
-                        </p>
-                        <div className="flex flex-col sm:flex-row justify-center gap-4 text-sm text-blue-600">
-                            <span>📞 (555) 123-4567</span>
-                            <span>✉️ info@school.edu</span>
-                            <span>🏢 Administration Building</span>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             {/* Custom Styles */}

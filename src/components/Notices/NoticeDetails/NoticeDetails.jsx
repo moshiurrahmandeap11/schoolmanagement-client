@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router';
+import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaCalendarAlt, FaImage } from 'react-icons/fa';
+import { useNavigate, useParams } from 'react-router';
 import axiosInstance, { baseImageURL } from '../../../hooks/axiosInstance/axiosInstance';
+import Loader from '../../sharedItems/Loader/Loader';
 
 const NoticeDetails = () => {
     const { id } = useParams();
@@ -33,11 +34,7 @@ const NoticeDetails = () => {
     };
 
     if (loading) {
-        return (
-            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-            </div>
-        );
+        return <Loader></Loader>
     }
 
     if (error || !notice) {
@@ -47,7 +44,7 @@ const NoticeDetails = () => {
                     <p className="text-red-600 text-lg mb-4">{error || 'Notice not found'}</p>
                     <button 
                         onClick={() => navigate(-1)}
-                        className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
+                        className="bg-[#1e90c9] text-white px-6 py-2 rounded-lg "
                     >
                         Go Back
                     </button>
@@ -58,11 +55,11 @@ const NoticeDetails = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 py-8">
-            <div className="max-w-4xl mx-auto px-4">
+            <div className="max-w-5xl mx-auto px-4">
                 {/* Back Button */}
                 <button 
                     onClick={() => navigate(-1)}
-                    className="flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-6"
+                    className="flex items-center gap-2 text-[#1e90c9] mb-6"
                 >
                     <FaArrowLeft />
                     Back to Notices
@@ -86,7 +83,7 @@ const NoticeDetails = () => {
                             </div>
                             <span className={`px-2 py-1 text-xs rounded-full ${
                                 notice.isPublished 
-                                    ? 'bg-green-500 text-white' 
+                                    ? 'bg-[#1e90c9] text-white' 
                                     : 'bg-yellow-500 text-white'
                             }`}>
                                 {notice.isPublished ? 'Published' : 'Draft'}

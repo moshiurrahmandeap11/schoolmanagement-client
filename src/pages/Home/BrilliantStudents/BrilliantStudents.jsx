@@ -137,9 +137,9 @@ const BrilliantStudents = () => {
     };
 
     const getRankBadge = (roll) => {
-        if (roll === 1) return { emoji: '🥇', text: '1st', color: 'bg-yellow-500' };
-        if (roll === 2) return { emoji: '🥈', text: '2nd', color: 'bg-gray-400' };
-        return { emoji: '🏆', text: 'Top', color: 'bg-orange-500' };
+        if (roll === 1) return { emoji: '🥇', text: '1st', color: 'bg-[#1e90c9]' };
+        if (roll === 2) return { emoji: '🥈', text: '2nd', color: 'bg-[#1e90c9]' };
+        return { emoji: '🏆', text: 'Top', color: 'bg-[#1e90c9]' };
     };
 
     const imageu = axiosInstance.defaults.baseURL;
@@ -150,7 +150,7 @@ const BrilliantStudents = () => {
 
     if (error && students.length === 0) {
         return (
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
+            <div className="bg-linear-to-br from-blue-50 to-indigo-100 py-16">
                 <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="bg-white rounded-lg shadow-sm border border-red-200 p-8 text-center">
                         <div className="text-red-500 text-6xl mb-4">⚠️</div>
@@ -170,7 +170,7 @@ const BrilliantStudents = () => {
 
     if (students.length === 0) {
         return (
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
+            <div className="bg-linear-to-br from-blue-50 to-indigo-100 py-16">
                 <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 text-center">
                         <div className="text-6xl mb-4">🎓</div>
@@ -228,7 +228,7 @@ const BrilliantStudents = () => {
                                     style={{ pointerEvents: isDragging ? 'none' : 'auto' }}
                                 >
                                     {/* Image Section */}
-                                    <div className="relative h-52 sm:h-64 bg-gradient-to-br from-blue-50 to-indigo-100">
+                                    <div className="relative h-52 sm:h-64 bg-linear-to-br from-blue-50 to-indigo-100">
                                         {student.photo ? (
                                             <img
                                                 src={`${imageu}${student.photo}`}
@@ -256,7 +256,7 @@ const BrilliantStudents = () => {
 
                                         {/* Class Badge */}
                                         <div className="absolute top-2 right-2">
-                                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-purple-500 text-white shadow-lg">
+                                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-[#1e90c9] text-white shadow-lg">
                                                 {className}
                                             </span>
                                         </div>

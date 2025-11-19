@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router';
 
-import { FaCalendarAlt, FaClock, FaArrowLeft, FaEye } from 'react-icons/fa';
-import axiosInstance from '../../hooks/axiosInstance/axiosInstance';
+import { FaArrowLeft, FaCalendarAlt, FaClock, FaEye } from 'react-icons/fa';
 import Loader from '../../components/sharedItems/Loader/Loader';
+import axiosInstance from '../../hooks/axiosInstance/axiosInstance';
 
 const Announcement = () => {
     const { id } = useParams();
@@ -76,7 +76,7 @@ const Announcement = () => {
                     <p className="text-gray-600 mb-6">{error}</p>
                     <button
                         onClick={handleGoBack}
-                        className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                        className="px-6 py-3 bg-[#1e90c9] text-white rounded-lg  transition-colors"
                     >
                         Go Back
                     </button>
@@ -92,7 +92,7 @@ const Announcement = () => {
                     <h2 className="text-2xl font-bold text-gray-800 mb-2">No Announcement Found</h2>
                     <button
                         onClick={handleGoBack}
-                        className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                        className="px-6 py-3 bg-[#1e90c9] text-white rounded-lg  transition-colors"
                     >
                         Go Back
                     </button>
@@ -107,7 +107,7 @@ const Announcement = () => {
                 {/* Back Button */}
                 <button
                     onClick={handleGoBack}
-                    className="flex items-center gap-2 text-blue-600 hover:text-blue-800 mb-6 transition-colors"
+                    className="flex items-center gap-2 text-[#1e90c9] mb-6 transition-colors"
                 >
                     <FaArrowLeft className="w-4 h-4" />
                     <span>Back to Previous Page</span>
@@ -154,7 +154,7 @@ const Announcement = () => {
                             )}
                             <div className={`px-3 py-1 rounded-full text-xs font-semibold ${
                                 announcement.isActive 
-                                    ? 'bg-green-100 text-green-800' 
+                                    ? 'bg-[#1e90c9] text-white' 
                                     : 'bg-red-100 text-red-800'
                             }`}>
                                 {announcement.isActive ? 'Active' : 'Inactive'}

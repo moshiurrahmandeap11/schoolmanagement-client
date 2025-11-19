@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../Loader/Loader';
 
@@ -65,17 +65,7 @@ const ZillaHistory = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 py-12">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Header Section */}
-                <div className="text-center mb-12">
-                    <h1 className="text-4xl sm:text-5xl font-bold text-gray-800 mb-4">
-                        কুমিল্লা জেলার ইতিহাস
-                    </h1>
-                    <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                        প্রাচীন সভ্যতা, ঐতিহ্য এবং সংস্কৃতির অপূর্ব সমন্বয়
-                    </p>
-                    <div className="w-32 h-1 bg-green-500 mx-auto mt-6"></div>
-                </div>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* Main Content */}
                 <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
@@ -93,9 +83,6 @@ const ZillaHistory = () => {
                                 title="কুমিল্লা জেলা ম্যাপ"
                                 className="absolute inset-0"
                             />
-                            <div className="absolute bottom-4 left-4 bg-black bg-opacity-70 text-white px-4 py-2 rounded-lg">
-                                <p className="text-sm font-semibold">📍 কুমিল্লা জেলা, বাংলাদেশ</p>
-                            </div>
                         </div>
                     )}
 
@@ -107,7 +94,6 @@ const ZillaHistory = () => {
                                 <h2 className="text-3xl font-bold text-gray-800 mb-4">
                                     জেলা পরিচিতি
                                 </h2>
-                                <div className="w-20 h-1 bg-green-500 mx-auto"></div>
                             </div>
 
                             {/* History Content */}
