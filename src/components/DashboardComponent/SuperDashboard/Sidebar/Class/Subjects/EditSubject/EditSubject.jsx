@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaSave } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const EditSubject = ({ subject, onBack, onSuccess }) => {
@@ -53,7 +54,7 @@ const EditSubject = ({ subject, onBack, onSuccess }) => {
 
     const fetchClasses = async () => {
         try {
-            const response = await axiosInstance.get('/classes');
+            const response = await axiosInstance.get('/class');
             if (response.data.success) {
                 setClasses(response.data.data || []);
             }
@@ -187,7 +188,7 @@ const EditSubject = ({ subject, onBack, onSuccess }) => {
                                             name="classId"
                                             value={formData.classId}
                                             onChange={handleInputChange}
-                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                                                 errors.classId ? 'border-red-500' : 'border-gray-300'
                                             }`}
                                         >
@@ -212,7 +213,7 @@ const EditSubject = ({ subject, onBack, onSuccess }) => {
                                             name="sectionId"
                                             value={formData.sectionId}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         >
                                             <option value="">সেকশন নির্বাচন করুন</option>
                                             {sections.map(section => (
@@ -233,7 +234,7 @@ const EditSubject = ({ subject, onBack, onSuccess }) => {
                                             name="name"
                                             value={formData.name}
                                             onChange={handleInputChange}
-                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                                                 errors.name ? 'border-red-500' : 'border-gray-300'
                                             }`}
                                             placeholder="বিষয়ের নাম লিখুন..."
@@ -253,7 +254,7 @@ const EditSubject = ({ subject, onBack, onSuccess }) => {
                                             name="code"
                                             value={formData.code}
                                             onChange={handleInputChange}
-                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                                                 errors.code ? 'border-red-500' : 'border-gray-300'
                                             }`}
                                             placeholder="বিষয় কোড লিখুন..."
@@ -295,7 +296,7 @@ const EditSubject = ({ subject, onBack, onSuccess }) => {
                                             name="totalMarks"
                                             value={formData.totalMarks}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                             placeholder="মোট নাম্বার"
                                         />
                                     </div>
@@ -310,7 +311,7 @@ const EditSubject = ({ subject, onBack, onSuccess }) => {
                                             name="writtenPassMark"
                                             value={formData.writtenPassMark}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                             placeholder="লিখিত পাশ নাম্বার"
                                         />
                                     </div>
@@ -325,7 +326,7 @@ const EditSubject = ({ subject, onBack, onSuccess }) => {
                                             name="mcqPassMark"
                                             value={formData.mcqPassMark}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                             placeholder="এম.সি.কিউ পাস মার্ক"
                                         />
                                     </div>
@@ -340,7 +341,7 @@ const EditSubject = ({ subject, onBack, onSuccess }) => {
                                             name="practicalPassMark"
                                             value={formData.practicalPassMark}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                             placeholder="ব্যবহারিক পাস মার্ক"
                                         />
                                     </div>
@@ -355,7 +356,7 @@ const EditSubject = ({ subject, onBack, onSuccess }) => {
                                             name="ctPassMark"
                                             value={formData.ctPassMark}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                             placeholder="CT পাস মার্ক"
                                         />
                                     </div>
@@ -370,7 +371,7 @@ const EditSubject = ({ subject, onBack, onSuccess }) => {
                                             name="firstPaper"
                                             value={formData.firstPaper}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                             placeholder="প্রথম পত্র"
                                         />
                                     </div>
@@ -391,7 +392,7 @@ const EditSubject = ({ subject, onBack, onSuccess }) => {
                                             name="bothPapersTotalMarks"
                                             value={formData.bothPapersTotalMarks}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                             placeholder="উভয় পেপার মোট মার্ক"
                                         />
                                     </div>
@@ -406,7 +407,7 @@ const EditSubject = ({ subject, onBack, onSuccess }) => {
                                             name="bothPapersMcqPassMark"
                                             value={formData.bothPapersMcqPassMark}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                             placeholder="উভয় পত্রের এমসিকিউ পাশ নাম্বার"
                                         />
                                     </div>
@@ -421,7 +422,7 @@ const EditSubject = ({ subject, onBack, onSuccess }) => {
                                             name="bothPapersPracticalPassMark"
                                             value={formData.bothPapersPracticalPassMark}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                             placeholder="উভয় পত্রের প্র্যাক্টিক্যাল পাশ নাম্বার"
                                         />
                                     </div>
@@ -436,7 +437,7 @@ const EditSubject = ({ subject, onBack, onSuccess }) => {
                                             name="bothPapersCtPassMark"
                                             value={formData.bothPapersCtPassMark}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                             placeholder="উভয় পত্রের CT পাস মার্ক"
                                         />
                                     </div>
@@ -452,14 +453,14 @@ const EditSubject = ({ subject, onBack, onSuccess }) => {
                                 >
                                     বাতিল করুন
                                 </button>
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md"
                                 >
-                                    <FaSave className="text-sm" />
+                                    <FaSave className="text-sm mr-2" />
                                     {loading ? 'আপডেট হচ্ছে...' : 'বিষয় আপডেট করুন'}
-                                </button>
+                                </MainButton>
                             </div>
                         </div>
                     </form>

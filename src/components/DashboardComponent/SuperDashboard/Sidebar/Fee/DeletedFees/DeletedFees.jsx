@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { FaArrowLeft, FaCalendarAlt, FaFilter, FaIdCard, FaMoneyBillWave, FaSearch, FaTrash, FaUser } from 'react-icons/fa';
+import { FaArrowLeft, FaCalendarAlt, FaFilter, FaSearch } from 'react-icons/fa';
 import Swal from 'sweetalert2';
-import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const DeletedFees = ({ onBack }) => {
     const [searchData, setSearchData] = useState({
@@ -16,30 +16,9 @@ const DeletedFees = ({ onBack }) => {
     const [deletedFees, setDeletedFees] = useState([]);
 
     useEffect(() => {
-        fetchDeletedFees();
+        // No API call, just set empty array
+        setDeletedFees([]);
     }, []);
-
-    const fetchDeletedFees = async (filters = {}) => {
-        setLoading(true);
-        try {
-            const response = await axiosInstance.get('/deleted-fees', {
-                params: filters
-            });
-
-            if (response.data.success) {
-                setDeletedFees(response.data.data || []);
-            } else {
-                setDeletedFees([]);
-                showSweetAlert('info', 'কোন ডিলিটেড ফি পাওয়া যায়নি');
-            }
-        } catch (error) {
-            console.error('Error fetching deleted fees:', error);
-            showSweetAlert('error', 'ডেটা লোড করতে সমস্যা হয়েছে');
-            setDeletedFees([]);
-        } finally {
-            setLoading(false);
-        }
-    };
 
     const showSweetAlert = (icon, title, text = '') => {
         Swal.fire({
@@ -67,7 +46,8 @@ const DeletedFees = ({ onBack }) => {
         setSearching(true);
         
         try {
-            await fetchDeletedFees(searchData);
+            // Just show a message that no data found
+            showSweetAlert('info', 'কোন ডিলিটেড ফি পাওয়া যায়নি');
         } catch (error) {
             console.error('Error searching deleted fees:', error);
             showSweetAlert('error', 'অনুসন্ধান করতে সমস্যা হয়েছে');
@@ -83,7 +63,7 @@ const DeletedFees = ({ onBack }) => {
             startDate: '',
             endDate: ''
         });
-        fetchDeletedFees();
+        setDeletedFees([]);
     };
 
     const formatDate = (dateString) => {
@@ -148,7 +128,7 @@ const DeletedFees = ({ onBack }) => {
                                             value={searchData.search1}
                                             onChange={handleChange}
                                             placeholder="শিক্ষার্থীর আইডি বা নাম"
-                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                             disabled={searching}
                                         />
                                         <FaSearch className="absolute left-3 top-3.5 text-gray-400" />
@@ -167,7 +147,7 @@ const DeletedFees = ({ onBack }) => {
                                             value={searchData.search2}
                                             onChange={handleChange}
                                             placeholder="ক্লাস বা সেশন"
-                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                             disabled={searching}
                                         />
                                         <FaSearch className="absolute left-3 top-3.5 text-gray-400" />
@@ -185,7 +165,7 @@ const DeletedFees = ({ onBack }) => {
                                             name="startDate"
                                             value={searchData.startDate}
                                             onChange={handleChange}
-                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                             disabled={searching}
                                         />
                                         <FaCalendarAlt className="absolute left-3 top-3.5 text-gray-400" />
@@ -203,7 +183,7 @@ const DeletedFees = ({ onBack }) => {
                                             name="endDate"
                                             value={searchData.endDate}
                                             onChange={handleChange}
-                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                             disabled={searching}
                                         />
                                         <FaCalendarAlt className="absolute left-3 top-3.5 text-gray-400" />
@@ -220,10 +200,10 @@ const DeletedFees = ({ onBack }) => {
                                     রিসেট
                                 </button>
 
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={searching}
-                                    className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md"
                                 >
                                     {searching ? (
                                         <>
@@ -232,11 +212,11 @@ const DeletedFees = ({ onBack }) => {
                                         </>
                                     ) : (
                                         <>
-                                            <FaFilter className="text-sm" />
+                                            <FaFilter className="text-sm mr-2" />
                                             Filter
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
                     </div>
@@ -249,126 +229,16 @@ const DeletedFees = ({ onBack }) => {
                             </h2>
                         </div>
 
-                        <div className="overflow-x-auto">
-                            <table className="w-full">
-                                <thead className="bg-gray-50 border-b border-gray-200">
-                                    <tr>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            শিক্ষার্থীর আইডি
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            শিক্ষার্থীর নাম
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            তারিখ
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            নাম
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            ক্লাস
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            সেশন
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            পরিমাণ
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            সদস্য
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Delete Reason
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-gray-200">
-                                    {deletedFees.map((fee) => (
-                                        <tr key={fee._id} className="hover:bg-gray-50 transition-colors">
-                                            <td className="px-6 py-4">
-                                                <div className="flex items-center gap-2">
-                                                    <FaIdCard className="text-gray-400 text-sm" />
-                                                    <span className="font-medium text-gray-800">
-                                                        {fee.studentId || 'N/A'}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                <div className="flex items-center gap-2">
-                                                    <FaUser className="text-gray-400 text-sm" />
-                                                    <span className="font-medium text-gray-800">
-                                                        {fee.studentName || 'N/A'}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                <div className="flex items-center gap-2">
-                                                    <FaCalendarAlt className="text-gray-400 text-sm" />
-                                                    <span className="text-sm text-gray-800">
-                                                        {formatDate(fee.deletedAt || fee.date)}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                <span className="text-sm text-gray-800">
-                                                    {fee.feeName || fee.name || 'N/A'}
-                                                </span>
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                <span className="inline-flex px-2 py-1 text-xs font-semibold bg-blue-100 text-blue-800 rounded-full">
-                                                    {fee.className || 'N/A'}
-                                                </span>
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                <span className="inline-flex px-2 py-1 text-xs font-semibold bg-green-100 text-green-800 rounded-full">
-                                                    {fee.sessionName || 'N/A'}
-                                                </span>
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                <div className="flex items-center gap-2">
-                                                    <FaMoneyBillWave className="text-red-400 text-sm" />
-                                                    <span className="font-semibold text-red-600">
-                                                        ৳{formatCurrency(fee.amount)}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                <span className="text-sm text-gray-800">
-                                                    {fee.deletedBy || fee.memberName || 'N/A'}
-                                                </span>
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                <span className={`inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full ${getDeleteReasonColor(fee.deleteReason)}`}>
-                                                    <FaTrash className="mr-1 text-xs" />
-                                                    {fee.deleteReason || 'N/A'}
-                                                </span>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-
                         {/* No Results Message */}
-                        {deletedFees.length === 0 && !loading && (
-                            <div className="text-center py-12">
-                                <div className="text-4xl text-gray-400 mb-3">🗑️</div>
-                                <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                                    কোন ডিলিটেড ফি পাওয়া যায়নি
-                                </h3>
-                                <p className="text-gray-600 text-sm">
-                                    অনুসন্ধান ক্রাইটেরিয়া পরিবর্তন করে আবার চেষ্টা করুন
-                                </p>
-                            </div>
-                        )}
-
-                        {/* Loading State */}
-                        {loading && (
-                            <div className="text-center py-12">
-                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                                <p className="text-gray-600">ডেটা লোড হচ্ছে...</p>
-                            </div>
-                        )}
+                        <div className="text-center py-12">
+                            <div className="text-4xl text-gray-400 mb-3">🗑️</div>
+                            <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                                কোন ডিলিটেড ফি পাওয়া যায়নি
+                            </h3>
+                            <p className="text-gray-600 text-sm">
+                                বর্তমানে কোনো ফি ডিলিট করা হয়নি
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

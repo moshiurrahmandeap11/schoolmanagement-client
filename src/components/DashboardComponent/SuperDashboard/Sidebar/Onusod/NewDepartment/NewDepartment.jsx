@@ -222,16 +222,13 @@ const NewDepartment = ({ department, onClose }) => {
 
     return (
         <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4">
-                        <h1 className="text-2xl font-bold text-white">
+                    <div className="px-6 py-4">
+                        <h1 className="text-2xl font-bold">
                             {department ? 'বিভাগ এডিট করুন' : 'নতুন বিভাগ যোগ করুন'}
                         </h1>
-                        <p className="text-blue-100 text-sm mt-1">
-                            {department ? 'বিভাগের তথ্য আপডেট করুন' : 'নতুন বিভাগ তৈরি করুন'}
-                        </p>
                     </div>
 
                     {/* Form */}
@@ -244,7 +241,7 @@ const NewDepartment = ({ department, onClose }) => {
                             <select
                                 value={formData.facultyId}
                                 onChange={handleFacultyChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                 required
                                 disabled={facultiesLoading}
                             >
@@ -276,7 +273,7 @@ const NewDepartment = ({ department, onClose }) => {
                                 value={formData.name}
                                 onChange={handleInputChange}
                                 placeholder="বিভাগের নাম লিখুন"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                 required
                                 maxLength={100}
                             />
@@ -314,7 +311,7 @@ const NewDepartment = ({ department, onClose }) => {
                                         type="file"
                                         accept="image/*"
                                         onChange={handleImageChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                     />
                                     <p className="text-xs text-gray-500 mt-1">
                                         JPG, PNG, WebP ইত্যাদি ফরম্যাট সমর্থিত (সর্বোচ্চ ১০MB)

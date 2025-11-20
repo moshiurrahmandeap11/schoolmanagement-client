@@ -98,7 +98,7 @@ const ContactHome = () => {
                                 <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4">
                                     <div className="flex items-center">
                                         <div className="p-3 bg-blue-100 rounded-lg mr-4">
-                                            <FaUser className="text-xl text-blue-600" />
+                                            <FaUser className="text-xl text-[#1e90c9]" />
                                         </div>
                                         <div>
                                             <p className="text-sm font-medium text-gray-600">মোট যোগাযোগ</p>
@@ -109,8 +109,8 @@ const ContactHome = () => {
 
                                 <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4">
                                     <div className="flex items-center">
-                                        <div className="p-3 bg-green-100 rounded-lg mr-4">
-                                            <FaPhone className="text-xl text-green-600" />
+                                        <div className="p-3 bg-blue-100 rounded-lg mr-4">
+                                            <FaPhone className="text-xl text-[#1e90c9]" />
                                         </div>
                                         <div>
                                             <p className="text-sm font-medium text-gray-600">বর্তমান পেজ</p>
@@ -121,8 +121,8 @@ const ContactHome = () => {
 
                                 <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4">
                                     <div className="flex items-center">
-                                        <div className="p-3 bg-purple-100 rounded-lg mr-4">
-                                            <FaEnvelope className="text-xl text-purple-600" />
+                                        <div className="p-3 bg-blue-100 rounded-lg mr-4">
+                                            <FaEnvelope className="text-xl text-[#1e90c9]" />
                                         </div>
                                         <div>
                                             <p className="text-sm font-medium text-gray-600">দেখানো হচ্ছে</p>
@@ -133,8 +133,8 @@ const ContactHome = () => {
 
                                 <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4">
                                     <div className="flex items-center">
-                                        <div className="p-3 bg-orange-100 rounded-lg mr-4">
-                                            <span className="text-xl text-orange-600">📊</span>
+                                        <div className="p-3 bg-blue-100 rounded-lg mr-4">
+                                            <span className="text-xl text-[#1e90c9]">📊</span>
                                         </div>
                                         <div>
                                             <p className="text-sm font-medium text-gray-600">পেজ সংখ্যা</p>

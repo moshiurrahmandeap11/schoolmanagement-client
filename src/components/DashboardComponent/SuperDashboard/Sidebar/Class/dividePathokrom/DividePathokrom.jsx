@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaCheck, FaSave, FaTimes, FaUser } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const DividePathokrom = ({ onBack }) => {
@@ -211,13 +212,10 @@ const DividePathokrom = ({ onBack }) => {
                 <div className="max-w-full mx-auto">
                     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8">
                         <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="bg-purple-50 p-4 rounded-lg mb-6">
-                                <h3 className="text-lg font-semibold text-purple-800 mb-2">
+                            <div className="bg-blue-50 p-4 rounded-lg mb-6">
+                                <h3 className="text-lg font-semibold text-[#1e90c9] mb-2">
                                     পাঠক্রম বিভাজনের তথ্য:
                                 </h3>
-                                <p className="text-sm text-purple-600">
-                                    ক্লাস, সেকশন, বিষয় এবং শিক্ষার্থী নির্বাচন করুন
-                                </p>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -230,7 +228,7 @@ const DividePathokrom = ({ onBack }) => {
                                         name="className"
                                         value={formData.className}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.className ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         disabled={loading}
@@ -256,7 +254,7 @@ const DividePathokrom = ({ onBack }) => {
                                         name="sectionName"
                                         value={formData.sectionName}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.sectionName ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         disabled={loading}
@@ -282,7 +280,7 @@ const DividePathokrom = ({ onBack }) => {
                                         name="subjectName"
                                         value={formData.subjectName}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.subjectName ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         disabled={loading}
@@ -322,7 +320,7 @@ const DividePathokrom = ({ onBack }) => {
                                         name="isExtraSubject"
                                         checked={formData.isExtraSubject}
                                         onChange={handleChange}
-                                        className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
+                                        className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-[#1e90c9]"
                                         disabled={loading}
                                     />
                                     <label className="ml-2 text-sm font-medium text-gray-700">
@@ -345,7 +343,7 @@ const DividePathokrom = ({ onBack }) => {
                                         value={formData.extraSubjectsNote}
                                         onChange={handleChange}
                                         rows="3"
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.extraSubjectsNote ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         placeholder="এক্সট্রা সাবজেক্ট সম্পর্কে বিস্তারিত বিবরণ লিখুন..."
@@ -366,9 +364,9 @@ const DividePathokrom = ({ onBack }) => {
                                     <button
                                         type="button"
                                         onClick={selectAllStudents}
-                                        className="text-sm text-purple-600 hover:text-purple-800 font-medium"
+                                        className="text-sm text-[#1e90c9] font-medium"
                                     >
-                                        {selectedStudents.length === students.length ? 'সব নির্বাচন解除 করুন' : 'সব নির্বাচন করুন'}
+                                        {selectedStudents.length === students.length ? 'সব নির্বাচন করুন' : 'সব নির্বাচন করুন'}
                                     </button>
                                 </div>
 
@@ -379,7 +377,7 @@ const DividePathokrom = ({ onBack }) => {
                                 <div className="border border-gray-300 rounded-lg p-4 max-h-96 overflow-y-auto">
                                     {loading ? (
                                         <div className="text-center py-8">
-                                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto"></div>
+                                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#1e90c9] mx-auto"></div>
                                             <p className="text-gray-600 mt-2">শিক্ষার্থী লোড হচ্ছে...</p>
                                         </div>
                                     ) : students.length === 0 ? (
@@ -396,7 +394,7 @@ const DividePathokrom = ({ onBack }) => {
                                                     onClick={() => handleStudentSelection(student)}
                                                     className={`p-3 border rounded-lg cursor-pointer transition-all ${
                                                         selectedStudents.some(s => s.studentId === student._id)
-                                                            ? 'bg-purple-50 border-purple-300'
+                                                            ? 'bg-blue-50 border-blue-300'
                                                             : 'bg-white border-gray-200 hover:bg-gray-50'
                                                     }`}
                                                 >
@@ -404,7 +402,7 @@ const DividePathokrom = ({ onBack }) => {
                                                         <div className="flex items-center gap-3">
                                                             <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                                                                 selectedStudents.some(s => s.studentId === student._id)
-                                                                    ? 'bg-purple-100 text-purple-600'
+                                                                    ? 'bg-blue-100 text-[#1e90c9]'
                                                                     : 'bg-gray-100 text-gray-400'
                                                             }`}>
                                                                 <FaUser className="text-sm" />
@@ -454,10 +452,10 @@ const DividePathokrom = ({ onBack }) => {
                                 >
                                     বাতিল করুন
                                 </button>
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="inline-flex items-center gap-2 px-8 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md"
                                 >
                                     {loading ? (
                                         <>
@@ -466,20 +464,20 @@ const DividePathokrom = ({ onBack }) => {
                                         </>
                                     ) : (
                                         <>
-                                            <FaSave className="text-sm" />
+                                            <FaSave className="text-sm mr-2" />
                                             পাঠক্রম সংরক্ষণ করুন
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
 
                         {/* Help Text */}
-                        <div className="mt-6 p-4 bg-purple-50 rounded-lg border border-purple-200">
-                            <h3 className="text-sm font-medium text-purple-800 mb-1">
+                        <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                            <h3 className="text-sm font-medium text-[#1e90c9] mb-1">
                                 পাঠক্রম বিভাজন সম্পর্কে:
                             </h3>
-                            <ul className="text-xs text-purple-600 space-y-1">
+                            <ul className="text-xs text-[#1e90c9] space-y-1">
                                 <li>• প্রতিটি বিষয়ের জন্য আলাদাভাবে শিক্ষার্থী নির্বাচন করুন</li>
                                 <li>• একজন শিক্ষার্থী একটি ক্লাসে একই বিষয় একবারই নিতে পারবে</li>
                                 <li>• ঐচ্ছিক বিষয়গুলি সাধারণ বিষয় থেকে আলাদা</li>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const BuySms = ({ onClose }) => {
@@ -109,8 +110,8 @@ const BuySms = ({ onClose }) => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4 flex justify-between items-center">
-                        <h1 className="text-2xl font-bold text-white">এসএমএস ক্রয় করুন</h1>
+                    <div className=" px-6 py-4 flex justify-between items-center">
+                        <h1 className="text-2xl font-bold ">এসএমএস ক্রয় করুন</h1>
                         <button
                             onClick={onClose}
                             className="text-white hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-800 rounded transition-colors duration-200"
@@ -123,15 +124,6 @@ const BuySms = ({ onClose }) => {
 
                     {/* Content */}
                     <div className="p-6">
-                        {/* Information Box */}
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-                            <h3 className="text-lg font-semibold text-blue-800 mb-2">এসএমএস ক্রয় পদ্ধতি</h3>
-                            <p className="text-sm text-blue-700">
-                                আপনি এখানে যে পরিমাণ এসএমএস কিনতে চান তা লিখে ক্রয়ের জন্য আবেদন করুন। 
-                                তাহলে আমাদের বিকাশ নম্বরে ফি পরিশোধ করুন (<strong>০১৭৯৬ ৩২৩৬৩১</strong>)। 
-                                ফি পরিশোধ করলে SMS করুন আপনার অ্যাকাউন্টে জমা হবে।
-                            </p>
-                        </div>
 
                         {error && (
                             <div className="mb-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
@@ -158,7 +150,7 @@ const BuySms = ({ onClose }) => {
                                     placeholder="এসএমএস সংখ্যা লিখুন"
                                     min="10"
                                     max="10000"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                     required
                                 />
                                 <p className="text-xs text-gray-500 mt-1">
@@ -183,7 +175,7 @@ const BuySms = ({ onClose }) => {
                                         )}
                                         <div className="flex justify-between border-t border-gray-200 pt-2">
                                             <span className="text-gray-800 font-medium">মোট মূল্য:</span>
-                                            <span className="text-blue-600 font-bold">৳{prices.totalPrice.toFixed(2)}</span>
+                                            <span className="text-[#1e90c9] font-bold">৳{prices.totalPrice.toFixed(2)}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -200,7 +192,7 @@ const BuySms = ({ onClose }) => {
                                         onClick={() => setPaymentMethod('online')}
                                         className={`p-4 border-2 rounded-lg text-left transition-colors duration-200 ${
                                             paymentMethod === 'online'
-                                                ? 'border-blue-500 bg-blue-50'
+                                                ? 'border-[#1e90c9] bg-blue-50'
                                                 : 'border-gray-300 hover:border-gray-400'
                                         }`}
                                     >
@@ -214,7 +206,7 @@ const BuySms = ({ onClose }) => {
                                         onClick={() => setPaymentMethod('manual')}
                                         className={`p-4 border-2 rounded-lg text-left transition-colors duration-200 ${
                                             paymentMethod === 'manual'
-                                                ? 'border-blue-500 bg-blue-50'
+                                                ? 'border-[#1e90c9] bg-blue-50'
                                                 : 'border-gray-300 hover:border-gray-400'
                                         }`}
                                     >
@@ -237,7 +229,7 @@ const BuySms = ({ onClose }) => {
                                         value={transactionId}
                                         onChange={(e) => setTransactionId(e.target.value)}
                                         placeholder="bKash ট্রানজেকশন আইডি লিখুন"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     />
                                 </div>
@@ -253,13 +245,13 @@ const BuySms = ({ onClose }) => {
                                     value={phoneNumber}
                                     onChange={(e) => setPhoneNumber(e.target.value)}
                                     placeholder="০১xxxxxxxxx"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                 />
                             </div>
 
                             {/* Note */}
-                            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                                <p className="text-sm text-yellow-700">
+                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                <p className="text-sm text-[#1e90c9]">
                                     <strong>নোট:</strong> Online payment includes 2.5% convenience charge. 
                                     For example: 100 SMS (৳40) + 2.5% (৳1.00) = Total ৳41.00
                                 </p>
@@ -275,7 +267,7 @@ const BuySms = ({ onClose }) => {
                                 >
                                     বাতিল
                                 </button>
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading || !paymentMethod}
                                     className={`px-6 py-2 rounded-lg font-medium text-white transition-colors duration-200 flex items-center space-x-2 ${
@@ -283,7 +275,7 @@ const BuySms = ({ onClose }) => {
                                             ? 'bg-gray-400 cursor-not-allowed'
                                             : paymentMethod === 'online'
                                             ? 'bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
-                                            : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+                                            : 'bg-[#1e90c9] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
                                     }`}
                                 >
                                     {loading ? (
@@ -310,7 +302,7 @@ const BuySms = ({ onClose }) => {
                                             )}
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
                     </div>

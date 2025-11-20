@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaCheck, FaFilter, FaPlus, FaSearch, FaTimes, FaTrash, FaUser } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import Loader from '../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const StudentsLeave = ({ onBack }) => {
     const [leaveApplications, setLeaveApplications] = useState([]);
@@ -321,12 +323,9 @@ const StudentsLeave = ({ onBack }) => {
                         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8">
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="bg-blue-50 p-4 rounded-lg mb-6">
-                                    <h3 className="text-lg font-semibold text-blue-800 mb-2">
+                                    <h3 className="text-lg font-semibold text-[#1e90c9] mb-2">
                                         লিভ অ্যাপ্লিকেশন তথ্য:
                                     </h3>
-                                    <p className="text-sm text-blue-600">
-                                        শিক্ষার্থীর লিভ অ্যাপ্লিকেশন তৈরি করুন
-                                    </p>
                                 </div>
 
                                 {/* Student Search */}
@@ -340,7 +339,7 @@ const StudentsLeave = ({ onBack }) => {
                                             value={searchTerm}
                                             onChange={(e) => setSearchTerm(e.target.value)}
                                             placeholder="শিক্ষার্থীর নাম বা আইডি লিখুন..."
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-[#1e90c9] focus:border-transparent transition-all"
                                         />
                                         <FaSearch className="absolute right-3 top-3.5 text-gray-400" />
                                     </div>
@@ -401,7 +400,7 @@ const StudentsLeave = ({ onBack }) => {
                                             name="startDate"
                                             value={formData.startDate}
                                             onChange={handleFormChange}
-                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                 errors.startDate ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                             }`}
                                         />
@@ -419,7 +418,7 @@ const StudentsLeave = ({ onBack }) => {
                                             name="endDate"
                                             value={formData.endDate}
                                             onChange={handleFormChange}
-                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                 errors.endDate ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                             }`}
                                         />
@@ -439,7 +438,7 @@ const StudentsLeave = ({ onBack }) => {
                                         value={formData.reason}
                                         onChange={handleFormChange}
                                         rows="4"
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.reason ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         placeholder="লিভের কারণ বিস্তারিত লিখুন..."
@@ -466,10 +465,10 @@ const StudentsLeave = ({ onBack }) => {
                                     >
                                         বাতিল করুন
                                     </button>
-                                    <button
+                                    <MainButton
                                         type="submit"
                                         disabled={loading}
-                                        className="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="rounded-md"
                                     >
                                         {loading ? (
                                             <>
@@ -478,11 +477,11 @@ const StudentsLeave = ({ onBack }) => {
                                             </>
                                         ) : (
                                             <>
-                                                <FaPlus className="text-sm" />
+                                                <FaPlus className="text-sm mr-2" />
                                                 লিভ অ্যাপ্লিকেশন জমা দিন
                                             </>
                                         )}
-                                    </button>
+                                    </MainButton>
                                 </div>
                             </form>
                         </div>
@@ -508,13 +507,12 @@ const StudentsLeave = ({ onBack }) => {
                             শিক্ষার্থীদের লিভ ব্যবস্থাপনা
                         </h1>
                     </div>
-                    <button
+                    <MainButton
                         onClick={() => setShowAddForm(true)}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
                     >
-                        <FaPlus className="text-sm" />
+                        <FaPlus className="text-sm mr-2" />
                         নতুন লিভ অ্যাপ্লিকেশন
-                    </button>
+                    </MainButton>
                 </div>
             </div>
 
@@ -525,7 +523,7 @@ const StudentsLeave = ({ onBack }) => {
                     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 mb-6">
                         <div className="flex items-center justify-between mb-4">
                             <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
-                                <FaFilter className="text-blue-600" />
+                                <FaFilter className="text-[#1e90c9]" />
                                 ফিল্টার
                             </h3>
                             <button
@@ -547,7 +545,7 @@ const StudentsLeave = ({ onBack }) => {
                                     value={filterData.studentId}
                                     onChange={handleFilterChange}
                                     placeholder="Student ID"
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 />
                             </div>
 
@@ -559,7 +557,7 @@ const StudentsLeave = ({ onBack }) => {
                                     name="classId"
                                     value={filterData.classId}
                                     onChange={handleFilterChange}
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     <option value="">সব ক্লাস</option>
                                     {classes.map((classItem) => (
@@ -578,7 +576,7 @@ const StudentsLeave = ({ onBack }) => {
                                     name="status"
                                     value={filterData.status}
                                     onChange={handleFilterChange}
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     {statusOptions.map((status) => (
                                         <option key={status.value} value={status.value}>
@@ -593,8 +591,7 @@ const StudentsLeave = ({ onBack }) => {
                     {/* Table */}
                     {loading ? (
                         <div className="flex justify-center items-center py-12">
-                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p className="text-gray-600 ml-3">লিভ অ্যাপ্লিকেশন লোড হচ্ছে...</p>
+                            <Loader></Loader>
                         </div>
                     ) : leaveApplications.length === 0 ? (
                         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 text-center">
@@ -605,13 +602,12 @@ const StudentsLeave = ({ onBack }) => {
                             <p className="text-gray-600 text-sm mb-4">
                                 নতুন লিভ অ্যাপ্লিকেশন তৈরি করুন
                             </p>
-                            <button
+                            <MainButton
                                 onClick={() => setShowAddForm(true)}
-                                className="inline-flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
                             >
-                                <FaPlus className="text-sm" />
+                                <FaPlus className="text-sm mr-2" />
                                 নতুন লিভ অ্যাপ্লিকেশন
-                            </button>
+                            </MainButton>
                         </div>
                     ) : (
                         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">

@@ -11,7 +11,7 @@ const FamilyInformation = ({ formData, errors, onChange, clearError }) => {
                     name="fatherName"
                     value={formData.fatherName}
                     onChange={onChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                         errors.fatherName ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="পিতার সম্পূর্ণ নাম"
@@ -29,7 +29,7 @@ const FamilyInformation = ({ formData, errors, onChange, clearError }) => {
                     name="motherName"
                     value={formData.motherName}
                     onChange={onChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                         errors.motherName ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="মায়ের সম্পূর্ণ নাম"
@@ -47,7 +47,7 @@ const FamilyInformation = ({ formData, errors, onChange, clearError }) => {
                     name="guardianName"
                     value={formData.guardianName}
                     onChange={onChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                     placeholder="অভিভাবকের নাম"
                 />
             </div>
@@ -62,7 +62,7 @@ const FamilyInformation = ({ formData, errors, onChange, clearError }) => {
                     name="guardianMobile"
                     value={formData.guardianMobile}
                     onChange={onChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                     placeholder="অভিভাবকের মোবাইল নম্বর"
                 />
             </div>
@@ -77,7 +77,7 @@ const FamilyInformation = ({ formData, errors, onChange, clearError }) => {
                     name="relation"
                     value={formData.relation}
                     onChange={onChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                     placeholder="সম্পর্ক"
                 />
             </div>
@@ -92,7 +92,7 @@ const FamilyInformation = ({ formData, errors, onChange, clearError }) => {
                     name="guardianNid"
                     value={formData.guardianNid}
                     onChange={onChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                     placeholder="জাতীয় পরিচয়পত্র নম্বর"
                 />
             </div>

@@ -42,7 +42,7 @@ const AcademicInformation = ({
           name="classId"
           value={formData.classId}
           onChange={onChange}
-          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
             errors.classId ? "border-red-500" : "border-gray-300"
           }`}
         >
@@ -75,7 +75,7 @@ const AcademicInformation = ({
           name="batchId"
           value={formData.batchId}
           onChange={onChange}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
         >
           <option value="">ব্যাচ নির্বাচন করুন</option>
           {batches && batches.length > 0 ? (
@@ -102,7 +102,7 @@ const AcademicInformation = ({
           name="sectionId"
           value={formData.sectionId}
           onChange={onChange}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
         >
           <option value="">সেকশন নির্বাচন করুন</option>
           {sections && sections.length > 0 ? (
@@ -129,7 +129,7 @@ const AcademicInformation = ({
           name="sessionId"
           value={formData.sessionId}
           onChange={onChange}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
         >
           <option value="">সেশন নির্বাচন করুন</option>
           {sessions && sessions.length > 0 ? (
@@ -157,7 +157,7 @@ const AcademicInformation = ({
           name="classRoll"
           value={formData.classRoll}
           onChange={onChange}
-          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
             errors.classRoll ? "border-red-500" : "border-gray-300"
           }`}
           placeholder="ক্লাস রোল"
@@ -177,7 +177,7 @@ const AcademicInformation = ({
           name="status"
           value={formData.status}
           onChange={onChange}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
         >
           {statusOptions.map((option) => (
             <option key={option.value} value={option.value}>
@@ -196,7 +196,7 @@ const AcademicInformation = ({
           name="studentType"
           value={formData.studentType}
           onChange={onChange}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
         >
           {studentTypes.map((type) => (
             <option key={type.value} value={type.value}>
@@ -215,7 +215,7 @@ const AcademicInformation = ({
           name="mentorId"
           value={formData.mentorId}
           onChange={onChange}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
         >
           <option value="">শিক্ষক নির্বাচন করুন</option>
           {teachers && teachers.length > 0 ? (
@@ -243,7 +243,7 @@ const AcademicInformation = ({
           value={formData.additionalNote}
           onChange={onChange}
           rows="3"
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
           placeholder="অতিরিক্ত নোট"
         />
       </div>

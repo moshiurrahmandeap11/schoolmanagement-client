@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaSave } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const EditSection = ({ section, onBack, onSuccess }) => {
@@ -25,7 +26,7 @@ const EditSection = ({ section, onBack, onSuccess }) => {
 
     const fetchClasses = async () => {
         try {
-            const response = await axiosInstance.get('/classes');
+            const response = await axiosInstance.get('/class');
             if (response.data.success) {
                 setClasses(response.data.data || []);
             }
@@ -139,7 +140,7 @@ const EditSection = ({ section, onBack, onSuccess }) => {
                                     name="classId"
                                     value={formData.classId}
                                     onChange={handleInputChange}
-                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                                         errors.classId ? 'border-red-500' : 'border-gray-300'
                                     }`}
                                 >
@@ -165,7 +166,7 @@ const EditSection = ({ section, onBack, onSuccess }) => {
                                     name="name"
                                     value={formData.name}
                                     onChange={handleInputChange}
-                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                                         errors.name ? 'border-red-500' : 'border-gray-300'
                                     }`}
                                     placeholder="সেকশনের নাম লিখুন..."
@@ -184,14 +185,14 @@ const EditSection = ({ section, onBack, onSuccess }) => {
                                 >
                                     বাতিল করুন
                                 </button>
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md"
                                 >
-                                    <FaSave className="text-sm" />
+                                    <FaSave className="text-sm mr-2" />
                                     {loading ? 'আপডেট হচ্ছে...' : 'সেকশন আপডেট করুন'}
-                                </button>
+                                </MainButton>
                             </div>
                         </div>
                     </form>

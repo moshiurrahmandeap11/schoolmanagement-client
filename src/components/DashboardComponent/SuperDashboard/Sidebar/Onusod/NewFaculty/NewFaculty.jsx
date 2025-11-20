@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 const NewFaculty = ({ faculty, onClose }) => {
@@ -133,13 +134,10 @@ const NewFaculty = ({ faculty, onClose }) => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4">
-                        <h1 className="text-2xl font-bold text-white">
+                    <div className="px-6 py-4">
+                        <h1 className="text-2xl font-bold">
                             {faculty ? 'অনুষদ এডিট করুন' : 'নতুন অনুষদ যোগ করুন'}
                         </h1>
-                        <p className="text-blue-100 text-sm mt-1">
-                            {faculty ? 'অনুষদের তথ্য আপডেট করুন' : 'নতুন অনুষদ তৈরি করুন'}
-                        </p>
                     </div>
 
                     {/* Form */}
@@ -155,7 +153,7 @@ const NewFaculty = ({ faculty, onClose }) => {
                                 value={formData.name}
                                 onChange={handleInputChange}
                                 placeholder="অনুষদের নাম লিখুন"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                 required
                                 maxLength={100}
                             />
@@ -205,13 +203,13 @@ const NewFaculty = ({ faculty, onClose }) => {
                             >
                                 বাতিল করুন
                             </button>
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={loading}
                                 className={`px-6 py-3 rounded-lg font-medium text-white transition-colors duration-200 flex items-center justify-center space-x-2 ${
                                     loading
                                         ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+                                        : 'bg-[#1e90c9]'
                                 }`}
                             >
                                 {loading ? (
@@ -222,7 +220,7 @@ const NewFaculty = ({ faculty, onClose }) => {
                                 ) : (
                                     <span>{faculty ? 'আপডেট করুন' : 'সেভ করুন'}</span>
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
                     </form>
                 </div>

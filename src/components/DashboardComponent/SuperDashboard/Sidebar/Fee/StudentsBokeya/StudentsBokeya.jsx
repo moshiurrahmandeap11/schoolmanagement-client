@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaIdCard, FaMoneyBillWave, FaPhone, FaPrint, FaSearch, FaUser } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const StudentsBokeya = () => {
     const [searchData, setSearchData] = useState({
@@ -304,8 +305,8 @@ const StudentsBokeya = () => {
                                     <p className="text-sm font-medium text-gray-600">Total Due Students</p>
                                     <p className="text-2xl font-bold text-gray-800">{summary.totalDueStudents}</p>
                                 </div>
-                                <div className="p-3 bg-red-100 rounded-lg">
-                                    <FaUser className="text-red-600 text-xl" />
+                                <div className="p-3 bg-blue-100 rounded-lg">
+                                    <FaUser className="text-[#1e90c9] text-xl" />
                                 </div>
                             </div>
                             <p className="text-sm text-red-600 mt-2">
@@ -320,8 +321,8 @@ const StudentsBokeya = () => {
                                     <p className="text-sm font-medium text-gray-600">Total Due Amount</p>
                                     <p className="text-2xl font-bold text-gray-800">৳{formatCurrency(summary.totalDueAmount)}</p>
                                 </div>
-                                <div className="p-3 bg-orange-100 rounded-lg">
-                                    <FaMoneyBillWave className="text-orange-600 text-xl" />
+                                <div className="p-3 bg-blue-100 rounded-lg">
+                                    <FaMoneyBillWave className="text-[#1e90c9] text-xl" />
                                 </div>
                             </div>
                             <p className="text-sm text-orange-600 mt-2">
@@ -337,10 +338,10 @@ const StudentsBokeya = () => {
                                     <p className="text-2xl font-bold text-gray-800">{summary.totalUpcomingStudents}</p>
                                 </div>
                                 <div className="p-3 bg-blue-100 rounded-lg">
-                                    <FaUser className="text-blue-600 text-xl" />
+                                    <FaUser className="text-[#1e90c9] text-xl" />
                                 </div>
                             </div>
-                            <p className="text-sm text-blue-600 mt-2">
+                            <p className="text-sm text-[#1e90c9] mt-2">
                                 ৳{formatCurrency(summary.totalUpcomingAmount)} Total Upcoming
                             </p>
                         </div>
@@ -352,8 +353,8 @@ const StudentsBokeya = () => {
                                     <p className="text-sm font-medium text-gray-600">Total Upcoming Amount</p>
                                     <p className="text-2xl font-bold text-gray-800">৳{formatCurrency(summary.totalUpcomingAmount)}</p>
                                 </div>
-                                <div className="p-3 bg-green-100 rounded-lg">
-                                    <FaMoneyBillWave className="text-green-600 text-xl" />
+                                <div className="p-3 bg-blue-100 rounded-lg">
+                                    <FaMoneyBillWave className="text-[#1e90c9]0 text-xl" />
                                 </div>
                             </div>
                             <p className="text-sm text-green-600 mt-2">
@@ -382,7 +383,7 @@ const StudentsBokeya = () => {
                                             value={searchData.studentId}
                                             onChange={handleChange}
                                             placeholder="স্টুডেন্ট আইডি লিখুন"
-                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                             disabled={searching}
                                         />
                                         <FaIdCard className="absolute left-3 top-3.5 text-gray-400" />
@@ -398,7 +399,7 @@ const StudentsBokeya = () => {
                                         name="month"
                                         value={searchData.month}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={searching}
                                     >
                                         <option value="">সকল মাস</option>
@@ -419,7 +420,7 @@ const StudentsBokeya = () => {
                                         name="year"
                                         value={searchData.year}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={searching}
                                     >
                                         {years.map((year) => (
@@ -439,7 +440,7 @@ const StudentsBokeya = () => {
                                         name="feeTypeId"
                                         value={searchData.feeTypeId}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={searching}
                                     >
                                         <option value="">সকল ফি টাইপ</option>
@@ -462,7 +463,7 @@ const StudentsBokeya = () => {
                                         name="feeStatus"
                                         value={searchData.feeStatus}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={searching}
                                     >
                                         <option value="">সকল স্ট্যাটাস</option>
@@ -483,7 +484,7 @@ const StudentsBokeya = () => {
                                         name="classId"
                                         value={searchData.classId}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={searching}
                                     >
                                         <option value="">সকল ক্লাস</option>
@@ -504,7 +505,7 @@ const StudentsBokeya = () => {
                                         name="sessionId"
                                         value={searchData.sessionId}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={searching}
                                     >
                                         <option value="">সকল সেশন</option>
@@ -518,19 +519,19 @@ const StudentsBokeya = () => {
                             </div>
 
                             <div className="flex items-center justify-between pt-4">
-                                <button
+                                <MainButton
                                     type="button"
                                     onClick={handlePrintDueFee}
-                                    className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors font-medium"
+                                    className='rounded-md'
                                 >
-                                    <FaPrint className="text-sm" />
+                                    <FaPrint className="text-sm mr-2" />
                                     Print Due Fee
-                                </button>
+                                </MainButton>
 
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={searching}
-                                    className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md"
                                 >
                                     {searching ? (
                                         <>
@@ -539,11 +540,11 @@ const StudentsBokeya = () => {
                                         </>
                                     ) : (
                                         <>
-                                            <FaSearch className="text-sm" />
+                                            <FaSearch className="text-sm mr-2" />
                                             অনুসন্ধান
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
                     </div>
@@ -611,7 +612,7 @@ const StudentsBokeya = () => {
                                                     disabled={!student.dueFees || student.dueFees <= 0 || loading}
                                                     className={`inline-flex items-center gap-1 px-3 py-2 text-xs font-medium rounded-lg transition-colors ${
                                                         student.dueFees > 0 
-                                                            ? 'bg-blue-600 text-white hover:bg-blue-700' 
+                                                            ? 'bg-[#1e90c9] text-white ' 
                                                             : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                                                     }`}
                                                 >

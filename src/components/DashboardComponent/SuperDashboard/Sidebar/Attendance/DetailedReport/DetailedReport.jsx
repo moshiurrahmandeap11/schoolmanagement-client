@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const DetailedReport = () => {
     const [formData, setFormData] = useState({
@@ -305,11 +306,11 @@ const DetailedReport = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4">
-                        <h1 className="text-2xl font-bold text-white text-center">
+                    <div className="px-6 py-4">
+                        <h1 className="text-2xl font-bold">
                             বিস্তারিত উপস্থিতি রিপোর্ট
                         </h1>
                     </div>
@@ -326,7 +327,7 @@ const DetailedReport = () => {
                                     name="attendanceFor"
                                     value={formData.attendanceFor}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     <option value="student">শিক্ষার্থী</option>
                                     <option value="teacher">শিক্ষক</option>
@@ -342,7 +343,7 @@ const DetailedReport = () => {
                                     name="shift"
                                     value={formData.shift}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     <option value="">সব শিফট</option>
                                     {shifts.map(shift => (
@@ -363,7 +364,7 @@ const DetailedReport = () => {
                                     name="startDate"
                                     value={formData.startDate}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     required
                                 />
                             </div>
@@ -378,7 +379,7 @@ const DetailedReport = () => {
                                     name="endDate"
                                     value={formData.endDate}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     required
                                 />
                             </div>
@@ -396,7 +397,7 @@ const DetailedReport = () => {
                                     value={formData.studentId}
                                     onChange={handleInputChange}
                                     placeholder="শিক্ষার্থীর আইডি"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 />
                             </div>
 
@@ -409,7 +410,7 @@ const DetailedReport = () => {
                                     name="class"
                                     value={formData.class}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     <option value="">সব ক্লাস</option>
                                     {classes.map(cls => (
@@ -429,7 +430,7 @@ const DetailedReport = () => {
                                     name="section"
                                     value={formData.section}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     <option value="">সব সেকশন</option>
                                     {sections.map(section => (
@@ -449,7 +450,7 @@ const DetailedReport = () => {
                                     name="attendanceType"
                                     value={formData.attendanceType}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     <option value="">সব ধরন</option>
                                     {attendanceTypes.map(type => (
@@ -463,13 +464,13 @@ const DetailedReport = () => {
 
                         {/* Search Button */}
                         <div className="flex justify-center mt-6">
-                            <button
+                            <MainButton
                                 onClick={handleSearch}
                                 disabled={loading || !formData.startDate || !formData.endDate}
                                 className={`px-8 py-3 rounded-lg font-medium text-white transition-colors duration-200 ${
                                     loading || !formData.startDate || !formData.endDate
                                         ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+                                        : 'bg-[#1e90c9] focus:outline-none focus:ring-2 focus:ring-offset-2'
                                 }`}
                             >
                                 {loading ? (
@@ -480,7 +481,7 @@ const DetailedReport = () => {
                                 ) : (
                                     'Search'
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
 
                         {error && (

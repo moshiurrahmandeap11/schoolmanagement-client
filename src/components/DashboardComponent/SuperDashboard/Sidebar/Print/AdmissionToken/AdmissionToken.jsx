@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaCalendarAlt, FaImage, FaPaperPlane, FaSave, FaSms, FaUsers } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const AdmissionToken = ({ onBack }) => {
     const [formData, setFormData] = useState({
@@ -170,7 +171,7 @@ const AdmissionToken = ({ onBack }) => {
                                                 name="classId"
                                                 value={formData.classId}
                                                 onChange={handleChange}
-                                                className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                                className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                                 disabled={saving}
                                                 required
                                             >
@@ -195,7 +196,7 @@ const AdmissionToken = ({ onBack }) => {
                                                 name="batchId"
                                                 value={formData.batchId}
                                                 onChange={handleChange}
-                                                className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                                className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                                 disabled={saving}
                                             >
                                                 <option value="">ব্যাচ নির্বাচন করুন</option>
@@ -221,7 +222,7 @@ const AdmissionToken = ({ onBack }) => {
                                                 name="sectionId"
                                                 value={formData.sectionId}
                                                 onChange={handleChange}
-                                                className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                                className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                                 disabled={saving}
                                             >
                                                 <option value="">সেকশন নির্বাচন করুন</option>
@@ -245,7 +246,7 @@ const AdmissionToken = ({ onBack }) => {
                                                 name="sessionId"
                                                 value={formData.sessionId}
                                                 onChange={handleChange}
-                                                className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                                className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                                 disabled={saving}
                                                 required
                                             >
@@ -279,7 +280,7 @@ const AdmissionToken = ({ onBack }) => {
                                             value={formData.monthlyFee}
                                             onChange={handleChange}
                                             placeholder="মাসিক ফি লিখুন"
-                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                             disabled={saving}
                                             min="0"
                                             step="0.01"
@@ -306,7 +307,7 @@ const AdmissionToken = ({ onBack }) => {
                                         name="sendAttendanceSms"
                                         checked={formData.sendAttendanceSms}
                                         onChange={handleChange}
-                                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-[#1e90c9]"
                                         disabled={saving}
                                         id="sendAttendanceSms"
                                     />
@@ -332,7 +333,7 @@ const AdmissionToken = ({ onBack }) => {
                                             name="tokenTemplateId"
                                             value={formData.tokenTemplateId}
                                             onChange={handleChange}
-                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                             disabled={saving}
                                         >
                                             <option value="">টোকেন টেমপ্লেট নির্বাচন করুন</option>
@@ -364,10 +365,10 @@ const AdmissionToken = ({ onBack }) => {
 
                             {/* Submit Button */}
                             <div className="flex justify-end pt-6 border-t border-gray-200">
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={saving}
-                                    className="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md"
                                 >
                                     {saving ? (
                                         <>
@@ -376,21 +377,21 @@ const AdmissionToken = ({ onBack }) => {
                                         </>
                                     ) : (
                                         <>
-                                            <FaSave className="text-sm" />
+                                            <FaSave className="text-sm mr-2" />
                                             সংরক্ষণ করুন
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
                     </div>
 
                     {/* Information Card */}
-                    <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 mt-6">
-                        <h3 className="text-md font-semibold text-blue-800 mb-2">
+                    <div className="bg-blue-50 rounded-2xl p-6 mt-6">
+                        <h3 className="text-md font-semibold text-[#1e90c9] mb-2">
                             এডমিশন টোকেন সম্পর্কে
                         </h3>
-                        <ul className="text-sm text-blue-700 space-y-1">
+                        <ul className="text-sm text-[#1e90c9] space-y-1">
                             <li>• এডমিশন টোকেন নতুন শিক্ষার্থীদের জন্য তৈরি করুন</li>
                             <li>• ক্লাস এবং সেশন বাধ্যতামূলক</li>
                             <li>• টোকেন টেমপ্লেট নির্বাচন করা ঐচ্ছিক</li>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaCheck, FaSave, FaUser } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const MigrateStatus = ({ onBack }) => {
     const [formData, setFormData] = useState({
@@ -249,16 +250,13 @@ const MigrateStatus = ({ onBack }) => {
 
             {/* Main Content */}
             <div className="p-4 sm:p-6 lg:p-8">
-                <div className="max-w-7xl mx-auto">
+                <div className="max-w-full mx-auto">
                     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8">
                         <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="bg-purple-50 p-4 rounded-lg mb-6">
-                                <h3 className="text-lg font-semibold text-purple-800 mb-2">
+                            <div className="bg-blue-50 p-4 rounded-lg mb-6">
+                                <h3 className="text-lg font-semibold text-[#1e90c9] mb-2">
                                     শিক্ষার্থীদের অবস্থান পরিবর্তন:
                                 </h3>
-                                <p className="text-sm text-purple-600">
-                                    একসাথে একাধিক শিক্ষার্থীর অবস্থান (Status) আপডেট করুন
-                                </p>
                             </div>
 
                             {/* Filters Section */}
@@ -272,7 +270,7 @@ const MigrateStatus = ({ onBack }) => {
                                         name="classId"
                                         value={formData.classId}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.classId ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         disabled={loading}
@@ -298,7 +296,7 @@ const MigrateStatus = ({ onBack }) => {
                                         name="batchId"
                                         value={formData.batchId}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     >
                                         <option value="">ব্যাচ নির্বাচন করুন</option>
@@ -319,7 +317,7 @@ const MigrateStatus = ({ onBack }) => {
                                         name="sectionId"
                                         value={formData.sectionId}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     >
                                         <option value="">সেকশন নির্বাচন করুন</option>
@@ -340,7 +338,7 @@ const MigrateStatus = ({ onBack }) => {
                                         name="sessionId"
                                         value={formData.sessionId}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     >
                                         <option value="">সেশন নির্বাচন করুন</option>
@@ -363,7 +361,7 @@ const MigrateStatus = ({ onBack }) => {
                                         name="status"
                                         value={formData.status}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.status ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         disabled={loading}
@@ -410,10 +408,10 @@ const MigrateStatus = ({ onBack }) => {
                                         <button
                                             type="button"
                                             onClick={selectAllStudents}
-                                            className="text-sm text-purple-600 hover:text-purple-800 font-medium"
+                                            className="text-sm text-[#1e90c9] font-medium"
                                         >
                                             {selectedStudents.length === students.length ? 
-                                                'সব নির্বাচন解除 করুন' : 'সব নির্বাচন করুন'
+                                                'সব নির্বাচন করুন' : 'সব নির্বাচন করুন'
                                             }
                                         </button>
                                     )}
@@ -520,10 +518,10 @@ const MigrateStatus = ({ onBack }) => {
                                 >
                                     বাতিল করুন
                                 </button>
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading || selectedStudents.length === 0}
-                                    className="inline-flex items-center gap-2 px-8 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md"
                                 >
                                     {loading ? (
                                         <>
@@ -536,16 +534,16 @@ const MigrateStatus = ({ onBack }) => {
                                             {selectedStudents.length} জনের অবস্থান সংরক্ষণ করুন
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
 
                         {/* Help Text */}
-                        <div className="mt-6 p-4 bg-purple-50 rounded-lg border border-purple-200">
-                            <h3 className="text-sm font-medium text-purple-800 mb-1">
+                        <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                            <h3 className="text-sm font-medium text-[#1e90c9] mb-1">
                                 অবস্থান পরিবর্তন সম্পর্কে:
                             </h3>
-                            <ul className="text-xs text-purple-600 space-y-1">
+                            <ul className="text-xs text-[#1e90c9] space-y-1">
                                 <li>• Active: সক্রিয় শিক্ষার্থী</li>
                                 <li>• Inactive: নিষ্ক্রিয় শিক্ষার্থী</li>
                                 <li>• Admission Pending: ভর্তি প্রক্রিয়াধীন</li>

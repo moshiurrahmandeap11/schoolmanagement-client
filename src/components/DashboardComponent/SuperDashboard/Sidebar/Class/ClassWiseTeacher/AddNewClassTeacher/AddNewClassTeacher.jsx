@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaSave } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddNewClassTeacher = ({ classTeacher, onBack, onSuccess }) => {
@@ -163,16 +164,13 @@ const AddNewClassTeacher = ({ classTeacher, onBack, onSuccess }) => {
 
             {/* Main Content */}
             <div className="p-4 sm:p-6 lg:p-8">
-                <div className="max-w-2xl mx-auto">
+                <div className="max-w-full mx-auto">
                     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8">
                         <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="bg-green-50 p-4 rounded-lg mb-6">
-                                <h3 className="text-lg font-semibold text-green-800 mb-2">
+                            <div className="bg-blue-50 p-4 rounded-lg mb-6">
+                                <h3 className="text-lg font-semibold text-[#1e90c9] mb-2">
                                     শ্রেণী শিক্ষক নিয়োগের তথ্য:
                                 </h3>
-                                <p className="text-sm text-green-600">
-                                    শিক্ষক, ক্লাস এবং বিষয় নির্বাচন করুন
-                                </p>
                             </div>
 
                             {/* Teacher Selection */}
@@ -184,7 +182,7 @@ const AddNewClassTeacher = ({ classTeacher, onBack, onSuccess }) => {
                                     name="teacherName"
                                     value={formData.teacherName}
                                     onChange={handleChange}
-                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all ${
+                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                         errors.teacherName ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                     }`}
                                     disabled={loading}
@@ -210,7 +208,7 @@ const AddNewClassTeacher = ({ classTeacher, onBack, onSuccess }) => {
                                     name="className"
                                     value={formData.className}
                                     onChange={handleChange}
-                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all ${
+                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                         errors.className ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                     }`}
                                     disabled={loading}
@@ -236,7 +234,7 @@ const AddNewClassTeacher = ({ classTeacher, onBack, onSuccess }) => {
                                     name="subjectName"
                                     value={formData.subjectName}
                                     onChange={handleChange}
-                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all ${
+                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                         errors.subjectName ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                     }`}
                                     disabled={loading}
@@ -270,10 +268,10 @@ const AddNewClassTeacher = ({ classTeacher, onBack, onSuccess }) => {
                                 >
                                     বাতিল করুন
                                 </button>
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="inline-flex items-center gap-2 px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md"
                                 >
                                     {loading ? (
                                         <>
@@ -282,20 +280,20 @@ const AddNewClassTeacher = ({ classTeacher, onBack, onSuccess }) => {
                                         </>
                                     ) : (
                                         <>
-                                            <FaSave className="text-sm" />
+                                            <FaSave className="text-sm mr-2" />
                                             {classTeacher ? 'আপডেট করুন' : 'নিয়োগ করুন'}
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
 
                         {/* Help Text */}
-                        <div className="mt-6 p-4 bg-green-50 rounded-lg border border-green-200">
-                            <h3 className="text-sm font-medium text-green-800 mb-1">
+                        <div className="mt-6 p-4 bg-blue-50 rounded-lg ">
+                            <h3 className="text-sm font-medium text-[#1e90c9] mb-1">
                                 শ্রেণী শিক্ষক নিয়োগ সম্পর্কে:
                             </h3>
-                            <ul className="text-xs text-green-600 space-y-1">
+                            <ul className="text-xs text-[#1e90c9] space-y-1">
                                 <li>• একজন শিক্ষক একটি ক্লাসের একটি বিষয়ের জন্য নিয়োগ করা যাবে</li>
                                 <li>• একই ক্লাসের একই বিষয়ের জন্য একজন以上的 শিক্ষক নিয়োগ করা যাবে না</li>
                                 <li>• নিয়োগ করার পর এডিট ও ডিলিট করা যাবে</li>

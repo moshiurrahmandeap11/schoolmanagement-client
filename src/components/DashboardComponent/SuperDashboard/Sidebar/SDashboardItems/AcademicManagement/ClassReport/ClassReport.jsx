@@ -3,6 +3,7 @@ import { FaDownload, FaFilter, FaSearch, FaUsers } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const ClassReport = () => {
     const [loading, setLoading] = useState(false);
@@ -360,13 +361,13 @@ const ClassReport = () => {
 
                     {/* Filter Buttons */}
                     <div className="flex gap-4">
-                        <button
+                        <MainButton
                             onClick={handleApplyFilter}
-                            className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2"
+                            className="rounded-md"
                         >
-                            <FaFilter className="text-sm" />
+                            <FaFilter className="text-sm mr-2" />
                             ফিল্টার করুন
-                        </button>
+                        </MainButton>
                         <button
                             onClick={handleClearFilter}
                             className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"

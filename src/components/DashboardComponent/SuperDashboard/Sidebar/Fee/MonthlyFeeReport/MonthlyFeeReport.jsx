@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaCalendarAlt, FaDownload, FaFilePdf, FaMoneyBillWave, FaUsers } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const MonthlyFeeReport = ({ onBack }) => {
     const [filters, setFilters] = useState({
@@ -13,6 +14,8 @@ const MonthlyFeeReport = ({ onBack }) => {
     const [generating, setGenerating] = useState(false);
     
     const [classes, setClasses] = useState([]);
+    const [students, setStudents] = useState([]);
+    const [feeTypes, setFeeTypes] = useState([]);
     const [reportData, setReportData] = useState(null);
 
     const months = [
@@ -42,6 +45,11 @@ const MonthlyFeeReport = ({ onBack }) => {
             const classesResponse = await axiosInstance.get('/class');
             if (classesResponse.data.success) {
                 setClasses(classesResponse.data.data || []);
+            }
+
+            const feeTypesResponse = await axiosInstance.get('/fee-types');
+            if (feeTypesResponse.data.success) {
+                setFeeTypes(feeTypesResponse.data.data || []);
             }
         } catch (error) {
             console.error('Error fetching dropdown data:', error);
@@ -78,21 +86,25 @@ const MonthlyFeeReport = ({ onBack }) => {
 
         setLoading(true);
         try {
-            // API call to get monthly fee report
-            const response = await axiosInstance.get('/reports/monthly-fee', {
-                params: {
-                    classId: filters.classId,
-                    month: filters.month,
-                    year: filters.year
+            // Fetch students for the selected class
+            const studentsResponse = await axiosInstance.get(`/students?classId=${filters.classId}`);
+            
+            if (studentsResponse.data.success) {
+                const studentsData = studentsResponse.data.data || [];
+                setStudents(studentsData);
+                
+                // Generate report data from students and fee types
+                const report = generateMonthlyFeeReport(studentsData, feeTypes);
+                setReportData(report);
+                
+                if (report.totalStudents > 0) {
+                    showSweetAlert('success', 'রিপোর্ট তৈরি হয়েছে');
+                } else {
+                    showSweetAlert('info', 'এই ক্লাসে কোন শিক্ষার্থী নেই');
                 }
-            });
-
-            if (response.data.success) {
-                setReportData(response.data.data);
-                showSweetAlert('success', 'রিপোর্ট তৈরি হয়েছে');
             } else {
                 setReportData(null);
-                showSweetAlert('info', 'এই সময়ের জন্য কোন ডেটা পাওয়া যায়নি');
+                showSweetAlert('info', 'কোন ডেটা পাওয়া যায়নি');
             }
         } catch (error) {
             console.error('Error generating report:', error);
@@ -103,7 +115,44 @@ const MonthlyFeeReport = ({ onBack }) => {
         }
     };
 
-    const handleDownloadPDF = async () => {
+    const generateMonthlyFeeReport = (studentsData, feeTypesData) => {
+        const selectedClass = classes.find(c => c._id === filters.classId);
+        const selectedMonth = months.find(m => m.value === parseInt(filters.month));
+        
+        // Calculate fee details
+        const feeDetails = feeTypesData.map(feeType => {
+            // Filter students who should pay this fee type
+            const applicableStudents = studentsData.filter(student => 
+                student.class?._id === filters.classId
+            );
+            
+            const studentCount = applicableStudents.length;
+            const totalAmount = studentCount * (feeType.amount || 0);
+            
+            return {
+                feeType: feeType.name,
+                studentCount,
+                amount: totalAmount,
+                feePerStudent: feeType.amount || 0
+            };
+        });
+
+        // Calculate totals
+        const totalStudents = studentsData.length;
+        const totalCollected = feeDetails.reduce((sum, fee) => sum + fee.amount, 0);
+
+        return {
+            className: selectedClass?.name || 'নির্বাচিত ক্লাস',
+            month: selectedMonth?.label || filters.month,
+            year: filters.year,
+            totalStudents,
+            totalCollected,
+            feeDetails: feeDetails.filter(fee => fee.studentCount > 0),
+            students: studentsData
+        };
+    };
+
+    const handleDownloadPDF = () => {
         if (!reportData) {
             showSweetAlert('warning', 'প্রথমে একটি রিপোর্ট তৈরি করুন');
             return;
@@ -111,33 +160,198 @@ const MonthlyFeeReport = ({ onBack }) => {
 
         setGenerating(true);
         try {
-            // API call to generate PDF
-            const response = await axiosInstance.post('/reports/monthly-fee/pdf', {
-                classId: filters.classId,
-                month: filters.month,
-                year: filters.year,
-                reportData: reportData
-            }, {
-                responseType: 'blob'
-            });
-
-            // Create download link
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `monthly-fee-report-${reportData.className}-${reportData.month}-${reportData.year}.pdf`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            window.URL.revokeObjectURL(url);
+            // Create printable HTML content
+            const printContent = createPrintableContent();
             
-            showSweetAlert('success', 'PDF ডাউনলোড হয়েছে');
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(printContent);
+            printWindow.document.close();
+            
+            // Wait for content to load then print
+            setTimeout(() => {
+                printWindow.print();
+                setGenerating(false);
+            }, 500);
+            
         } catch (error) {
-            console.error('Error downloading PDF:', error);
-            showSweetAlert('error', 'PDF ডাউনলোড করতে সমস্যা হয়েছে');
-        } finally {
+            console.error('Error generating PDF:', error);
+            showSweetAlert('error', 'PDF তৈরি করতে সমস্যা হয়েছে');
             setGenerating(false);
         }
+    };
+
+    const createPrintableContent = () => {
+        const selectedMonth = months.find(m => m.value === parseInt(filters.month));
+        
+        return `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>মাসিক ফি রিপোর্ট - ${reportData.className}</title>
+                <style>
+                    body { 
+                        font-family: 'SolaimanLipi', 'Arial', sans-serif; 
+                        margin: 20px; 
+                        direction: ltr;
+                    }
+                    .header { 
+                        text-align: center; 
+                        margin-bottom: 30px; 
+                        border-bottom: 2px solid #333;
+                        padding-bottom: 20px;
+                    }
+                    .header h1 { 
+                        color: #2c5aa0; 
+                        margin: 0; 
+                        font-size: 28px;
+                    }
+                    .header h2 {
+                        color: #666;
+                        margin: 5px 0;
+                        font-size: 18px;
+                    }
+                    .summary { 
+                        margin-bottom: 20px; 
+                        padding: 20px; 
+                        background: #f8f9fa; 
+                        border-radius: 8px;
+                        display: flex;
+                        justify-content: space-between;
+                        flex-wrap: wrap;
+                    }
+                    .summary-item { 
+                        margin: 10px 20px;
+                    }
+                    .summary-item strong {
+                        color: #333;
+                    }
+                    table { 
+                        width: 100%; 
+                        border-collapse: collapse; 
+                        margin-top: 20px;
+                        font-size: 14px;
+                    }
+                    th, td { 
+                        border: 1px solid #ddd; 
+                        padding: 12px; 
+                        text-align: left; 
+                    }
+                    th { 
+                        background-color: #2c5aa0; 
+                        color: white;
+                        font-weight: bold;
+                    }
+                    tr:nth-child(even) {
+                        background-color: #f8f9fa;
+                    }
+                    .total-row { 
+                        background-color: #e9ecef; 
+                        font-weight: bold; 
+                    }
+                    .student-table {
+                        margin-top: 30px;
+                    }
+                    .student-table h3 {
+                        color: #2c5aa0;
+                        margin-bottom: 15px;
+                    }
+                    .footer {
+                        margin-top: 40px;
+                        text-align: center;
+                        color: #666;
+                        font-size: 12px;
+                        border-top: 1px solid #ddd;
+                        padding-top: 20px;
+                    }
+                    @media print {
+                        body { margin: 0; }
+                        .no-print { display: none; }
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="header">
+                    <h1>মাসিক ফি রিপোর্ট</h1>
+                    <h2>${reportData.className} - ${selectedMonth?.label} ${reportData.year}</h2>
+                    <p>প্রস্তুতকের তারিখ: ${new Date().toLocaleDateString('bn-BD')}</p>
+                </div>
+                
+                <div class="summary">
+                    <div class="summary-item">
+                        <strong>ক্লাস:</strong> ${reportData.className}
+                    </div>
+                    <div class="summary-item">
+                        <strong>মাস:</strong> ${selectedMonth?.label} ${reportData.year}
+                    </div>
+                    <div class="summary-item">
+                        <strong>মোট শিক্ষার্থী:</strong> ${reportData.totalStudents} জন
+                    </div>
+                    <div class="summary-item">
+                        <strong>মোট সংগ্রহ:</strong> ৳${formatCurrency(reportData.totalCollected)}
+                    </div>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ফি টাইপ</th>
+                            <th>শিক্ষার্থী সংখ্যা</th>
+                            <th>ফি পরিমাণ (প্রতি শিক্ষার্থী)</th>
+                            <th>মোট সংগ্রহ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${reportData.feeDetails.map(fee => `
+                            <tr>
+                                <td>${fee.feeType}</td>
+                                <td>${fee.studentCount} জন</td>
+                                <td>৳${formatCurrency(fee.feePerStudent)}</td>
+                                <td>৳${formatCurrency(fee.amount)}</td>
+                            </tr>
+                        `).join('')}
+                        <tr class="total-row">
+                            <td colspan="2"><strong>মোট</strong></td>
+                            <td><strong>${reportData.totalStudents} জন</strong></td>
+                            <td><strong>৳${formatCurrency(reportData.totalCollected)}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="student-table">
+                    <h3>শিক্ষার্থী তালিকা</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>আইডি</th>
+                                <th>নাম</th>
+                                <th>পিতার নাম</th>
+                                <th>মোবাইল</th>
+                                <th>রোল</th>
+                                <th>স্ট্যাটাস</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${reportData.students.map(student => `
+                                <tr>
+                                    <td>${student.studentId || 'N/A'}</td>
+                                    <td>${student.name || 'N/A'}</td>
+                                    <td>${student.fatherName || 'N/A'}</td>
+                                    <td>${student.guardianMobile || student.mobile || 'N/A'}</td>
+                                    <td>${student.classRoll || 'N/A'}</td>
+                                    <td>${student.status === 'active' ? 'সক্রিয়' : 'নিষ্ক্রিয়'}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="footer">
+                    <p>রিপোর্ট তৈরি করেছেন: School Management System</p>
+                    <p>তৈরির সময়: ${new Date().toLocaleString('bn-BD')}</p>
+                </div>
+            </body>
+            </html>
+        `;
     };
 
     const formatCurrency = (amount) => {
@@ -148,13 +362,9 @@ const MonthlyFeeReport = ({ onBack }) => {
 
     return (
         <div className="min-h-screen bg-gray-50">
-
-
             {/* Main Content */}
             <div className="p-4 sm:p-6 lg:p-8">
                 <div className="max-w-full mx-auto">
-
-
                     {/* Filters Section */}
                     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 mb-8">
                         <h3 className="text-lg font-semibold text-gray-800 mb-6">
@@ -172,7 +382,7 @@ const MonthlyFeeReport = ({ onBack }) => {
                                         name="classId"
                                         value={filters.classId}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     >
                                         <option value="">ক্লাস নির্বাচন করুন</option>
@@ -196,7 +406,7 @@ const MonthlyFeeReport = ({ onBack }) => {
                                         name="month"
                                         value={filters.month}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     >
                                         {months.map((month) => (
@@ -219,7 +429,7 @@ const MonthlyFeeReport = ({ onBack }) => {
                                         name="year"
                                         value={filters.year}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     >
                                         {years.map((year) => (
@@ -234,10 +444,10 @@ const MonthlyFeeReport = ({ onBack }) => {
                         </div>
 
                         <div className="flex justify-end mt-6">
-                            <button
+                            <MainButton
                                 onClick={handleGenerateReport}
                                 disabled={loading || !filters.classId}
-                                className="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="rounded-md"
                             >
                                 {loading ? (
                                     <>
@@ -246,11 +456,11 @@ const MonthlyFeeReport = ({ onBack }) => {
                                     </>
                                 ) : (
                                     <>
-                                        <FaFilePdf className="text-sm" />
+                                        <FaFilePdf className="text-sm mr-2" />
                                         রিপোর্ট তৈরি করুন
                                     </>
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
                     </div>
 
@@ -258,7 +468,7 @@ const MonthlyFeeReport = ({ onBack }) => {
                     {reportData && (
                         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 mb-8">
                             <h3 className="text-lg font-semibold text-gray-800 mb-6">
-                                রিপোর্ট সারাংশ
+                                রিপোর্ট সারাংশ - ${reportData.className}
                             </h3>
                             
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
@@ -308,7 +518,7 @@ const MonthlyFeeReport = ({ onBack }) => {
 
                             {/* Detailed Report */}
                             {reportData.feeDetails && reportData.feeDetails.length > 0 ? (
-                                <div className="border border-gray-200 rounded-xl overflow-hidden">
+                                <div className="border border-gray-200 rounded-xl overflow-hidden mb-6">
                                     <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
                                         <h4 className="text-md font-semibold text-gray-800">
                                             ফি বিবরণ
@@ -325,10 +535,10 @@ const MonthlyFeeReport = ({ onBack }) => {
                                                         শিক্ষার্থী সংখ্যা
                                                     </th>
                                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                        সংগ্রহকৃত অর্থ
+                                                        ফি পরিমাণ
                                                     </th>
                                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                        গড় প্রতি শিক্ষার্থী
+                                                        মোট সংগ্রহ
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -346,13 +556,13 @@ const MonthlyFeeReport = ({ onBack }) => {
                                                             </span>
                                                         </td>
                                                         <td className="px-6 py-4">
-                                                            <span className="font-semibold text-green-600">
-                                                                ৳{formatCurrency(fee.amount)}
+                                                            <span className="text-sm text-gray-600">
+                                                                ৳{formatCurrency(fee.feePerStudent)}
                                                             </span>
                                                         </td>
                                                         <td className="px-6 py-4">
-                                                            <span className="text-sm text-gray-600">
-                                                                ৳{formatCurrency(fee.amount / fee.studentCount)}
+                                                            <span className="font-semibold text-green-600">
+                                                                ৳{formatCurrency(fee.amount)}
                                                             </span>
                                                         </td>
                                                     </tr>
@@ -366,11 +576,11 @@ const MonthlyFeeReport = ({ onBack }) => {
                                                     <td className="px-6 py-4 font-semibold text-gray-800">
                                                         {reportData.totalStudents} জন
                                                     </td>
+                                                    <td className="px-6 py-4 font-semibold text-gray-800">
+                                                        -
+                                                    </td>
                                                     <td className="px-6 py-4 font-semibold text-green-600">
                                                         ৳{formatCurrency(reportData.totalCollected)}
-                                                    </td>
-                                                    <td className="px-6 py-4 font-semibold text-gray-800">
-                                                        ৳{formatCurrency(reportData.totalCollected / reportData.totalStudents)}
                                                     </td>
                                                 </tr>
                                             </tfoot>
@@ -387,10 +597,10 @@ const MonthlyFeeReport = ({ onBack }) => {
 
                             {/* Download Button */}
                             <div className="flex justify-center mt-8">
-                                <button
+                                <MainButton
                                     onClick={handleDownloadPDF}
                                     disabled={generating || !reportData.feeDetails || reportData.feeDetails.length === 0}
-                                    className="inline-flex items-center gap-3 px-8 py-4 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md"
                                 >
                                     {generating ? (
                                         <>
@@ -399,11 +609,11 @@ const MonthlyFeeReport = ({ onBack }) => {
                                         </>
                                     ) : (
                                         <>
-                                            <FaDownload className="text-lg" />
-                                            Download PDF
+                                            <FaDownload className="text-lg mr-2" />
+                                            Print Report
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </div>
                     )}

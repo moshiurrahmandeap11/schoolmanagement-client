@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaSave } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import AcademicInformation from './AcademicInformation/AcademicInformation';
 import AddressInformation from './AddressInformation/AddressInformation';
 import FamilyInformation from './FamilyInformation/FamilyInformation';
@@ -95,7 +96,7 @@ const AddNewStudent = ({ onBack, onSuccess, editData, mode = 'new' }) => {
                 sessionsRes,
                 teachersRes
             ] = await Promise.all([
-                axiosInstance.get('/classes'),
+                axiosInstance.get('/class'),
                 axiosInstance.get('/sections'),
                 axiosInstance.get('/batches'),
                 axiosInstance.get('/sessions'),
@@ -420,7 +421,7 @@ const AddNewStudent = ({ onBack, onSuccess, editData, mode = 'new' }) => {
                                         onClick={() => setActiveTab(tab.id)}
                                         className={`px-6 py-4 font-medium text-sm border-b-2 transition-colors whitespace-nowrap ${
                                             activeTab === tab.id
-                                                ? 'border-blue-500 text-blue-600'
+                                                ? 'border-[#1e90c9] text-[#1e90c9]'
                                                 : 'border-transparent text-gray-500 hover:text-gray-700'
                                         }`}
                                     >
@@ -496,19 +497,19 @@ const AddNewStudent = ({ onBack, onSuccess, editData, mode = 'new' }) => {
                             >
                                 বাতিল করুন
                             </button>
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={loading}
-                                className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="rounded-md"
                             >
-                                <FaSave className="text-sm" />
+                                <FaSave className="text-sm mr-2" />
                                 {loading 
                                     ? 'সেভ হচ্ছে...' 
                                     : mode === 'edit' 
                                         ? 'শিক্ষার্থী আপডেট করুন' 
                                         : 'শিক্ষার্থী সেভ করুন'
                                 }
-                            </button>
+                            </MainButton>
                         </div>
                     </form>
                 </div>

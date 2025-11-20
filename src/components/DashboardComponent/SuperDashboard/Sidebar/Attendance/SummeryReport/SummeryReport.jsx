@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const SummeryReport = () => {
     const [formData, setFormData] = useState({
@@ -160,8 +161,8 @@ const SummeryReport = () => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4">
-                        <h1 className="text-2xl font-bold text-white text-center">
+                    <div className="px-6 py-4">
+                        <h1 className="text-2xl font-bold">
                             সামারি রিপোর্ট
                         </h1>
                     </div>
@@ -179,7 +180,7 @@ const SummeryReport = () => {
                                     name="date"
                                     value={formData.date}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     required
                                 />
                             </div>
@@ -195,7 +196,7 @@ const SummeryReport = () => {
                                     value={formData.studentId}
                                     onChange={handleInputChange}
                                     placeholder="শিক্ষার্থীর আইডি লিখুন"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 />
                             </div>
 
@@ -208,7 +209,7 @@ const SummeryReport = () => {
                                     name="class"
                                     value={formData.class}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     <option value="">ক্লাস নির্বাচন করুন</option>
                                     {classes.map(cls => (
@@ -222,13 +223,13 @@ const SummeryReport = () => {
 
                         {/* Search Button */}
                         <div className="flex justify-center mt-6">
-                            <button
+                            <MainButton
                                 onClick={handleSearch}
                                 disabled={loading || !formData.date}
                                 className={`px-8 py-3 rounded-lg font-medium text-white transition-colors duration-200 ${
                                     loading || !formData.date
                                         ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+                                        : 'bg-[#1e90c9] focus:outline-none focus:ring-2 focus:ring-offset-2'
                                 }`}
                             >
                                 {loading ? (
@@ -239,7 +240,7 @@ const SummeryReport = () => {
                                 ) : (
                                     'Search'
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
 
                         {error && (

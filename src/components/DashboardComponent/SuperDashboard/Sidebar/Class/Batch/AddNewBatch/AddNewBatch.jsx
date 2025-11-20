@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaSave, FaUsers } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddNewBatch = ({ onBack, onSuccess, editData }) => {
@@ -27,7 +28,7 @@ const AddNewBatch = ({ onBack, onSuccess, editData }) => {
 
     const fetchClasses = async () => {
         try {
-            const response = await axiosInstance.get('/classes');
+            const response = await axiosInstance.get('/class');
             if (response.data.success) {
                 setClasses(response.data.data || []);
             }
@@ -162,7 +163,7 @@ const AddNewBatch = ({ onBack, onSuccess, editData }) => {
                                     name="classId"
                                     value={formData.classId}
                                     onChange={handleInputChange}
-                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                                         errors.classId ? 'border-red-500' : 'border-gray-300'
                                     }`}
                                 >
@@ -186,7 +187,7 @@ const AddNewBatch = ({ onBack, onSuccess, editData }) => {
                                     name="name"
                                     value={formData.name}
                                     onChange={handleInputChange}
-                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                                         errors.name ? 'border-red-500' : 'border-gray-300'
                                     }`}
                                     placeholder="যেমন: ব্যাচ-১, সকালের ব্যাচ, ইত্যাদি"
@@ -197,10 +198,10 @@ const AddNewBatch = ({ onBack, onSuccess, editData }) => {
                             {/* Auto-generated Info */}
                             {!editData && (
                                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                                    <h3 className="text-sm font-medium text-blue-800 mb-2">
+                                    <h3 className="text-sm font-medium text-[#1e90c9] mb-2">
                                         স্বয়ংক্রিয়ভাবে তৈরি হবে:
                                     </h3>
-                                    <ul className="text-sm text-blue-700 space-y-1">
+                                    <ul className="text-sm text-[#1e90c9] space-y-1">
                                         <li>• ব্যাচ আইডি (স্বয়ংক্রিয় জেনারেট)</li>
                                         <li>• তৈরি করার তারিখ</li>
                                         <li>• সক্রিয় অবস্থা</li>
@@ -218,14 +219,14 @@ const AddNewBatch = ({ onBack, onSuccess, editData }) => {
                             >
                                 বাতিল করুন
                             </button>
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={loading}
-                                className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="rounded-md"
                             >
-                                <FaSave className="text-sm" />
+                                <FaSave className="text-sm mr-2" />
                                 {loading ? 'সেভ হচ্ছে...' : (editData ? 'ব্যাচ আপডেট করুন' : 'ব্যাচ তৈরি করুন')}
-                            </button>
+                            </MainButton>
                         </div>
                     </form>
                 </div>

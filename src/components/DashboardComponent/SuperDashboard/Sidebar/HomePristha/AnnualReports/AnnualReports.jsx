@@ -3,6 +3,7 @@ import { FaArrowLeft, FaDownload, FaEdit, FaEye, FaPlus, FaTrash } from 'react-i
 import Swal from 'sweetalert2';
 import axiosInstance, { baseImageURL } from '../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 
@@ -318,7 +319,7 @@ const AnnualReports = ({ onBack }) => {
                                         name="title"
                                         value={formData.title}
                                         onChange={handleFormChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.title ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         placeholder="বার্ষিক রিপোর্টের শিরোনাম লিখুন"
@@ -338,7 +339,7 @@ const AnnualReports = ({ onBack }) => {
                                         name="year"
                                         value={formData.year}
                                         onChange={handleFormChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.year ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         disabled={formLoading}
@@ -386,7 +387,7 @@ const AnnualReports = ({ onBack }) => {
                                         />
                                         <label
                                             htmlFor="report-file-upload"
-                                            className="cursor-pointer inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
+                                            className="cursor-pointer inline-flex items-center gap-2 px-6 py-3 bg-[#1e90c9] text-white rounded-lg  transition-colors font-medium"
                                         >
                                             <FaPlus className="text-sm" />
                                             {formData.reportFile ? 'ফাইল পরিবর্তন করুন' : 'PDF ফাইল আপলোড করুন'}
@@ -444,10 +445,10 @@ const AnnualReports = ({ onBack }) => {
                                     >
                                         বাতিল করুন
                                     </button>
-                                    <button
+                                    <MainButton
                                         type="submit"
                                         disabled={formLoading}
-                                        className="inline-flex items-center gap-2 px-8 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="rounded-md"
                                     >
                                         {formLoading ? (
                                             <>
@@ -456,11 +457,11 @@ const AnnualReports = ({ onBack }) => {
                                             </>
                                         ) : (
                                             <>
-                                                <FaPlus className="text-sm" />
+                                                <FaPlus className="text-sm mr-2" />
                                                 {editingReport ? 'আপডেট করুন' : 'সংরক্ষণ করুন'}
                                             </>
                                         )}
-                                    </button>
+                                    </MainButton>
                                 </div>
                             </form>
                         </div>
@@ -487,13 +488,12 @@ const AnnualReports = ({ onBack }) => {
                             বার্ষিক রিপোর্ট ব্যবস্থাপনা
                         </h1>
                     </div>
-                    <button
+                    <MainButton
                         onClick={handleAddNew}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
                     >
-                        <FaPlus className="text-sm" />
+                        <FaPlus className="text-sm mr-2" />
                         নতুন রিপোর্ট
-                    </button>
+                    </MainButton>
                 </div>
             </div>
 
@@ -514,13 +514,12 @@ const AnnualReports = ({ onBack }) => {
                             <p className="text-gray-600 text-sm mb-4">
                                 নতুন বার্ষিক রিপোর্ট তৈরি করুন
                             </p>
-                            <button
+                            <MainButton
                                 onClick={handleAddNew}
-                                className="inline-flex items-center gap-2 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
                             >
-                                <FaPlus className="text-sm" />
+                                <FaPlus className="text-sm mr-2" />
                                 নতুন বার্ষিক রিপোর্ট তৈরি করুন
-                            </button>
+                            </MainButton>
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -532,7 +531,7 @@ const AnnualReports = ({ onBack }) => {
                                                 <h3 className="text-lg font-bold text-gray-800 mb-1">
                                                     {report.title}
                                                 </h3>
-                                                <p className="text-sm text-blue-600 font-semibold">
+                                                <p className="text-sm text-[#1e90c9] font-semibold">
                                                     বছর: {report.year}
                                                 </p>
                                             </div>
@@ -540,7 +539,7 @@ const AnnualReports = ({ onBack }) => {
                                                 onClick={() => handleToggleStatus(report._id, report.isActive)}
                                                 className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full cursor-pointer ${
                                                     report.isActive 
-                                                        ? 'bg-green-100 text-green-800 hover:bg-green-200' 
+                                                        ? 'bg-[#1e90c9] text-white hover:bg-green-200' 
                                                         : 'bg-red-100 text-red-800 hover:bg-red-200'
                                                 }`}
                                             >

@@ -3,6 +3,7 @@ import { FaArrowLeft, FaEdit, FaPlus, FaTrash, FaUsers } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewClass from './AddNewClass/AddNewClass';
 
 
@@ -131,13 +132,12 @@ const Class = ({ onBack }) => {
                             ক্লাস ব্যবস্থাপনা
                         </h1>
                     </div>
-                    <button
+                    <MainButton
                         onClick={handleAddNew}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
                     >
-                        <FaPlus className="text-sm" />
+                        <FaPlus className="text-sm mr-2" />
                         ক্লাস যোগ করুন
-                    </button>
+                    </MainButton>
                 </div>
             </div>
 
@@ -158,13 +158,12 @@ const Class = ({ onBack }) => {
                             <p className="text-gray-600 text-sm mb-4">
                                 নতুন ক্লাস তৈরি করুন
                             </p>
-                            <button
+                            <MainButton
                                 onClick={handleAddNew}
-                                className="inline-flex items-center gap-2 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
                             >
-                                <FaPlus className="text-sm" />
+                                <FaPlus className="text-sm mr-2" />
                                 নতুন ক্লাস তৈরি করুন
-                            </button>
+                            </MainButton>
                         </div>
                     ) : (
                         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
@@ -231,7 +230,7 @@ const Class = ({ onBack }) => {
                                                         onClick={() => handleToggleStatus(classItem._id, classItem.isActive)}
                                                         className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full cursor-pointer ${
                                                             classItem.isActive 
-                                                                ? 'bg-green-100 text-green-800 hover:bg-green-200' 
+                                                                ? 'bg-[#1e90c9] text-white' 
                                                                 : 'bg-red-100 text-red-800 hover:bg-red-200'
                                                         }`}
                                                     >

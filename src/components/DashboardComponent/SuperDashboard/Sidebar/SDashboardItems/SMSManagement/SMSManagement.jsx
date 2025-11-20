@@ -65,30 +65,30 @@ const SMSManagement = () => {
         blue: {
             bg: 'bg-blue-100',
             hoverBg: 'hover:bg-blue-200',
-            text: 'text-blue-600',
-            border: 'border-blue-400',
-            icon: 'text-blue-600'
+            text: 'text-[#1e90c9]',
+            border: 'border-[#1e90c9]',
+            icon: 'text-[#1e90c9]'
         },
         green: {
-            bg: 'bg-green-100',
-            hoverBg: 'hover:bg-green-200',
-            text: 'text-green-600',
-            border: 'border-green-400',
-            icon: 'text-green-600'
+            bg: 'bg-blue-100',
+            hoverBg: 'hover:bg-blue-200',
+            text: 'text-[#1e90c9]',
+            border: 'border-[#1e90c9]',
+            icon: 'text-[#1e90c9]'
         },
         purple: {
-            bg: 'bg-purple-100',
-            hoverBg: 'hover:bg-purple-200',
-            text: 'text-purple-600',
-            border: 'border-purple-400',
-            icon: 'text-purple-600'
+            bg: 'bg-blue-100',
+            hoverBg: 'hover:bg-blue-200',
+            text: 'text-[#1e90c9]',
+            border: 'border-[#1e90c9]',
+            icon: 'text-[#1e90c9]'
         },
         orange: {
-            bg: 'bg-orange-100',
-            hoverBg: 'hover:bg-orange-200',
-            text: 'text-orange-600',
-            border: 'border-orange-400',
-            icon: 'text-orange-600'
+            bg: 'bg-blue-100',
+            hoverBg: 'hover:bg-blue-200',
+            text: 'text-[#1e90c9]',
+            border: 'border-[#1e90c9]',
+            icon: 'text-[#1e90c9]'
         }
     };
 

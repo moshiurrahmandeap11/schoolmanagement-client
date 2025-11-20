@@ -3,6 +3,7 @@ import { FaArrowLeft, FaEdit, FaMoneyBill, FaPlus, FaSearch, FaTrash } from 'rea
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewStudent from './AddNewStudent/AddNewStudent';
 
 const StudentsMenu = ({ onBack }) => {
@@ -193,13 +194,12 @@ const StudentsMenu = ({ onBack }) => {
                         </h1>
                     </div>
                     
-                    <button
+                    <MainButton
                         onClick={() => setActiveComponent('new')}
-                        className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium flex items-center gap-2"
                     >
-                        <FaPlus className="text-sm" />
+                        <FaPlus className="text-sm mr-2" />
                         New Student
-                    </button>
+                    </MainButton>
                 </div>
             </div>
 
@@ -217,7 +217,7 @@ const StudentsMenu = ({ onBack }) => {
                                         <p className="text-2xl font-bold text-blue-900">{totalStudents}</p>
                                     </div>
                                     <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                                        <span className="text-blue-600 text-xl">👥</span>
+                                        <span className="text-[#1e90c9] text-xl">👥</span>
                                     </div>
                                 </div>
                             </div>
@@ -233,7 +233,7 @@ const StudentsMenu = ({ onBack }) => {
                                         name="search"
                                         value={filterData.search}
                                         onChange={handleFilterChange}
-                                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                         placeholder="আইডি, স্মার্ট আইডি বা নাম দ্বারা খুঁজুন..."
                                     />
                                     <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -249,7 +249,7 @@ const StudentsMenu = ({ onBack }) => {
                                     name="classId"
                                     value={filterData.classId}
                                     onChange={handleFilterChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                 >
                                     <option value="">সকল ক্লাস</option>
                                     {classes.map(classItem => (
@@ -263,12 +263,12 @@ const StudentsMenu = ({ onBack }) => {
 
                         {/* Filter Buttons */}
                         <div className="flex gap-4 mt-4">
-                            <button
+                            <MainButton
                                 onClick={handleApplyFilter}
-                                className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
+                                className="rounded-md"
                             >
                                 Apply Filter
-                            </button>
+                            </MainButton>
                             <button
                                 onClick={handleClearFilter}
                                 className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -298,12 +298,11 @@ const StudentsMenu = ({ onBack }) => {
                                 <p className="text-gray-600 mb-4 text-sm">
                                     আপনার প্রথম শিক্ষার্থী তৈরি করুন।
                                 </p>
-                                <button
+                                <MainButton
                                     onClick={() => setActiveComponent('new')}
-                                    className="px-5 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm"
                                 >
                                     শিক্ষার্থী তৈরি করুন
-                                </button>
+                                </MainButton>
                             </div>
                         )}
 
@@ -372,14 +371,14 @@ const StudentsMenu = ({ onBack }) => {
                                                     </div>
                                                 </td>
                                                 <td className="px-4 py-3">
-                                                    <button
+                                                    <MainButton
                                                         onClick={() => handleCollectFee(student)}
-                                                        className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition-colors text-xs flex items-center gap-1"
+                                                        className="rounded-md "
                                                         title="ফি সংগ্রহ করুন"
                                                     >
-                                                        <FaMoneyBill className="text-xs" />
+                                                        <FaMoneyBill className="text-xs mr-2" />
                                                         Collect
-                                                    </button>
+                                                    </MainButton>
                                                 </td>
                                                 <td className="px-4 py-3">
                                                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
@@ -404,7 +403,7 @@ const StudentsMenu = ({ onBack }) => {
                                                 <td className="px-4 py-3">
                                                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                                                         student.status === 'active' 
-                                                            ? 'bg-green-100 text-green-800'
+                                                            ? 'bg-[#1e90c9] text-white'
                                                             : student.status === 'inactive'
                                                             ? 'bg-red-100 text-red-800'
                                                             : 'bg-yellow-100 text-yellow-800'

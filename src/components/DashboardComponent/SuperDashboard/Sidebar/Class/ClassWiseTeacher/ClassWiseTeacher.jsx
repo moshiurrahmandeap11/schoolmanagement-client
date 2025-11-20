@@ -3,6 +3,7 @@ import { FaArrowLeft, FaChalkboardTeacher, FaEdit, FaPlus, FaTrash } from 'react
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewClassTeacher from './AddNewClassTeacher/AddNewClassTeacher';
 
 
@@ -118,13 +119,12 @@ const ClassWiseTeacher = ({ onBack }) => {
                             শ্রেণী শিক্ষক ব্যবস্থাপনা
                         </h1>
                     </div>
-                    <button
+                    <MainButton
                         onClick={handleAddNew}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
                     >
-                        <FaPlus className="text-sm" />
+                        <FaPlus className="text-sm mr-2" />
                         শ্রেণী শিক্ষক নিয়োগ দিন
-                    </button>
+                    </MainButton>
                 </div>
             </div>
 
@@ -145,13 +145,12 @@ const ClassWiseTeacher = ({ onBack }) => {
                             <p className="text-gray-600 text-sm mb-4">
                                 নতুন শ্রেণী শিক্ষক নিয়োগ করুন
                             </p>
-                            <button
+                            <MainButton
                                 onClick={handleAddNew}
-                                className="inline-flex items-center gap-2 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
                             >
-                                <FaPlus className="text-sm" />
+                                <FaPlus className="text-sm mr-2" />
                                 শ্রেণী শিক্ষক নিয়োগ দিন
-                            </button>
+                            </MainButton>
                         </div>
                     ) : (
                         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
@@ -189,8 +188,8 @@ const ClassWiseTeacher = ({ onBack }) => {
                                             <tr key={classTeacher._id} className="hover:bg-gray-50 transition-colors">
                                                 <td className="px-6 py-4">
                                                     <div className="flex items-center gap-3">
-                                                        <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                                                            <FaChalkboardTeacher className="text-green-600 text-sm" />
+                                                        <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                                            <FaChalkboardTeacher className="text-[#1e90c9] text-sm" />
                                                         </div>
                                                         <div>
                                                             <p className="font-medium text-gray-800 text-sm">
@@ -203,12 +202,12 @@ const ClassWiseTeacher = ({ onBack }) => {
                                                     </div>
                                                 </td>
                                                 <td className="px-6 py-4">
-                                                    <span className="inline-flex px-3 py-1 text-xs font-semibold bg-blue-100 text-blue-800 rounded-full">
+                                                    <span className="inline-flex px-3 py-1 text-xs font-semibold  rounded-full">
                                                         {classTeacher.className}
                                                     </span>
                                                 </td>
                                                 <td className="px-6 py-4">
-                                                    <span className="inline-flex px-3 py-1 text-xs font-semibold bg-purple-100 text-purple-800 rounded-full">
+                                                    <span className="inline-flex px-3 py-1 text-xs font-semibold  rounded-full">
                                                         {classTeacher.subjectName}
                                                     </span>
                                                 </td>
@@ -216,7 +215,7 @@ const ClassWiseTeacher = ({ onBack }) => {
                                                     <span
                                                         className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                                                             classTeacher.isActive 
-                                                                ? 'bg-green-100 text-green-800' 
+                                                                ? 'bg-[#1e90c9] text-white' 
                                                                 : 'bg-red-100 text-red-800'
                                                         }`}
                                                     >

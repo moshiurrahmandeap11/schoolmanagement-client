@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaAlignLeft, FaArrowLeft, FaDownload, FaListAlt, FaSort } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const TabularResult = ({ onBack }) => {
     const [formData, setFormData] = useState({
@@ -164,7 +165,7 @@ const TabularResult = ({ onBack }) => {
                                         name="examId"
                                         value={formData.examId}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={downloading}
                                         required
                                     >
@@ -189,7 +190,7 @@ const TabularResult = ({ onBack }) => {
                                         name="orderBy"
                                         value={formData.orderBy}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={downloading}
                                     >
                                         {orderByOptions.map((option) => (
@@ -212,7 +213,7 @@ const TabularResult = ({ onBack }) => {
                                         name="headerOrientation"
                                         value={formData.headerOrientation}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={downloading}
                                     >
                                         {headerOrientationOptions.map((option) => (
@@ -230,20 +231,20 @@ const TabularResult = ({ onBack }) => {
                     {/* Selection Summary */}
                     {(formData.examId || formData.orderBy || formData.headerOrientation) && (
                         <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-6">
-                            <h4 className="text-md font-semibold text-blue-800 mb-4">
+                            <h4 className="text-md font-semibold text-[#1e90c9] mb-4">
                                 নির্বাচিত সেটিংস
                             </h4>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                                 <div>
-                                    <p className="text-blue-600 font-medium">পরীক্ষা:</p>
+                                    <p className="text-[#1e90c9] font-medium">পরীক্ষা:</p>
                                     <p className="text-gray-800">{getSelectedExamName()}</p>
                                 </div>
                                 <div>
-                                    <p className="text-blue-600 font-medium">সাজানোর ক্রম:</p>
+                                    <p className="text-[#1e90c9] font-medium">সাজানোর ক্রম:</p>
                                     <p className="text-gray-800">{getSelectedOrderByName()}</p>
                                 </div>
                                 <div>
-                                    <p className="text-blue-600 font-medium">হেডার ওরিয়েন্টেশন:</p>
+                                    <p className="text-[#1e90c9] font-medium">হেডার ওরিয়েন্টেশন:</p>
                                     <p className="text-gray-800">{getSelectedOrientationName()}</p>
                                 </div>
                             </div>
@@ -262,10 +263,10 @@ const TabularResult = ({ onBack }) => {
                                 </p>
                             </div>
                             
-                            <button
+                            <MainButton
                                 onClick={handleDownload}
                                 disabled={downloading || !formData.examId}
-                                className="inline-flex items-center gap-3 px-8 py-4 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="rounded-md"
                             >
                                 {downloading ? (
                                     <>
@@ -274,20 +275,20 @@ const TabularResult = ({ onBack }) => {
                                     </>
                                 ) : (
                                     <>
-                                        <FaDownload className="text-lg" />
+                                        <FaDownload className="text-lg mr-2" />
                                         Download Result Sheet
                                     </>
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
                     </div>
 
                     {/* Information Card */}
-                    <div className="bg-purple-50 border border-purple-200 rounded-2xl p-6 mt-6">
-                        <h3 className="text-md font-semibold text-purple-800 mb-2">
+                    <div className="bg-blue-50 rounded-2xl p-6 mt-6">
+                        <h3 className="text-md font-semibold text-[#1e90c9] mb-2">
                             ট্যাবুলার রেজাল্ট সম্পর্কে
                         </h3>
-                        <ul className="text-sm text-purple-700 space-y-1">
+                        <ul className="text-sm text-[#1e90c9] space-y-1">
                             <li>• এক্সেল ফরম্যাটে রেজাল্ট শীট ডাউনলোড করুন</li>
                             <li>• পরীক্ষা নির্বাচন করা বাধ্যতামূলক</li>
                             <li>• শিক্ষার্থীদের আইডি, রোল বা গ্রেড পয়েন্ট অনুসারে সাজান</li>

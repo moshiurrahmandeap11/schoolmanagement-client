@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaCalendarAlt, FaListAlt, FaMobile, FaPaperPlane, FaSearch, FaSms } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const DueFeeSms = ({ onBack }) => {
@@ -150,7 +151,7 @@ const DueFeeSms = ({ onBack }) => {
                                             name="startDate"
                                             value={searchData.startDate}
                                             onChange={handleChange}
-                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                             disabled={searching}
                                         />
                                         <FaCalendarAlt className="absolute left-3 top-3.5 text-gray-400" />
@@ -168,7 +169,7 @@ const DueFeeSms = ({ onBack }) => {
                                             name="endDate"
                                             value={searchData.endDate}
                                             onChange={handleChange}
-                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                             disabled={searching}
                                         />
                                         <FaCalendarAlt className="absolute left-3 top-3.5 text-gray-400" />
@@ -187,7 +188,7 @@ const DueFeeSms = ({ onBack }) => {
                                             value={searchData.mobile}
                                             onChange={handleChange}
                                             placeholder="মোবাইল নম্বর"
-                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                             disabled={searching}
                                         />
                                         <FaMobile className="absolute left-3 top-3.5 text-gray-400" />
@@ -204,7 +205,7 @@ const DueFeeSms = ({ onBack }) => {
                                             name="classId"
                                             value={searchData.classId}
                                             onChange={handleChange}
-                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                             disabled={searching}
                                         >
                                             <option value="">সকল ক্লাস</option>
@@ -220,10 +221,10 @@ const DueFeeSms = ({ onBack }) => {
                             </div>
 
                             <div className="flex justify-end">
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={searching}
-                                    className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md"
                                 >
                                     {searching ? (
                                         <>
@@ -232,11 +233,11 @@ const DueFeeSms = ({ onBack }) => {
                                         </>
                                     ) : (
                                         <>
-                                            <FaSearch className="text-sm" />
+                                            <FaSearch className="text-sm mr-2" />
                                             অনুসন্ধান
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
                     </div>

@@ -3,6 +3,7 @@ import { FaArrowLeft, FaEdit, FaPlus, FaSearch, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewSection from './AddNewSection/AddNewSection';
 import EditSection from './EditSection/EditSection';
 
@@ -128,13 +129,12 @@ const Section = ({ onBack }) => {
                         </h1>
                     </div>
                     
-                    <button
+                    <MainButton
                         onClick={() => setActiveComponent('new')}
-                        className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium flex items-center gap-2"
                     >
-                        <FaPlus className="text-sm" />
+                        <FaPlus className="text-sm mr-2" />
                         নতুন সেকশন
-                    </button>
+                    </MainButton>
                 </div>
             </div>
 
@@ -153,7 +153,7 @@ const Section = ({ onBack }) => {
                                         type="text"
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)}
-                                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors"
                                         placeholder="সেকশন নাম বা ক্লাস দ্বারা খুঁজুন..."
                                     />
                                     <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -199,12 +199,11 @@ const Section = ({ onBack }) => {
                                         : 'অন্যান্য ফিল্টার চেষ্টা করুন।'
                                     }
                                 </p>
-                                <button
+                                <MainButton
                                     onClick={() => setActiveComponent('new')}
-                                    className="px-5 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm"
                                 >
                                     সেকশন তৈরি করুন
-                                </button>
+                                </MainButton>
                             </div>
                         )}
 
@@ -225,8 +224,8 @@ const Section = ({ onBack }) => {
                                             <tr key={section._id} className="hover:bg-gray-50 transition-colors">
                                                 <td className="px-4 py-3">
                                                     <div className="flex items-center gap-3">
-                                                        <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                                            <span className="text-blue-600 text-lg">🏫</span>
+                                                        <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center shrink-0">
+                                                            <span className="text-[#1e90c9] text-lg">🏫</span>
                                                         </div>
                                                         <div>
                                                             <p className="font-medium text-gray-800 text-sm">
@@ -239,7 +238,7 @@ const Section = ({ onBack }) => {
                                                     </div>
                                                 </td>
                                                 <td className="px-4 py-3">
-                                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ">
                                                         {section.class?.name || 'N/A'}
                                                     </span>
                                                 </td>
@@ -251,7 +250,7 @@ const Section = ({ onBack }) => {
                                                             title="এডিট করুন"
                                                         >
                                                             <FaEdit className="text-xs" />
-                                                            এডিট
+                                                            
                                                         </button>
                                                     </div>
                                                 </td>
@@ -263,7 +262,7 @@ const Section = ({ onBack }) => {
                                                             title="ডিলিট করুন"
                                                         >
                                                             <FaTrash className="text-xs" />
-                                                            ডিলিট
+                                                            
                                                         </button>
                                                     </div>
                                                 </td>

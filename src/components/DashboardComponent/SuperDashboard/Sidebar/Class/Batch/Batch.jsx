@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { FaEdit, FaPlus, FaSearch, FaTrash, FaUsers } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import Loader from '../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewBatch from './AddNewBatch/AddNewBatch';
 
 
@@ -115,18 +117,17 @@ const Batch = () => {
             <div className="sticky top-0 z-10 bg-white border-b border-gray-200 shadow-sm">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 sm:p-6">
                     <div className="flex items-center gap-3">
-                        <FaUsers className="text-2xl text-blue-600" />
+                        <FaUsers className="text-2xl text-[#1e90c9]" />
                         <h1 className="text-2xl font-bold text-gray-800">
                             ব্যাচ ব্যবস্থাপনা
                         </h1>
                     </div>
-                    <button
+                    <MainButton
                         onClick={() => setShowAddForm(true)}
-                        className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2"
                     >
-                        <FaPlus className="text-sm" />
+                        <FaPlus className="text-sm mr-2" />
                         নতুন ব্যাচ
-                    </button>
+                    </MainButton>
                 </div>
             </div>
 
@@ -150,7 +151,7 @@ const Batch = () => {
                                         placeholder="ব্যাচ, আইডি বা ক্লাস দ্বারা খুঁজুন..."
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)}
-                                        className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-full sm:w-64"
+                                        className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent w-full sm:w-64"
                                     />
                                 </div>
                             </div>
@@ -161,8 +162,7 @@ const Batch = () => {
                     <div className="bg-white rounded-2xl shadow-lg border border-gray-200">
                         {loading ? (
                             <div className="p-8 text-center">
-                                <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                                <p className="mt-2 text-gray-600">লোড হচ্ছে...</p>
+                                <Loader></Loader>
                             </div>
                         ) : filteredBatches.length === 0 ? (
                             <div className="p-8 text-center">
@@ -171,12 +171,11 @@ const Batch = () => {
                                     {searchTerm ? 'কোন ব্যাচ পাওয়া যায়নি' : 'কোন ব্যাচ পাওয়া যায়নি'}
                                 </p>
                                 {!searchTerm && (
-                                    <button
+                                    <MainButton
                                         onClick={() => setShowAddForm(true)}
-                                        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
                                     >
                                         প্রথম ব্যাচ তৈরি করুন
-                                    </button>
+                                    </MainButton>
                                 )}
                             </div>
                         ) : (
@@ -217,7 +216,7 @@ const Batch = () => {
                                                     )}
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap">
-                                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-[#1e90c9]">
                                                         {batch.batchId}
                                                     </span>
                                                 </td>
@@ -229,7 +228,7 @@ const Batch = () => {
                                                 <td className="px-6 py-4 whitespace-nowrap">
                                                     <span className={`px-2 py-1 text-xs rounded-full ${
                                                         batch.isActive 
-                                                            ? 'bg-green-100 text-green-800' 
+                                                            ? 'bg-[#1e90c9] text-white' 
                                                             : 'bg-red-100 text-red-800'
                                                     }`}>
                                                         {batch.isActive ? 'সক্রিয়' : 'নিষ্ক্রিয়'}

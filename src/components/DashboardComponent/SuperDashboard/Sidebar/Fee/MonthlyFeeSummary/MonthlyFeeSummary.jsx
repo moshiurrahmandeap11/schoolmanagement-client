@@ -56,7 +56,7 @@ const MonthlyFeeSummary = () => {
               id="year"
               value={selectedYear}
               onChange={(e) => setSelectedYear(e.target.value)}
-              className="border border-gray-300 rounded-lg px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="border border-gray-300 rounded-lg px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
             >
               {years.map((year) => (
                 <option key={year} value={year}>
@@ -71,7 +71,7 @@ const MonthlyFeeSummary = () => {
             <p className="text-gray-600 font-medium text-sm md:text-base">
               Active Months
             </p>
-            <span className="text-blue-600 font-semibold text-lg md:text-xl">
+            <span className="text-[#1e90c9] font-semibold text-lg md:text-xl">
               {data?.months?.length || 0}
             </span>
           </div>
@@ -81,7 +81,7 @@ const MonthlyFeeSummary = () => {
             <p className="text-gray-600 font-medium text-sm md:text-base">
               Selected Year
             </p>
-            <span className="text-blue-600 font-semibold text-lg md:text-xl">
+            <span className="text-[#1e90c9] font-semibold text-lg md:text-xl">
               {selectedYear}
             </span>
           </div>
@@ -91,7 +91,7 @@ const MonthlyFeeSummary = () => {
             <p className="text-gray-600 font-medium text-sm md:text-base">
               Grand Total
             </p>
-            <span className="text-green-600 font-semibold text-lg md:text-xl">
+            <span className="text-[#1e90c9] font-semibold text-lg md:text-xl">
               ৳ {data?.grandTotal?.toLocaleString("en-US") || 0}
             </span>
           </div>

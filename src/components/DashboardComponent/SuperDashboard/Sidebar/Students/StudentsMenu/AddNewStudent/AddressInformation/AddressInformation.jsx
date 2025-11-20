@@ -14,7 +14,7 @@ const AddressInformation = ({ formData, errors, onChange, clearError }) => {
                             name="permanentVillage"
                             value={formData.permanentVillage}
                             onChange={onChange}
-                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                                 errors.permanentVillage ? 'border-red-500' : 'border-gray-300'
                             }`}
                             placeholder="গ্রাম"
@@ -32,7 +32,7 @@ const AddressInformation = ({ formData, errors, onChange, clearError }) => {
                             name="permanentPostOffice"
                             value={formData.permanentPostOffice}
                             onChange={onChange}
-                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                                 errors.permanentPostOffice ? 'border-red-500' : 'border-gray-300'
                             }`}
                             placeholder="ডাকঘর"
@@ -50,7 +50,7 @@ const AddressInformation = ({ formData, errors, onChange, clearError }) => {
                             name="permanentDistrict"
                             value={formData.permanentDistrict}
                             onChange={onChange}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                             placeholder="জেলা"
                         />
                     </div>
@@ -63,7 +63,7 @@ const AddressInformation = ({ formData, errors, onChange, clearError }) => {
                             name="permanentThana"
                             value={formData.permanentThana}
                             onChange={onChange}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                             placeholder="থানা"
                         />
                     </div>
@@ -100,7 +100,7 @@ const AddressInformation = ({ formData, errors, onChange, clearError }) => {
                                 name="currentVillage"
                                 value={formData.currentVillage}
                                 onChange={onChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                 placeholder="গ্রাম"
                             />
                         </div>
@@ -113,7 +113,7 @@ const AddressInformation = ({ formData, errors, onChange, clearError }) => {
                                 name="currentPostOffice"
                                 value={formData.currentPostOffice}
                                 onChange={onChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                 placeholder="ডাকঘর"
                             />
                         </div>
@@ -126,7 +126,7 @@ const AddressInformation = ({ formData, errors, onChange, clearError }) => {
                                 name="currentDistrict"
                                 value={formData.currentDistrict}
                                 onChange={onChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                 placeholder="জেলা"
                             />
                         </div>
@@ -139,7 +139,7 @@ const AddressInformation = ({ formData, errors, onChange, clearError }) => {
                                 name="currentThana"
                                 value={formData.currentThana}
                                 onChange={onChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                 placeholder="থানা"
                             />
                         </div>

@@ -3,6 +3,7 @@ import { FaArrowLeft, FaCalendarAlt, FaEdit, FaMoneyBillWave, FaPlus, FaTrash } 
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewFee from './AddNewFee/AddNewFee';
 
 const Fee = ({ onBack }) => {
@@ -134,13 +135,12 @@ const Fee = ({ onBack }) => {
                             বরাদ্দ ফি ব্যবস্থাপনা
                         </h1>
                     </div>
-                    <button
+                    <MainButton
                         onClick={handleAddNew}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium"
                     >
-                        <FaPlus className="text-sm" />
+                        <FaPlus className="text-sm mr-2" />
                         নতুন বরাদ্দ ফি
-                    </button>
+                    </MainButton>
                 </div>
             </div>
 
@@ -161,13 +161,13 @@ const Fee = ({ onBack }) => {
                             <p className="text-gray-600 text-sm mb-4">
                                 নতুন বরাদ্দ ফি তৈরি করুন
                             </p>
-                            <button
+                            <MainButton
                                 onClick={handleAddNew}
-                                className="inline-flex items-center gap-2 px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium"
+    
                             >
-                                <FaPlus className="text-sm" />
+                                <FaPlus className="text-sm mr-2" />
                                 নতুন বরাদ্দ ফি তৈরি করুন
-                            </button>
+                            </MainButton>
                         </div>
                     ) : (
                         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
@@ -207,7 +207,7 @@ const Fee = ({ onBack }) => {
                                         {fees.map((fee) => (
                                             <tr key={fee._id} className="hover:bg-gray-50 transition-colors">
                                                 <td className="px-6 py-4">
-                                                    <span className="inline-flex px-3 py-1 text-xs font-semibold bg-indigo-100 text-indigo-800 rounded-full">
+                                                    <span className="inline-flex px-3 py-1 text-xs font-semibold  rounded-full">
                                                         {fee.className}
                                                     </span>
                                                 </td>
@@ -248,7 +248,7 @@ const Fee = ({ onBack }) => {
                                                         onClick={() => handleToggleStatus(fee._id, fee.isActive)}
                                                         className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full cursor-pointer ${
                                                             fee.isActive 
-                                                                ? 'bg-green-100 text-green-800 hover:bg-green-200' 
+                                                                ? 'bg-[#1e90c9] text-white' 
                                                                 : 'bg-red-100 text-red-800 hover:bg-red-200'
                                                         }`}
                                                     >

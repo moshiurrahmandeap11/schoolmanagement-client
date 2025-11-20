@@ -50,7 +50,7 @@ const PersonalInformation = ({
                     name="studentId"
                     value={formData.studentId}
                     onChange={onChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors bg-gray-50"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors bg-gray-50"
                     placeholder="স্বয়ংক্রিয়ভাবে তৈরি হবে"
                     disabled
                 />
@@ -66,7 +66,7 @@ const PersonalInformation = ({
                     name="dakhelaNumber"
                     value={formData.dakhelaNumber}
                     onChange={onChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                     placeholder="দাখেলা নম্বর"
                 />
             </div>
@@ -81,7 +81,7 @@ const PersonalInformation = ({
                     name="smartId"
                     value={formData.smartId}
                     onChange={onChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                     placeholder="স্মার্ট আইডি কার্ড নম্বর"
                 />
             </div>
@@ -96,7 +96,7 @@ const PersonalInformation = ({
                     name="name"
                     value={formData.name}
                     onChange={onChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                         errors.name ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="শিক্ষার্থীর সম্পূর্ণ নাম"
@@ -114,7 +114,7 @@ const PersonalInformation = ({
                     name="dob"
                     value={formData.dob}
                     onChange={onChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                         errors.dob ? 'border-red-500' : 'border-gray-300'
                     }`}
                 />
@@ -131,7 +131,7 @@ const PersonalInformation = ({
                     name="birthRegistration"
                     value={formData.birthRegistration}
                     onChange={onChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                     placeholder="জন্ম নিবন্ধন নম্বর"
                 />
             </div>
@@ -145,7 +145,7 @@ const PersonalInformation = ({
                     name="gender"
                     value={formData.gender}
                     onChange={onChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                         errors.gender ? 'border-red-500' : 'border-gray-300'
                     }`}
                 >
@@ -166,7 +166,7 @@ const PersonalInformation = ({
                     name="mobile"
                     value={formData.mobile}
                     onChange={onChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                     placeholder="মোবাইল নম্বর"
                 />
             </div>
@@ -180,7 +180,7 @@ const PersonalInformation = ({
                     name="bloodGroup"
                     value={formData.bloodGroup}
                     onChange={onChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                 >
                     <option value="">Select Blood Group</option>
                     {bloodGroups.map(group => (
@@ -198,7 +198,7 @@ const PersonalInformation = ({
                     name="attachmentType"
                     value={formData.attachmentType}
                     onChange={onChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                 >
                     <option value="">Select Attachment Type</option>
                     {attachmentTypes.map(type => (
@@ -212,7 +212,7 @@ const PersonalInformation = ({
                 <label className="block text-gray-700 font-medium mb-2 text-sm">
                     Image
                 </label>
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-[#1e90c9] transition-colors">
                     <input
                         type="file"
                         onChange={handlePhotoUpload}

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaSms, FaSync, FaUser } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const StudentsClassUpdate = ({ onBack }) => {
     const [formData, setFormData] = useState({
@@ -274,16 +275,13 @@ const StudentsClassUpdate = ({ onBack }) => {
 
             {/* Main Content */}
             <div className="p-4 sm:p-6 lg:p-8">
-                <div className="max-w-6xl mx-auto">
+                <div className="max-w-full mx-auto">
                     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8">
                         <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="bg-green-50 p-4 rounded-lg mb-6">
-                                <h3 className="text-lg font-semibold text-green-800 mb-2">
+                            <div className="bg-blue-50 p-4 rounded-lg mb-6">
+                                <h3 className="text-lg font-semibold text-[#1e90c9] mb-2">
                                     শিক্ষার্থীদের একাডেমিক তথ্য আপডেট:
                                 </h3>
-                                <p className="text-sm text-green-600">
-                                    একসাথে একাধিক শিক্ষার্থীর ক্লাস, সেকশন এবং সেশন আপডেট করুন
-                                </p>
                             </div>
 
                             {/* Current Academic Information */}
@@ -297,7 +295,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                         name="currentClass"
                                         value={formData.currentClass}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.currentClass ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         disabled={loading}
@@ -323,7 +321,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                         name="batch"
                                         value={formData.batch}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     >
                                         <option value="">ব্যাচ নির্বাচন করুন</option>
@@ -344,7 +342,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                         name="section"
                                         value={formData.section}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     >
                                         <option value="">সেকশন নির্বাচন করুন</option>
@@ -365,7 +363,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                         name="activeSession"
                                         value={formData.activeSession}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     >
                                         <option value="">সেশন নির্বাচন করুন</option>
@@ -389,7 +387,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                         name="monthlyFeeFrom"
                                         value={formData.monthlyFeeFrom}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     />
                                 </div>
@@ -425,7 +423,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                             name="migrateTo"
                                             value={formData.migrateTo}
                                             onChange={handleChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                             disabled={loading}
                                         >
                                             <option value="">মাইগ্রেশন টাইপ নির্বাচন করুন</option>
@@ -445,7 +443,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                                 name="nextSession"
                                                 value={formData.nextSession}
                                                 onChange={handleChange}
-                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                                 disabled={loading}
                                             >
                                                 <option value="">সেশন নির্বাচন করুন</option>
@@ -465,7 +463,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                                 name="nextClass"
                                                 value={formData.nextClass}
                                                 onChange={handleChange}
-                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                                 disabled={loading}
                                             >
                                                 <option value="">ক্লাস নির্বাচন করুন</option>
@@ -485,7 +483,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                                 name="nextBatch"
                                                 value={formData.nextBatch}
                                                 onChange={handleChange}
-                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                                 disabled={loading}
                                             >
                                                 <option value="">ব্যাচ নির্বাচন করুন</option>
@@ -505,7 +503,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                                 name="nextSection"
                                                 value={formData.nextSection}
                                                 onChange={handleChange}
-                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                                 disabled={loading}
                                             >
                                                 <option value="">সেকশন নির্বাচন করুন</option>
@@ -536,7 +534,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                         <button
                                             type="button"
                                             onClick={selectAllStudents}
-                                            className="text-sm text-green-600 hover:text-green-800 font-medium"
+                                            className="text-sm text-[#1e90c9] font-medium"
                                         >
                                             {selectedStudents.length === classStudents.length ? 
                                                 'সব নির্বাচন করুন' : 'সব নির্বাচন করুন'
@@ -630,10 +628,10 @@ const StudentsClassUpdate = ({ onBack }) => {
                                 >
                                     বাতিল করুন
                                 </button>
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading || selectedStudents.length === 0}
-                                    className="inline-flex items-center gap-2 px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md"
                                 >
                                     {loading ? (
                                         <>
@@ -642,20 +640,20 @@ const StudentsClassUpdate = ({ onBack }) => {
                                         </>
                                     ) : (
                                         <>
-                                            <FaSync className="text-sm" />
+                                            <FaSync className="text-sm mr-2" />
                                             {selectedStudents.length} জন শিক্ষার্থী আপডেট করুন
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
 
                         {/* Help Text */}
-                        <div className="mt-6 p-4 bg-green-50 rounded-lg border border-green-200">
-                            <h3 className="text-sm font-medium text-green-800 mb-1">
+                        <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                            <h3 className="text-sm font-medium text-[#1e90c9] mb-1">
                                 ক্লাস আপডেট সম্পর্কে:
                             </h3>
-                            <ul className="text-xs text-green-600 space-y-1">
+                            <ul className="text-xs text-[#1e90c9] space-y-1">
                                 <li>• একসাথে একাধিক শিক্ষার্থীর একাডেমিক তথ্য আপডেট করতে পারবেন</li>
                                 <li>• মাইগ্রেশন ফিচার ব্যবহার করে পরবর্তী সেশনের জন্য প্রস্তুত করতে পারবেন</li>
                                 <li>• Monthly Fee From তারিখ সেট করলে ফি ক্যালকুলেশন সেই তারিখ থেকে শুরু হবে</li>

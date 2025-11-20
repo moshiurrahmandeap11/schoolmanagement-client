@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaImage, FaSave } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance, { baseImageURL } from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddStudentImage = ({ onBack }) => {
@@ -188,12 +189,9 @@ const AddStudentImage = ({ onBack }) => {
                     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8">
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="bg-blue-50 p-4 rounded-lg mb-6">
-                                <h3 className="text-lg font-semibold text-blue-800 mb-2">
+                                <h3 className="text-lg font-semibold text-[#1e90c9] mb-2">
                                     শিক্ষার্থীর ইমেজ আপলোড:
                                 </h3>
-                                <p className="text-sm text-blue-600">
-                                    শিক্ষার্থী নির্বাচন করুন এবং নতুন ইমেজ আপলোড করুন
-                                </p>
                             </div>
 
                             {/* Student Selection */}
@@ -204,7 +202,7 @@ const AddStudentImage = ({ onBack }) => {
                                 <select
                                     value={selectedStudent}
                                     onChange={handleStudentChange}
-                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                         errors.student ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                     }`}
                                     disabled={loading || fetchingStudents}
@@ -288,7 +286,7 @@ const AddStudentImage = ({ onBack }) => {
 
                                 {/* Upload Area */}
                                 <div className={`border-2 border-dashed rounded-lg p-6 text-center transition-all ${
-                                    errors.image ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-blue-400'
+                                    errors.image ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-[#1e90c9]'
                                 }`}>
                                     <input
                                         type="file"
@@ -347,10 +345,10 @@ const AddStudentImage = ({ onBack }) => {
                                 >
                                     বাতিল করুন
                                 </button>
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading || !selectedStudent}
-                                    className="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-md"
                                 >
                                     {loading ? (
                                         <>
@@ -359,20 +357,20 @@ const AddStudentImage = ({ onBack }) => {
                                         </>
                                     ) : (
                                         <>
-                                            <FaSave className="text-sm" />
+                                            <FaSave className="text-sm mr-2" />
                                             ইমেজ সংরক্ষণ করুন
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
 
                         {/* Help Text */}
                         <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                            <h3 className="text-sm font-medium text-blue-800 mb-1">
+                            <h3 className="text-sm font-medium text-[#1e90c9] mb-1">
                                 ইমেজ আপলোড সম্পর্কে:
                             </h3>
-                            <ul className="text-xs text-blue-600 space-y-1">
+                            <ul className="text-xs text-[#1e90c9] space-y-1">
                                 <li>• শুধুমাত্র ইমেজ ফাইল (JPEG, PNG) আপলোড করুন</li>
                                 <li>• ফাইলের সাইজ 5MB এর কম হতে হবে</li>
                                 <li>• রেকমেন্ডেড সাইজ: 300x300 পিক্সেল</li>

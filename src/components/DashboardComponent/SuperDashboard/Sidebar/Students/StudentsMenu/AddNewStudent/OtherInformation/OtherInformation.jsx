@@ -8,7 +8,7 @@ const OtherSettings = ({ formData, onChange }) => {
                     name="sendAdmissionSMS"
                     checked={formData.sendAdmissionSMS}
                     onChange={onChange}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-[#1e90c9] cursor-pointer"
                     id="sendAdmissionSMS"
                 />
                 <label htmlFor="sendAdmissionSMS" className="ml-2 text-sm text-gray-700 cursor-pointer">
@@ -39,7 +39,7 @@ const OtherSettings = ({ formData, onChange }) => {
                     name="sendAttendanceSMS"
                     checked={formData.sendAttendanceSMS}
                     onChange={onChange}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-[#1e90c9] cursor-pointer"
                     id="sendAttendanceSMS"
                 />
                 <label htmlFor="sendAttendanceSMS" className="ml-2 text-sm text-gray-700 cursor-pointer">

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 
@@ -152,7 +153,6 @@ const SendInstantMessage = () => {
                 {/* Header */}
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold text-gray-900">তাৎক্ষণিক বার্তা পাঠান</h1>
-                    <p className="text-gray-600 mt-2">একসাথে একাধিক নম্বরে SMS বার্তা পাঠান</p>
                 </div>
 
                 {/* Tabs */}
@@ -163,7 +163,7 @@ const SendInstantMessage = () => {
                                 onClick={() => setActiveTab('send')}
                                 className={`py-2 px-1 border-b-2 font-medium text-sm ${
                                     activeTab === 'send'
-                                        ? 'border-blue-500 text-blue-600'
+                                        ? 'border-[#1e90c9] text-[#1e90c9]'
                                         : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                                 }`}
                             >
@@ -173,7 +173,7 @@ const SendInstantMessage = () => {
                                 onClick={() => setActiveTab('history')}
                                 className={`py-2 px-1 border-b-2 font-medium text-sm ${
                                     activeTab === 'history'
-                                        ? 'border-blue-500 text-blue-600'
+                                        ? 'border-[#1e90c9] text-[#1e90c9]'
                                         : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                                 }`}
                             >
@@ -183,7 +183,7 @@ const SendInstantMessage = () => {
                                 onClick={() => setActiveTab('statistics')}
                                 className={`py-2 px-1 border-b-2 font-medium text-sm ${
                                     activeTab === 'statistics'
-                                        ? 'border-blue-500 text-blue-600'
+                                        ? 'border-[#1e90c9] text-[#1e90c9]'
                                         : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                                 }`}
                             >
@@ -221,7 +221,7 @@ const SendInstantMessage = () => {
                                     onChange={handlePhoneNumbersChange}
                                     placeholder="ফোন নম্বর কমা (,) দিয়ে আলাদা করুন। উদাহরণ: 01712345678, 01812345678, 01912345678"
                                     rows="3"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                     required
                                 />
                                 <p className="text-xs text-gray-500 mt-1">
@@ -246,13 +246,13 @@ const SendInstantMessage = () => {
                             </div>
 
                             {/* Submit Button */}
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={sending}
                                 className={`w-full py-3 rounded-lg font-medium text-white transition-colors duration-200 flex items-center justify-center space-x-2 ${
                                     sending
                                         ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+                                        : 'bg-[#1e90c9] focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:ring-offset-2'
                                 }`}
                             >
                                 {sending ? (
@@ -268,7 +268,7 @@ const SendInstantMessage = () => {
                                         <span>Send Message</span>
                                     </>
                                 )}
-                            </button>
+                            </MainButton>
                         </form>
                     </div>
                 )}
@@ -280,7 +280,7 @@ const SendInstantMessage = () => {
                         
                         {loading ? (
                             <div className="flex justify-center items-center py-12">
-                                <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                                <div className="w-8 h-8 border-4 border-[#1e90c9] border-t-transparent rounded-full animate-spin"></div>
                                 <span className="ml-3 text-gray-600">ডেটা লোড হচ্ছে...</span>
                             </div>
                         ) : sentMessages.length === 0 ? (

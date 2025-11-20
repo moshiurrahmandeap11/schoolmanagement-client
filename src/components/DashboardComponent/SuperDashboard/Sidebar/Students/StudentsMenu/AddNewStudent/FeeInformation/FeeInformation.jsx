@@ -11,7 +11,7 @@ const FeeInformation = ({ formData, onChange }) => {
                     name="admissionFee"
                     value={formData.admissionFee}
                     onChange={onChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                     placeholder="0"
                     min="0"
                 />
@@ -27,7 +27,7 @@ const FeeInformation = ({ formData, onChange }) => {
                     name="monthlyFee"
                     value={formData.monthlyFee}
                     onChange={onChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                     placeholder="0"
                     min="0"
                 />
@@ -43,7 +43,7 @@ const FeeInformation = ({ formData, onChange }) => {
                     name="previousDues"
                     value={formData.previousDues}
                     onChange={onChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                     placeholder="0"
                     min="0"
                 />
@@ -59,7 +59,7 @@ const FeeInformation = ({ formData, onChange }) => {
                     name="sessionFee"
                     value={formData.sessionFee}
                     onChange={onChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                     placeholder="0"
                     min="0"
                 />
@@ -75,7 +75,7 @@ const FeeInformation = ({ formData, onChange }) => {
                     name="boardingFee"
                     value={formData.boardingFee}
                     onChange={onChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                     placeholder="0"
                     min="0"
                 />
@@ -91,7 +91,7 @@ const FeeInformation = ({ formData, onChange }) => {
                     name="otherFee"
                     value={formData.otherFee}
                     onChange={onChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                     placeholder="0"
                     min="0"
                 />
@@ -107,7 +107,7 @@ const FeeInformation = ({ formData, onChange }) => {
                     name="transportFee"
                     value={formData.transportFee}
                     onChange={onChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                     placeholder="0"
                     min="0"
                 />
@@ -123,7 +123,7 @@ const FeeInformation = ({ formData, onChange }) => {
                     name="residenceFee"
                     value={formData.residenceFee}
                     onChange={onChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                     placeholder="0"
                     min="0"
                 />

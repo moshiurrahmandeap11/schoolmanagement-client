@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaCalendarAlt, FaIdCard, FaMoneyBillWave, FaSearch, FaUser } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const CollectFee = ({ onBack }) => {
     const [searchData, setSearchData] = useState({
@@ -415,10 +416,9 @@ const CollectFee = ({ onBack }) => {
                             )}
 
                             <div className="flex justify-end">
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={searching}
-                                    className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {searching ? (
                                         <>
@@ -427,11 +427,11 @@ const CollectFee = ({ onBack }) => {
                                         </>
                                     ) : (
                                         <>
-                                            <FaSearch className="text-sm" />
+                                            <FaSearch className="text-sm mr-2" />
                                             অনুসন্ধান
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
                     </div>

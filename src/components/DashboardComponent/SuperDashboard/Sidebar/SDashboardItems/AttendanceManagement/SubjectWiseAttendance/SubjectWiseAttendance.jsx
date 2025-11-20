@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const SubjectWiseAttendance = ({ onBack }) => {
@@ -149,19 +151,16 @@ const SubjectWiseAttendance = ({ onBack }) => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4">
+                    <div className="px-6 py-4">
                         <div className="flex items-center justify-between">
                             <div>
-                                <h1 className="text-2xl font-bold text-white">
+                                <h1 className="text-2xl font-bold">
                                     বিষয়ভিত্তিক হাজিরা
                                 </h1>
-                                <p className="text-blue-100 text-sm mt-1">
-                                    বিষয়ভিত্তিক হাজিরা রেকর্ড তৈরি করুন
-                                </p>
                             </div>
                             <button
                                 onClick={onBack}
-                                className="px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-white transition-colors duration-200 font-medium"
+                                className="px-4 py-2 bg-white text-[#1e90c9] rounded-lg hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-white transition-colors duration-200 font-medium"
                             >
                                 পিছনে যান
                             </button>
@@ -171,9 +170,7 @@ const SubjectWiseAttendance = ({ onBack }) => {
                     {/* Form */}
                     <form onSubmit={handleSubmit} className="p-6">
                         {loading ? (
-                            <div className="flex justify-center items-center py-12">
-                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-                            </div>
+                            <Loader></Loader>
                         ) : (
                             <div className="space-y-6">
                                 {/* তারিখ */}
@@ -186,7 +183,7 @@ const SubjectWiseAttendance = ({ onBack }) => {
                                         name="date"
                                         value={formData.date}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     />
                                 </div>
@@ -200,7 +197,7 @@ const SubjectWiseAttendance = ({ onBack }) => {
                                         name="sessionId"
                                         value={formData.sessionId}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     >
                                         <option value="">সেশন নির্বাচন করুন</option>
@@ -221,7 +218,7 @@ const SubjectWiseAttendance = ({ onBack }) => {
                                         name="classId"
                                         value={formData.classId}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     >
                                         <option value="">ক্লাস নির্বাচন করুন</option>
@@ -242,7 +239,7 @@ const SubjectWiseAttendance = ({ onBack }) => {
                                         name="subjectId"
                                         value={formData.subjectId}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     >
                                         <option value="">বিষয় নির্বাচন করুন</option>
@@ -256,7 +253,7 @@ const SubjectWiseAttendance = ({ onBack }) => {
 
                                 {/* Summary Card */}
                                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                                    <h3 className="text-lg font-semibold text-blue-800 mb-3">সারসংক্ষেপ</h3>
+                                    <h3 className="text-lg font-semibold text-[#1e90c9] mb-3">সারসংক্ষেপ</h3>
                                     <div className="grid grid-cols-1 gap-3 text-sm">
                                         <div className="flex justify-between">
                                             <span className="text-gray-600">তারিখ:</span>
@@ -295,10 +292,10 @@ const SubjectWiseAttendance = ({ onBack }) => {
                                     >
                                         রিসেট করুন
                                     </button>
-                                    <button
+                                    <MainButton
                                         type="submit"
                                         disabled={saving}
-                                        className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="rounded-md"
                                     >
                                         {saving ? (
                                             <span className="flex items-center justify-center">
@@ -311,7 +308,7 @@ const SubjectWiseAttendance = ({ onBack }) => {
                                         ) : (
                                             'হাজিরা সংরক্ষণ করুন'
                                         )}
-                                    </button>
+                                    </MainButton>
                                 </div>
                             </div>
                         )}

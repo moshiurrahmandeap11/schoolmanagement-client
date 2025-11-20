@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { FaCalendarAlt, FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import Loader from '../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewSession from './AddNewSession/AddNewSession';
 
 
@@ -111,18 +113,17 @@ const Session = () => {
             <div className="sticky top-0 z-10 bg-white border-b border-gray-200 shadow-sm">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 sm:p-6">
                     <div className="flex items-center gap-3">
-                        <FaCalendarAlt className="text-2xl text-blue-600" />
+                        <FaCalendarAlt className="text-2xl text-[#1e90c9]" />
                         <h1 className="text-2xl font-bold text-gray-800">
                             সেশন ব্যবস্থাপনা
                         </h1>
                     </div>
-                    <button
+                    <MainButton
                         onClick={() => setShowAddForm(true)}
-                        className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2"
                     >
-                        <FaPlus className="text-sm" />
+                        <FaPlus className="text-sm mr-2" />
                         নতুন সেশন
-                    </button>
+                    </MainButton>
                 </div>
             </div>
 
@@ -140,20 +141,16 @@ const Session = () => {
                         </div>
 
                         {loading ? (
-                            <div className="p-8 text-center">
-                                <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                                <p className="mt-2 text-gray-600">লোড হচ্ছে...</p>
-                            </div>
+                            <Loader />
                         ) : sessions.length === 0 ? (
                             <div className="p-8 text-center">
                                 <FaCalendarAlt className="mx-auto text-4xl text-gray-400 mb-3" />
                                 <p className="text-gray-600">কোন সেশন পাওয়া যায়নি</p>
-                                <button
+                                <MainButton
                                     onClick={() => setShowAddForm(true)}
-                                    className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
                                 >
                                     প্রথম সেশন তৈরি করুন
-                                </button>
+                                </MainButton>
                             </div>
                         ) : (
                             <div className="overflow-x-auto">
@@ -189,7 +186,7 @@ const Session = () => {
                                                             {session.name}
                                                         </span>
                                                         {session.isCurrent && (
-                                                            <span className="ml-2 px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">
+                                                            <span className="ml-2 px-2 py-1 text-xs bg-[#1e90c9] text-white rounded-full">
                                                                 বর্তমান
                                                             </span>
                                                         )}
@@ -207,7 +204,7 @@ const Session = () => {
                                                 <td className="px-6 py-4 whitespace-nowrap">
                                                     <span className={`px-2 py-1 text-xs rounded-full ${
                                                         session.isActive 
-                                                            ? 'bg-green-100 text-green-800' 
+                                                            ? 'bg-[#1e90c9] text-white' 
                                                             : 'bg-red-100 text-red-800'
                                                     }`}>
                                                         {session.isActive ? 'সক্রিয়' : 'নিষ্ক্রিয়'}

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaCalendarAlt, FaSave } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddNewSession = ({ onBack, onSuccess, editData }) => {
@@ -176,7 +177,7 @@ const AddNewSession = ({ onBack, onSuccess, editData }) => {
                     <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg border border-gray-200">
                         <div className="p-6 border-b border-gray-200">
                             <div className="flex items-center gap-3">
-                                <FaCalendarAlt className="text-xl text-blue-600" />
+                                <FaCalendarAlt className="text-xl text-[#1e90c9]" />
                                 <h2 className="text-lg font-semibold text-gray-800">
                                     সেশন তথ্য
                                 </h2>
@@ -194,7 +195,7 @@ const AddNewSession = ({ onBack, onSuccess, editData }) => {
                                     name="name"
                                     value={formData.name}
                                     onChange={handleInputChange}
-                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                                         errors.name ? 'border-red-500' : 'border-gray-300'
                                     }`}
                                     placeholder="যেমন: ২০২৪-২০২৫"
@@ -209,7 +210,7 @@ const AddNewSession = ({ onBack, onSuccess, editData }) => {
                                     name="isCurrent"
                                     checked={formData.isCurrent}
                                     onChange={handleInputChange}
-                                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                                    className="w-4 h-4 text-[#1e90c9] bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
                                 />
                                 <label className="ml-2 text-sm text-gray-700">
                                     বর্তমান সেশন হিসেবে সেট করুন
@@ -228,7 +229,7 @@ const AddNewSession = ({ onBack, onSuccess, editData }) => {
                                         name="startDate"
                                         value={formData.startDate}
                                         onChange={handleInputChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                                             errors.startDate ? 'border-red-500' : 'border-gray-300'
                                         }`}
                                     />
@@ -245,7 +246,7 @@ const AddNewSession = ({ onBack, onSuccess, editData }) => {
                                         name="endDate"
                                         value={formData.endDate}
                                         onChange={handleInputChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                                             errors.endDate ? 'border-red-500' : 'border-gray-300'
                                         }`}
                                     />
@@ -263,7 +264,7 @@ const AddNewSession = ({ onBack, onSuccess, editData }) => {
                                     name="totalWorkingDays"
                                     value={formData.totalWorkingDays}
                                     onChange={handleInputChange}
-                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors ${
                                         errors.totalWorkingDays ? 'border-red-500' : 'border-gray-300'
                                     }`}
                                     placeholder="কার্যদিবস সংখ্যা"
@@ -285,14 +286,14 @@ const AddNewSession = ({ onBack, onSuccess, editData }) => {
                             >
                                 বাতিল করুন
                             </button>
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={loading}
-                                className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="rounded-md"
                             >
-                                <FaSave className="text-sm" />
+                                <FaSave className="text-sm mr-2" />
                                 {loading ? 'সেভ হচ্ছে...' : (editData ? 'সেশন আপডেট করুন' : 'সেশন তৈরি করুন')}
-                            </button>
+                            </MainButton>
                         </div>
                     </form>
                 </div>
