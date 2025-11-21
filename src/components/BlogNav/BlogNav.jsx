@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router';
 import axiosInstance, { baseImageURL } from '../../hooks/axiosInstance/axiosInstance';
 import Loader from '../sharedItems/Loader/Loader';
@@ -6,6 +6,7 @@ import MainButton from '../sharedItems/Mainbutton/Mainbutton';
 
 const BlogNav = () => {
     const [blogs, setBlogs] = useState([]);
+    const [allBlogs, setAllBlogs] = useState([]); // সব ব্লগ store করতে
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
@@ -15,19 +16,20 @@ const BlogNav = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetchBlogs();
-    }, [currentPage, searchTerm]);
+        fetchAllBlogs();
+    }, []);
 
-    const fetchBlogs = async () => {
+    // সব ব্লগ একবারে fetch করুন
+    const fetchAllBlogs = async () => {
         try {
             setLoading(true);
-            const response = await axiosInstance.get(
-                `/blogs?page=${currentPage}&limit=${blogsPerPage}&search=${searchTerm}`
-            );
+            const response = await axiosInstance.get('/blogs');
             
             if (response.data.success) {
-                setBlogs(response.data.data || []);
-                setTotalPages(response.data.pagination?.totalPages || 1);
+                const allBlogsData = response.data.data || [];
+                setAllBlogs(allBlogsData);
+                setBlogs(allBlogsData); // প্রথমে সব ব্লগ show করবে
+                setTotalPages(Math.ceil(allBlogsData.length / blogsPerPage));
             } else {
                 setError('Failed to load blogs');
             }
@@ -38,6 +40,44 @@ const BlogNav = () => {
             setLoading(false);
         }
     };
+
+    // Search functionality - front-end এ filter
+    const filteredBlogs = useMemo(() => {
+        if (!searchTerm.trim()) {
+            return allBlogs; // search term empty হলে সব ব্লগ return করবে
+        }
+
+        const searchLower = searchTerm.toLowerCase().trim();
+        
+        return allBlogs.filter(blog => {
+            const title = blog.title?.toLowerCase() || '';
+            const body = blog.body?.toLowerCase() || '';
+            const author = blog.author?.toLowerCase() || '';
+            
+            // Title, body, author - যেকোনো field এ search করবে
+            return title.includes(searchLower) || 
+                   body.includes(searchLower) || 
+                   author.includes(searchLower);
+        });
+    }, [allBlogs, searchTerm]);
+
+    // Pagination logic
+    const paginatedBlogs = useMemo(() => {
+        const startIndex = (currentPage - 1) * blogsPerPage;
+        const endIndex = startIndex + blogsPerPage;
+        return filteredBlogs.slice(startIndex, endIndex);
+    }, [filteredBlogs, currentPage, blogsPerPage]);
+
+    // Total pages update যখন search result change হয়
+    useEffect(() => {
+        const newTotalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
+        setTotalPages(newTotalPages || 1);
+        
+        // যদি current page, total pages এর বেশি হয়ে যায়, তাহলে 1st page এ নিয়ে যাবে
+        if (currentPage > newTotalPages) {
+            setCurrentPage(1);
+        }
+    }, [filteredBlogs.length, currentPage, blogsPerPage]);
 
     const handleBlogClick = (blogId) => {
         navigate(`/blog-details/${blogId}`);
@@ -81,7 +121,7 @@ const BlogNav = () => {
 
     const handleSearch = (e) => {
         setSearchTerm(e.target.value);
-        setCurrentPage(1);
+        setCurrentPage(1); // Search করলে 1st page এ নিয়ে যাবে
     };
 
     const renderPagination = () => {
@@ -193,7 +233,7 @@ const BlogNav = () => {
                     <h3 className="text-lg font-semibold text-gray-800 mb-2">লোড করতে সমস্যা</h3>
                     <p className="text-red-500 text-sm mb-4">{error}</p>
                     <button
-                        onClick={fetchBlogs}
+                        onClick={fetchAllBlogs}
                         className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-medium text-sm"
                     >
                         আবার চেষ্টা করুন
@@ -205,7 +245,7 @@ const BlogNav = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 py-8">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header Section */}
                 <div className="text-center mb-8">
                     <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
@@ -218,7 +258,7 @@ const BlogNav = () => {
                     <div className="relative">
                         <input
                             type="text"
-                            placeholder="ব্লগ খুঁজুন..."
+                            placeholder="ব্লগ খুঁজুন (শিরোনাম, কন্টেন্ট, লেখক)..."
                             value={searchTerm}
                             onChange={handleSearch}
                             className="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
@@ -231,16 +271,24 @@ const BlogNav = () => {
                     </div>
                 </div>
 
-                {/* Blogs Count */}
+                {/* Search Results Info */}
                 <div className="mb-6 text-center">
                     <p className="text-gray-600 text-sm">
-                        মোট {blogs.length} টি ব্লগ পাওয়া গেছে
+                        {searchTerm ? (
+                            <>
+                                "<span className="font-semibold text-blue-600">{searchTerm}</span>" - 
+                                {filteredBlogs.length === 0 ? ' কোন রেজাল্ট পাওয়া যায়নি' : 
+                                 ` ${filteredBlogs.length} টি ব্লগ পাওয়া গেছে`}
+                            </>
+                        ) : (
+                            `মোট ${allBlogs.length} টি ব্লগ পাওয়া গেছে`
+                        )}
                     </p>
                 </div>
 
                 {/* Blogs Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                    {blogs.map((blog) => (
+                    {paginatedBlogs.map((blog) => (
                         <div 
                             key={blog._id}
                             className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105 cursor-pointer group"
@@ -291,18 +339,30 @@ const BlogNav = () => {
                 </div>
 
                 {/* No Blogs Message */}
-                {blogs.length === 0 && !loading && (
+                {paginatedBlogs.length === 0 && !loading && (
                     <div className="text-center py-12">
-                        <div className="text-6xl mb-4">📝</div>
-                        <h3 className="text-xl font-semibold text-gray-800 mb-2">কোন ব্লগ পাওয়া যায়নি</h3>
+                        <div className="text-6xl mb-4">🔍</div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                            {searchTerm ? 'কোন ব্লগ পাওয়া যায়নি' : 'কোন ব্লগ পাওয়া যায়নি'}
+                        </h3>
                         <p className="text-gray-600">
-                            {searchTerm ? 'আপনার সার্চের সাথে মিলছে না' : 'শীঘ্রই নতুন ব্লগ আপলোড করা হবে'}
+                            {searchTerm 
+                                ? 'আপনার সার্চের সাথে মিলছে না, অন্য কীওয়ার্ড দিয়ে চেষ্টা করুন' 
+                                : 'শীঘ্রই নতুন ব্লগ আপলোড করা হবে'}
                         </p>
+                        {searchTerm && (
+                            <button
+                                onClick={() => setSearchTerm('')}
+                                className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium text-sm"
+                            >
+                                সব ব্লগ দেখুন
+                            </button>
+                        )}
                     </div>
                 )}
 
                 {/* Pagination */}
-                {totalPages > 1 && (
+                {totalPages > 1 && filteredBlogs.length > 0 && (
                     <div className="flex justify-center">
                         <div className="flex flex-wrap gap-2 justify-center items-center">
                             {renderPagination()}
@@ -310,42 +370,6 @@ const BlogNav = () => {
                     </div>
                 )}
             </div>
-
-            {/* Custom Styles */}
-            <style jsx>{`
-                .line-clamp-2 {
-                    display: -webkit-box;
-                    -webkit-line-clamp: 2;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                }
-                
-                .line-clamp-3 {
-                    display: -webkit-box;
-                    -webkit-line-clamp: 3;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                }
-
-                /* Responsive design improvements */
-                @media (max-width: 640px) {
-                    .grid-cols-1 {
-                        grid-template-columns: 1fr;
-                    }
-                }
-
-                @media (min-width: 641px) and (max-width: 1024px) {
-                    .grid-cols-2 {
-                        grid-template-columns: repeat(2, 1fr);
-                    }
-                }
-
-                @media (min-width: 1025px) {
-                    .grid-cols-3 {
-                        grid-template-columns: repeat(3, 1fr);
-                    }
-                }
-            `}</style>
         </div>
     );
 };

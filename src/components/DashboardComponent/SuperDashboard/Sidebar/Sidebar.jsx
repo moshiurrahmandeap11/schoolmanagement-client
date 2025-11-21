@@ -131,11 +131,7 @@ import {
   TbTools,
 } from "react-icons/tb";
 
-// ====================================
-// এখানে শুধু মেনু যোগ করুন - খুবই সহজ!
-// ====================================
 const MENU_ITEMS = [
-  // সিম্পল মেনু (সাবমেনু ছাড়া)
   {
     id: "home",
     label: "হোম পৃষ্ঠা",
@@ -238,7 +234,7 @@ const MENU_ITEMS = [
       { id: "assign-fines", label: "Assign Fines", icon: BsCoin },
       { id: "fee-settings", label: "ফি সেটিং", icon: RiSettings3Line },
       { id: "collect-fee", label: "ফি সংগ্রহ করুন", icon: MdOutlinePayments },
-      { id: "due-fee", label: "শিক্ষার্থীদের বকেয়া বেতন", icon: TbCoinTaka },
+      { id: "due-fee", label: "শিক্ষার্থীদের বকেয়া বেতন", icon: TbCoinTaka },
       { id: "collected-fee", label: "সংগ্রহীত বেতন", icon: PiMoneyLight },
       {
         id: "monthly-fee-report",
@@ -250,7 +246,7 @@ const MENU_ITEMS = [
         label: "Monthly Fee Colletion Summary",
         icon: LuFileOutput,
       },
-      { id: "due-fee-sms", label: "বকেয়া বেতনের এস এম এস", icon: FaSms },
+      { id: "due-fee-sms", label: "বকেয়া বেতনের এস এম এস", icon: FaSms },
       { id: "deleted-fees", label: "Deleted Fees", icon: TbReceiptRefund },
       {
         id: "monthly-fee-report-2",
@@ -274,7 +270,7 @@ const MENU_ITEMS = [
       { id: "tabular-result", label: "টেবুলার রেজাল্ট", icon: TbTableAlias },
       {
         id: "income-expense-report",
-        label: "আয়ের - ব্যয়ের রিপোর্ট",
+        label: "আয়ের - ব্যয়ের রিপোর্ট",
         icon: TbReportMoney,
       },
       {
@@ -284,7 +280,7 @@ const MENU_ITEMS = [
       },
       {
         id: "monthly-income-expense",
-        label: "মাসিক আয়-ব্যয়ের রিপোর্ট",
+        label: "মাসিক আয়-ব্যয়ের রিপোর্ট",
         icon: TbCalendarStats,
       },
       { id: "print-student", label: "শিক্ষার্থী", icon: PiStudent },
@@ -333,7 +329,7 @@ const MENU_ITEMS = [
     color: "blue",
     submenu: [
       { id: "bank-accounts", label: "একাউন্ট", icon: RiSettings3Line },
-      { id: "income-sources", label: "আয়ের উৎস", icon: TbReportMoney },
+      { id: "income-sources", label: "আয়ের উৎস", icon: TbReportMoney },
       { id: "expense-category", label: "Expense Category", icon: TbCategory },
       { id: "expense-item", label: "Expense Item", icon: TbList },
       { id: "due-expense-field", label: "Due Expense Field", icon: TbReport },
@@ -342,9 +338,9 @@ const MENU_ITEMS = [
         label: "লেনদেনের ধরন",
         icon: TbArrowsExchange2,
       },
-      { id: "incomes", label: "আয়", icon: TbReportMoney },
+      { id: "incomes", label: "আয়", icon: TbReportMoney },
       { id: "due-expenses", label: "Due Expenses", icon: TbReport },
-      { id: "expenses", label: "ব্যয়", icon: TbReportMoney },
+      { id: "expenses", label: "ব্যয়", icon: TbReportMoney },
       { id: "balance-sheet", label: "ব্যাল্যান্স শিট", icon: LuFileOutput },
       { id: "transactions", label: "লেনদেনসমূহ", icon: TbArrowsExchange2 },
     ],
@@ -466,7 +462,7 @@ const MENU_ITEMS = [
     color: "blue",
     submenu: [
       { id: "exam-hall", label: "পরীক্ষার হল", icon: RiLayoutLine },
-      { id: "exam-timetable", label: "পরীক্ষার সময় কাল", icon: TbClock },
+      { id: "exam-timetable", label: "পরীক্ষার সময় কাল", icon: TbClock },
       { id: "seat-arrangement", label: "আসন পরিকল্পনা", icon: PiTableBold },
       {
         id: "seat-download",
@@ -490,7 +486,7 @@ const MENU_ITEMS = [
       },
       {
         id: "subject-wise-marks",
-        label: "বিষয়ভিত্তিক নাম্বার যোগ",
+        label: "বিষয়ভিত্তিক নাম্বার যোগ",
         icon: PiUploadBold,
       },
       {
@@ -521,7 +517,7 @@ const MENU_ITEMS = [
       { id: "sms-balance", label: "এস এম এস ব্যালেন্স", icon: TbCoinTaka },
       { id: "sms-list", label: "এস এম এস", icon: FaSms },
       { id: "send-sms", label: "এস এম এস পাঠান", icon: RiSendPlaneLine },
-      { id: "due-fees-sms", label: "বকেয়া বেতনের এস এম এস", icon: FaSms },
+      { id: "due-fees-sms", label: "বকেয়া বেতনের এস এম এস", icon: FaSms },
       { id: "sms-report", label: "এস এম এস রিপোর্ট", icon: TbReport },
     ],
   },
@@ -614,7 +610,7 @@ const MENU_ITEMS = [
   },
   {
     id: "institute-media",
-    label: "প্রতিষ্ঠানের মিডিয়া",
+    label: "প্রতিষ্ঠানের মিডিয়া",
     icon: FaPhotoVideo,
     color: "blue",
     submenu: [
@@ -651,7 +647,7 @@ const MENU_ITEMS = [
     icon: PiChalkboardTeacherBold,
     color: "blue",
     submenu: [
-      { id: "tutorial", label: "টিউটোরিয়াল", icon: PiChalkboardTeacherBold },
+      { id: "tutorial", label: "টিউটোরিয়াল", icon: PiChalkboardTeacherBold },
     ],
   },
 
@@ -661,7 +657,6 @@ const MENU_ITEMS = [
   { id: "school-history", label: "School History", icon: FaSchool },
   { id: "speech", label: "Speech", icon: FaQuoteRight },
 
-  // সাবমেনু সহ মেনু
   {
     id: "student",
     label: "Manage Student",
@@ -723,49 +718,72 @@ const MENU_ITEMS = [
     ],
   },
 
-  // আরও সিম্পল মেনু
   { id: "blogs", label: "Blogs", icon: Notebook },
   { id: "managing", label: "Committee", icon: MdManageHistory },
   { id: "settings", label: "Settings", icon: FaCog },
 ];
 
-// ====================================
-// মূল কম্পোনেন্ট
-// ====================================
 const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen }) => {
-  const [openSubmenus, setOpenSubmenus] = useState(() => {
-    const saved = localStorage.getItem("sidebar_open_submenus");
-    return saved ? JSON.parse(saved) : {};
-  });
-
+  const [openSubmenuId, setOpenSubmenuId] = useState(null);
   const sidebarRef = useRef(null);
   const navRef = useRef(null);
+
+  // এটা মূল ফিক্স → current scroll position ধরে রাখবে
+  const scrollPosition = useRef(0);
 
   useEffect(() => {
     localStorage.setItem("sidebar_active_menu", activeMenu);
   }, [activeMenu]);
 
   useEffect(() => {
-    localStorage.setItem("sidebar_open_submenus", JSON.stringify(openSubmenus));
-  }, [openSubmenus]);
+    const saved = localStorage.getItem("sidebar_open_submenu");
+    if (saved && saved !== "null") setOpenSubmenuId(saved);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("sidebar_open_submenu", openSubmenuId || "");
+  }, [openSubmenuId]);
+
+  // Scroll position সেভ করা
+  const saveScrollPosition = () => {
+    if (navRef.current) {
+      scrollPosition.current = navRef.current.scrollTop;
+    }
+  };
+
+  // Scroll position রিস্টোর করা (layout shift এর পরেও কাজ করবে)
+  const restoreScrollPosition = () => {
+    if (navRef.current) {
+      navRef.current.scrollTop = scrollPosition.current;
+    }
+  };
 
   const handleMenuClick = (e, menuId) => {
     e.preventDefault();
     e.stopPropagation();
+
+    saveScrollPosition();           // ← সেভ করলাম
     setActiveMenu(menuId);
-    if (window.innerWidth < 1024) setIsSidebarOpen(false);
+
+    // layout effect দিয়ে রিস্টোর (রি-রেন্ডারের পরেও কাজ করবে)
+    setTimeout(restoreScrollPosition, 0);
+
+    if (window.innerWidth < 1024) {
+      setIsSidebarOpen(false);
+    }
   };
 
   const toggleSubmenu = (e, menuId) => {
     e.preventDefault();
     e.stopPropagation();
-    setOpenSubmenus(prev => ({
-      ...prev,
-      [menuId]: !prev[menuId]
-    }));
+
+    saveScrollPosition();           // ← এখানেও সেভ
+    setOpenSubmenuId(prev => (prev === menuId ? null : menuId));
+
+    setTimeout(restoreScrollPosition, 0);
   };
 
-  // Mobile click outside close
+  // Mobile outside click
   useEffect(() => {
     const handleOutside = (e) => {
       if (window.innerWidth < 1024 && isSidebarOpen && sidebarRef.current && !sidebarRef.current.contains(e.target)) {
@@ -784,16 +802,16 @@ const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen })
       <button
         onClick={(e) => handleMenuClick(e, item.id)}
         className={`
-          w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-left
+          w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-left font-medium
           ${isActive 
-            ? "bg-blue-50 text-[#1e90c9] border-r-4 border-[#1e90c9] font-semibold shadow-sm" 
-            : "text-gray-600 hover:bg-gray-50"
+            ? "bg-blue-50 text-[#1e90c9] border-r-4 border-[#1e90c9] shadow-sm" 
+            : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
           }
           ${isSubmenuItem ? "text-sm" : ""}
         `}
-        style={{ paddingLeft: isSubmenuItem ? `${28 + level * 16}px` : "16px" }}
+        style={{ paddingLeft: isSubmenuItem ? `${32 + level * 20}px` : "16px" }}
       >
-        {Icon && <Icon className={`text-xl ${isActive ? "text-[#1e90c9]" : "text-gray-500"}`} />}
+        {Icon && <Icon className={`text-lg ${isActive ? "text-[#1e90c9]" : "text-gray-500"}`} />}
         <span className="flex-1">{item.label}</span>
       </button>
     );
@@ -801,31 +819,32 @@ const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen })
 
   const MenuWithSubmenu = ({ item, level = 0 }) => {
     const Icon = item.icon;
-    const isOpen = !!openSubmenus[item.id];
+    const isOpen = openSubmenuId === item.id;
     const hasActiveChild = item.submenu?.some(sub => 
       sub.submenu ? sub.submenu.some(s => s.id === activeMenu) : sub.id === activeMenu
     );
+    const isParentActive =  hasActiveChild || isOpen;
 
     return (
       <div className="mt-1">
         <button
           onClick={(e) => toggleSubmenu(e, item.id)}
           className={`
-            w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg transition-all
-            ${(hasActiveChild || isOpen) ? "bg-blue-50 text-[#1e90c9] font-semibold" : "text-gray-600 hover:bg-gray-50"}
+            w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg transition-all font-medium
+            ${isParentActive ? "bg-blue-50 text-[#1e90c9]" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"}
           `}
           style={{ paddingLeft: `${16 + level * 16}px` }}
         >
           <div className="flex items-center gap-3">
-            {Icon && <Icon className={`text-xl ${(hasActiveChild || isOpen) ? "text-[#1e90c9]" : "text-gray-500"}`} />}
+            {Icon && <Icon className={`text-lg ${isParentActive ? "text-[#1e90c9]" : "text-gray-500"}`} />}
             <span>{item.label}</span>
           </div>
-          <CgChevronDown className={`transition-transform duration-200 ${isOpen ? "rotate-0" : "-rotate-90"}`} />
+          <CgChevronDown className={`text-lg transition-transform duration-300 ${isOpen ? "rotate-0" : "-rotate-90"}`} />
         </button>
 
-        {isOpen && (
-          <div className="mt-1 space-y-1 animate-in fade-in slide-in-from-top-2 duration-200">
-            {item.submenu.map(sub => 
+        <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-96" : "max-h-0"}`}>
+          <div className="py-1 space-y-1">
+            {item.submenu?.map(sub => 
               sub.submenu ? (
                 <MenuWithSubmenu key={sub.id} item={sub} level={level + 1} />
               ) : (
@@ -833,7 +852,7 @@ const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen })
               )
             )}
           </div>
-        )}
+        </div>
       </div>
     );
   };
@@ -863,16 +882,11 @@ const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen })
           <h2 className="text-xl font-bold text-gray-800">সুপার ড্যাশবোর্ড</h2>
         </div>
 
-        <nav 
+        <nav
           ref={navRef}
-          className="flex-1 overflow-y-auto p-4 space-y-1 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
-          style={{ 
-            scrollBehavior: 'smooth',
-            scrollbarWidth: 'thin',
-            scrollbarColor: '#d1d5db #f3f4f6'
-          }}
+          className="flex-1 overflow-y-auto p-4 space-y-2 scrollbar-thin scrollbar-thumb-gray-300"
         >
-          {MENU_ITEMS.map(item => 
+          {MENU_ITEMS.map(item =>
             item.submenu ? (
               <MenuWithSubmenu key={item.id} item={item} />
             ) : (

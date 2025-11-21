@@ -58,7 +58,7 @@ const SchoolHistoryDetails = () => {
     });
   };
 
-  const baseImage = axiosInstance.defaults.baseURL;
+
 
   if (loading) {
     return <Loader></Loader>;
@@ -124,14 +124,14 @@ const SchoolHistoryDetails = () => {
           {historyData.image && (
             <div className="relative w-full h-80 sm:h-96 bg-gray-200">
               <img
-                src={`${baseImage}${historyData.image}`}
+                src={`${axiosInstance.defaults.baseURL}${historyData?.image}`}
                 alt={historyData.title}
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   e.target.style.display = "none";
                 }}
               />
-              <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent"></div>
+              {/* <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent"></div> */}
               <div className="absolute bottom-6 left-8">
                 <div className="flex items-center gap-2 text-white/90">
                   <FaHistory className="w-5 h-5" />

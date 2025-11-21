@@ -79,13 +79,17 @@ const AddNewStudent = ({ onBack, onSuccess, editData, mode = 'new' }) => {
     });
     const [errors, setErrors] = useState({});
     const [photoPreview, setPhotoPreview] = useState('');
+    const [isDataLoaded, setIsDataLoaded] = useState(false);
 
     useEffect(() => {
         fetchDropdownData();
-        if (editData) {
+    }, []);
+
+    useEffect(() => {
+        if (editData && classes.length > 0 && isDataLoaded) {
             populateFormData(editData);
         }
-    }, [editData]);
+    }, [editData, classes, isDataLoaded]);
 
     const fetchDropdownData = async () => {
         try {
@@ -108,21 +112,45 @@ const AddNewStudent = ({ onBack, onSuccess, editData, mode = 'new' }) => {
             if (batchesRes.data.success) setBatches(batchesRes.data.data);
             if (sessionsRes.data.success) setSessions(sessionsRes.data.data);
             if (teachersRes.data.success) setTeachers(teachersRes.data.data);
+
+            setIsDataLoaded(true);
         } catch (error) {
             console.error('Error fetching dropdown data:', error);
             showSweetAlert('error', 'ডেটা লোড করতে সমস্যা হয়েছে');
+            setIsDataLoaded(true);
         }
     };
 
     const populateFormData = (studentData) => {
+        console.log('Populating form with student data:', studentData);
+        
         // Format date for input field (YYYY-MM-DD)
         const formatDateForInput = (dateString) => {
             if (!dateString) return '';
-            const date = new Date(dateString);
-            return date.toISOString().split('T')[0];
+            try {
+                const date = new Date(dateString);
+                if (isNaN(date.getTime())) return '';
+                return date.toISOString().split('T')[0];
+            } catch (error) {
+                console.error('Error formatting date:', error);
+                return '';
+            }
         };
 
-        setFormData({
+        // Parse numeric values safely
+        const parseNumber = (value) => {
+            if (value === null || value === undefined || value === '') return '';
+            const num = Number(value);
+            return isNaN(num) ? '' : num.toString();
+        };
+
+        // Parse boolean values safely
+        const parseBoolean = (value) => {
+            if (value === null || value === undefined) return true;
+            return Boolean(value);
+        };
+
+        const newFormData = {
             // Personal Information
             studentId: studentData.studentId || '',
             smartId: studentData.smartId || '',
@@ -133,7 +161,7 @@ const AddNewStudent = ({ onBack, onSuccess, editData, mode = 'new' }) => {
             gender: studentData.gender || 'male',
             mobile: studentData.mobile || '',
             bloodGroup: studentData.bloodGroup || '',
-            photo: null, // We'll handle photo separately
+            photo: null,
             attachmentType: studentData.attachmentType || '',
 
             // Family Information
@@ -153,38 +181,45 @@ const AddNewStudent = ({ onBack, onSuccess, editData, mode = 'new' }) => {
             currentPostOffice: studentData.currentPostOffice || '',
             currentDistrict: studentData.currentDistrict || '',
             currentThana: studentData.currentThana || '',
-            sameAsPermanent: studentData.sameAsPermanent || false,
+            sameAsPermanent: parseBoolean(studentData.sameAsPermanent),
 
             // Academic Information
             classId: studentData.classId?._id || studentData.classId || '',
             batchId: studentData.batchId?._id || studentData.batchId || '',
             sectionId: studentData.sectionId?._id || studentData.sectionId || '',
             sessionId: studentData.sessionId?._id || studentData.sessionId || '',
-            classRoll: studentData.classRoll || '',
+            classRoll: parseNumber(studentData.classRoll),
             additionalNote: studentData.additionalNote || '',
             status: studentData.status || 'active',
             studentType: studentData.studentType || 'non_residential',
             mentorId: studentData.mentorId?._id || studentData.mentorId || '',
 
             // Fee Information
-            admissionFee: studentData.admissionFee || '',
-            monthlyFee: studentData.monthlyFee || '',
-            previousDues: studentData.previousDues || '',
-            sessionFee: studentData.sessionFee || '',
-            boardingFee: studentData.boardingFee || '',
-            otherFee: studentData.otherFee || '',
-            transportFee: studentData.transportFee || '',
-            residenceFee: studentData.residenceFee || '',
+            admissionFee: parseNumber(studentData.admissionFee),
+            monthlyFee: parseNumber(studentData.monthlyFee),
+            previousDues: parseNumber(studentData.previousDues),
+            sessionFee: parseNumber(studentData.sessionFee),
+            boardingFee: parseNumber(studentData.boardingFee),
+            otherFee: parseNumber(studentData.otherFee),
+            transportFee: parseNumber(studentData.transportFee),
+            residenceFee: parseNumber(studentData.residenceFee),
 
             // Other Settings
-            sendAdmissionSMS: studentData.sendAdmissionSMS || true,
-            studentSerial: studentData.studentSerial || '',
-            sendAttendanceSMS: studentData.sendAttendanceSMS || true
-        });
+            sendAdmissionSMS: parseBoolean(studentData.sendAdmissionSMS),
+            studentSerial: parseNumber(studentData.studentSerial),
+            sendAttendanceSMS: parseBoolean(studentData.sendAttendanceSMS)
+        };
+
+        console.log('Setting form data:', newFormData);
+        setFormData(newFormData);
 
         // Set photo preview if exists
         if (studentData.photo) {
-            setPhotoPreview(`${axiosInstance.defaults.baseURL}${studentData.photo}`);
+            const fullPhotoUrl = `${axiosInstance.defaults.baseURL}${studentData.photo}`;
+            console.log('Setting photo preview:', fullPhotoUrl);
+            setPhotoPreview(fullPhotoUrl);
+        } else {
+            setPhotoPreview('');
         }
     };
 
@@ -202,16 +237,17 @@ const AddNewStudent = ({ onBack, onSuccess, editData, mode = 'new' }) => {
     };
 
     const handleInputChange = (e) => {
-        const { name, value, type, checked } = e.target;
+        const { name, value, type, checked, files } = e.target;
         
         if (type === 'checkbox') {
+            const newValue = checked;
             setFormData(prev => ({
                 ...prev,
-                [name]: checked
+                [name]: newValue
             }));
 
             // Handle same as permanent address
-            if (name === 'sameAsPermanent' && checked) {
+            if (name === 'sameAsPermanent' && newValue) {
                 setFormData(prev => ({
                     ...prev,
                     currentVillage: prev.permanentVillage,
@@ -220,6 +256,8 @@ const AddNewStudent = ({ onBack, onSuccess, editData, mode = 'new' }) => {
                     currentThana: prev.permanentThana
                 }));
             }
+        } else if (type === 'file') {
+            // File input handled separately in photo component
         } else {
             setFormData(prev => ({
                 ...prev,
@@ -309,12 +347,16 @@ const AddNewStudent = ({ onBack, onSuccess, editData, mode = 'new' }) => {
             
             // Append all form data
             Object.keys(formData).forEach(key => {
-                if (key === 'photo' && formData[key]) {
-                    submitData.append(key, formData[key]);
-                } else if (formData[key] !== null && formData[key] !== '') {
+                if (key === 'photo') {
+                    if (formData[key]) {
+                        submitData.append(key, formData[key]);
+                    }
+                } else if (formData[key] !== null && formData[key] !== undefined && formData[key] !== '') {
                     submitData.append(key, formData[key]);
                 }
             });
+
+            console.log('Submitting form data:', Object.fromEntries(submitData));
 
             let response;
             if (mode === 'edit' && editData) {
@@ -377,8 +419,9 @@ const AddNewStudent = ({ onBack, onSuccess, editData, mode = 'new' }) => {
     };
 
     const handlePrint = (studentData) => {
-        // ... existing print code (same as before)
-        // Keep the existing print functionality
+        // Print functionality here
+        const printWindow = window.open('', '_blank');
+        // ... existing print code
     };
 
     const tabs = [
@@ -389,6 +432,18 @@ const AddNewStudent = ({ onBack, onSuccess, editData, mode = 'new' }) => {
         { id: 'fee', label: 'Fee Information' },
         { id: 'settings', label: 'Other Settings' }
     ];
+
+    // Show loading while data is being loaded for edit mode
+    if (mode === 'edit' && (!isDataLoaded || (editData && !formData.name))) {
+        return (
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1e90c9] mx-auto"></div>
+                    <p className="mt-4 text-gray-600">শিক্ষার্থীর তথ্য লোড হচ্ছে...</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -404,6 +459,11 @@ const AddNewStudent = ({ onBack, onSuccess, editData, mode = 'new' }) => {
                     <h1 className="text-2xl font-bold text-gray-800">
                         {mode === 'edit' ? 'শিক্ষার্থী এডিট করুন' : 'নতুন শিক্ষার্থী তৈরি করুন'}
                     </h1>
+                    {mode === 'edit' && formData.studentId && (
+                        <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+                            ID: {formData.studentId}
+                        </span>
+                    )}
                 </div>
             </div>
 

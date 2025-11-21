@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { FaArrowLeft, FaEdit, FaMoneyBill, FaPlus, FaSearch, FaTrash } from 'react-icons/fa';
+import { FaArrowLeft, FaEdit, FaMoneyBill, FaPlus, FaPrint, FaSearch, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
-import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import axiosInstance, { baseImageURL } from '../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../sharedItems/Loader/Loader';
 import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewStudent from './AddNewStudent/AddNewStudent';
@@ -71,6 +71,333 @@ const StudentsMenu = ({ onBack }) => {
             timer: 3000,
             timerProgressBar: true,
         });
+    };
+
+    const handlePrint = (student) => {
+        // Create a new window for printing
+        const printWindow = window.open('', '_blank');
+        
+        // Format the student data for printing
+        const printContent = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Student Information - ${student.name}</title>
+                <style>
+                    body {
+                        font-family: 'Arial', sans-serif;
+                        margin: 20px;
+                        color: #333;
+                        line-height: 1.6;
+                    }
+                    .header {
+                        text-align: center;
+                        border-bottom: 3px solid #1e90c9;
+                        padding-bottom: 20px;
+                        margin-bottom: 30px;
+                    }
+                    .header h1 {
+                        color: #1e90c9;
+                        margin: 0;
+                        font-size: 28px;
+                    }
+                    .header .subtitle {
+                        color: #666;
+                        font-size: 16px;
+                    }
+                    .student-info {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 30px;
+                        margin-bottom: 30px;
+                    }
+                    .section {
+                        margin-bottom: 25px;
+                    }
+                    .section-title {
+                        background: #1e90c9;
+                        color: white;
+                        padding: 10px 15px;
+                        margin: 0;
+                        border-radius: 5px;
+                        font-size: 18px;
+                    }
+                    .info-grid {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 15px;
+                        margin-top: 15px;
+                    }
+                    .info-item {
+                        margin-bottom: 10px;
+                    }
+                    .info-label {
+                        font-weight: bold;
+                        color: #555;
+                        display: block;
+                        margin-bottom: 2px;
+                    }
+                    .info-value {
+                        color: #333;
+                    }
+                    .photo-section {
+                        text-align: center;
+                        grid-column: 1 / -1;
+                    }
+                    .student-photo {
+                        max-width: 200px;
+                        max-height: 200px;
+                        border: 2px solid #ddd;
+                        border-radius: 10px;
+                    }
+                    .fees-section {
+                        background: #f8f9fa;
+                        padding: 15px;
+                        border-radius: 8px;
+                        border-left: 4px solid #1e90c9;
+                    }
+                    .fee-item {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 8px;
+                        padding-bottom: 8px;
+                        border-bottom: 1px solid #eee;
+                    }
+                    .fee-total {
+                        font-weight: bold;
+                        font-size: 18px;
+                        color: #1e90c9;
+                        border-top: 2px solid #1e90c9;
+                        padding-top: 10px;
+                        margin-top: 10px;
+                    }
+                    @media print {
+                        body { margin: 0; }
+                        .no-print { display: none; }
+                    }
+                    .footer {
+                        text-align: center;
+                        margin-top: 40px;
+                        padding-top: 20px;
+                        border-top: 2px solid #ddd;
+                        color: #666;
+                        font-size: 14px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="header">
+                    <h1>STUDENT INFORMATION</h1>
+                    <div class="subtitle">Generated on ${new Date().toLocaleDateString('en-BD')}</div>
+                </div>
+
+                <div class="student-info">
+                    <!-- Personal Information -->
+                    <div class="section">
+                        <h2 class="section-title">Personal Information</h2>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">Student ID:</span>
+                                <span class="info-value">${student.studentId || 'N/A'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Smart ID:</span>
+                                <span class="info-value">${student.smartId || 'N/A'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Dakhela Number:</span>
+                                <span class="info-value">${student.dakhelaNumber || 'N/A'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Full Name:</span>
+                                <span class="info-value">${student.name || 'N/A'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Date of Birth:</span>
+                                <span class="info-value">${student.dob ? new Date(student.dob).toLocaleDateString('en-BD') : 'N/A'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Gender:</span>
+                                <span class="info-value">${student.gender || 'N/A'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Mobile:</span>
+                                <span class="info-value">${student.mobile || 'N/A'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Blood Group:</span>
+                                <span class="info-value">${student.bloodGroup || 'N/A'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Status:</span>
+                                <span class="info-value">${getStatusText(student.status)}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Family Information -->
+                    <div class="section">
+                        <h2 class="section-title">Family Information</h2>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">Father's Name:</span>
+                                <span class="info-value">${student.fatherName || 'N/A'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Mother's Name:</span>
+                                <span class="info-value">${student.motherName || 'N/A'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Guardian's Name:</span>
+                                <span class="info-value">${student.guardianName || 'N/A'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Guardian Mobile:</span>
+                                <span class="info-value">${student.guardianMobile || 'N/A'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Relation:</span>
+                                <span class="info-value">${student.relation || 'N/A'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Guardian NID:</span>
+                                <span class="info-value">${student.guardianNid || 'N/A'}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Academic Information -->
+                    <div class="section">
+                        <h2 class="section-title">Academic Information</h2>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">Class:</span>
+                                <span class="info-value">${student.class?.name || 'N/A'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Section:</span>
+                                <span class="info-value">${student.section?.name || 'N/A'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Batch:</span>
+                                <span class="info-value">${student.batch?.name || 'N/A'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Session:</span>
+                                <span class="info-value">${student.session?.name || 'N/A'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Class Roll:</span>
+                                <span class="info-value">${student.classRoll || 'N/A'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Student Type:</span>
+                                <span class="info-value">${student.studentType || 'N/A'}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photo Section -->
+                    <div class="section photo-section">
+                        <h2 class="section-title">Student Photo</h2>
+                        ${student.photo ? 
+                            `<img src="${baseImageURL}${student.photo}" alt="${student.name}" class="student-photo" onerror="this.style.display='none'" />` : 
+                            '<p>No photo available</p>'
+                        }
+                    </div>
+
+                    <!-- Fee Information -->
+                    <div class="section">
+                        <h2 class="section-title">Fee Information</h2>
+                        <div class="fees-section">
+                            <div class="fee-item">
+                                <span>Admission Fee:</span>
+                                <span>${formatCurrency(student.admissionFee || 0)}</span>
+                            </div>
+                            <div class="fee-item">
+                                <span>Monthly Fee:</span>
+                                <span>${formatCurrency(student.monthlyFee || 0)}</span>
+                            </div>
+                            <div class="fee-item">
+                                <span>Session Fee:</span>
+                                <span>${formatCurrency(student.sessionFee || 0)}</span>
+                            </div>
+                            <div class="fee-item">
+                                <span>Boarding Fee:</span>
+                                <span>${formatCurrency(student.boardingFee || 0)}</span>
+                            </div>
+                            <div class="fee-item">
+                                <span>Transport Fee:</span>
+                                <span>${formatCurrency(student.transportFee || 0)}</span>
+                            </div>
+                            <div class="fee-item">
+                                <span>Residence Fee:</span>
+                                <span>${formatCurrency(student.residenceFee || 0)}</span>
+                            </div>
+                            <div class="fee-item">
+                                <span>Other Fee:</span>
+                                <span>${formatCurrency(student.otherFee || 0)}</span>
+                            </div>
+                            <div class="fee-item">
+                                <span>Previous Dues:</span>
+                                <span>${formatCurrency(student.previousDues || 0)}</span>
+                            </div>
+                            <div class="fee-item fee-total">
+                                <span>TOTAL FEES:</span>
+                                <span>${formatCurrency(student.totalFees || 0)}</span>
+                            </div>
+                            <div class="fee-item">
+                                <span>Paid Fees:</span>
+                                <span>${formatCurrency(student.paidFees || 0)}</span>
+                            </div>
+                            <div class="fee-item fee-total">
+                                <span>DUE FEES:</span>
+                                <span>${formatCurrency(student.dueFees || 0)}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Address Information -->
+                    <div class="section">
+                        <h2 class="section-title">Address Information</h2>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">Permanent Address:</span>
+                                <span class="info-value">
+                                    ${[student.permanentVillage, student.permanentPostOffice, student.permanentThana, student.permanentDistrict]
+                                        .filter(Boolean).join(', ') || 'N/A'}
+                                </span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Current Address:</span>
+                                <span class="info-value">
+                                    ${student.sameAsPermanent ? 'Same as Permanent Address' : 
+                                        [student.currentVillage, student.currentPostOffice, student.currentThana, student.currentDistrict]
+                                            .filter(Boolean).join(', ') || 'N/A'}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <p>This document was generated automatically from the Student Management System</p>
+                    <p>© ${new Date().getFullYear()} - All rights reserved</p>
+                </div>
+
+                <script>
+                    // Auto print when window loads
+                    window.onload = function() {
+                        window.print();
+                        // setTimeout(() => window.close(), 1000);
+                    };
+                </script>
+            </body>
+            </html>
+        `;
+
+        printWindow.document.write(printContent);
+        printWindow.document.close();
     };
 
     const handleDelete = async (studentId, studentName) => {
@@ -348,7 +675,7 @@ const StudentsMenu = ({ onBack }) => {
                                                     <div className="flex items-center gap-3">
                                                         {student.photo ? (
                                                             <img 
-                                                                src={`${axiosInstance.defaults.baseURL}${student.photo}`} 
+                                                                src={`${baseImageURL}${student.photo}`} 
                                                                 alt={student.name}
                                                                 className="w-8 h-8 rounded-full object-cover"
                                                                 onError={(e) => {
@@ -414,7 +741,7 @@ const StudentsMenu = ({ onBack }) => {
                                                 <td className="px-4 py-3">
                                                     {student.photo ? (
                                                         <img 
-                                                            src={`${axiosInstance.defaults.baseURL}${student.photo}`} 
+                                                            src={`${baseImageURL}${student?.photo}`} 
                                                             alt={student.name}
                                                             className="w-10 h-10 rounded object-cover border"
                                                             onError={(e) => {
@@ -429,6 +756,14 @@ const StudentsMenu = ({ onBack }) => {
                                                 </td>
                                                 <td className="px-4 py-3">
                                                     <div className="flex gap-2 justify-center">
+                                                        {/* Print Button */}
+                                                        <button
+                                                            onClick={() => handlePrint(student)}
+                                                            className="p-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
+                                                            title="প্রিন্ট করুন"
+                                                        >
+                                                            <FaPrint className="text-xs" />
+                                                        </button>
                                                         <button
                                                             onClick={() => handleEdit(student)}
                                                             className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"

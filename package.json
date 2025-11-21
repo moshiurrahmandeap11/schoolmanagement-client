@@ -14,7 +14,7 @@
     "@tinymce/tinymce-react": "^6.3.0",
     "axios": "^1.11.0",
     "firebase": "^12.2.1",
-    "jspdf": "^3.0.3",
+    "jspdf": "^3.0.4",
     "jspdf-autotable": "^5.0.2",
     "lucide-react": "^0.548.0",
     "react": "^19.1.1",

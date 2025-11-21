@@ -3,7 +3,7 @@ import { GrContact } from 'react-icons/gr';
 import { useNavigate } from 'react-router';
 import Loader from '../../../components/sharedItems/Loader/Loader';
 import MainButton from '../../../components/sharedItems/Mainbutton/Mainbutton';
-import axiosInstance from '../../../hooks/axiosInstance/axiosInstance';
+import axiosInstance, { baseImageURL } from '../../../hooks/axiosInstance/axiosInstance';
 
 const PrincipalSpeech = () => {
     const [speech, setSpeech] = useState(null);
@@ -54,9 +54,7 @@ const PrincipalSpeech = () => {
         }
     };
 
-    const imageUrl = axiosInstance.defaults.baseURL;
-    const imageLink = speech?.image;
-    const image = imageUrl + imageLink;
+
 
     if (loading) {
         return <Loader></Loader>;
@@ -96,7 +94,7 @@ const PrincipalSpeech = () => {
                         <div className="md:w-1/3 flex justify-center md:justify-end order-2 md:order-2">
                             <div className="w-48 h-48 rounded-sm overflow-hidden border border-gray-200 shadow-md">
                                 <img 
-                                    src={image} 
+                                    src={`${baseImageURL}${speech?.image}`} 
                                     alt="প্রধান শিক্ষক"
                                     className="w-full h-full object-cover"
                                 />

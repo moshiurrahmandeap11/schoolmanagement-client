@@ -3,7 +3,7 @@ import { GrContact, GrFormPrevious } from 'react-icons/gr';
 import { useNavigate, useParams } from 'react-router';
 import Loader from '../../../../components/sharedItems/Loader/Loader';
 import MainButton from '../../../../components/sharedItems/Mainbutton/Mainbutton';
-import axiosInstance from '../../../../hooks/axiosInstance/axiosInstance';
+import axiosInstance, { baseImageURL } from '../../../../hooks/axiosInstance/axiosInstance';
 
 const PresidentDetails = () => {
     const { id } = useParams();
@@ -45,9 +45,7 @@ const PresidentDetails = () => {
         navigate('/');
     };
 
-    const imageUrl = axiosInstance.defaults.baseURL;
-    const imageLink = speech?.image;
-    const image = imageUrl + imageLink;
+
 
     if (loading) {
         return <Loader></Loader>
@@ -182,7 +180,7 @@ const PresidentDetails = () => {
                                 <div className="w-full xl:w-1/3 flex justify-center order-2 xl:order-1">
                                     <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 xl:w-72 xl:h-72 rounded-lg overflow-hidden border border-gray-200 shadow-lg bg-gray-100">
                                         <img 
-                                            src={image} 
+                                            src={`${baseImageURL}${speech?.image}`} 
                                             alt="সভাপতি"
                                             className="w-full h-full object-cover"
                                             onError={(e) => {
