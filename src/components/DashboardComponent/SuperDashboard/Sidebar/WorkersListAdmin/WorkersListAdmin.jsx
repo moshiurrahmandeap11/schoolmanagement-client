@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axiosInstance, { baseImageURL } from '../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 
 const WorkersListAdmin = () => {
     const [workers, setWorkers] = useState([]);
@@ -313,24 +314,20 @@ const WorkersListAdmin = () => {
     const bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
     return (
-        <div className="max-w-7xl mx-auto p-4 sm:p-6">
+        <div className="max-w-full mx-auto p-4 sm:p-6">
             {/* Header */}
             <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6">
                 <div>
                     <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
                         Workers Management
                     </h1>
-                    <p className="text-gray-600">
-                        Manage all workers information and details
-                    </p>
                 </div>
-                <button
+                <MainButton
                     onClick={() => setShowForm(true)}
-                    className="mt-4 lg:mt-0 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2"
+                    className="rounded-md"
                 >
-                    <span>+</span>
                     Add New Worker
-                </button>
+                </MainButton>
             </div>
 
             {/* Message Display */}
@@ -346,7 +343,7 @@ const WorkersListAdmin = () => {
 
             {/* Worker Form Modal */}
             {showForm && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+                <div className="fixed inset-0 bg-black/40 mt-10 bg-opacity-50 z-50 flex items-center justify-center p-4">
                     <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
                         <div className="p-6 border-b border-gray-200">
                             <h2 className="text-xl font-bold text-gray-800">
@@ -373,7 +370,7 @@ const WorkersListAdmin = () => {
                                         name="name"
                                         value={formData.name}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         required
                                     />
                                 </div>
@@ -388,7 +385,7 @@ const WorkersListAdmin = () => {
                                         name="mobile"
                                         value={formData.mobile}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         placeholder="01XXXXXXXXX"
                                         required
                                     />
@@ -404,7 +401,7 @@ const WorkersListAdmin = () => {
                                         name="nidNumber"
                                         value={formData.nidNumber}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     />
                                 </div>
 
@@ -418,7 +415,7 @@ const WorkersListAdmin = () => {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     />
                                 </div>
 
@@ -431,7 +428,7 @@ const WorkersListAdmin = () => {
                                         name="gender"
                                         value={formData.gender}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     >
                                         <option value="">Select Gender</option>
                                         <option value="Male">Male</option>
@@ -450,7 +447,7 @@ const WorkersListAdmin = () => {
                                         name="dateOfBirth"
                                         value={formData.dateOfBirth}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     />
                                 </div>
 
@@ -463,7 +460,7 @@ const WorkersListAdmin = () => {
                                         name="bloodGroup"
                                         value={formData.bloodGroup}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     >
                                         <option value="">Select Blood Group</option>
                                         {bloodGroups.map(group => (
@@ -488,7 +485,7 @@ const WorkersListAdmin = () => {
                                         name="designation"
                                         value={formData.designation}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         required
                                     >
                                         <option value="">Select Designation</option>
@@ -509,7 +506,7 @@ const WorkersListAdmin = () => {
                                         name="department"
                                         value={formData.department}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     >
                                         <option value="">Select Department</option>
                                         {departments.map(dept => (
@@ -529,7 +526,7 @@ const WorkersListAdmin = () => {
                                         name="workShift"
                                         value={formData.workShift}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     >
                                         <option value="">Select Work Shift</option>
                                         {workShifts.map(shift => (
@@ -552,7 +549,7 @@ const WorkersListAdmin = () => {
                                         onChange={handleInputChange}
                                         min="0"
                                         max="50"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     />
                                 </div>
 
@@ -567,7 +564,7 @@ const WorkersListAdmin = () => {
                                         value={formData.salary}
                                         onChange={handleInputChange}
                                         min="0"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     />
                                 </div>
 
@@ -581,7 +578,7 @@ const WorkersListAdmin = () => {
                                         name="joiningDate"
                                         value={formData.joiningDate}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     />
                                 </div>
 
@@ -603,7 +600,7 @@ const WorkersListAdmin = () => {
                                                 type="file"
                                                 accept="image/*"
                                                 onChange={handleFileSelect}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                             />
                                             <p className="text-xs text-gray-500 mt-1">
                                                 Supported formats: JPEG, PNG, GIF (Max 2MB)
@@ -631,7 +628,7 @@ const WorkersListAdmin = () => {
                                         value={formData.responsibilities}
                                         onChange={handleInputChange}
                                         rows="3"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         placeholder="Describe worker responsibilities..."
                                     />
                                 </div>
@@ -646,20 +643,20 @@ const WorkersListAdmin = () => {
                                         value={formData.address}
                                         onChange={handleInputChange}
                                         rows="2"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     />
                                 </div>
                             </div>
 
                             {/* Form Actions */}
                             <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-200">
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="flex-1 px-4 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 transition-colors font-medium"
+                                    className="flex-1 rounded-md flex items-center justify-center"
                                 >
                                     {loading ? 'Saving...' : (editingWorker ? 'Update Worker' : 'Add Worker')}
-                                </button>
+                                </MainButton>
                                 <button
                                     type="button"
                                     onClick={resetForm}

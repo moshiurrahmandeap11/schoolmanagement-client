@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const MonthlyReportsStudents = () => {
     const [formData, setFormData] = useState({
@@ -376,13 +377,10 @@ const MonthlyReportsStudents = () => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-green-600 to-green-800 px-6 py-4">
-                        <h1 className="text-2xl font-bold text-white text-center">
+                    <div className="px-6 py-4">
+                        <h1 className="text-2xl font-bold ">
                             মাসিক শিক্ষার্থী রিপোর্ট
                         </h1>
-                        <p className="text-green-100 text-center mt-1">
-                            মাসিক উপস্থিতি এবং কর্মক্ষমতা রিপোর্ট ডাউনলোড করুন
-                        </p>
                     </div>
 
                     {/* Search Form */}
@@ -397,7 +395,7 @@ const MonthlyReportsStudents = () => {
                                     name="month"
                                     value={formData.month}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     required
                                 >
                                     <option value="">মাস নির্বাচন করুন</option>
@@ -418,7 +416,7 @@ const MonthlyReportsStudents = () => {
                                     name="year"
                                     value={formData.year}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     required
                                 >
                                     {years.map(year => (
@@ -438,7 +436,7 @@ const MonthlyReportsStudents = () => {
                                     name="class"
                                     value={formData.class}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     <option value="">সব ক্লাস</option>
                                     {classes.map(cls => (
@@ -458,7 +456,7 @@ const MonthlyReportsStudents = () => {
                                     name="section"
                                     value={formData.section}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     <option value="">সব সেকশন</option>
                                     {sections.map(section => (
@@ -486,13 +484,13 @@ const MonthlyReportsStudents = () => {
 
                         {/* Download Button */}
                         <div className="flex justify-center">
-                            <button
+                            <MainButton
                                 onClick={handleDownloadReport}
                                 disabled={loading || !formData.month || !formData.year || students.length === 0}
                                 className={`px-8 py-3 rounded-lg font-medium text-white transition-colors duration-200 flex items-center space-x-2 ${
                                     loading || !formData.month || !formData.year || students.length === 0
                                         ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
+                                        : 'bg-[#1e90c9]'
                                 }`}
                             >
                                 {loading ? (
@@ -508,7 +506,7 @@ const MonthlyReportsStudents = () => {
                                         <span>রিপোর্ট ডাউনলোড করুন</span>
                                     </>
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
 
                         {error && (
@@ -519,12 +517,12 @@ const MonthlyReportsStudents = () => {
 
                         {/* Report Preview Info */}
                         {reportData && (
-                            <div className="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+                            <div className="mt-6 bg-blue-50  rounded-lg p-4">
                                 <div className="text-center">
-                                    <svg className="w-12 h-12 text-green-500 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-12 h-12 text-[#1e90c9] mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
-                                    <h3 className="text-lg font-medium text-green-800 mb-2">
+                                    <h3 className="text-lg font-medium text-[#1e90c9] mb-2">
                                         রিপোর্ট সফলভাবে ডাউনলোড হয়েছে
                                     </h3>
                                     <p className="text-green-700">
@@ -538,9 +536,9 @@ const MonthlyReportsStudents = () => {
                         )}
 
                         {/* Instructions */}
-                        <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                            <h4 className="text-sm font-medium text-yellow-800 mb-2">নির্দেশনা:</h4>
-                            <ul className="text-sm text-yellow-700 list-disc list-inside space-y-1">
+                        <div className="mt-6 bg-blue-50 rounded-lg p-4">
+                            <h4 className="text-sm font-medium text-[#1e90c9] mb-2">নির্দেশনা:</h4>
+                            <ul className="text-sm text-[#1e90c9] list-disc list-inside space-y-1">
                                 <li>রিপোর্ট ডাউনলোড করতে মাস এবং বছর নির্বাচন করুন</li>
                                 <li>নির্দিষ্ট ক্লাস বা সেকশনের রিপোর্ট পেতে ফিল্টার ব্যবহার করুন</li>
                                 <li>রিপোর্ট CSV ফরম্যাটে ডাউনলোড হবে</li>

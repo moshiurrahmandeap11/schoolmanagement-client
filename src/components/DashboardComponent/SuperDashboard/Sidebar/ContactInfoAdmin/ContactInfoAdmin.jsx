@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import Loader from '../../../../../components/sharedItems/Loader/Loader';
 import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 
 const ContactInfoAdmin = () => {
     const [contactData, setContactData] = useState(null);
@@ -118,7 +119,7 @@ const ContactInfoAdmin = () => {
 
     return (
         <div className="p-6 bg-gray-50 min-h-screen">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-full mx-auto">
                 {/* Header */}
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold text-gray-800 mb-2">যোগাযোগ তথ্য এডমিন</h1>
@@ -131,14 +132,14 @@ const ContactInfoAdmin = () => {
                         {/* Address */}
                         <div className="md:col-span-2">
                             <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
-                                <MapPin className="w-4 h-4 text-yellow-500" />
+                                <MapPin className="w-4 h-4 text-[#1e90c9]" />
                                 ঠিকানা *
                             </label>
                             <textarea
                                 value={formData.address}
                                 onChange={(e) => handleInputChange('address', e.target.value)}
                                 placeholder="বিদ্যালয়ের সম্পূর্ণ ঠিকানা লিখুন"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent resize-none"
                                 rows="3"
                             />
                         </div>
@@ -146,7 +147,7 @@ const ContactInfoAdmin = () => {
                         {/* Phone 1 */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
-                                <Phone className="w-4 h-4 text-yellow-500" />
+                                <Phone className="w-4 h-4 text-[#1e90c9]" />
                                 ফোন নম্বর ১ *
                             </label>
                             <input
@@ -154,14 +155,14 @@ const ContactInfoAdmin = () => {
                                 value={formData.phone1}
                                 onChange={(e) => handleInputChange('phone1', e.target.value)}
                                 placeholder="+8801309-103968"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                             />
                         </div>
 
                         {/* Phone 2 */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
-                                <Phone className="w-4 h-4 text-yellow-500" />
+                                <Phone className="w-4 h-4 text-[#1e90c9]" />
                                 ফোন নম্বর ২
                             </label>
                             <input
@@ -169,14 +170,14 @@ const ContactInfoAdmin = () => {
                                 value={formData.phone2}
                                 onChange={(e) => handleInputChange('phone2', e.target.value)}
                                 placeholder="+8801715-631556"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                             />
                         </div>
 
                         {/* Email */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
-                                <Mail className="w-4 h-4 text-yellow-500" />
+                                <Mail className="w-4 h-4 text-[#1e90c9]" />
                                 ইমেইল *
                             </label>
                             <input
@@ -184,7 +185,7 @@ const ContactInfoAdmin = () => {
                                 value={formData.email}
                                 onChange={(e) => handleInputChange('email', e.target.value)}
                                 placeholder="suchiparahighschool@gmail.com"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                             />
                         </div>
 
@@ -199,14 +200,14 @@ const ContactInfoAdmin = () => {
                                 value={formData.eiin}
                                 onChange={(e) => handleInputChange('eiin', e.target.value)}
                                 placeholder="103968"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                             />
                         </div>
 
                         {/* Google Map Link */}
                         <div className="md:col-span-2">
                             <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
-                                <Map className="w-4 h-4 text-yellow-500" />
+                                <Map className="w-4 h-4 text-[#1e90c9]" />
                                 গুগল ম্যাপ লিঙ্ক
                             </label>
                             <input
@@ -214,7 +215,7 @@ const ContactInfoAdmin = () => {
                                 value={formData.googleMapLink}
                                 onChange={(e) => handleInputChange('googleMapLink', e.target.value)}
                                 placeholder="https://maps.google.com/?q=23.8103,90.4125"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                             />
                             <p className="text-xs text-gray-500 mt-1">
                                 গুগল ম্যাপের embed URL বা শেয়ার লিঙ্ক দিন (ঐচ্ছিক)
@@ -224,10 +225,10 @@ const ContactInfoAdmin = () => {
 
                     {/* Save/Update Button */}
                     <div className="flex justify-end">
-                        <button
+                        <MainButton
                             onClick={contactData ? handleUpdate : handleSave}
                             disabled={saving}
-                            className="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                            className="rounded-md"
                         >
                             {saving ? (
                                 <>
@@ -239,7 +240,7 @@ const ContactInfoAdmin = () => {
                                     {contactData ? 'আপডেট করুন' : 'সেভ করুন'}
                                 </>
                             )}
-                        </button>
+                        </MainButton>
                     </div>
 
                     {/* Preview Section */}
@@ -248,32 +249,32 @@ const ContactInfoAdmin = () => {
                             <h3 className="text-xl font-bold text-gray-800 mb-4">বর্তমান তথ্য প্রিভিউ</h3>
                             
                             <div className="bg-gray-50 rounded-lg p-6">
-                                <h4 className="text-lg font-semibold text-gray-700 mb-4 border-b-2 border-yellow-400 pb-2 inline-block">
+                                <h4 className="text-lg font-semibold text-gray-700 mb-4  pb-2 inline-block">
                                     যোগাযোগ
                                 </h4>
                                 <ul className="space-y-4 text-sm">
                                     <li className="flex items-start">
-                                        <MapPin className="w-4 h-4 text-yellow-400 mr-3 mt-1 shrink-0" />
+                                        <MapPin className="w-4 h-4 text-[#1e90c9] mr-3 mt-1 shrink-0" />
                                         <span>{contactData.address}</span>
                                     </li>
                                     <li className="flex items-start">
-                                        <Phone className="w-4 h-4 text-yellow-400 mr-3 mt-1 shrink-0" />
+                                        <Phone className="w-4 h-4 text-[#1e90c9] mr-3 mt-1 shrink-0" />
                                         <span>
                                             {contactData.phone1}
                                             {contactData.phone2 && `, ${contactData.phone2}`}
                                         </span>
                                     </li>
                                     <li className="flex items-start">
-                                        <Mail className="w-4 h-4 text-yellow-400 mr-3 mt-1 shrink-0" />
+                                        <Mail className="w-4 h-4 text-[#1e90c9] mr-3 mt-1 shrink-0" />
                                         <span>{contactData.email}</span>
                                     </li>
                                     <li className="flex items-start">
-                                        <Star className="w-4 h-4 text-yellow-400 mr-3 mt-1 shrink-0" />
+                                        <Star className="w-4 h-4 text-[#1e90c9] mr-3 mt-1 shrink-0" />
                                         <span>EIIN- {contactData.eiin}</span>
                                     </li>
                                     {contactData.googleMapLink && (
                                         <li className="flex items-start">
-                                            <Map className="w-4 h-4 text-yellow-400 mr-3 mt-1 shrink-0" />
+                                            <Map className="w-4 h-4 text-[#1e90c9] mr-3 mt-1 shrink-0" />
                                             <div>
                                                 <span className="block">গুগল ম্যাপ লিঙ্ক:</span>
                                                 <a 

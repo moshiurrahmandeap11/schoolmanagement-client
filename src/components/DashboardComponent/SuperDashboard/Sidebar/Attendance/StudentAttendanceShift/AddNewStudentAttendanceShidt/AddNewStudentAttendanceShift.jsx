@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddNewStudentAttendanceShift = ({ onBack, onSuccess }) => {
@@ -130,8 +131,8 @@ const AddNewStudentAttendanceShift = ({ onBack, onSuccess }) => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4 flex justify-between items-center">
-                        <h1 className="text-2xl font-bold text-white">
+                    <div className="px-6 py-4 flex justify-between items-center">
+                        <h1 className="text-2xl font-bold">
                             নতুন স্টুডেন্ট অ্যাটেনডেন্স শিফট
                         </h1>
                         <button
@@ -168,7 +169,7 @@ const AddNewStudentAttendanceShift = ({ onBack, onSuccess }) => {
                                     value={formData.shiftName}
                                     onChange={handleInputChange}
                                     placeholder="শিফটের নাম লিখুন"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     required
                                 />
                             </div>
@@ -184,7 +185,7 @@ const AddNewStudentAttendanceShift = ({ onBack, onSuccess }) => {
                                         name="class"
                                         value={formData.class}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                         required
                                     >
                                         <option value="">ক্লাস নির্বাচন করুন</option>
@@ -205,7 +206,7 @@ const AddNewStudentAttendanceShift = ({ onBack, onSuccess }) => {
                                         name="section"
                                         value={formData.section}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     >
                                         <option value="">সেকশন নির্বাচন করুন</option>
                                         {sections.map(section => (
@@ -229,7 +230,7 @@ const AddNewStudentAttendanceShift = ({ onBack, onSuccess }) => {
                                         name="studentEntryTime"
                                         value={formData.studentEntryTime}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                         required
                                     />
                                 </div>
@@ -244,7 +245,7 @@ const AddNewStudentAttendanceShift = ({ onBack, onSuccess }) => {
                                         name="studentExitTime"
                                         value={formData.studentExitTime}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                         required
                                     />
                                 </div>
@@ -261,7 +262,7 @@ const AddNewStudentAttendanceShift = ({ onBack, onSuccess }) => {
                                         name="countLateAfter"
                                         value={formData.countLateAfter}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     >
                                         <option value="">মিনিট নির্বাচন করুন</option>
                                         {lateAfterOptions.map(minute => (
@@ -281,7 +282,7 @@ const AddNewStudentAttendanceShift = ({ onBack, onSuccess }) => {
                                         name="countEarlyExitBefore"
                                         value={formData.countEarlyExitBefore}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     >
                                         <option value="">মিনিট নির্বাচন করুন</option>
                                         {earlyExitOptions.map(minute => (
@@ -303,7 +304,7 @@ const AddNewStudentAttendanceShift = ({ onBack, onSuccess }) => {
                                     name="timezone"
                                     value={formData.timezone}
                                     readOnly
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 />
                                 <p className="text-sm text-gray-500 mt-1">ডিফল্ট টাইমজোন: Asia/Dhaka</p>
                             </div>
@@ -319,7 +320,7 @@ const AddNewStudentAttendanceShift = ({ onBack, onSuccess }) => {
                                         name="sendSms"
                                         checked={formData.sendSms}
                                         onChange={handleInputChange}
-                                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                        className="w-4 h-4 text-[#1e90c9] border-gray-300 rounded focus:ring-blue-500"
                                     />
                                     <label className="ml-2 text-sm font-medium text-gray-700">
                                         Send SMS
@@ -337,7 +338,7 @@ const AddNewStudentAttendanceShift = ({ onBack, onSuccess }) => {
                                                 name="smsType"
                                                 value={formData.smsType}
                                                 onChange={handleInputChange}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                             >
                                                 <option value="">SMS টাইপ নির্বাচন করুন</option>
                                                 {smsTypes.map(type => (
@@ -357,7 +358,7 @@ const AddNewStudentAttendanceShift = ({ onBack, onSuccess }) => {
                                                 name="absentAfter"
                                                 value={formData.absentAfter}
                                                 onChange={handleInputChange}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                             >
                                                 <option value="">ঘন্টা নির্বাচন করুন</option>
                                                 {absentAfterOptions.map(hour => (
@@ -373,13 +374,13 @@ const AddNewStudentAttendanceShift = ({ onBack, onSuccess }) => {
 
                             {/* Buttons */}
                             <div className="flex justify-center pt-6">
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
                                     className={`w-full md:w-auto px-8 py-3 rounded-lg font-medium text-white transition-colors duration-200 ${
                                         loading
                                             ? 'bg-gray-400 cursor-not-allowed'
-                                            : 'bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
+                                            : 'bg-[#1e90c9]'
                                     }`}
                                 >
                                     {loading ? (
@@ -390,7 +391,7 @@ const AddNewStudentAttendanceShift = ({ onBack, onSuccess }) => {
                                     ) : (
                                         'সংরক্ষণ করুন'
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
                     </div>

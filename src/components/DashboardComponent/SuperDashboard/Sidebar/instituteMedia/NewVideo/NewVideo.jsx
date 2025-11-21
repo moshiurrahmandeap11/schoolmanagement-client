@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const NewVideo = ({ video, onClose }) => {
@@ -244,13 +245,10 @@ const NewVideo = ({ video, onClose }) => {
             <div className="max-w-4xl mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-linear-to-r from-blue-600 to-blue-800 px-6 py-4">
-                        <h1 className="text-2xl font-bold text-white">
+                    <div className="px-6 py-4">
+                        <h1 className="text-2xl font-bold">
                             {video ? 'ভিডিও এডিট করুন' : 'নতুন ভিডিও যোগ করুন'}
                         </h1>
-                        <p className="text-blue-100 text-sm mt-1">
-                            {video ? 'ভিডিওর তথ্য আপডেট করুন' : 'নতুন ভিডিও তৈরি করুন'}
-                        </p>
                     </div>
 
                     {/* Form */}
@@ -266,7 +264,7 @@ const NewVideo = ({ video, onClose }) => {
                                 value={formData.videoTitle}
                                 onChange={handleInputChange}
                                 placeholder="ভিডিওর শিরোনাম লিখুন"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                 required
                                 maxLength={200}
                             />
@@ -292,7 +290,7 @@ const NewVideo = ({ video, onClose }) => {
                                     value={formData.videoLink}
                                     onChange={handleInputChange}
                                     placeholder="https://www.youtube.com/watch?v=xxxxxxxxxxx"
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                     required
                                 />
                                 <p className="text-xs text-gray-500 mt-1">
@@ -311,7 +309,7 @@ const NewVideo = ({ video, onClose }) => {
                                     value={formData.videoId}
                                     onChange={handleInputChange}
                                     placeholder="xxxxxxxxxxx"
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                     required
                                 />
                                 <p className="text-xs text-gray-500 mt-1">
@@ -329,7 +327,7 @@ const NewVideo = ({ video, onClose }) => {
                                 <select
                                     value={formData.playlistId}
                                     onChange={handlePlaylistChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                     required
                                     disabled={playlistsLoading}
                                 >
@@ -353,7 +351,7 @@ const NewVideo = ({ video, onClose }) => {
                                 <select
                                     value={formData.teacherId}
                                     onChange={handleTeacherChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                     required
                                     disabled={teachersLoading}
                                 >
@@ -381,7 +379,7 @@ const NewVideo = ({ video, onClose }) => {
                                 value={formData.tags}
                                 onChange={handleInputChange}
                                 placeholder="ট্যাগগুলি কমা দ্বারা আলাদা করুন (উদাহরণ: math, algebra, tutorial)"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                             />
                             <p className="text-xs text-gray-500 mt-1">
                                 ট্যাগগুলি কমা (,) দ্বারা আলাদা করুন
@@ -395,7 +393,7 @@ const NewVideo = ({ video, onClose }) => {
                                 name="isPremium"
                                 checked={formData.isPremium}
                                 onChange={handleInputChange}
-                                className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                                className="h-5 w-5 text-blue-600 focus:ring-[#1e90c9] border-gray-300 rounded"
                                 id="isPremium"
                             />
                             <label htmlFor="isPremium" className="ml-2 block text-sm text-gray-700">
@@ -425,10 +423,9 @@ const NewVideo = ({ video, onClose }) => {
                             >
                                 বাতিল
                             </button>
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={loading}
-                                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {loading ? (
                                     <span className="flex items-center justify-center">
@@ -441,7 +438,7 @@ const NewVideo = ({ video, onClose }) => {
                                 ) : (
                                     video ? 'আপডেট করুন' : 'ভিডিও তৈরি করুন'
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
                     </form>
                 </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddNewExamHall = ({ examHall, onClose }) => {
@@ -161,13 +162,13 @@ const AddNewExamHall = ({ examHall, onClose }) => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4 flex justify-between items-center">
-                        <h1 className="text-2xl font-bold text-white">
+                    <div className="px-6 py-4 flex justify-between items-center">
+                        <h1 className="text-2xl font-bold ">
                             {examHall ? 'এক্সাম হল এডিট করুন' : 'নতুন এক্সাম হল যোগ করুন'}
                         </h1>
                         <button
                             onClick={onClose}
-                            className="text-white hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-800 rounded transition-colors duration-200"
+                            className=" focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-800 rounded transition-colors duration-200"
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -200,7 +201,7 @@ const AddNewExamHall = ({ examHall, onClose }) => {
                                 value={formData.name}
                                 onChange={handleInputChange}
                                 placeholder="এক্সাম হলের নাম লিখুন"
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                 required
                             />
                         </div>
@@ -216,7 +217,7 @@ const AddNewExamHall = ({ examHall, onClose }) => {
                                         type="file"
                                         accept="image/*"
                                         onChange={handleImageChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                     />
                                     <p className="text-xs text-gray-500 mt-1">
                                         JPG, PNG, GIF ইত্যাদি ফরম্যাট সমর্থিত (সর্বোচ্চ ১০MB)
@@ -240,16 +241,15 @@ const AddNewExamHall = ({ examHall, onClose }) => {
                                 <label className="block text-sm font-medium text-gray-700">
                                     হল রুম সমূহ <span className="text-red-500">*</span>
                                 </label>
-                                <button
+                                <MainButton
                                     type="button"
                                     onClick={addMoreRooms}
-                                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors duration-200 text-sm flex items-center space-x-1"
                                 >
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
                                     </svg>
                                     <span>আরও রুম যোগ করুন</span>
-                                </button>
+                                </MainButton>
                             </div>
 
                             <div className="space-y-4">
@@ -279,7 +279,7 @@ const AddNewExamHall = ({ examHall, onClose }) => {
                                                     value={room.roomNumber}
                                                     onChange={(e) => handleRoomChange(index, 'roomNumber', e.target.value)}
                                                     placeholder="রুম নম্বর লিখুন"
-                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200 text-sm"
+                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200 text-sm"
                                                     required
                                                 />
                                             </div>
@@ -293,7 +293,7 @@ const AddNewExamHall = ({ examHall, onClose }) => {
                                                     onChange={(e) => handleRoomChange(index, 'seatCapacity', e.target.value)}
                                                     placeholder="সিট সংখ্যা"
                                                     min="1"
-                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200 text-sm"
+                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200 text-sm"
                                                     required
                                                 />
                                             </div>
@@ -313,13 +313,13 @@ const AddNewExamHall = ({ examHall, onClose }) => {
                             >
                                 বাতিল
                             </button>
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={loading}
                                 className={`px-6 py-2 rounded-lg font-medium text-white transition-colors duration-200 flex items-center space-x-2 ${
                                     loading
                                         ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+                                        : 'bg-[#1e90c9]'
                                 }`}
                             >
                                 {loading ? (
@@ -330,7 +330,7 @@ const AddNewExamHall = ({ examHall, onClose }) => {
                                 ) : (
                                     <span>{examHall ? 'আপডেট করুন' : 'সেভ করুন'}</span>
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
                     </form>
                 </div>

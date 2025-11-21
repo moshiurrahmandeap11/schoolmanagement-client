@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const BasicSettings = () => {
@@ -170,13 +171,10 @@ const BasicSettings = () => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4">
-                        <h1 className="text-2xl font-bold text-white">
+                    <div className="px-6 py-4">
+                        <h1 className="text-2xl font-bold ">
                             বেসিক সেটিংস
                         </h1>
-                        <p className="text-blue-100 text-sm mt-1">
-                            ইনস্টিটিউটের মৌলিক সেটিংস কনফিগার করুন
-                        </p>
                     </div>
 
                     {/* Form */}
@@ -197,7 +195,7 @@ const BasicSettings = () => {
                                             name="language"
                                             value={formData.language}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         >
                                             <option value="bangla">বাংলা</option>
                                             <option value="english">English</option>
@@ -215,7 +213,7 @@ const BasicSettings = () => {
                                             value={formData.studentIdFormat}
                                             onChange={handleInputChange}
                                             placeholder="উদাহরণ: STU-{year}-{serial}"
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         />
                                     </div>
 
@@ -228,7 +226,7 @@ const BasicSettings = () => {
                                             name="studentOrderBy"
                                             value={formData.studentOrderBy}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         >
                                             <option value="name">নাম অনুসারে</option>
                                             <option value="roll">রোল অনুসারে</option>
@@ -245,7 +243,7 @@ const BasicSettings = () => {
                                             name="resultType"
                                             value={formData.resultType}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         >
                                             <option value="grade">গ্রেড</option>
                                             <option value="marks">নম্বর</option>
@@ -265,7 +263,7 @@ const BasicSettings = () => {
                                             onChange={handleInputChange}
                                             min="1"
                                             max="10"
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         />
                                     </div>
                                 </div>
@@ -332,7 +330,7 @@ const BasicSettings = () => {
                                             value={formData.invoiceStartNumber}
                                             onChange={handleInputChange}
                                             min="1"
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         />
                                     </div>
                                     <div>
@@ -345,7 +343,7 @@ const BasicSettings = () => {
                                             value={formData.voucherStartNumber}
                                             onChange={handleInputChange}
                                             min="1"
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         />
                                     </div>
                                 </div>
@@ -412,7 +410,7 @@ const BasicSettings = () => {
                                             onChange={handleInputChange}
                                             min="1"
                                             max="120"
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         />
                                     </div>
                                     <div>
@@ -423,7 +421,7 @@ const BasicSettings = () => {
                                             name="attendanceType"
                                             value={formData.attendanceType}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         >
                                             <option value="both">উভয়</option>
                                             <option value="manual">ম্যানুয়াল</option>
@@ -512,10 +510,10 @@ const BasicSettings = () => {
                             >
                                 রিসেট করুন
                             </button>
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={saving}
-                                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                className='rounded-md'
                             >
                                 {saving ? (
                                     <span className="flex items-center justify-center">
@@ -528,7 +526,7 @@ const BasicSettings = () => {
                                 ) : (
                                     'সেটিংস সংরক্ষণ করুন'
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
                     </form>
                 </div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewExamTime from './AddNewExamTime/AddNewExamTime';
 
 
@@ -98,15 +99,14 @@ const ExamTimeTable = () => {
                             <h1 className="text-3xl font-bold text-gray-900">পরীক্ষার সময়সূচী ম্যানেজমেন্ট</h1>
                             <p className="text-gray-600 mt-2">আপনার সকল পরীক্ষার সময়সূচী পরিচালনা করুন</p>
                         </div>
-                        <button
+                        <MainButton
                             onClick={() => setShowAddForm(true)}
-                            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200 flex items-center space-x-2"
                         >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
                             </svg>
                             <span>নতুন পরীক্ষার সময়কাল</span>
-                        </button>
+                        </MainButton>
                     </div>
                 </div>
 

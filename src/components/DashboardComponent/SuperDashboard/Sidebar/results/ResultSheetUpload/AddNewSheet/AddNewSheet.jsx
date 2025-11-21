@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddNewSheet = ({ resultSheet, onClose }) => {
@@ -172,13 +173,13 @@ const AddNewSheet = ({ resultSheet, onClose }) => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4 flex justify-between items-center">
-                        <h1 className="text-2xl font-bold text-white">
+                    <div className="px-6 py-4 flex justify-between items-center">
+                        <h1 className="text-2xl font-bold">
                             {resultSheet ? 'ফলাফল শিট এডিট করুন' : 'নতুন ফলাফল শিট যোগ করুন'}
                         </h1>
                         <button
                             onClick={onClose}
-                            className="text-white hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-800 rounded transition-colors duration-200"
+                            className="focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-800 rounded transition-colors duration-200"
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -216,7 +217,7 @@ const AddNewSheet = ({ resultSheet, onClose }) => {
                                         name="createdBy"
                                         value={formData.createdBy}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     >
                                         <option value="">তৈরি করেছেন নির্বাচন করুন</option>
@@ -237,7 +238,7 @@ const AddNewSheet = ({ resultSheet, onClose }) => {
                                         name="modifiedBy"
                                         value={formData.modifiedBy}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                     >
                                         <option value="">মডিফাই করেছেন নির্বাচন করুন</option>
                                         {teachers.map((teacher) => (
@@ -257,7 +258,7 @@ const AddNewSheet = ({ resultSheet, onClose }) => {
                                         name="className"
                                         value={formData.className}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     >
                                         <option value="">ক্লাস নির্বাচন করুন</option>
@@ -278,7 +279,7 @@ const AddNewSheet = ({ resultSheet, onClose }) => {
                                         name="session"
                                         value={formData.session}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     >
                                         <option value="">সেশন নির্বাচন করুন</option>
@@ -301,7 +302,7 @@ const AddNewSheet = ({ resultSheet, onClose }) => {
                                         value={formData.examTerm}
                                         onChange={handleInputChange}
                                         placeholder="পরীক্ষার টার্ম লিখুন (যেমন: Half Yearly, Final Exam)"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     />
                                 </div>
@@ -320,7 +321,7 @@ const AddNewSheet = ({ resultSheet, onClose }) => {
                                         type="file"
                                         accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png"
                                         onChange={handleFileChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required={!resultSheet}
                                     />
                                     <p className="text-xs text-gray-500 mt-1">
@@ -342,7 +343,7 @@ const AddNewSheet = ({ resultSheet, onClose }) => {
                                         name="status"
                                         value={formData.status}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                     >
                                         <option value="draft">খসড়া</option>
                                         <option value="published">প্রকাশিত</option>
@@ -364,13 +365,13 @@ const AddNewSheet = ({ resultSheet, onClose }) => {
                             >
                                 বাতিল
                             </button>
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={loading || dropdownLoading}
                                 className={`px-6 py-2 rounded-lg font-medium text-white transition-colors duration-200 flex items-center space-x-2 ${
                                     loading || dropdownLoading
                                         ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+                                        : 'bg-[#1e90c9]'
                                 }`}
                             >
                                 {loading ? (
@@ -381,7 +382,7 @@ const AddNewSheet = ({ resultSheet, onClose }) => {
                                 ) : (
                                     <span>{resultSheet ? 'আপডেট করুন' : 'সেভ করুন'}</span>
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
                     </form>
                 </div>

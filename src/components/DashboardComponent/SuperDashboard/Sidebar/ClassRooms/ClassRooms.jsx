@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  FaBuilding, 
-  FaPlus, 
-  FaEdit, 
-  FaTrash, 
-  FaUsers,
-  FaDoorOpen,
-  FaWrench,
-  FaSearch,
-  FaSync,
-  FaChair,
-  FaFilter,
-  FaTimes
+import { useEffect, useState } from 'react';
+import {
+    FaBuilding,
+    FaChair,
+    FaDoorOpen,
+    FaEdit,
+    FaPlus,
+    FaSearch,
+    FaSync,
+    FaTimes,
+    FaTrash,
+    FaUsers,
+    FaWrench
 } from 'react-icons/fa';
 import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 
 const ClassRooms = () => {
     const [classrooms, setClassrooms] = useState([]);
@@ -285,11 +285,10 @@ const ClassRooms = () => {
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <div className="flex items-center">
                             <div className="bg-blue-100 p-3 rounded-lg">
-                                <FaBuilding className="text-2xl text-blue-600" />
+                                <FaBuilding className="text-2xl text-[#1e90c9]" />
                             </div>
                             <div className="ml-4">
                                 <h1 className="text-2xl font-bold text-gray-900">Classroom Management</h1>
-                                <p className="text-gray-600">Manage school classrooms and facilities</p>
                             </div>
                         </div>
                         
@@ -302,14 +301,14 @@ const ClassRooms = () => {
                                 <FaSync className="mr-2" />
                                 Refresh
                             </button>
-                            <button
+                            <MainButton
                                 onClick={handleOpenAddDialog}
                                 disabled={actionLoading}
-                                className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+                                className="rounded-md"
                             >
                                 <FaPlus className="mr-2" />
                                 Add Classroom
-                            </button>
+                            </MainButton>
                         </div>
                     </div>
                 </div>
@@ -323,7 +322,7 @@ const ClassRooms = () => {
                         <div className="bg-white rounded-lg border border-gray-200 p-6">
                             <div className="flex items-center">
                                 <div className="bg-blue-100 p-3 rounded-lg">
-                                    <FaBuilding className="text-blue-600 text-xl" />
+                                    <FaBuilding className="text-[#1e90c9] text-xl" />
                                 </div>
                                 <div className="ml-4">
                                     <p className="text-sm font-medium text-gray-600">Total Classrooms</p>
@@ -334,8 +333,8 @@ const ClassRooms = () => {
 
                         <div className="bg-white rounded-lg border border-gray-200 p-6">
                             <div className="flex items-center">
-                                <div className="bg-green-100 p-3 rounded-lg">
-                                    <FaChair className="text-green-600 text-xl" />
+                                <div className="bg-blue-100 p-3 rounded-lg">
+                                    <FaChair className="text-[#1e90c9] text-xl" />
                                 </div>
                                 <div className="ml-4">
                                     <p className="text-sm font-medium text-gray-600">Total Capacity</p>
@@ -346,8 +345,8 @@ const ClassRooms = () => {
 
                         <div className="bg-white rounded-lg border border-gray-200 p-6">
                             <div className="flex items-center">
-                                <div className="bg-purple-100 p-3 rounded-lg">
-                                    <FaUsers className="text-purple-600 text-xl" />
+                                <div className="bg-blue-100 p-3 rounded-lg">
+                                    <FaUsers className="text-[#1e90c9] text-xl" />
                                 </div>
                                 <div className="ml-4">
                                     <p className="text-sm font-medium text-gray-600">Current Usage</p>
@@ -358,8 +357,8 @@ const ClassRooms = () => {
 
                         <div className="bg-white rounded-lg border border-gray-200 p-6">
                             <div className="flex items-center">
-                                <div className="bg-orange-100 p-3 rounded-lg">
-                                    <FaDoorOpen className="text-orange-600 text-xl" />
+                                <div className="bg-blue-100 p-3 rounded-lg">
+                                    <FaDoorOpen className="text-[#1e90c9] text-xl" />
                                 </div>
                                 <div className="ml-4">
                                     <p className="text-sm font-medium text-gray-600">Available Rooms</p>
@@ -384,7 +383,7 @@ const ClassRooms = () => {
                                     placeholder="Search by room number or name..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 />
                             </div>
                         </div>
@@ -394,7 +393,7 @@ const ClassRooms = () => {
                             <select
                                 value={filterFloor}
                                 onChange={(e) => setFilterFloor(e.target.value)}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                             >
                                 <option value="all">All Floors</option>
                                 {floors.map(floor => (
@@ -408,7 +407,7 @@ const ClassRooms = () => {
                             <select
                                 value={filterStatus}
                                 onChange={(e) => setFilterStatus(e.target.value)}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                             >
                                 <option value="all">All Status</option>
                                 {statusOptions.map(status => (
@@ -566,19 +565,18 @@ const ClassRooms = () => {
                         <p className="text-gray-600 mb-4">
                             {searchTerm || filterFloor !== 'all' || filterStatus !== 'all' ? 'Try adjusting your filters' : 'Start by adding classrooms to the system'}
                         </p>
-                        <button
+                        <MainButton
                             onClick={handleOpenAddDialog}
-                            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
                         >
                             Add First Classroom
-                        </button>
+                        </MainButton>
                     </div>
                 )}
             </div>
 
             {/* Add Classroom Dialog */}
             {openDialog && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+                <div className="fixed inset-0 bg-black/40 bg-opacity-50 flex items-center justify-center p-4 z-50">
                     <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
                         <div className="px-6 py-4 border-b border-gray-200">
                             <h2 className="text-lg font-semibold text-gray-900">Add New Classroom</h2>
@@ -596,7 +594,7 @@ const ClassRooms = () => {
                                             value={formData.roomNumber}
                                             onChange={handleInputChange}
                                             required
-                                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                             placeholder="e.g., 101, A12"
                                         />
                                     </div>
@@ -611,7 +609,7 @@ const ClassRooms = () => {
                                             value={formData.roomName}
                                             onChange={handleInputChange}
                                             required
-                                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                             placeholder="e.g., Science Lab, Computer Room"
                                         />
                                     </div>
@@ -627,7 +625,7 @@ const ClassRooms = () => {
                                             value={formData.floor}
                                             onChange={handleInputChange}
                                             required
-                                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                         >
                                             <option value="">Select Floor</option>
                                             {floors.map(floor => (
@@ -647,7 +645,7 @@ const ClassRooms = () => {
                                             onChange={handleInputChange}
                                             required
                                             min="1"
-                                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                             placeholder="e.g., 40"
                                         />
                                     </div>
@@ -660,7 +658,7 @@ const ClassRooms = () => {
                                             name="roomType"
                                             value={formData.roomType}
                                             onChange={handleInputChange}
-                                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                         >
                                             {roomTypes.map(type => (
                                                 <option key={type} value={type}>{type}</option>
@@ -677,7 +675,7 @@ const ClassRooms = () => {
                                         name="status"
                                         value={formData.status}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     >
                                         {statusOptions.map(status => (
                                             <option key={status} value={status}>{status}</option>
@@ -696,7 +694,7 @@ const ClassRooms = () => {
                                                     type="checkbox"
                                                     checked={formData.facilities.includes(facility)}
                                                     onChange={() => handleFacilityChange(facility)}
-                                                    className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                                                    className="rounded border-gray-300 text-blue-600 focus:ring-[#1e90c9]"
                                                 />
                                                 <span className="text-sm text-gray-700">{facility}</span>
                                             </label>
@@ -713,7 +711,7 @@ const ClassRooms = () => {
                                         value={formData.description}
                                         onChange={handleInputChange}
                                         rows="3"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                         placeholder="Additional information about this classroom..."
                                     />
                                 </div>
@@ -727,10 +725,10 @@ const ClassRooms = () => {
                                 >
                                     Cancel
                                 </button>
-                                <button 
+                                <MainButton 
                                     type="submit" 
                                     disabled={actionLoading}
-                                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center"
+                                    className="rounded-md"
                                 >
                                     {actionLoading ? (
                                         <>
@@ -743,7 +741,7 @@ const ClassRooms = () => {
                                             Add Classroom
                                         </>
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
                     </div>

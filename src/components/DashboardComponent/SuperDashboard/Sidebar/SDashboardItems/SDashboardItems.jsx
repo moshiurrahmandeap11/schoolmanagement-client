@@ -1,13 +1,21 @@
 // Sidebar/SDashboardItems/SDashboardItems.jsx
-import React from 'react';
-import { 
-  FaCodeBranch, FaHandHoldingHeart, FaCertificate, FaMoneyBillWave,
-  FaGlobe, FaGraduationCap, FaFileAlt, FaChartBar, FaMoneyCheckAlt,
-  FaPrint, FaSms, FaUserCheck, FaSitemap, FaArrowRight
+import {
+  FaArrowRight,
+  FaCertificate,
+  FaChartBar,
+  FaCodeBranch,
+  FaFileAlt,
+  FaGlobe, FaGraduationCap,
+  FaHandHoldingHeart,
+  FaMoneyBillWave,
+  FaMoneyCheckAlt,
+  FaPrint,
+  FaSitemap,
+  FaSms, FaUserCheck
 } from 'react-icons/fa';
+import SDashboardItems4 from './SDashboadItems4/SDashboardItems4';
 import SDashboardItems2 from './SDashboardItems2/SDashboardItems2';
 import SDashboardItems3 from './SDashboardItems3/SDashboardITems3';
-import SDashboardItems4 from './SDashboadItems4/SDashboardItems4';
 
 const SDashboardItems = ({ onItemClick }) => {
   const menuItems = [
@@ -44,7 +52,7 @@ const SDashboardItems = ({ onItemClick }) => {
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                  <div className="text-2xl text-blue-600 group-hover:text-blue-700">
+                  <div className="text-2xl text-[#1e90c9] ">
                     {item.icon}
                   </div>
                   <div>
@@ -52,7 +60,7 @@ const SDashboardItems = ({ onItemClick }) => {
                     <p className="text-sm text-gray-600">{item.english}</p>
                   </div>
                 </div>
-                <FaArrowRight className="text-gray-400 group-hover:text-blue-600" />
+                <FaArrowRight className="text-gray-400 group-hover:text-[#1e90c9]" />
               </div>
             </div>
           ))}

@@ -1,13 +1,11 @@
-import React from 'react';
-import { 
-  FaUserGraduate, 
-  FaChalkboardTeacher, 
-  FaSms, 
-  FaPaperPlane,
-  FaUserTimes,
-  FaUserCheck,
+import {
   FaCalendarTimes,
-  FaCalendarCheck
+  FaChalkboardTeacher,
+  FaPaperPlane,
+  FaSms,
+  FaUserCheck,
+  FaUserGraduate,
+  FaUserTimes
 } from 'react-icons/fa';
 
 const SDashboardItems3 = () => {
@@ -17,81 +15,81 @@ const SDashboardItems3 = () => {
       title: 'মোট শিক্ষার্থী',
       value: '0',
       icon: <FaUserGraduate className="text-2xl" />,
-      color: 'text-blue-600',
+      color: 'text-[#1e90c9]',
       bgColor: 'bg-blue-50',
-      borderColor: 'border-blue-200'
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 2,
       title: 'Leave Request',
       value: '0',
       icon: <FaCalendarTimes className="text-2xl" />,
-      color: 'text-orange-600',
-      bgColor: 'bg-orange-50',
-      borderColor: 'border-orange-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 3,
       title: 'মোট শিক্ষক',
       value: '0',
       icon: <FaChalkboardTeacher className="text-2xl" />,
-      color: 'text-green-600',
-      bgColor: 'bg-green-50',
-      borderColor: 'border-green-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 4,
       title: 'এস এম এস ব্যালেন্স',
       value: '0',
       icon: <FaSms className="text-2xl" />,
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-50',
-      borderColor: 'border-purple-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 5,
       title: 'এস এম এস আজ পাঠানো হয়েছে',
       value: '0',
       icon: <FaPaperPlane className="text-2xl" />,
-      color: 'text-teal-600',
-      bgColor: 'bg-teal-50',
-      borderColor: 'border-teal-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 6,
       title: 'Student Absent Today',
       value: '0',
       icon: <FaUserTimes className="text-2xl" />,
-      color: 'text-red-600',
-      bgColor: 'bg-red-50',
-      borderColor: 'border-red-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 7,
       title: 'Student Present Today',
       value: '0',
       icon: <FaUserCheck className="text-2xl" />,
-      color: 'text-green-600',
-      bgColor: 'bg-green-50',
-      borderColor: 'border-green-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 8,
       title: 'Teacher Absent Today',
       value: '0',
       icon: <FaUserTimes className="text-2xl" />,
-      color: 'text-red-600',
-      bgColor: 'bg-red-50',
-      borderColor: 'border-red-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 9,
       title: 'Teacher Present Today',
       value: '0',
       icon: <FaUserCheck className="text-2xl" />,
-      color: 'text-green-600',
-      bgColor: 'bg-green-50',
-      borderColor: 'border-green-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     }
   ];
 

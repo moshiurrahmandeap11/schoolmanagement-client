@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewJobs from './AddNewJobs/AddNewJobs';
 
 
@@ -111,24 +112,20 @@ const InstituteJobs = () => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div className="px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <div>
-                            <h1 className="text-2xl font-bold text-white">
+                            <h1 className="text-2xl font-bold ">
                                 ইনস্টিটিউট চাকুরী
                             </h1>
-                            <p className="text-blue-100 text-sm mt-1">
-                                সকল চাকুরীর বিজ্ঞপ্তি ব্যবস্থাপনা
-                            </p>
                         </div>
-                        <button
+                        <MainButton
                             onClick={() => setShowAddForm(true)}
-                            className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors duration-200 flex items-center space-x-2"
                         >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
                             </svg>
                             <span>নতুন চাকুরী</span>
-                        </button>
+                        </MainButton>
                     </div>
 
                     {/* Content */}
@@ -221,7 +218,7 @@ const InstituteJobs = () => {
                                                     <span 
                                                         className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium cursor-pointer ${
                                                             job.status === 'published' 
-                                                                ? 'bg-green-100 text-green-800' 
+                                                                ? 'bg-[#1e90c9] text-white' 
                                                                 : 'bg-yellow-100 text-yellow-800'
                                                         }`}
                                                         onClick={() => handleToggleStatus(job._id)}
@@ -258,23 +255,23 @@ const InstituteJobs = () => {
                             <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-4">
                                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
                                     <div className="text-center">
-                                        <div className="text-2xl font-bold text-blue-600">{jobs.length}</div>
+                                        <div className="text-2xl font-bold text-[#1e90c9]">{jobs.length}</div>
                                         <div className="text-gray-600">মোট চাকুরী</div>
                                     </div>
                                     <div className="text-center">
-                                        <div className="text-2xl font-bold text-green-600">
+                                        <div className="text-2xl font-bold text-[#1e90c9]">
                                             {jobs.filter(job => job.status === 'published').length}
                                         </div>
                                         <div className="text-gray-600">প্রকাশিত</div>
                                     </div>
                                     <div className="text-center">
-                                        <div className="text-2xl font-bold text-yellow-600">
+                                        <div className="text-2xl font-bold text-[#1e90c9]">
                                             {jobs.filter(job => job.status === 'draft').length}
                                         </div>
                                         <div className="text-gray-600">খসড়া</div>
                                     </div>
                                     <div className="text-center">
-                                        <div className="text-2xl font-bold text-purple-600">
+                                        <div className="text-2xl font-bold text-[#1e90c9]">
                                             {jobs.filter(job => new Date(job.applicationDeadline) > new Date()).length}
                                         </div>
                                         <div className="text-gray-600">সক্রিয়</div>

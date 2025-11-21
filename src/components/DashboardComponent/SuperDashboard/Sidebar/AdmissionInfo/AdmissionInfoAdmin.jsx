@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 const AdmissionInfoAdmin = () => {
@@ -95,17 +96,11 @@ const AdmissionInfoAdmin = () => {
     };
 
     return (
-        <div className="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+        <div className="max-w-full mx-auto p-6 bg-white rounded-lg shadow-lg">
             <div className="mb-6">
                 <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
                     Admission Information Management
                 </h1>
-                <p className="text-gray-600">
-                    {existingData 
-                        ? 'Edit the existing admission information below. You can update or delete the content.'
-                        : 'Create new admission information. Once created, you can edit or delete it.'
-                    }
-                </p>
             </div>
 
             {/* Message Display */}
@@ -166,11 +161,11 @@ const AdmissionInfoAdmin = () => {
                 )}
 
                 {/* Save/Update Button */}
-                <button
+                <MainButton
                     type="button"
                     onClick={handleSave}
                     disabled={loading || !content.trim()}
-                    className="px-4 sm:px-6 py-2 sm:py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
+                    className="rounded-md"
                 >
                     {loading 
                         ? 'Saving...' 
@@ -178,13 +173,13 @@ const AdmissionInfoAdmin = () => {
                             ? 'Update Admission Info' 
                             : 'Create Admission Info'
                     }
-                </button>
+                </MainButton>
             </div>
 
             {/* Status Info */}
-            <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                <h3 className="font-semibold text-blue-800 mb-2">Information:</h3>
-                <ul className="text-blue-700 text-sm space-y-1">
+            <div className="mt-6 p-4 bg-blue-50  rounded-lg">
+                <h3 className="font-semibold text-[#1e90c9] mb-2">Information:</h3>
+                <ul className="text-[#1e90c9] text-sm space-y-1">
                     <li>• Admission information can only be created once</li>
                     <li>• After creation, you can edit or delete the content</li>
                     <li>• Use the rich text editor to format your content properly</li>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const PrintStudent = () => {
     const [loading, setLoading] = useState(true);
@@ -255,12 +256,11 @@ startxref
                                 </p>
                             </div>
 
-                            <button
+                            <MainButton
                                 onClick={() => window.location.reload()}
-                                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
                             >
                                 আবার ডাউনলোড করুন
-                            </button>
+                            </MainButton>
                         </div>
                     )}
 
@@ -283,12 +283,11 @@ startxref
                             </div>
 
                             <div className="flex space-x-4">
-                                <button
+                                <MainButton
                                     onClick={() => window.location.reload()}
-                                    className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
                                 >
                                     আবার চেষ্টা করুন
-                                </button>
+                                </MainButton>
                                 <button
                                     onClick={() => window.history.back()}
                                     className="px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-200"
@@ -302,10 +301,10 @@ startxref
                     {/* Help Text */}
                     <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
                         <div className="flex items-start space-x-3">
-                            <svg className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 text-[#1e90c9] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            <div className="text-sm text-blue-700">
+                            <div className="text-sm text-[#1e90c9]">
                                 <p className="font-medium">সহায়তা:</p>
                                 <p className="mt-1">স্টুডেন্ট ডেটা PDF ফরম্যাটে ডাউনলোড হবে। যদি ডাউনলোড শুরু না হয়, তাহলে ব্রাউজারের পপ-আপ ব্লকার চেক করুন।</p>
                             </div>

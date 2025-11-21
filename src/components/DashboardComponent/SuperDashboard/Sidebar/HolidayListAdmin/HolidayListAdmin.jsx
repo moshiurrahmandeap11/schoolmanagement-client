@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
+import Loader from '../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const HolidayListAdmin = () => {
@@ -184,54 +186,39 @@ const HolidayListAdmin = () => {
     };
 
     if (loading) {
-        return (
-            <div className="min-h-screen bg-gray-50 py-8">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-center items-center py-20">
-                        <div className="text-center">
-                            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-500 mx-auto mb-4"></div>
-                            <p className="text-gray-600 text-lg">Loading holidays...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
+        return <Loader />
     }
 
     return (
         <div className="min-h-screen bg-gray-50 py-8">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header Section */}
-                <div className="text-center mb-8">
+                <div className=" mb-8">
                     <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
                         Holiday Management
                     </h1>
-                    <div className="w-24 h-1 bg-blue-500 mx-auto mb-4"></div>
-                    <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                        Manage school holidays and academic calendar events
-                    </p>
                 </div>
 
                 {/* Stats Section */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-blue-600 mb-1">{holidays.length}</div>
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">{holidays.length}</div>
                         <div className="text-sm text-gray-600">Total Holidays</div>
                     </div>
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-green-600 mb-1">
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">
                             {holidays.filter(h => h.isGovernmentHoliday).length}
                         </div>
                         <div className="text-sm text-gray-600">Govt Holidays</div>
                     </div>
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-purple-600 mb-1">
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">
                             {holidays.filter(h => new Date(h.date) >= new Date()).length}
                         </div>
                         <div className="text-sm text-gray-600">Upcoming</div>
                     </div>
                     <div className="bg-white rounded-lg shadow-sm p-4 text-center">
-                        <div className="text-2xl font-bold text-orange-600 mb-1">
+                        <div className="text-2xl font-bold text-[#1e90c9] mb-1">
                             {holidays.filter(h => h.isRecurring).length}
                         </div>
                         <div className="text-sm text-gray-600">Recurring</div>
@@ -242,18 +229,18 @@ const HolidayListAdmin = () => {
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6 mb-8">
                     <div className="flex flex-col sm:flex-row gap-4 justify-between items-center">
                         <div className="flex flex-col sm:flex-row gap-4">
-                            <button
+                            <MainButton
                                 onClick={() => setShowAddForm(true)}
-                                className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
+                                className="rounded-md"
                             >
                                 + Add New Holiday
-                            </button>
-                            <button
+                            </MainButton>
+                            <MainButton
                                 onClick={preloadBDHolidays}
-                                className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium"
+                                className="rounded-md"
                             >
                                 📅 Preload BD Govt Holidays
-                            </button>
+                            </MainButton>
                         </div>
                         <div className="text-sm text-gray-600">
                             Current Year: {new Date().getFullYear()}
@@ -286,7 +273,7 @@ const HolidayListAdmin = () => {
                                     required
                                     value={formData.title}
                                     onChange={(e) => setFormData({...formData, title: e.target.value})}
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     placeholder="Enter holiday title"
                                 />
                             </div>
@@ -300,7 +287,7 @@ const HolidayListAdmin = () => {
                                     required
                                     value={formData.date}
                                     onChange={(e) => setFormData({...formData, date: e.target.value})}
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 />
                             </div>
 
@@ -311,7 +298,7 @@ const HolidayListAdmin = () => {
                                 <select
                                     value={formData.type}
                                     onChange={(e) => setFormData({...formData, type: e.target.value})}
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 >
                                     {holidayTypes.map(type => (
                                         <option key={type.value} value={type.value}>
@@ -331,7 +318,7 @@ const HolidayListAdmin = () => {
                                     max="30"
                                     value={formData.duration}
                                     onChange={(e) => setFormData({...formData, duration: parseInt(e.target.value)})}
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 />
                             </div>
 
@@ -343,7 +330,7 @@ const HolidayListAdmin = () => {
                                     value={formData.description}
                                     onChange={(e) => setFormData({...formData, description: e.target.value})}
                                     rows="3"
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     placeholder="Enter holiday description"
                                 />
                             </div>
@@ -378,12 +365,12 @@ const HolidayListAdmin = () => {
                                 >
                                     Cancel
                                 </button>
-                                <button
+                                <MainButton
                                     type="submit"
-                                    className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                                    className="rounded-md"
                                 >
                                     {editingHoliday ? 'Update Holiday' : 'Add Holiday'}
-                                </button>
+                                </MainButton>
                             </div>
                         </form>
                     </div>
@@ -402,7 +389,7 @@ const HolidayListAdmin = () => {
                                 placeholder="Search by title or description..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                             />
                         </div>
 
@@ -414,7 +401,7 @@ const HolidayListAdmin = () => {
                             <select
                                 value={filterType}
                                 onChange={(e) => setFilterType(e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                             >
                                 <option value="">All Types</option>
                                 {holidayTypes.map(type => (
@@ -431,7 +418,7 @@ const HolidayListAdmin = () => {
                             <select
                                 value={filterMonth}
                                 onChange={(e) => setFilterMonth(e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                             >
                                 {months.map(month => (
                                     <option key={month.value} value={month.value}>{month.label}</option>
@@ -453,7 +440,7 @@ const HolidayListAdmin = () => {
                                 setFilterType('');
                                 setFilterMonth('');
                             }}
-                            className="text-blue-500 hover:text-blue-700 text-sm font-medium"
+                            className="text-[#1e90c9] text-sm font-medium"
                         >
                             Clear Filters
                         </button>

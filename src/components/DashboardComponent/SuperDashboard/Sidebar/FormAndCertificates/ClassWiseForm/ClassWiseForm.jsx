@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const ClassWiseForm = () => {
     const [selectedClass, setSelectedClass] = useState('');
@@ -266,8 +267,8 @@ ${objectOffset}
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4">
-                        <h1 className="text-2xl font-bold text-white text-center">
+                    <div className="px-6 py-4">
+                        <h1 className="text-2xl font-bold">
                             ক্লাস ওয়াইজ সার্টিফিকেট
                         </h1>
                     </div>
@@ -290,7 +291,7 @@ ${objectOffset}
                                 <select
                                     value={selectedClass}
                                     onChange={(e) => setSelectedClass(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     <option value="">ক্লাস নির্বাচন করুন</option>
                                     {classes.map(cls => (
@@ -309,7 +310,7 @@ ${objectOffset}
                                 <select
                                     value={selectedSection}
                                     onChange={(e) => setSelectedSection(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     <option value="">সেকশন নির্বাচন করুন</option>
                                     {sections.map(section => (
@@ -328,7 +329,7 @@ ${objectOffset}
                                 <select
                                     value={selectedSession}
                                     onChange={(e) => setSelectedSession(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     <option value="">সেশন নির্বাচন করুন</option>
                                     {sessions.map(session => (
@@ -347,7 +348,7 @@ ${objectOffset}
                                 <select
                                     value={selectedTemplate}
                                     onChange={(e) => setSelectedTemplate(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     <option value="">টেমপ্লেট নির্বাচন করুন</option>
                                     {certificateTemplates.map(template => (
@@ -441,13 +442,13 @@ ${objectOffset}
                         {/* Download Button */}
                         {selectedStudents.length > 0 && (
                             <div className="flex justify-center pt-4">
-                                <button
+                                <MainButton
                                     onClick={handleDownloadCertificates}
                                     disabled={loading}
                                     className={`px-8 py-3 rounded-lg font-medium text-white transition-colors duration-200 ${
                                         loading
                                             ? 'bg-gray-400 cursor-not-allowed'
-                                            : 'bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
+                                            : 'bg-[#1e90c9] '
                                     }`}
                                 >
                                     {loading ? (
@@ -458,7 +459,7 @@ ${objectOffset}
                                     ) : (
                                         `Download Certificates (${selectedStudents.length} জন)`
                                     )}
-                                </button>
+                                </MainButton>
                             </div>
                         )}
                     </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewHoliday from './AddNewHoliday/AddNewHoliday';
 
 
@@ -99,24 +100,20 @@ const Holiday = () => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div className="px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <div>
-                            <h1 className="text-2xl font-bold text-white">
+                            <h1 className="text-2xl font-bold ">
                                 ছুটির তালিকা
                             </h1>
-                            <p className="text-blue-100 text-sm mt-1">
-                                সকল ছুটি ব্যবস্থাপনা
-                            </p>
                         </div>
-                        <button
+                        <MainButton
                             onClick={() => setShowAddForm(true)}
-                            className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors duration-200 flex items-center space-x-2"
                         >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
                             </svg>
                             <span>নতুন ছুটি</span>
-                        </button>
+                        </MainButton>
                     </div>
 
                     {/* Content */}
@@ -138,12 +135,11 @@ const Holiday = () => {
                                 </svg>
                                 <h3 className="text-lg font-medium text-gray-900 mb-2">কোন ছুটি নেই</h3>
                                 <p className="text-gray-500 mb-4">এখনও কোন ছুটি যোগ করা হয়নি</p>
-                                <button
+                                <MainButton
                                     onClick={() => setShowAddForm(true)}
-                                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
                                 >
                                     প্রথম ছুটি যোগ করুন
-                                </button>
+                                </MainButton>
                             </div>
                         ) : (
                             <div className="overflow-x-auto">

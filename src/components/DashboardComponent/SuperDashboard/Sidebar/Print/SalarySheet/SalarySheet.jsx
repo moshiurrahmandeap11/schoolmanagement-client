@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const SalarySheet = () => {
     const [selectedMonth, setSelectedMonth] = useState('');
@@ -75,8 +76,8 @@ const SalarySheet = () => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4">
-                        <h1 className="text-2xl font-bold text-white text-center">
+                    <div className="px-6 py-4">
+                        <h1 className="text-2xl font-bold">
                             স্যালারি শীট
                         </h1>
                     </div>
@@ -99,7 +100,7 @@ const SalarySheet = () => {
                                 <select
                                     value={selectedMonth}
                                     onChange={(e) => setSelectedMonth(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     <option value="">মাস নির্বাচন করুন</option>
                                     {months.map(month => (
@@ -118,7 +119,7 @@ const SalarySheet = () => {
                                 <select
                                     value={selectedYear}
                                     onChange={(e) => setSelectedYear(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     <option value="">বছর নির্বাচন করুন</option>
                                     {years.map(year => (
@@ -138,7 +139,7 @@ const SalarySheet = () => {
                                     type="date"
                                     value={startDate}
                                     onChange={(e) => setStartDate(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 />
                             </div>
 
@@ -151,17 +152,17 @@ const SalarySheet = () => {
                                     type="date"
                                     value={endDate}
                                     onChange={(e) => setEndDate(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 />
                             </div>
                         </div>
 
                         {/* Search Button */}
                         <div className="flex justify-center">
-                            <button
+                            <MainButton
                                 onClick={handleSearch}
                                 disabled={loading}
-                                className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+                                className='rounded-md'
                             >
                                 {loading ? (
                                     <div className="flex items-center space-x-2">
@@ -171,7 +172,7 @@ const SalarySheet = () => {
                                 ) : (
                                     'খুঁজুন'
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
                     </div>
 
@@ -245,12 +246,12 @@ const SalarySheet = () => {
                         {/* Print Button */}
                         <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
                             <div className="flex justify-center">
-                                <button
+                                <MainButton
                                     onClick={handlePrint}
-                                    className="px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors duration-200 print:hidden"
+                                    className="rounded-md"
                                 >
                                     প্রিন্ট করুন
-                                </button>
+                                </MainButton>
                             </div>
                         </div>
                     </div>

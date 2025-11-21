@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewExamGroup from './AddNewExamGroup/AddNewExamGroup';
 
 
@@ -87,24 +88,20 @@ const ExamGroup = () => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div className="px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <div>
-                            <h1 className="text-2xl font-bold text-white">
+                            <h1 className="text-2xl font-bold ">
                                 এক্সাম গ্রুপ ব্যবস্থাপনা
                             </h1>
-                            <p className="text-blue-100 text-sm mt-1">
-                                সকল এক্সাম গ্রুপ ব্যবস্থাপনা
-                            </p>
                         </div>
-                        <button
+                        <MainButton
                             onClick={() => setShowAddForm(true)}
-                            className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors duration-200 flex items-center space-x-2"
                         >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
                             </svg>
                             <span>নতুন এক্সাম গ্রুপ</span>
-                        </button>
+                        </MainButton>
                     </div>
 
                     {/* Content */}
@@ -126,12 +123,11 @@ const ExamGroup = () => {
                                 </svg>
                                 <h3 className="text-lg font-medium text-gray-900 mb-2">কোন এক্সাম গ্রুপ নেই</h3>
                                 <p className="text-gray-500 mb-4">এখনও কোন এক্সাম গ্রুপ যোগ করা হয়নি</p>
-                                <button
+                                <MainButton
                                     onClick={() => setShowAddForm(true)}
-                                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
                                 >
                                     প্রথম এক্সাম গ্রুপ যোগ করুন
-                                </button>
+                                </MainButton>
                             </div>
                         ) : (
                             <div className="overflow-x-auto">
@@ -215,23 +211,23 @@ const ExamGroup = () => {
                             <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-4">
                                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
                                     <div className="text-center">
-                                        <div className="text-2xl font-bold text-blue-600">{examGroups.length}</div>
+                                        <div className="text-2xl font-bold text-[#1e90c9]">{examGroups.length}</div>
                                         <div className="text-gray-600">মোট এক্সাম গ্রুপ</div>
                                     </div>
                                     <div className="text-center">
-                                        <div className="text-2xl font-bold text-green-600">
+                                        <div className="text-2xl font-bold text-[#1e90c9]">
                                             {new Set(examGroups.flatMap(eg => eg.subExams || [])).size}
                                         </div>
                                         <div className="text-gray-600">ইউনিক সাব এক্সাম</div>
                                     </div>
                                     <div className="text-center">
-                                        <div className="text-2xl font-bold text-purple-600">
+                                        <div className="text-2xl font-bold text-[#1e90c9]">
                                             {new Set(examGroups.map(eg => eg.mainExam)).size}
                                         </div>
                                         <div className="text-gray-600">ইউনিক মেইন এক্সাম</div>
                                     </div>
                                     <div className="text-center">
-                                        <div className="text-2xl font-bold text-orange-600">
+                                        <div className="text-2xl font-bold text-[#1e90c9]">
                                             {examGroups.reduce((total, eg) => total + (eg.subExams?.length || 0), 0)}
                                         </div>
                                         <div className="text-gray-600">মোট সাব এক্সাম</div>

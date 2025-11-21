@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddNewLeaveType = ({ holidayType, onClose }) => {
@@ -106,13 +107,13 @@ const AddNewLeaveType = ({ holidayType, onClose }) => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-purple-600 to-purple-800 px-6 py-4 flex justify-between items-center">
-                        <h1 className="text-2xl font-bold text-white">
+                    <div className="px-6 py-4 flex justify-between items-center">
+                        <h1 className="text-2xl font-bold ">
                             {holidayType ? 'ছুটির ধরন এডিট করুন' : 'নতুন ছুটির ধরন যোগ করুন'}
                         </h1>
                         <button
                             onClick={onClose}
-                            className="text-white hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-purple-800 rounded transition-colors duration-200"
+                            className="text-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-purple-800 rounded transition-colors duration-200"
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -145,7 +146,7 @@ const AddNewLeaveType = ({ holidayType, onClose }) => {
                                 value={formData.name}
                                 onChange={handleInputChange}
                                 placeholder="ছুটির ধরনের নাম লিখুন (যেমন: বার্ষিক ছুটি, সরকারি ছুটি)"
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                 required
                                 maxLength={100}
                             />
@@ -165,7 +166,7 @@ const AddNewLeaveType = ({ holidayType, onClose }) => {
                                         key={index}
                                         type="button"
                                         onClick={() => handleSuggestionClick(suggestion)}
-                                        className="text-left px-3 py-2 bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-lg text-sm text-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-1"
+                                        className="text-left px-3 py-2 bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-lg text-sm text-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:ring-offset-1"
                                     >
                                         {suggestion}
                                     </button>
@@ -175,8 +176,8 @@ const AddNewLeaveType = ({ holidayType, onClose }) => {
 
                         {/* Form Instructions */}
                         <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
-                            <h4 className="text-sm font-medium text-blue-800 mb-2">নির্দেশনা:</h4>
-                            <ul className="text-xs text-blue-700 list-disc list-inside space-y-1">
+                            <h4 className="text-sm font-medium text-[#1e90c9] mb-2">নির্দেশনা:</h4>
+                            <ul className="text-xs text-[#1e90c9] list-disc list-inside space-y-1">
                                 <li>ছুটির ধরনের নাম স্পষ্ট এবং বর্ণনামূলক হতে হবে</li>
                                 <li>একই নামে একাধিক ছুটির ধরন থাকতে পারবে না</li>
                                 <li>ছুটির ধরন ডিলিট করলে তা সফট ডিলিট হবে</li>
@@ -194,13 +195,13 @@ const AddNewLeaveType = ({ holidayType, onClose }) => {
                             >
                                 বাতিল
                             </button>
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={loading}
                                 className={`px-6 py-2 rounded-lg font-medium text-white transition-colors duration-200 flex items-center justify-center space-x-2 ${
                                     loading
                                         ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2'
+                                        : 'bg-[#1e90c9]'
                                 }`}
                             >
                                 {loading ? (
@@ -211,7 +212,7 @@ const AddNewLeaveType = ({ holidayType, onClose }) => {
                                 ) : (
                                     <span>{holidayType ? 'আপডেট করুন' : 'সেভ করুন'}</span>
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
                     </form>
 

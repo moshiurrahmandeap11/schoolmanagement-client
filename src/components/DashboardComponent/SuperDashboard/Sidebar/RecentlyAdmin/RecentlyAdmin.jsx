@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 const RecentlyAdmin = () => {
@@ -336,19 +337,18 @@ const RecentlyAdmin = () => {
         <div className="min-h-screen bg-gray-50 p-4 lg:p-6">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
-                <div className="mb-8 text-center">
-                    <h1 className="text-3xl sm:text-4xl font-bold bg-black bg-clip-text text-transparent">
-                        Recently Admin
+                <div className="mb-8 ">
+                    <h1 className="text-3xl sm:text-4xl font-bold">
+                        Announcement
                     </h1>
-                    <p className="text-gray-600 mt-2 text-lg">Manage recent announcements and updates</p>
                 </div>
 
                 {/* Form Section */}
                 <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 mb-8">
                     <div className="flex items-center gap-3 mb-6">
-                        <div className="w-2 h-8 bg-blue-600 rounded-full"></div>
+                        <div className="w-2 h-8 bg-[#1e90c9] rounded-full"></div>
                         <h2 className="text-2xl font-bold text-gray-800">
-                            {isEditing ? 'Edit Recent Item' : 'Create New Recent Item'}
+                            {isEditing ? 'Edit Annouoncement' : 'Create New Announcement'}
                         </h2>
                     </div>
 
@@ -362,7 +362,7 @@ const RecentlyAdmin = () => {
                                 name="title"
                                 value={formData.title}
                                 onChange={handleInputChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                 placeholder="Enter title"
                                 required
                             />
@@ -421,10 +421,10 @@ const RecentlyAdmin = () => {
                         </div>
 
                         <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={saving}
-                                className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-6 rounded-xl hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed font-semibold shadow-lg hover:shadow-xl"
+                                className="rounded-md w-full flex items-center justify-center"
                             >
                                 {saving ? (
                                     <div className="flex items-center justify-center gap-2">
@@ -434,7 +434,7 @@ const RecentlyAdmin = () => {
                                 ) : (
                                     isEditing ? 'Update Item' : 'Create Item'
                                 )}
-                            </button>
+                            </MainButton>
                             
                             {isEditing && (
                                 <button
@@ -454,7 +454,7 @@ const RecentlyAdmin = () => {
                     <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
                         <div className="flex items-center justify-between">
                             <h2 className="text-2xl font-bold text-gray-800">All Recent Items</h2>
-                            <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">
+                            <span className="bg-[#1e90c9] text-white px-3 py-1 rounded-full text-sm font-semibold">
                                 {items.length} items
                             </span>
                         </div>

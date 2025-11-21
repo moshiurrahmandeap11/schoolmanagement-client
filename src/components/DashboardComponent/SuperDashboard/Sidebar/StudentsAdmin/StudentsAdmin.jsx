@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 
 const StudentsAdmin = () => {
     const [students, setStudents] = useState([]);
@@ -216,8 +217,28 @@ const StudentsAdmin = () => {
         setImagePreview('');
     };
 
+    // Helper function to get class name safely
+    const getClassName = (student) => {
+        if (!student.class) return 'N/A';
+        if (typeof student.class === 'string') return student.class;
+        if (student.class.name) return student.class.name;
+        if (student.class._id) return 'Class ID: ' + student.class._id;
+        return 'N/A';
+    };
+
+    // Helper function to get section name safely
+    const getSectionName = (student) => {
+        if (!student.section) return 'N/A';
+        if (typeof student.section === 'string') return student.section;
+        if (student.section.name) return student.section.name;
+        if (student.section._id) return 'Section ID: ' + student.section._id;
+        return 'N/A';
+    };
+
     const handleViewInformation = (student) => {
         const imageUrl = axiosInstance.defaults.baseURL;
+        const className = getClassName(student);
+        const sectionName = getSectionName(student);
         
         Swal.fire({
             title: `<strong>${student.name}</strong>`,
@@ -237,15 +258,15 @@ const StudentsAdmin = () => {
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-blue-50 p-3 rounded-lg">
                             <strong class="text-blue-700">ক্লাস:</strong>
-                            <p class="text-gray-700">${student.class}</p>
+                            <p class="text-gray-700">${className}</p>
                         </div>
                         <div class="bg-green-50 p-3 rounded-lg">
                             <strong class="text-green-700">রোল:</strong>
-                            <p class="text-gray-700">${student.roll}</p>
+                            <p class="text-gray-700">${student.roll || 'N/A'}</p>
                         </div>
                         <div class="bg-purple-50 p-3 rounded-lg">
                             <strong class="text-purple-700">সেকশন:</strong>
-                            <p class="text-gray-700">${student.section}</p>
+                            <p class="text-gray-700">${sectionName}</p>
                         </div>
                         <div class="${student.status === 'active' ? 'bg-green-50' : 'bg-red-50'} p-3 rounded-lg">
                             <strong class="${student.status === 'active' ? 'text-green-700' : 'text-red-700'}">স্ট্যাটাস:</strong>
@@ -434,21 +455,22 @@ const StudentsAdmin = () => {
         }
     };
 
+    // Filter students by class name safely
     const filteredStudents = selectedClass 
-        ? students.filter(student => student.class === selectedClass)
+        ? students.filter(student => {
+            const className = getClassName(student);
+            return className === selectedClass;
+        })
         : students;
 
     return (
         <div className="min-h-screen bg-gray-50 py-8">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
-                <div className="text-center mb-8">
+                <div className=" mb-8">
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">
                         ছাত্র-ছাত্রী ম্যানেজমেন্ট
                     </h1>
-                    <p className="text-gray-600">
-                        ছাত্র-ছাত্রীদের তথ্য যোগ, দেখুন এবং ম্যানেজ করুন
-                    </p>
                 </div>
 
                 {/* Tabs */}
@@ -458,7 +480,7 @@ const StudentsAdmin = () => {
                             onClick={() => setActiveTab('addStudent')}
                             className={`flex-1 py-4 px-6 text-center font-medium transition-colors ${
                                 activeTab === 'addStudent'
-                                    ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
+                                    ? 'text-[#1e90c9] border-b-2 border-[#1e90c9] bg-blue-50'
                                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                             }`}
                         >
@@ -468,7 +490,7 @@ const StudentsAdmin = () => {
                             onClick={() => setActiveTab('viewStudents')}
                             className={`flex-1 py-4 px-6 text-center font-medium transition-colors ${
                                 activeTab === 'viewStudents'
-                                    ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
+                                    ? 'text-[#1e90c9] border-b-2 border-[#1e90c9] bg-blue-50'
                                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                             }`}
                         >
@@ -483,12 +505,11 @@ const StudentsAdmin = () => {
                                 {/* Add Class Button */}
                                 <div className="mb-6 flex justify-between items-center">
                                     <h3 className="text-lg font-semibold text-gray-900">নতুন ছাত্র-ছাত্রী যোগ করুন</h3>
-                                    <button
+                                    <MainButton
                                         onClick={handleAddClass}
-                                        className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors text-sm font-medium"
                                     >
                                         নতুন ক্লাস যোগ করুন
-                                    </button>
+                                    </MainButton>
                                 </div>
 
                                 {/* Student Form */}
@@ -504,7 +525,7 @@ const StudentsAdmin = () => {
                                                 name="name"
                                                 value={formData.name}
                                                 onChange={handleInputChange}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                                 required
                                             />
                                         </div>
@@ -517,7 +538,7 @@ const StudentsAdmin = () => {
                                                 name="class"
                                                 value={formData.class}
                                                 onChange={handleInputChange}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                                 required
                                             >
                                                 <option value="">ক্লাস নির্বাচন করুন</option>
@@ -538,7 +559,7 @@ const StudentsAdmin = () => {
                                                 name="roll"
                                                 value={formData.roll}
                                                 onChange={handleInputChange}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                                 required
                                             />
                                         </div>
@@ -552,7 +573,7 @@ const StudentsAdmin = () => {
                                                 name="section"
                                                 value={formData.section}
                                                 onChange={handleInputChange}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                                 required
                                             />
                                         </div>
@@ -566,7 +587,7 @@ const StudentsAdmin = () => {
                                                 name="status"
                                                 value={formData.status}
                                                 onChange={handleInputChange}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                                 required
                                             >
                                                 <option value="active">সক্রিয়</option>
@@ -584,7 +605,7 @@ const StudentsAdmin = () => {
                                                 name="fathersName"
                                                 value={formData.fathersName}
                                                 onChange={handleInputChange}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                             />
                                         </div>
 
@@ -597,7 +618,7 @@ const StudentsAdmin = () => {
                                                 name="mothersName"
                                                 value={formData.mothersName}
                                                 onChange={handleInputChange}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                             />
                                         </div>
 
@@ -610,7 +631,7 @@ const StudentsAdmin = () => {
                                                 name="phoneNumber"
                                                 value={formData.phoneNumber}
                                                 onChange={handleInputChange}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                             />
                                         </div>
 
@@ -623,7 +644,7 @@ const StudentsAdmin = () => {
                                                 name="fathersPhone"
                                                 value={formData.fathersPhone}
                                                 onChange={handleInputChange}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                             />
                                         </div>
 
@@ -636,7 +657,7 @@ const StudentsAdmin = () => {
                                                 name="mothersPhone"
                                                 value={formData.mothersPhone}
                                                 onChange={handleInputChange}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                             />
                                         </div>
 
@@ -649,7 +670,7 @@ const StudentsAdmin = () => {
                                                 name="location"
                                                 value={formData.location}
                                                 onChange={handleInputChange}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                             />
                                         </div>
 
@@ -662,7 +683,7 @@ const StudentsAdmin = () => {
                                                 value={formData.bio}
                                                 onChange={handleInputChange}
                                                 rows="3"
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                             />
                                         </div>
 
@@ -677,7 +698,7 @@ const StudentsAdmin = () => {
                                                         type="file"
                                                         accept="image/*"
                                                         onChange={handleImageChange}
-                                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e90c9] file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                                                     />
                                                     <p className="text-xs text-gray-500 mt-1">
                                                         JPG, PNG, WebP (max 5MB)
@@ -701,13 +722,13 @@ const StudentsAdmin = () => {
 
                                     {/* Submit Button */}
                                     <div className="flex gap-3 pt-4">
-                                        <button
+                                        <MainButton
                                             type="submit"
                                             disabled={loading}
-                                            className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                            className='rounded-md'
                                         >
                                             {loading ? 'সেভ হচ্ছে...' : 'ছাত্র-ছাত্রী যোগ করুন'}
-                                        </button>
+                                        </MainButton>
                                         
                                         <button
                                             type="button"
@@ -732,7 +753,7 @@ const StudentsAdmin = () => {
                                         <select
                                             value={selectedClass}
                                             onChange={(e) => setSelectedClass(e.target.value)}
-                                            className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         >
                                             <option value="">সব ক্লাস</option>
                                             {classes.map(cls => (
@@ -742,12 +763,12 @@ const StudentsAdmin = () => {
                                             ))}
                                         </select>
                                         
-                                        <button
+                                        <MainButton
                                             onClick={handleAddClass}
-                                            className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors text-sm font-medium"
+                                            className="rounded-md"
                                         >
                                             নতুন ক্লাস
-                                        </button>
+                                        </MainButton>
                                     </div>
                                 </div>
 
@@ -758,69 +779,74 @@ const StudentsAdmin = () => {
                                     </div>
                                 ) : filteredStudents.length > 0 ? (
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                        {filteredStudents.map(student => (
-                                            <div key={student._id} className={`bg-white border rounded-lg shadow-sm p-4 ${
-                                                student.status === 'active' ? 'border-green-200' : 'border-red-200'
-                                            }`}>
-                                                <div className="flex items-start gap-4">
-                                                    {student.photo && (
-                                                        <img
-                                                            src={`${axiosInstance.defaults.baseURL}${student.photo}`}
-                                                            alt={student.name}
-                                                            className="w-16 h-16 rounded-full object-cover border border-gray-200"
-                                                        />
-                                                    )}
-                                                    <div className="flex-1">
-                                                        <div className="flex items-center gap-2 mb-1">
-                                                            <h4 className="font-semibold text-gray-900">{student.name}</h4>
-                                                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                                                student.status === 'active' 
-                                                                    ? 'bg-green-100 text-green-800' 
-                                                                    : 'bg-red-100 text-red-800'
-                                                            }`}>
-                                                                {student.status === 'active' ? 'সক্রিয়' : 'নিষ্ক্রিয়'}
-                                                            </span>
+                                        {filteredStudents.map(student => {
+                                            const className = getClassName(student);
+                                            const sectionName = getSectionName(student);
+                                            
+                                            return (
+                                                <div key={student._id} className={`bg-white border rounded-lg shadow-sm p-4 ${
+                                                    student.status === 'active' ? 'border-green-200' : 'border-red-200'
+                                                }`}>
+                                                    <div className="flex items-start gap-4">
+                                                        {student.photo && (
+                                                            <img
+                                                                src={`${axiosInstance.defaults.baseURL}${student.photo}`}
+                                                                alt={student.name}
+                                                                className="w-16 h-16 rounded-full object-cover border border-gray-200"
+                                                            />
+                                                        )}
+                                                        <div className="flex-1">
+                                                            <div className="flex items-center gap-2 mb-1">
+                                                                <h4 className="font-semibold text-gray-900">{student.name}</h4>
+                                                                <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                                                    student.status === 'active' 
+                                                                        ? 'bg-[#1e90c9] text-white' 
+                                                                        : 'bg-red-100 text-red-800'
+                                                                }`}>
+                                                                    {student.status === 'active' ? 'সক্রিয়' : 'নিষ্ক্রিয়'}
+                                                                </span>
+                                                            </div>
+                                                            <p className="text-sm text-gray-600">
+                                                                ক্লাস: {className}, রোল: {student.roll || 'N/A'}, সেকশন: {sectionName}
+                                                            </p>
+                                                            {student.fathersName && (
+                                                                <p className="text-sm text-gray-500">পিতা: {student.fathersName}</p>
+                                                            )}
+                                                            {student.phoneNumber && (
+                                                                <p className="text-sm text-gray-500">ফোন: {student.phoneNumber}</p>
+                                                            )}
                                                         </div>
-                                                        <p className="text-sm text-gray-600">
-                                                            ক্লাস: {student.class}, রোল: {student.roll}, সেকশন: {student.section}
-                                                        </p>
-                                                        {student.fathersName && (
-                                                            <p className="text-sm text-gray-500">পিতা: {student.fathersName}</p>
-                                                        )}
-                                                        {student.phoneNumber && (
-                                                            <p className="text-sm text-gray-500">ফোন: {student.phoneNumber}</p>
-                                                        )}
+                                                    </div>
+                                                    
+                                                    <div className="mt-4 flex gap-2">
+                                                        <MainButton
+                                                            onClick={() => handleViewInformation(student)}
+                                                            className="rounded-md flex-1 flex items-center justify-center"
+                                                        >
+                                                            তথ্য দেখুন
+                                                        </MainButton>
+                                                        <button
+                                                            onClick={() => handleStatusUpdate(student)}
+                                                            className={`px-3 py-2 rounded-md transition-colors text-sm font-medium ${
+                                                                student.status === 'active'
+                                                                    ? 'bg-red-600 text-white hover:bg-red-700'
+                                                                    : 'bg-green-600 text-white hover:bg-green-700'
+                                                            }`}
+                                                        >
+                                                            {student.status === 'active' ? 'নিষ্ক্রিয় করুন' : 'সক্রিয় করুন'}
+                                                        </button>
+                                                    </div>
+                                                    <div className="mt-2">
+                                                        <button
+                                                            onClick={() => handlePromoteStudent(student)}
+                                                            className="w-full px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm font-medium"
+                                                        >
+                                                            ফলাফল দিন
+                                                        </button>
                                                     </div>
                                                 </div>
-                                                
-                                                <div className="mt-4 flex gap-2">
-                                                    <button
-                                                        onClick={() => handleViewInformation(student)}
-                                                        className="flex-1 px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors text-sm font-medium"
-                                                    >
-                                                        তথ্য দেখুন
-                                                    </button>
-                                                    <button
-                                                        onClick={() => handleStatusUpdate(student)}
-                                                        className={`px-3 py-2 rounded-md transition-colors text-sm font-medium ${
-                                                            student.status === 'active'
-                                                                ? 'bg-yellow-600 text-white hover:bg-yellow-700'
-                                                                : 'bg-green-600 text-white hover:bg-green-700'
-                                                        }`}
-                                                    >
-                                                        {student.status === 'active' ? 'নিষ্ক্রিয় করুন' : 'সক্রিয় করুন'}
-                                                    </button>
-                                                </div>
-                                                <div className="mt-2">
-                                                    <button
-                                                        onClick={() => handlePromoteStudent(student)}
-                                                        className="w-full px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm font-medium"
-                                                    >
-                                                        ফলাফল দিন
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        ))}
+                                            );
+                                        })}
                                     </div>
                                 ) : (
                                     <div className="text-center py-12">

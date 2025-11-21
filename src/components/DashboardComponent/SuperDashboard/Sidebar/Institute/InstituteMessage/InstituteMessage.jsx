@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../../../../../../hooks/axiosInstance/axiosInstance";
+import MainButton from "../../../../../sharedItems/Mainbutton/Mainbutton";
 import RichTextEditor from "../../../../../sharedItems/RichTextEditor/RichTextEditor";
 
 
@@ -90,7 +91,7 @@ const InstituteMessage = () => {
           <select
             value={formData.teacherId}
             onChange={handleTeacherChange}
-            className="w-full border rounded-lg p-2 focus:ring focus:ring-blue-200"
+            className="w-full border rounded-lg p-2 focus:ring focus:ring-[#1e90c9]"
             required
           >
             <option value="">শিক্ষক নির্বাচন করুন</option>
@@ -149,21 +150,21 @@ const InstituteMessage = () => {
             type="checkbox"
             checked={formData.featured}
             onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
-            className="w-4 h-4 text-blue-600 border-gray-300 rounded"
+            className="w-4 h-4 text-[#1e90c9] border-gray-300 rounded"
           />
           <label className="ml-2 text-gray-700">Featured</label>
         </div>
 
         {/* Save Button */}
-        <button
+        <MainButton
           type="submit"
           disabled={loading}
-          className={`w-full py-3 rounded-lg text-white font-semibold transition ${
-            loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"
+          className={`w-full py-3 flex items-center justify-center rounded-lg text-white font-semibold transition ${
+            loading ? "bg-gray-400" : "bg-[#1e90c9]"
           }`}
         >
           {loading ? "সেভ হচ্ছে..." : "সেভ করুন"}
-        </button>
+        </MainButton>
       </form>
     </div>
   );

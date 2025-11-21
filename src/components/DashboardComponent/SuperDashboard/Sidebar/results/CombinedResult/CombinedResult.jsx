@@ -319,7 +319,6 @@ const CombinedResult = () => {
                 {/* Header */}
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold text-gray-900">কম্বাইন্ড রেজাল্ট ম্যানেজমেন্ট</h1>
-                    <p className="text-gray-600 mt-2">বিভিন্ন রেজাল্ট এবং এক্সাম ক্যাটাগরি কম্বাইন করুন</p>
                 </div>
 
                 {error && (
@@ -350,7 +349,7 @@ const CombinedResult = () => {
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
                                         placeholder="কম্বাইন্ড রেজাল্টের নাম লিখুন"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     />
                                 </div>
@@ -365,7 +364,7 @@ const CombinedResult = () => {
                                         onChange={(e) => setDescription(e.target.value)}
                                         placeholder="কম্বাইন্ড রেজাল্টের বিবরণ লিখুন"
                                         rows="3"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                     />
                                 </div>
 
@@ -378,7 +377,7 @@ const CombinedResult = () => {
                                         <button
                                             type="button"
                                             onClick={handleSelectAllResults}
-                                            className="text-sm text-blue-600 hover:text-blue-800"
+                                            className="text-sm text-[#1e90c9]"
                                         >
                                             {selectedResults.length === results.length ? 'সব আনসিলেক্ট করুন' : 'সব সিলেক্ট করুন'}
                                         </button>
@@ -420,7 +419,7 @@ const CombinedResult = () => {
                                         <button
                                             type="button"
                                             onClick={handleSelectAllExamCategories}
-                                            className="text-sm text-blue-600 hover:text-blue-800"
+                                            className="text-sm text-[#1e90c9]"
                                         >
                                             {selectedExamCategories.length === examCategories.length ? 'সব আনসিলেক্ট করুন' : 'সব সিলেক্ট করুন'}
                                         </button>
@@ -460,7 +459,7 @@ const CombinedResult = () => {
                                     className={`w-full py-3 rounded-lg font-medium text-white transition-colors duration-200 flex items-center justify-center space-x-2 ${
                                         submitting
                                             ? 'bg-gray-400 cursor-not-allowed'
-                                            : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+                                            : 'bg-[#1e90c9]'
                                     }`}
                                 >
                                     {submitting ? (

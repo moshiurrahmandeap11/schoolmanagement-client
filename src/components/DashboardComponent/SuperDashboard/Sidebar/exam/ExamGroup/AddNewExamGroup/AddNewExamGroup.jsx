@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const AddNewExamGroup = ({ examGroup, onClose }) => {
     const [formData, setFormData] = useState({
@@ -151,13 +152,13 @@ const AddNewExamGroup = ({ examGroup, onClose }) => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4 flex justify-between items-center">
-                        <h1 className="text-2xl font-bold text-white">
+                    <div className="px-6 py-4 flex justify-between items-center">
+                        <h1 className="text-2xl font-bold ">
                             {examGroup ? 'এক্সাম গ্রুপ এডিট করুন' : 'নতুন এক্সাম গ্রুপ যোগ করুন'}
                         </h1>
                         <button
                             onClick={onClose}
-                            className="text-white hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-800 rounded transition-colors duration-200"
+                            className=" focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-800 rounded transition-colors duration-200"
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -190,7 +191,7 @@ const AddNewExamGroup = ({ examGroup, onClose }) => {
                                 value={formData.name}
                                 onChange={handleInputChange}
                                 placeholder="এক্সাম গ্রুপের নাম লিখুন"
-                                className={`w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200 ${
+                                className={`w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200 ${
                                     errors.name ? 'border-red-500 bg-red-50' : ''
                                 }`}
                                 required
@@ -216,7 +217,7 @@ const AddNewExamGroup = ({ examGroup, onClose }) => {
                                     name="mainExam"
                                     value={formData.mainExam}
                                     onChange={handleInputChange}
-                                    className={`w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200 ${
+                                    className={`w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200 ${
                                         errors.mainExam ? 'border-red-500 bg-red-50' : ''
                                     }`}
                                     required
@@ -240,16 +241,15 @@ const AddNewExamGroup = ({ examGroup, onClose }) => {
                                 <label className="block text-sm font-medium text-gray-700">
                                     সাব এক্সামসমূহ
                                 </label>
-                                <button
+                                <MainButton
                                     type="button"
                                     onClick={addMoreSubExams}
-                                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors duration-200 text-sm flex items-center space-x-1"
                                 >
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
                                     </svg>
                                     <span>আরও সাব এক্সাম যোগ করুন</span>
-                                </button>
+                                </MainButton>
                             </div>
 
                             <div className="space-y-3">
@@ -260,7 +260,7 @@ const AddNewExamGroup = ({ examGroup, onClose }) => {
                                             value={subExam}
                                             onChange={(e) => handleSubExamChange(index, e.target.value)}
                                             placeholder={`সাব এক্সাম ${index + 1}`}
-                                            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         />
                                         {formData.subExams.length > 1 && (
                                             <button
@@ -291,13 +291,13 @@ const AddNewExamGroup = ({ examGroup, onClose }) => {
                             >
                                 বাতিল
                             </button>
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={loading || categoriesLoading}
                                 className={`px-6 py-2 rounded-lg font-medium text-white transition-colors duration-200 flex items-center space-x-2 ${
                                     loading || categoriesLoading
                                         ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+                                        : 'bg-[#1e90c9]'
                                 }`}
                             >
                                 {loading ? (
@@ -308,7 +308,7 @@ const AddNewExamGroup = ({ examGroup, onClose }) => {
                                 ) : (
                                     <span>{examGroup ? 'আপডেট করুন' : 'সেভ করুন'}</span>
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
                     </form>
                 </div>

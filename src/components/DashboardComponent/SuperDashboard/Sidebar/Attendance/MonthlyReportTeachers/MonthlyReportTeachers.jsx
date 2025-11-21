@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const MonthlyReportTeachers = () => {
     const [formData, setFormData] = useState({
@@ -418,13 +419,10 @@ const MonthlyReportTeachers = () => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-purple-600 to-purple-800 px-6 py-4">
-                        <h1 className="text-2xl font-bold text-white text-center">
+                    <div className="px-6 py-4">
+                        <h1 className="text-2xl font-bold ">
                             মাসিক শিক্ষক রিপোর্ট
                         </h1>
-                        <p className="text-purple-100 text-center mt-1">
-                            মাসিক উপস্থিতি এবং কর্মক্ষমতা রিপোর্ট ডাউনলোড করুন
-                        </p>
                     </div>
 
                     {/* Search Form */}
@@ -439,7 +437,7 @@ const MonthlyReportTeachers = () => {
                                     name="month"
                                     value={formData.month}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     required
                                 >
                                     <option value="">মাস নির্বাচন করুন</option>
@@ -460,7 +458,7 @@ const MonthlyReportTeachers = () => {
                                     name="year"
                                     value={formData.year}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     required
                                 >
                                     {years.map(year => (
@@ -482,29 +480,29 @@ const MonthlyReportTeachers = () => {
                                     value={formData.teacherId}
                                     onChange={handleInputChange}
                                     placeholder="শিক্ষক আইডি, নাম বা পদবী"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 />
                             </div>
                         </div>
 
                         {/* Teachers Count and Stats */}
                         {filteredTeachers.length > 0 && (
-                            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 mb-6">
+                            <div className="bg-blue-50  rounded-lg p-4 mb-6">
                                 <div className="text-center">
-                                    <p className="text-purple-700 font-medium">
+                                    <p className="text-[#1e90c9] font-medium">
                                         পাওয়া গেছে {filteredTeachers.length} জন শিক্ষক
                                     </p>
                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-2 text-sm">
-                                        <div className="text-green-600">
+                                        <div className="text-black">
                                             সক্রিয়: {filteredTeachers.filter(t => t.isActive).length}
                                         </div>
-                                        <div className="text-blue-600">
+                                        <div className="">
                                             শিক্ষক: {filteredTeachers.filter(t => t.staffType === 'Teacher').length}
                                         </div>
-                                        <div className="text-orange-600">
+                                        <div className="">
                                             স্টাফ: {filteredTeachers.filter(t => t.staffType !== 'Teacher').length}
                                         </div>
-                                        <div className="text-purple-600">
+                                        <div className="">
                                             প্রধান শিক্ষক: {filteredTeachers.filter(t => t.designation?.includes('Head')).length}
                                         </div>
                                     </div>
@@ -514,13 +512,13 @@ const MonthlyReportTeachers = () => {
 
                         {/* Download Button */}
                         <div className="flex justify-center">
-                            <button
+                            <MainButton
                                 onClick={handleDownloadReport}
                                 disabled={loading || !formData.month || !formData.year || filteredTeachers.length === 0}
                                 className={`px-8 py-3 rounded-lg font-medium text-white transition-colors duration-200 flex items-center space-x-2 ${
                                     loading || !formData.month || !formData.year || filteredTeachers.length === 0
                                         ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2'
+                                        : 'bg-[#1e90c9]'
                                 }`}
                             >
                                 {loading ? (
@@ -536,7 +534,7 @@ const MonthlyReportTeachers = () => {
                                         <span>রিপোর্ট ডাউনলোড করুন</span>
                                     </>
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
 
                         {error && (
@@ -566,9 +564,9 @@ const MonthlyReportTeachers = () => {
                         )}
 
                         {/* Instructions */}
-                        <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                            <h4 className="text-sm font-medium text-yellow-800 mb-2">নির্দেশনা:</h4>
-                            <ul className="text-sm text-yellow-700 list-disc list-inside space-y-1">
+                        <div className="mt-6 bg-blue-50 rounded-lg p-4">
+                            <h4 className="text-sm font-medium text-[#1e90c9] mb-2">নির্দেশনা:</h4>
+                            <ul className="text-sm text-[#1e90c9] list-disc list-inside space-y-1">
                                 <li>রিপোর্ট ডাউনলোড করতে মাস এবং বছর নির্বাচন করুন</li>
                                 <li>নির্দিষ্ট শিক্ষকের রিপোর্ট পেতে আইডি, নাম বা পদবী দিয়ে সার্চ করুন</li>
                                 <li>রিপোর্ট CSV ফরম্যাটে ডাউনলোড হবে</li>

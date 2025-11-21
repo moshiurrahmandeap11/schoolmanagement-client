@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const SummaryIncomeStatement = () => {
     const [startDate, setStartDate] = useState('');
@@ -74,8 +75,8 @@ const SummaryIncomeStatement = () => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-md overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4">
-                        <h1 className="text-2xl font-bold text-white text-center">
+                    <div className="px-6 py-4">
+                        <h1 className="text-2xl font-bold">
                             সামারি ইনকাম স্টেটমেন্ট
                         </h1>
                     </div>
@@ -102,7 +103,7 @@ const SummaryIncomeStatement = () => {
                                     type="date"
                                     value={startDate}
                                     onChange={(e) => setStartDate(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     required
                                 />
                             </div>
@@ -115,7 +116,7 @@ const SummaryIncomeStatement = () => {
                                     type="date"
                                     value={endDate}
                                     onChange={(e) => setEndDate(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     required
                                 />
                             </div>
@@ -129,7 +130,7 @@ const SummaryIncomeStatement = () => {
                             <select
                                 value={selectedAccount}
                                 onChange={(e) => setSelectedAccount(e.target.value)}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                             >
                                 <option value="">সকল একাউন্ট</option>
                                 {accounts.map((account) => (
@@ -149,13 +150,13 @@ const SummaryIncomeStatement = () => {
 
                         {/* Download Button */}
                         <div className="flex justify-center pt-4">
-                            <button
+                            <MainButton
                                 onClick={handleDownload}
                                 disabled={loading || !startDate || !endDate}
                                 className={`w-full md:w-auto px-8 py-3 rounded-lg font-medium text-white transition-colors duration-200 ${
                                     loading || !startDate || !endDate
                                         ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
+                                        : 'bg-[#1e90c9]'
                                 }`}
                             >
                                 {loading ? (
@@ -166,7 +167,7 @@ const SummaryIncomeStatement = () => {
                                 ) : (
                                     'ডাউনলোড করুন'
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
 
                         {/* Account Details Section */}

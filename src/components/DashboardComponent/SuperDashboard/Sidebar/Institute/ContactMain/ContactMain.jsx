@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../../../../../../hooks/axiosInstance/axiosInstance";
+import MainButton from "../../../../../sharedItems/Mainbutton/Mainbutton";
 import AddNewMainContact from "./AddNewMainContact/AddNewMainContact";
 
 
@@ -28,12 +29,11 @@ const ContactMain = () => {
     <div className="p-6 bg-white shadow rounded-xl">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold text-gray-800">যোগাযোগের তথ্য</h2>
-        <button
+        <MainButton
           onClick={() => setAddMode(true)}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium"
         >
           নতুন কন্টাক্ট
-        </button>
+        </MainButton>
       </div>
 
       <div className="overflow-x-auto">
@@ -56,7 +56,7 @@ const ContactMain = () => {
                   <td className="p-2 border">{c.email}</td>
                   <td className="p-2 border">{c.upazila} / {c.district}</td>
                   <td className="p-2 border space-x-2">
-                    <button className="px-3 py-1 bg-yellow-500 text-white rounded">Edit</button>
+                    <button className="px-3 py-1 bg-blue-500 text-white rounded">Edit</button>
                     <button
                       onClick={() => handleDelete(c._id)}
                       className="px-3 py-1 bg-red-600 text-white rounded"

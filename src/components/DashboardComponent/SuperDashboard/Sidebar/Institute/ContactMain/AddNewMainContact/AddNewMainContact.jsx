@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axiosInstance from "../../../../../../../hooks/axiosInstance/axiosInstance";
+import MainButton from "../../../../../../sharedItems/Mainbutton/Mainbutton";
 
 
 const AddNewMainContact = ({ onSuccess }) => {
@@ -59,15 +60,15 @@ const AddNewMainContact = ({ onSuccess }) => {
           >
             বাতিল
           </button>
-          <button
+          <MainButton
             type="submit"
             disabled={loading}
-            className={`px-6 py-2 rounded text-white font-semibold ${
-              loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"
+            className={`px-6 py-2 rounded-md text-white font-semibold ${
+              loading ? "bg-gray-400" : "bg-[#1e90c9]"
             }`}
           >
             {loading ? "সেভ হচ্ছে..." : "সেভ করুন"}
-          </button>
+          </MainButton>
         </div>
       </form>
     </div>

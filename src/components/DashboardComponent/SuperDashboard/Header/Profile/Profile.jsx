@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance, { baseImageURL } from '../../../../../hooks/axiosInstance/axiosInstance';
 import useAuth from '../../../../../hooks/useAuth/useAuth';
+import Loader from '../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 
 const Profile = () => {
     const { user: authUser } = useAuth();
@@ -244,14 +246,7 @@ const Profile = () => {
     };
 
     if (loading) {
-        return (
-            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-                <div className="text-center">
-                    <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-600 mx-auto"></div>
-                    <p className="mt-4 text-gray-600 font-medium">লোড হচ্ছে...</p>
-                </div>
-            </div>
-        );
+        return <Loader />
     }
 
     return (
@@ -281,13 +276,13 @@ const Profile = () => {
                                                         }}
                                                     />
                                                 ) : (
-                                                    <div className="w-32 h-32 bg-linear-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold border-4 border-white shadow-lg mx-auto">
+                                                    <div className="w-32 h-32 bg-[#1e90c9] rounded-full flex items-center justify-center text-white text-2xl font-bold border-4 border-white shadow-lg mx-auto">
                                                         {getUserInitials()}
                                                     </div>
                                                 )}
                                                 
                                                 {/* Image Upload Button */}
-                                                <label htmlFor="profileImage" className="absolute bottom-0 right-0 bg-blue-500 text-white p-2 rounded-full cursor-pointer hover:bg-blue-600 transition-colors shadow-lg">
+                                                <label htmlFor="profileImage" className="absolute bottom-0 right-0 bg-[#1e90c9] text-white p-2 rounded-full cursor-pointer transition-colors shadow-lg">
                                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -303,7 +298,7 @@ const Profile = () => {
                                             </div>
 
                                             <div className="mt-4">
-                                                <label htmlFor="profileImage" className="text-sm text-blue-600 hover:text-blue-800 cursor-pointer font-medium">
+                                                <label htmlFor="profileImage" className="text-sm text-[#1e90c9] cursor-pointer font-medium">
                                                     {uploading ? 'আপলোড হচ্ছে...' : 'প্রোফাইল ছবি পরিবর্তন করুন'}
                                                 </label>
                                                 <p className="text-xs text-gray-500 mt-1">
@@ -351,7 +346,7 @@ const Profile = () => {
                                                 value={formData.fullName}
                                                 onChange={handleInputChange}
                                                 placeholder="আপনার পূর্ণ নাম লিখুন"
-                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                                 required
                                             />
                                         </div>
@@ -366,7 +361,7 @@ const Profile = () => {
                                                 name="email"
                                                 value={formData.email}
                                                 onChange={handleInputChange}
-                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200 bg-gray-50 cursor-not-allowed"
+                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200 bg-gray-50 cursor-not-allowed"
                                                 required
                                                 disabled
                                             />
@@ -387,7 +382,7 @@ const Profile = () => {
                                                 onChange={handleInputChange}
                                                 placeholder="01XXXXXXXXX"
                                                 maxLength="11"
-                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                             />
                                             <p className="text-xs text-gray-500 mt-1">
                                                 বাংলাদেশী মোবাইল নম্বর (যেমন: 01712345678)
@@ -405,7 +400,7 @@ const Profile = () => {
                                                 onChange={handleInputChange}
                                                 rows="3"
                                                 placeholder="আপনার সম্পূর্ণ ঠিকানা লিখুন"
-                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200 resize-none"
+                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200 resize-none"
                                             />
                                         </div>
 
@@ -421,7 +416,7 @@ const Profile = () => {
                                                 rows="4"
                                                 placeholder="আপনার সম্পর্কে সংক্ষিপ্ত বর্ণনা লিখুন"
                                                 maxLength="500"
-                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200 resize-none"
+                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200 resize-none"
                                             />
                                             <p className="text-xs text-gray-500 mt-1">
                                                 {formData.bio.length}/500 অক্ষর
@@ -438,10 +433,10 @@ const Profile = () => {
                                             >
                                                 বাতিল করুন
                                             </button>
-                                            <button
+                                            <MainButton
                                                 type="submit"
                                                 disabled={saving || uploading}
-                                                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                                className="rounded-md"
                                             >
                                                 {(saving || uploading) ? (
                                                     <span className="flex items-center justify-center">
@@ -454,7 +449,7 @@ const Profile = () => {
                                                 ) : (
                                                     'প্রোফাইল আপডেট করুন'
                                                 )}
-                                            </button>
+                                            </MainButton>
                                         </div>
                                     </div>
                                 </div>

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import Loader from '../../../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewExpenseItem from './AddNewExpenseItem/AddNewExpenseItem';
 
 
@@ -75,16 +77,15 @@ const ExpenseItems = () => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4 flex justify-between items-center">
-                        <h1 className="text-2xl font-bold text-white">
+                    <div className="px-6 py-4 flex justify-between items-center">
+                        <h1 className="text-2xl font-bold ">
                             এক্সপেন্স আইটেম
                         </h1>
-                        <button
+                        <MainButton
                             onClick={() => setShowAddForm(true)}
-                            className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors duration-200"
                         >
                             Add Expense Item
-                        </button>
+                        </MainButton>
                     </div>
 
                     {/* Content */}
@@ -97,8 +98,7 @@ const ExpenseItems = () => {
 
                         {loading ? (
                             <div className="flex justify-center items-center py-8">
-                                <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-                                <span className="ml-2 text-gray-600">লোড হচ্ছে...</span>
+                                <Loader></Loader>
                             </div>
                         ) : expenseItems.length > 0 ? (
                             <div className="overflow-x-auto">

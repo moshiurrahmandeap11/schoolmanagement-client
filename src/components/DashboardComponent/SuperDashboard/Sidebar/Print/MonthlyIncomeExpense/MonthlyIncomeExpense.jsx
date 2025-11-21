@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import Loader from '../../../../../sharedItems/Loader/Loader';
 
 const MonthlyIncomeExpense = () => {
     useEffect(() => {
@@ -50,7 +51,7 @@ const MonthlyIncomeExpense = () => {
                 <div className="bg-white rounded-lg shadow-md p-8">
                     {/* Loading Animation */}
                     <div className="flex flex-col items-center justify-center space-y-4">
-                        <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                        <Loader />
                         
                         <div className="text-center">
                             <h2 className="text-xl font-semibold text-gray-800 mb-2">

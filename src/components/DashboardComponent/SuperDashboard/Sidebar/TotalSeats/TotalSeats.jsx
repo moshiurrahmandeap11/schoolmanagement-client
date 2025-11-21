@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  FaSchool, 
-  FaPlus, 
-  FaEdit, 
-  FaTrash, 
-  FaSync,
-  FaTimes
+import { useEffect, useState } from 'react';
+import {
+    FaEdit,
+    FaPlus,
+    FaSchool,
+    FaSync,
+    FaTimes,
+    FaTrash
 } from 'react-icons/fa';
 import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 
 const TotalSeats = () => {
     const [classes, setClasses] = useState([]);
@@ -223,11 +224,10 @@ const TotalSeats = () => {
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div className="flex items-center gap-3">
                         <div className="bg-blue-100 p-2 sm:p-3 rounded-lg">
-                            <FaSchool className="text-xl sm:text-2xl text-blue-600" />
+                            <FaSchool className="text-xl sm:text-2xl text-[#1e90c9]" />
                         </div>
                         <div>
                             <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Class Management</h1>
-                            <p className="text-sm text-gray-600 hidden sm:block">Manage seats and capacity</p>
                         </div>
                     </div>
                     
@@ -240,14 +240,14 @@ const TotalSeats = () => {
                             <FaSync className="sm:mr-2" />
                             <span className="hidden sm:inline">Refresh</span>
                         </button>
-                        <button
+                        <MainButton
                             onClick={handleOpenAddDialog}
                             disabled={actionLoading}
-                            className="flex-1 sm:flex-none flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 text-sm"
+                            className='rounded-md'
                         >
                             <FaPlus className="sm:mr-2" />
                             <span className="hidden sm:inline">Add Class</span>
-                        </button>
+                        </MainButton>
                     </div>
                 </div>
             </div>
@@ -418,19 +418,18 @@ const TotalSeats = () => {
                     <div className="text-center py-12">
                         <FaSchool className="mx-auto text-4xl text-gray-300 mb-4" />
                         <h3 className="text-lg font-medium text-gray-900 mb-2">No classes found</h3>
-                        <button
+                        <MainButton
                             onClick={handleOpenAddDialog}
-                            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
                         >
                             Add First Class
-                        </button>
+                        </MainButton>
                     </div>
                 )}
             </div>
 
             {/* Add Dialog */}
             {openDialog && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+                <div className="fixed inset-0 bg-black/40 bg-opacity-50 flex items-center justify-center p-4 z-50">
                     <div className="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto">
                         <div className="px-4 sm:px-6 py-4 border-b border-gray-200 sticky top-0 bg-white">
                             <h2 className="text-lg font-semibold text-gray-900">Add New Class</h2>
@@ -445,7 +444,7 @@ const TotalSeats = () => {
                                     name="className"
                                     value={formData.className}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     placeholder="e.g., Class 1"
                                 />
                             </div>
@@ -461,7 +460,7 @@ const TotalSeats = () => {
                                         value={formData.totalSeats}
                                         onChange={handleInputChange}
                                         min="1"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         placeholder="40"
                                     />
                                 </div>
@@ -473,7 +472,7 @@ const TotalSeats = () => {
                                         name="section"
                                         value={formData.section}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     >
                                         {sections.map(section => (
                                             <option key={section} value={section}>{section}</option>
@@ -490,7 +489,7 @@ const TotalSeats = () => {
                                     name="academicYear"
                                     value={formData.academicYear}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 >
                                     {academicYears.map(year => (
                                         <option key={year} value={year}>{year}</option>
@@ -507,7 +506,7 @@ const TotalSeats = () => {
                                     value={formData.description}
                                     onChange={handleInputChange}
                                     rows="3"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                 />
                             </div>
                         </div>
@@ -519,13 +518,13 @@ const TotalSeats = () => {
                             >
                                 Cancel
                             </button>
-                            <button 
+                            <MainButton
                                 onClick={handleAddClass}
                                 disabled={actionLoading}
-                                className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                                className="flex-1 flex items-center justify-center rounded-md"
                             >
                                 {actionLoading ? 'Adding...' : 'Add Class'}
-                            </button>
+                            </MainButton>
                         </div>
                     </div>
                 </div>

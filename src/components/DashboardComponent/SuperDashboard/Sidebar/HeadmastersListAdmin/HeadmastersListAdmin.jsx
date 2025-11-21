@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axiosInstance, { baseImageURL } from '../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 
 const HeadmastersListAdmin = () => {
     const [headmasters, setHeadmasters] = useState([]);
@@ -296,24 +297,20 @@ const HeadmastersListAdmin = () => {
     const bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
     return (
-        <div className="max-w-7xl mx-auto p-4 sm:p-6">
+        <div className="max-w-full mx-auto p-4 sm:p-6">
             {/* Header */}
             <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6">
                 <div>
                     <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
                         Headmasters Management
                     </h1>
-                    <p className="text-gray-600">
-                        Manage all headmasters information and details
-                    </p>
                 </div>
-                <button
+                <MainButton
                     onClick={() => setShowForm(true)}
-                    className="mt-4 lg:mt-0 px-6 py-3 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition-colors font-medium flex items-center gap-2"
+                    className="rounded-md"
                 >
-                    <span>+</span>
                     Add New Headmaster
-                </button>
+                </MainButton>
             </div>
 
             {/* Message Display */}
@@ -329,7 +326,7 @@ const HeadmastersListAdmin = () => {
 
             {/* Headmaster Form Modal */}
             {showForm && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+                <div className="fixed inset-0 bg-black/40 mt-10 bg-opacity-50 z-50 flex items-center justify-center p-4">
                     <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
                         <div className="p-6 border-b border-gray-200">
                             <h2 className="text-xl font-bold text-gray-800">
@@ -356,7 +353,7 @@ const HeadmastersListAdmin = () => {
                                         name="name"
                                         value={formData.name}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         required
                                     />
                                 </div>
@@ -371,7 +368,7 @@ const HeadmastersListAdmin = () => {
                                         name="mobile"
                                         value={formData.mobile}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         placeholder="01XXXXXXXXX"
                                         required
                                     />
@@ -387,7 +384,7 @@ const HeadmastersListAdmin = () => {
                                         name="nidNumber"
                                         value={formData.nidNumber}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     />
                                 </div>
 
@@ -401,7 +398,7 @@ const HeadmastersListAdmin = () => {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     />
                                 </div>
 
@@ -414,7 +411,7 @@ const HeadmastersListAdmin = () => {
                                         name="gender"
                                         value={formData.gender}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     >
                                         <option value="">Select Gender</option>
                                         <option value="Male">Male</option>
@@ -433,7 +430,7 @@ const HeadmastersListAdmin = () => {
                                         name="dateOfBirth"
                                         value={formData.dateOfBirth}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     />
                                 </div>
 
@@ -446,7 +443,7 @@ const HeadmastersListAdmin = () => {
                                         name="bloodGroup"
                                         value={formData.bloodGroup}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     >
                                         <option value="">Select Blood Group</option>
                                         {bloodGroups.map(group => (
@@ -474,7 +471,7 @@ const HeadmastersListAdmin = () => {
                                         onChange={handleInputChange}
                                         min="0"
                                         max="50"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     />
                                 </div>
 
@@ -489,7 +486,7 @@ const HeadmastersListAdmin = () => {
                                         value={formData.salary}
                                         onChange={handleInputChange}
                                         min="0"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     />
                                 </div>
 
@@ -503,7 +500,7 @@ const HeadmastersListAdmin = () => {
                                         name="joiningDate"
                                         value={formData.joiningDate}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     />
                                 </div>
 
@@ -525,7 +522,7 @@ const HeadmastersListAdmin = () => {
                                                 type="file"
                                                 accept="image/*"
                                                 onChange={handleFileSelect}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                             />
                                             <p className="text-xs text-gray-500 mt-1">
                                                 Supported formats: JPEG, PNG, GIF (Max 2MB)
@@ -553,7 +550,7 @@ const HeadmastersListAdmin = () => {
                                         value={formData.qualifications}
                                         onChange={handleInputChange}
                                         rows="3"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         placeholder="B.Sc, M.Sc, B.Ed, M.Ed, etc."
                                     />
                                 </div>
@@ -568,7 +565,7 @@ const HeadmastersListAdmin = () => {
                                         value={formData.achievements}
                                         onChange={handleInputChange}
                                         rows="3"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         placeholder="Notable achievements, awards, etc."
                                     />
                                 </div>
@@ -583,7 +580,7 @@ const HeadmastersListAdmin = () => {
                                         value={formData.message}
                                         onChange={handleInputChange}
                                         rows="3"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                         placeholder="Headmaster's message or vision..."
                                     />
                                 </div>
@@ -598,7 +595,7 @@ const HeadmastersListAdmin = () => {
                                         value={formData.address}
                                         onChange={handleInputChange}
                                         rows="2"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9]"
                                     />
                                 </div>
 
@@ -624,13 +621,13 @@ const HeadmastersListAdmin = () => {
 
                             {/* Form Actions */}
                             <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-200">
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="flex-1 px-4 py-3 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 disabled:opacity-50 transition-colors font-medium"
+                                    className="flex-1 rounded-md flex items-center justify-center"
                                 >
                                     {loading ? 'Saving...' : (editingHeadmaster ? 'Update Headmaster' : 'Add Headmaster')}
-                                </button>
+                                </MainButton>
                                 <button
                                     type="button"
                                     onClick={resetForm}

@@ -325,7 +325,7 @@ const AdmissionFormAdmin = () => {
                                         value={formData.studentName}
                                         onChange={handleInputChange}
                                         placeholder="ছাত্রের পূর্ণ নাম"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                         required
                                     />
                                 </div>
@@ -341,7 +341,7 @@ const AdmissionFormAdmin = () => {
                                         value={formData.fatherName}
                                         onChange={handleInputChange}
                                         placeholder="পিতার পূর্ণ নাম"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                         required
                                     />
                                 </div>
@@ -357,7 +357,7 @@ const AdmissionFormAdmin = () => {
                                         value={formData.motherName}
                                         onChange={handleInputChange}
                                         placeholder="মায়ের পূর্ণ নাম"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     />
                                 </div>
 
@@ -372,7 +372,7 @@ const AdmissionFormAdmin = () => {
                                         value={formData.parentNID}
                                         onChange={handleInputChange}
                                         placeholder="জাতীয় পরিচয়পত্র নম্বর"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     />
                                 </div>
 
@@ -387,7 +387,7 @@ const AdmissionFormAdmin = () => {
                                         value={formData.birthRegistrationNo}
                                         onChange={handleInputChange}
                                         placeholder="জন্ম নিবন্ধন নম্বর"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     />
                                 </div>
 
@@ -400,7 +400,7 @@ const AdmissionFormAdmin = () => {
                                         name="gender"
                                         value={formData.gender}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     >
                                         <option value="">লিঙ্গ নির্বাচন করুন</option>
                                         <option value="male">পুরুষ</option>
@@ -419,7 +419,7 @@ const AdmissionFormAdmin = () => {
                                         name="dateOfBirth"
                                         value={formData.dateOfBirth}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     />
                                 </div>
 
@@ -434,7 +434,7 @@ const AdmissionFormAdmin = () => {
                                         value={formData.parentMobile}
                                         onChange={handleInputChange}
                                         placeholder="০১XXXXXXXXX"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                         required
                                     />
                                 </div>
@@ -450,7 +450,7 @@ const AdmissionFormAdmin = () => {
                                         value={formData.studentMobile}
                                         onChange={handleInputChange}
                                         placeholder="০১XXXXXXXXX"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     />
                                 </div>
                             </div>
@@ -470,7 +470,7 @@ const AdmissionFormAdmin = () => {
                                     <select
                                         value={formData.sessionId}
                                         onChange={handleSessionChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                         required
                                     >
                                         <option value="">সেশন নির্বাচন করুন</option>
@@ -490,7 +490,7 @@ const AdmissionFormAdmin = () => {
                                     <select
                                         value={formData.classId}
                                         onChange={handleClassChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                         required
                                     >
                                         <option value="">ক্লাস নির্বাচন করুন</option>
@@ -510,7 +510,7 @@ const AdmissionFormAdmin = () => {
                                     <select
                                         value={formData.sectionId}
                                         onChange={handleSectionChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                         disabled={!formData.classId}
                                     >
                                         <option value="">সেকশন নির্বাচন করুন</option>
@@ -544,7 +544,7 @@ const AdmissionFormAdmin = () => {
                                         onChange={handleInputChange}
                                         placeholder="পূর্ণ ঠিকানা"
                                         rows="3"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                         required
                                     />
                                 </div>
@@ -560,7 +560,7 @@ const AdmissionFormAdmin = () => {
                                         value={formData.city}
                                         onChange={handleInputChange}
                                         placeholder="শহরের নাম"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     />
                                 </div>
 
@@ -575,7 +575,7 @@ const AdmissionFormAdmin = () => {
                                         value={formData.postOffice}
                                         onChange={handleInputChange}
                                         placeholder="পোস্ট অফিসের নাম"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     />
                                 </div>
 
@@ -589,7 +589,7 @@ const AdmissionFormAdmin = () => {
                                         name="country"
                                         value={formData.country}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     />
                                 </div>
                             </div>
@@ -612,7 +612,7 @@ const AdmissionFormAdmin = () => {
                                         value={formData.previousInstitute}
                                         onChange={handleInputChange}
                                         placeholder="পূর্ববর্তী শিক্ষা প্রতিষ্ঠানের নাম"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     />
                                 </div>
 
@@ -627,7 +627,7 @@ const AdmissionFormAdmin = () => {
                                         value={formData.previousResult}
                                         onChange={handleInputChange}
                                         placeholder="পূর্ববর্তী ক্লাসের ফলাফল"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     />
                                 </div>
                             </div>
@@ -644,7 +644,7 @@ const AdmissionFormAdmin = () => {
                                         type="file"
                                         accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
                                         onChange={handleImageChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     />
                                     <p className="text-xs text-gray-500 mt-1">
                                         JPG, PNG, WebP ফরম্যাট সমর্থিত (সর্বোচ্চ ১০MB)

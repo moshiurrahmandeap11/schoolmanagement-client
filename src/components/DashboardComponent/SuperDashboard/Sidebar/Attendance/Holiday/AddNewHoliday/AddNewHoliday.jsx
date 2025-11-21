@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddNewHoliday = ({ holiday, onClose }) => {
@@ -164,13 +165,13 @@ const AddNewHoliday = ({ holiday, onClose }) => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4 flex justify-between items-center">
-                        <h1 className="text-2xl font-bold text-white">
+                    <div className="px-6 py-4 flex justify-between items-center">
+                        <h1 className="text-2xl font-bold">
                             {holiday ? 'ছুটি এডিট করুন' : 'নতুন ছুটি যোগ করুন'}
                         </h1>
                         <button
                             onClick={onClose}
-                            className="text-white hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-800 rounded"
+                            className="text-black  focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-800 rounded"
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -203,7 +204,7 @@ const AddNewHoliday = ({ holiday, onClose }) => {
                                 value={formData.name}
                                 onChange={handleInputChange}
                                 placeholder="ছুটির নাম লিখুন"
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 required
                             />
                         </div>
@@ -217,7 +218,7 @@ const AddNewHoliday = ({ holiday, onClose }) => {
                                 name="session"
                                 value={formData.session}
                                 onChange={handleInputChange}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 required
                             >
                                 <option value="">সেশন নির্বাচন করুন</option>
@@ -235,16 +236,15 @@ const AddNewHoliday = ({ holiday, onClose }) => {
                                 <label className="block text-sm font-medium text-gray-700">
                                     ছুটির তারিখসমূহ <span className="text-red-500">*</span>
                                 </label>
-                                <button
+                                <MainButton
                                     type="button"
                                     onClick={addMoreDates}
-                                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors duration-200 text-sm flex items-center space-x-1"
                                 >
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
                                     </svg>
                                     <span>আরও তারিখ যোগ করুন</span>
-                                </button>
+                                </MainButton>
                             </div>
 
                             <div className="space-y-4">
@@ -274,7 +274,7 @@ const AddNewHoliday = ({ holiday, onClose }) => {
                                                     type="date"
                                                     value={dateRange.fromDate}
                                                     onChange={(e) => handleDateChange(index, 'fromDate', e.target.value)}
-                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent text-sm"
                                                     required
                                                 />
                                             </div>
@@ -286,7 +286,7 @@ const AddNewHoliday = ({ holiday, onClose }) => {
                                                     type="date"
                                                     value={dateRange.toDate}
                                                     onChange={(e) => handleDateChange(index, 'toDate', e.target.value)}
-                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent text-sm"
                                                     required
                                                 />
                                             </div>
@@ -319,13 +319,13 @@ const AddNewHoliday = ({ holiday, onClose }) => {
                             >
                                 বাতিল
                             </button>
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={loading}
                                 className={`px-6 py-2 rounded-lg font-medium text-white transition-colors duration-200 flex items-center space-x-2 ${
                                     loading
                                         ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+                                        : 'bg-[#1e90c9]'
                                 }`}
                             >
                                 {loading ? (
@@ -336,7 +336,7 @@ const AddNewHoliday = ({ holiday, onClose }) => {
                                 ) : (
                                     <span>{holiday ? 'আপডেট করুন' : 'সেভ করুন'}</span>
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
                     </form>
                 </div>

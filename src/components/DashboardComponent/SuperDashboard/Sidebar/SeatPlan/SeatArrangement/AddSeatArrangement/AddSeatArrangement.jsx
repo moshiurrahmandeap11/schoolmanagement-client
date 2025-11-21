@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const AddNewArrangement = ({ arrangement, onClose }) => {
     const [formData, setFormData] = useState({
@@ -182,13 +183,13 @@ const AddNewArrangement = ({ arrangement, onClose }) => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4 flex justify-between items-center">
+                    <div className="px-6 py-4 flex justify-between items-center">
                         <h1 className="text-2xl font-bold text-white">
                             {arrangement ? 'আসল পরিকল্পনা এডিট করুন' : 'নতুন আসল পরিকল্পনা যোগ করুন'}
                         </h1>
                         <button
                             onClick={onClose}
-                            className="text-white hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-800 rounded transition-colors duration-200"
+                            className=" focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-800 rounded transition-colors duration-200"
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -226,7 +227,7 @@ const AddNewArrangement = ({ arrangement, onClose }) => {
                                         name="className"
                                         value={formData.className}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     >
                                         <option value="">ক্লাস নির্বাচন করুন</option>
@@ -247,7 +248,7 @@ const AddNewArrangement = ({ arrangement, onClose }) => {
                                         name="batch"
                                         value={formData.batch}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     >
                                         <option value="">ব্যাচ নির্বাচন করুন</option>
@@ -268,7 +269,7 @@ const AddNewArrangement = ({ arrangement, onClose }) => {
                                         name="section"
                                         value={formData.section}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     >
                                         <option value="">সেকশন নির্বাচন করুন</option>
@@ -289,7 +290,7 @@ const AddNewArrangement = ({ arrangement, onClose }) => {
                                         name="activeSession"
                                         value={formData.activeSession}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     >
                                         <option value="">সেশন নির্বাচন করুন</option>
@@ -312,7 +313,7 @@ const AddNewArrangement = ({ arrangement, onClose }) => {
                                         value={formData.monthlyFee}
                                         onChange={handleInputChange}
                                         placeholder="মাসিক ফি"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                     />
                                 </div>
 
@@ -323,7 +324,7 @@ const AddNewArrangement = ({ arrangement, onClose }) => {
                                         name="sendAttendanceSMS"
                                         checked={formData.sendAttendanceSMS}
                                         onChange={handleInputChange}
-                                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-[#1e90c9]"
                                     />
                                     <label className="ml-2 text-sm font-medium text-gray-700">
                                         Send attendance SMS
@@ -339,7 +340,7 @@ const AddNewArrangement = ({ arrangement, onClose }) => {
                                         name="hallRoom"
                                         value={formData.hallRoom}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     >
                                         <option value="">হল রুম নির্বাচন করুন</option>
@@ -360,7 +361,7 @@ const AddNewArrangement = ({ arrangement, onClose }) => {
                                         name="exam"
                                         value={formData.exam}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     >
                                         <option value="">পরীক্ষা নির্বাচন করুন</option>
@@ -381,7 +382,7 @@ const AddNewArrangement = ({ arrangement, onClose }) => {
                                         name="examDuration"
                                         value={formData.examDuration}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     >
                                         <option value="">পরীক্ষার সময় নির্বাচন করুন</option>
@@ -405,7 +406,7 @@ const AddNewArrangement = ({ arrangement, onClose }) => {
                                         onChange={handleInputChange}
                                         placeholder="কলাম সংখ্যা"
                                         min="1"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     />
                                 </div>
@@ -422,7 +423,7 @@ const AddNewArrangement = ({ arrangement, onClose }) => {
                                         onChange={handleInputChange}
                                         placeholder="সারি সংখ্যা"
                                         min="1"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     />
                                 </div>
@@ -439,7 +440,7 @@ const AddNewArrangement = ({ arrangement, onClose }) => {
                                         onChange={handleInputChange}
                                         placeholder="বেঞ্চ প্রতি ছাত্র সংখ্যা"
                                         min="1"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required
                                     />
                                 </div>
@@ -468,13 +469,13 @@ const AddNewArrangement = ({ arrangement, onClose }) => {
                             >
                                 বাতিল
                             </button>
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={loading || dropdownLoading}
                                 className={`px-6 py-2 rounded-lg font-medium text-white transition-colors duration-200 flex items-center space-x-2 ${
                                     loading || dropdownLoading
                                         ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+                                        : 'bg-[#1e90c9]'
                                 }`}
                             >
                                 {loading ? (
@@ -485,7 +486,7 @@ const AddNewArrangement = ({ arrangement, onClose }) => {
                                 ) : (
                                     <span>{arrangement ? 'আপডেট করুন' : 'সেভ করুন'}</span>
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
                     </form>
                 </div>

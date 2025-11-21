@@ -739,6 +739,7 @@ const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen })
   });
 
   const sidebarRef = useRef(null);
+  const navRef = useRef(null);
 
   useEffect(() => {
     localStorage.setItem("sidebar_active_menu", activeMenu);
@@ -758,12 +759,10 @@ const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen })
   const toggleSubmenu = (e, menuId) => {
     e.preventDefault();
     e.stopPropagation();
-    setOpenSubmenus(prev => {
-      const newState = {};
-      // শুধু একটা সাবমেনু ওপেন থাকবে
-      newState[menuId] = !prev[menuId];
-      return newState;
-    });
+    setOpenSubmenus(prev => ({
+      ...prev,
+      [menuId]: !prev[menuId]
+    }));
   };
 
   // Mobile click outside close
@@ -821,7 +820,7 @@ const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen })
             {Icon && <Icon className={`text-xl ${(hasActiveChild || isOpen) ? "text-[#1e90c9]" : "text-gray-500"}`} />}
             <span>{item.label}</span>
           </div>
-          <CgChevronDown className={`transition-transform ${isOpen ? "rotate-0" : "-rotate-90"}`} />
+          <CgChevronDown className={`transition-transform duration-200 ${isOpen ? "rotate-0" : "-rotate-90"}`} />
         </button>
 
         {isOpen && (
@@ -864,7 +863,15 @@ const Sidebar = ({ activeMenu, setActiveMenu, isSidebarOpen, setIsSidebarOpen })
           <h2 className="text-xl font-bold text-gray-800">সুপার ড্যাশবোর্ড</h2>
         </div>
 
-        <nav className="flex-1 overflow-y-auto p-4 space-y-1">
+        <nav 
+          ref={navRef}
+          className="flex-1 overflow-y-auto p-4 space-y-1 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
+          style={{ 
+            scrollBehavior: 'smooth',
+            scrollbarWidth: 'thin',
+            scrollbarColor: '#d1d5db #f3f4f6'
+          }}
+        >
           {MENU_ITEMS.map(item => 
             item.submenu ? (
               <MenuWithSubmenu key={item.id} item={item} />

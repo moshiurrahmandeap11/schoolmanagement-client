@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance, { baseImageURL } from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 
@@ -175,13 +176,10 @@ const AddNewCommitteeMember = ({ member, onClose }) => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4">
-                        <h1 className="text-2xl font-bold text-white">
+                    <div className="px-6 py-4">
+                        <h1 className="text-2xl font-bold ">
                             {member ? 'কমিটি মেম্বার এডিট করুন' : 'নতুন কমিটি মেম্বার যোগ করুন'}
                         </h1>
-                        <p className="text-blue-100 text-sm mt-1">
-                            {member ? 'মেম্বারের তথ্য আপডেট করুন' : 'নতুন কমিটি মেম্বারের তথ্য যোগ করুন'}
-                        </p>
                     </div>
 
                     {/* Form */}
@@ -197,7 +195,7 @@ const AddNewCommitteeMember = ({ member, onClose }) => {
                                 value={formData.name}
                                 onChange={handleInputChange}
                                 placeholder="পূর্ণ নাম লিখুন"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                 required
                             />
                         </div>
@@ -213,7 +211,7 @@ const AddNewCommitteeMember = ({ member, onClose }) => {
                                 value={formData.designation}
                                 onChange={handleInputChange}
                                 placeholder="পদবী লিখুন"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                 required
                             />
                         </div>
@@ -229,7 +227,7 @@ const AddNewCommitteeMember = ({ member, onClose }) => {
                                 value={formData.phone}
                                 onChange={handleInputChange}
                                 placeholder="০১XXXXXXXXX"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                             />
                         </div>
 
@@ -257,7 +255,7 @@ const AddNewCommitteeMember = ({ member, onClose }) => {
                                         type="file"
                                         accept="image/*"
                                         onChange={handleImageChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-colors duration-200"
                                         required={!member}
                                     />
                                     <p className="text-xs text-gray-500 mt-1">
@@ -291,13 +289,13 @@ const AddNewCommitteeMember = ({ member, onClose }) => {
                             >
                                 বাতিল করুন
                             </button>
-                            <button
+                            <MainButton
                                 type="submit"
                                 disabled={loading}
                                 className={`px-6 py-3 rounded-lg font-medium text-white transition-colors duration-200 flex items-center justify-center space-x-2 ${
                                     loading
                                         ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+                                        : 'bg-[#1e90c9]'
                                 }`}
                             >
                                 {loading ? (
@@ -308,7 +306,7 @@ const AddNewCommitteeMember = ({ member, onClose }) => {
                                 ) : (
                                     <span>{member ? 'আপডেট করুন' : 'যোগ করুন'}</span>
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
                     </form>
                 </div>

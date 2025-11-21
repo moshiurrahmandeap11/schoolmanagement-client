@@ -26,36 +26,36 @@ const SDashboardItems2 = () => {
       title: 'TODAY INCOME',
       amount: '0',
       icon: <FaMoneyBillWave className="text-3xl" />,
-      color: 'text-green-600',
-      bgColor: 'bg-green-50',
-      borderColor: 'border-green-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 2,
       title: 'TODAY EXPENSE',
       amount: '0',
       icon: <FaMoneyCheckAlt className="text-3xl" />,
-      color: 'text-red-600',
-      bgColor: 'bg-red-50',
-      borderColor: 'border-red-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 3,
       title: 'TODAY BALANCE',
       amount: '0',
       icon: <FaWallet className="text-3xl" />,
-      color: 'text-blue-600',
+      color: 'text-[#1e90c9]',
       bgColor: 'bg-blue-50',
-      borderColor: 'border-blue-200'
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 4,
       title: 'PAYMENT GATEWAY BALANCE',
       amount: '0',
       icon: <FaCreditCard className="text-3xl" />,
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-50',
-      borderColor: 'border-purple-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     }
   ];
 
@@ -65,7 +65,7 @@ const SDashboardItems2 = () => {
       <div className="mb-8">
         <div className="flex items-center gap-3 bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
           <div className="p-3 bg-blue-100 rounded-xl">
-            <FaCalendarAlt className="text-3xl text-blue-600" />
+            <FaCalendarAlt className="text-3xl text-[#1e90c9]" />
           </div>
           <div>
             <h2 className="text-2xl font-bold text-gray-800">

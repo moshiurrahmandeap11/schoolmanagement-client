@@ -11,13 +11,10 @@ const SalaryReport = () => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-md overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4">
-                        <h1 className="text-2xl font-bold text-white text-center">
+                    <div className="px-6 py-4">
+                        <h1 className="text-2xl font-bold ">
                             Salary Report
                         </h1>
-                        <p className="text-blue-100 text-center mt-2">
-                            শিক্ষক এবং কর্মচারীদের স্যালারি রিপোর্ট ডাউনলোড করুন
-                        </p>
                     </div>
 
                     {/* Tabs */}

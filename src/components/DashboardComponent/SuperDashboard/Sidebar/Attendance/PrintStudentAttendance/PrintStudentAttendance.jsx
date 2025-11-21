@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const PrintStudentAttendance = () => {
     const [formData, setFormData] = useState({
@@ -297,16 +298,15 @@ const PrintStudentAttendance = () => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden" id="printable-area">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4 flex justify-between items-center">
-                        <h1 className="text-2xl font-bold text-white">
+                    <div className="px-6 py-4 flex justify-between items-center">
+                        <h1 className="text-2xl font-bold ">
                             শিক্ষার্থী উপস্থিতি রিপোর্ট প্রিন্ট
                         </h1>
-                        <button
+                        <MainButton
                             onClick={handlePrint}
-                            className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors duration-200 print:hidden"
                         >
                             প্রিন্ট করুন
-                        </button>
+                        </MainButton>
                     </div>
 
                     {/* Search Form */}
@@ -322,7 +322,7 @@ const PrintStudentAttendance = () => {
                                     name="startDate"
                                     value={formData.startDate}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     required
                                 />
                             </div>
@@ -337,7 +337,7 @@ const PrintStudentAttendance = () => {
                                     name="endDate"
                                     value={formData.endDate}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     required
                                 />
                             </div>
@@ -353,7 +353,7 @@ const PrintStudentAttendance = () => {
                                     value={formData.studentId}
                                     onChange={handleInputChange}
                                     placeholder="শিক্ষার্থীর আইডি"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 />
                             </div>
                         </div>
@@ -368,7 +368,7 @@ const PrintStudentAttendance = () => {
                                     name="class"
                                     value={formData.class}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     <option value="">সব ক্লাস</option>
                                     {classes.map(cls => (
@@ -388,7 +388,7 @@ const PrintStudentAttendance = () => {
                                     name="section"
                                     value={formData.section}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     <option value="">সব সেকশন</option>
                                     {sections.map(section => (
@@ -402,13 +402,13 @@ const PrintStudentAttendance = () => {
 
                         {/* Search Button */}
                         <div className="flex justify-center mt-6">
-                            <button
+                            <MainButton
                                 onClick={generateAttendanceData}
                                 disabled={loading || !formData.startDate || !formData.endDate}
                                 className={`px-8 py-3 rounded-lg font-medium text-white transition-colors duration-200 ${
                                     loading || !formData.startDate || !formData.endDate
                                         ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+                                        : 'bg-[#1e90c9]'
                                 }`}
                             >
                                 {loading ? (
@@ -419,7 +419,7 @@ const PrintStudentAttendance = () => {
                                 ) : (
                                     'রিপোর্ট তৈরি করুন'
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
 
                         {error && (

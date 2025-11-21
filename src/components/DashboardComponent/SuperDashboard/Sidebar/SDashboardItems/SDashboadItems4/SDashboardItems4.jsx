@@ -1,15 +1,14 @@
-import React from 'react';
-import { 
-  FaTshirt, 
-  FaUserClock, 
-  FaUserGraduate, 
-  FaCamera, 
-  FaSchool, 
-  FaIdCard, 
-  FaBuilding, 
-  FaSms, 
-  FaBook, 
-  FaChartLine 
+import {
+  FaBook,
+  FaBuilding,
+  FaCamera,
+  FaChartLine,
+  FaIdCard,
+  FaSchool,
+  FaSms,
+  FaTshirt,
+  FaUserClock,
+  FaUserGraduate
 } from 'react-icons/fa';
 
 const SDashboardItems4 = () => {
@@ -19,101 +18,98 @@ const SDashboardItems4 = () => {
       title: 'প্রতিষ্ঠানের নাম ও লোগো সহ টি-শার্ট',
       description: 'কাস্টম ডিজাইনের টি-শার্ট',
       icon: <FaTshirt className="text-3xl" />,
-      color: 'text-blue-600',
+      color: 'text-[#1e90c9]',
       bgColor: 'bg-blue-50',
-      borderColor: 'border-blue-200'
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 2,
       title: 'হাজিরা মেশিন',
       description: 'অটোমেটেড অ্যাটেনডেন্স সিস্টেম',
       icon: <FaUserClock className="text-3xl" />,
-      color: 'text-green-600',
-      bgColor: 'bg-green-50',
-      borderColor: 'border-green-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 3,
       title: 'প্রতিষ্ঠানের নাম ও লোগো সহ শিক্ষার্থীদের ইউনিফর্ম',
       description: 'কাস্টমাইজড ইউনিফর্ম ডিজাইন',
       icon: <FaUserGraduate className="text-3xl" />,
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-50',
-      borderColor: 'border-purple-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 4,
       title: 'ফেইস আয়টেন্ডেন্স',
       description: 'ফেসিয়াল রিকগনিশন টেকনোলজি',
       icon: <FaCamera className="text-3xl" />,
-      color: 'text-indigo-600',
-      bgColor: 'bg-indigo-50',
-      borderColor: 'border-indigo-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 5,
       title: 'শিক্ষা প্রতিষ্ঠান ম্যানেজ মেন্ট সিস্টেম',
       description: 'সম্পূর্ণ ম্যানেজমেন্ট সলিউশন',
       icon: <FaSchool className="text-3xl" />,
-      color: 'text-red-600',
-      bgColor: 'bg-red-50',
-      borderColor: 'border-red-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 6,
       title: 'আইডি কার্ড , কভার ফিতা',
       description: 'প্রফেশনাল আইডি কার্ড ও এক্সেসরিজ',
       icon: <FaIdCard className="text-3xl" />,
-      color: 'text-orange-600',
-      bgColor: 'bg-orange-50',
-      borderColor: 'border-orange-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 7,
       title: 'অফিস ম্যানেজ মেন্ট সিস্টেম',
       description: 'অফিস অপারেশন ম্যানেজমেন্ট',
       icon: <FaBuilding className="text-3xl" />,
-      color: 'text-teal-600',
-      bgColor: 'bg-teal-50',
-      borderColor: 'border-teal-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 8,
       title: 'বাল্ক SMS সার্ভিস',
       description: 'ম্যাস কমিউনিকেশন সার্ভিস',
       icon: <FaSms className="text-3xl" />,
-      color: 'text-pink-600',
-      bgColor: 'bg-pink-50',
-      borderColor: 'border-pink-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 9,
       title: 'প্রতিষ্ঠানের নামে খাতা ও কলম',
       description: 'কাস্টম প্রিন্টেড স্টেশনারী',
       icon: <FaBook className="text-3xl" />,
-      color: 'text-yellow-600',
-      bgColor: 'bg-yellow-50',
-      borderColor: 'border-yellow-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     },
     {
       id: 10,
       title: 'বিজনেস ম্যানেজমেন্ট সিস্টেম',
       description: 'বিজনেস অপারেশন অটোমেশন',
       icon: <FaChartLine className="text-3xl" />,
-      color: 'text-gray-600',
-      bgColor: 'bg-gray-50',
-      borderColor: 'border-gray-200'
+      color: 'text-[#1e90c9]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-[#1e90c9]'
     }
   ];
 
   return (
     <div className="p-4 lg:p-6">
       {/* Header */}
-      <div className="mb-8 text-center">
+      <div className="mb-8">
         <h2 className="text-3xl font-bold text-gray-800 mb-3">আমাদের সার্ভিসসমূহ</h2>
-        <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-          শিক্ষা প্রতিষ্ঠানের জন্য সম্পূর্ণ ডিজিটাল সলিউশন এবং কাস্টমাইজড প্রোডাক্টস
-        </p>
       </div>
 
       {/* Services Grid */}

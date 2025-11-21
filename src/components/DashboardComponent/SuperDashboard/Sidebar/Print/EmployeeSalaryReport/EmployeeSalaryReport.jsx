@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const EmployeeSalaryReport = () => {
     const [startDate, setStartDate] = useState('');
@@ -14,9 +15,9 @@ const EmployeeSalaryReport = () => {
         const fetchEmployees = async () => {
             try {
                 setLoading(true);
-                const response = await axiosInstance.get('/all-employee');
+                const response = await axiosInstance.get('/teacher-list');
                 
-                console.log('Employees API Response:', response.data);
+                console.log('Employees API Response:', response.data.data);
                 
                 // Handle different response structures
                 let employeesData = [];
@@ -31,7 +32,12 @@ const EmployeeSalaryReport = () => {
                     employeesData = Object.values(response.data);
                 }
                 
-                setEmployees(employeesData || []);
+                // Filter only staffType === "staff"
+                const staffEmployees = (employeesData || []).filter(employee => 
+                    employee.staffType === "Staff"
+                );
+                
+                setEmployees(staffEmployees);
                 
             } catch (err) {
                 setError('এমপ্লয়ী ডেটা লোড করতে সমস্যা হয়েছে');
@@ -43,6 +49,7 @@ const EmployeeSalaryReport = () => {
 
         fetchEmployees();
     }, []);
+    console.log(employees);
 
     // Handle download salary report
     const handleDownload = async () => {
@@ -112,7 +119,7 @@ const EmployeeSalaryReport = () => {
         const empDesignation = employee.designation || employee.position || 'N/A';
         const empSalary = employee.salary || employee.basicSalary || '0';
         const empDepartment = employee.department || employee.dept || 'N/A';
-        const empType = employee.employeeType || employee.type || 'N/A';
+        const empType = employee.employeeType || employee.type || employee.staffType || 'N/A';
         const empStatus = employee.status || employee.position || 'Active';
 
         const pdfContent = `
@@ -219,8 +226,8 @@ startxref
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-md overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4">
-                        <h1 className="text-2xl font-bold text-white text-center">
+                    <div className="px-6 py-4">
+                        <h1 className="text-2xl font-bold">
                             Employee Salary Report
                         </h1>
                     </div>
@@ -243,7 +250,7 @@ startxref
                                     type="date"
                                     value={startDate}
                                     onChange={(e) => setStartDate(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     required
                                 />
                             </div>
@@ -256,7 +263,7 @@ startxref
                                     type="date"
                                     value={endDate}
                                     onChange={(e) => setEndDate(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                     required
                                 />
                             </div>
@@ -265,14 +272,14 @@ startxref
                         {/* Employee Selection */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Employee <span className="text-red-500">*</span>
+                                Staff Employee <span className="text-red-500">*</span>
                             </label>
                             <select
                                 value={selectedEmployee}
                                 onChange={(e) => setSelectedEmployee(e.target.value)}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                             >
-                                <option value="">এমপ্লয়ী নির্বাচন করুন</option>
+                                <option value="">স্টাফ এমপ্লয়ী নির্বাচন করুন</option>
                                 {Array.isArray(employees) && employees.map((employee) => (
                                     <option key={employee._id} value={employee._id}>
                                         {employee.name || employee.employeeName} - {employee.designation || employee.position} ({employee.mobile || employee.phone})
@@ -280,23 +287,23 @@ startxref
                                 ))}
                             </select>
                             {loading && (
-                                <p className="text-sm text-gray-500 mt-1">এমপ্লয়ী লোড হচ্ছে...</p>
+                                <p className="text-sm text-gray-500 mt-1">স্টাফ এমপ্লয়ী লোড হচ্ছে...</p>
                             )}
                             
                             {!loading && Array.isArray(employees) && employees.length === 0 && (
-                                <p className="text-sm text-yellow-600 mt-1">কোন এমপ্লয়ী পাওয়া যায়নি</p>
+                                <p className="text-sm text-yellow-600 mt-1">কোন স্টাফ এমপ্লয়ী পাওয়া যায়নি (শুধু staffType: "staff" দেখানো হচ্ছে)</p>
                             )}
                         </div>
 
                         {/* Download Button */}
                         <div className="flex justify-center pt-4">
-                            <button
+                            <MainButton
                                 onClick={handleDownload}
                                 disabled={loading || !startDate || !endDate || !selectedEmployee}
                                 className={`w-full md:w-auto px-8 py-3 rounded-lg font-medium text-white transition-colors duration-200 ${
                                     loading || !startDate || !endDate || !selectedEmployee
                                         ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
+                                        : 'bg-[#1e90c9] '
                                 }`}
                             >
                                 {loading ? (
@@ -307,7 +314,7 @@ startxref
                                 ) : (
                                     'Download Salary Report'
                                 )}
-                            </button>
+                            </MainButton>
                         </div>
                     </div>
 
@@ -315,7 +322,7 @@ startxref
                     {selectedEmployee && (
                         <div className="border-t border-gray-200 px-6 py-4 bg-gray-50">
                             <h3 className="text-lg font-semibold text-gray-800 mb-3">
-                                নির্বাচিত এমপ্লয়ীর তথ্য
+                                নির্বাচিত স্টাফ এমপ্লয়ীর তথ্য
                             </h3>
                             {(() => {
                                 const employee = employees.find(e => e._id === selectedEmployee);
@@ -325,11 +332,11 @@ startxref
                                             <p><span className="font-medium">নাম:</span> {employee.name || employee.employeeName}</p>
                                             <p><span className="font-medium">মোবাইল:</span> {employee.mobile || employee.phone}</p>
                                             <p><span className="font-medium">পদবী:</span> {employee.designation || employee.position}</p>
-                                            <p><span className="font-medium">ডিপার্টমেন্ট:</span> {employee.department || employee.dept}</p>
+                                            <p><span className="font-medium">স্টাফ টাইপ:</span> {employee.staffType}</p>
                                         </div>
                                         <div className="space-y-2">
                                             <p><span className="font-medium">বেতন:</span> {employee.salary ? parseInt(employee.salary).toLocaleString('en-BD') + ' ৳' : '0 ৳'}</p>
-                                            <p><span className="font-medium">টাইপ:</span> {employee.employeeType || employee.type}</p>
+                                            <p><span className="font-medium">সেশন:</span> {employee.session || 'N/A'}</p>
                                             <p><span className="font-medium">স্ট্যাটাস:</span> {employee.status || employee.position}</p>
                                         </div>
                                     </div>
@@ -342,7 +349,7 @@ startxref
                     <div className="bg-gray-50 px-6 py-4 border-t border-gray-200">
                         <div className="text-sm text-gray-600">
                             <p className="text-center">
-                                নির্বাচিত এমপ্লয়ীর স্যালারি তথ্য PDF ফরম্যাটে ডাউনলোড হবে
+                                শুধুমাত্র স্টাফ এমপ্লয়ীদের (staffType: "staff") স্যালারি তথ্য PDF ফরম্যাটে ডাউনলোড হবে
                             </p>
                         </div>
                     </div>

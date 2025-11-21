@@ -274,7 +274,7 @@ const BuySms = ({ onClose }) => {
                                         loading || !paymentMethod
                                             ? 'bg-gray-400 cursor-not-allowed'
                                             : paymentMethod === 'online'
-                                            ? 'bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
+                                            ? 'bg-[#1e90c9]'
                                             : 'bg-[#1e90c9] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
                                     }`}
                                 >

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaSave } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../../sharedItems/Mainbutton/Mainbutton';
 
 
 const AddNewExamCategory = ({ category, onBack, onSuccess }) => {
@@ -156,7 +157,7 @@ const AddNewExamCategory = ({ category, onBack, onSuccess }) => {
                                         name="name"
                                         value={formData.name}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         placeholder="পরীক্ষার ধরণের নাম"
                                         required
                                     />
@@ -170,7 +171,7 @@ const AddNewExamCategory = ({ category, onBack, onSuccess }) => {
                                             name="isMain"
                                             checked={formData.isMain}
                                             onChange={handleInputChange}
-                                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-[#1e90c9]"
                                         />
                                         <span className="ml-2 text-gray-700 font-medium text-sm">
                                             প্রধান পরীক্ষা
@@ -191,7 +192,7 @@ const AddNewExamCategory = ({ category, onBack, onSuccess }) => {
                                         name="totalMarks"
                                         value={formData.totalMarks}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         placeholder="100"
                                         step="0.1"
                                         min="0"
@@ -209,7 +210,7 @@ const AddNewExamCategory = ({ category, onBack, onSuccess }) => {
                                         name="passMarks"
                                         value={formData.passMarks}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         placeholder="33.0"
                                         step="0.1"
                                         min="0"
@@ -226,7 +227,7 @@ const AddNewExamCategory = ({ category, onBack, onSuccess }) => {
                                         name="weight"
                                         value={formData.weight}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] transition-colors"
                                         required
                                     >
                                         <option value="">ওয়েট নির্বাচন করুন</option>
@@ -244,14 +245,14 @@ const AddNewExamCategory = ({ category, onBack, onSuccess }) => {
 
                             {/* Submit Buttons */}
                             <div className="flex gap-4">
-                                <button
+                                <MainButton
                                     type="submit"
                                     disabled={loading}
-                                    className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className='flex-1 rounded-md flex items-center justify-center'
                                 >
-                                    <FaSave className="text-sm" />
+                                    <FaSave className="text-sm mr-2" />
                                     {loading ? 'সেভ হচ্ছে...' : (category ? 'আপডেট করুন' : 'সেভ করুন')}
-                                </button>
+                                </MainButton>
                                 <button
                                     type="button"
                                     onClick={onBack}

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaCheck, FaEdit, FaFilter, FaPhone, FaPlus, FaTimes, FaTrash, FaUser } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 
 const EmployeeLeave = ({ onBack }) => {
     const [leaveApplications, setLeaveApplications] = useState([]);
@@ -364,13 +365,10 @@ const EmployeeLeave = ({ onBack }) => {
                     <div className="max-w-full mx-auto">
                         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8">
                             <form onSubmit={handleSubmit} className="space-y-6">
-                                <div className="bg-indigo-50 p-4 rounded-lg mb-6">
-                                    <h3 className="text-lg font-semibold text-indigo-800 mb-2">
+                                <div className="bg-blue-50 p-4 rounded-lg mb-6">
+                                    <h3 className="text-lg font-semibold text-[#1e90c9] mb-2">
                                         কর্মচারী লিভ অ্যাপ্লিকেশন তথ্য:
                                     </h3>
-                                    <p className="text-sm text-indigo-600">
-                                        {editingLeave ? 'কর্মচারী লিভ অ্যাপ্লিকেশন এডিট করুন' : 'নতুন কর্মচারী লিভ অ্যাপ্লিকেশন তৈরি করুন'}
-                                    </p>
                                 </div>
 
                                 {/* Employee Information */}
@@ -385,7 +383,7 @@ const EmployeeLeave = ({ onBack }) => {
                                             value={formData.employeeName}
                                             onChange={handleFormChange}
                                             placeholder="কর্মচারীর পুরো নাম"
-                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all ${
+                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                 errors.employeeName ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                             }`}
                                         />
@@ -404,7 +402,7 @@ const EmployeeLeave = ({ onBack }) => {
                                             value={formData.employeeId}
                                             onChange={handleFormChange}
                                             placeholder="কর্মচারী আইডি"
-                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all ${
+                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                 errors.employeeId ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                             }`}
                                         />
@@ -425,7 +423,7 @@ const EmployeeLeave = ({ onBack }) => {
                                             value={formData.designation}
                                             onChange={handleFormChange}
                                             placeholder="পদবী"
-                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all ${
+                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                 errors.designation ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                             }`}
                                         />
@@ -442,7 +440,7 @@ const EmployeeLeave = ({ onBack }) => {
                                             name="department"
                                             value={formData.department}
                                             onChange={handleFormChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         >
                                             <option value="">বিভাগ নির্বাচন করুন</option>
                                             {departmentOptions.map((dept) => (
@@ -463,7 +461,7 @@ const EmployeeLeave = ({ onBack }) => {
                                             value={formData.contactNumber}
                                             onChange={handleFormChange}
                                             placeholder="মোবাইল নম্বর"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         />
                                     </div>
 
@@ -475,7 +473,7 @@ const EmployeeLeave = ({ onBack }) => {
                                             name="leaveType"
                                             value={formData.leaveType}
                                             onChange={handleFormChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         >
                                             {leaveTypeOptions.map((option) => (
                                                 <option key={option.value} value={option.value}>
@@ -496,7 +494,7 @@ const EmployeeLeave = ({ onBack }) => {
                                         onChange={handleFormChange}
                                         rows="2"
                                         placeholder="বর্তমান ঠিকানা"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                     />
                                 </div>
 
@@ -511,7 +509,7 @@ const EmployeeLeave = ({ onBack }) => {
                                             name="startDate"
                                             value={formData.startDate}
                                             onChange={handleFormChange}
-                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all ${
+                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                 errors.startDate ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                             }`}
                                         />
@@ -529,7 +527,7 @@ const EmployeeLeave = ({ onBack }) => {
                                             name="endDate"
                                             value={formData.endDate}
                                             onChange={handleFormChange}
-                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all ${
+                                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                                 errors.endDate ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                             }`}
                                         />
@@ -549,7 +547,7 @@ const EmployeeLeave = ({ onBack }) => {
                                         value={formData.reason}
                                         onChange={handleFormChange}
                                         rows="4"
-                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all ${
+                                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all ${
                                             errors.reason ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                         }`}
                                         placeholder="লিভের কারণ বিস্তারিত লিখুন..."
@@ -579,10 +577,10 @@ const EmployeeLeave = ({ onBack }) => {
                                     >
                                         বাতিল করুন
                                     </button>
-                                    <button
+                                    <MainButton
                                         type="submit"
                                         disabled={loading}
-                                        className="inline-flex items-center gap-2 px-8 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="rounded-md"
                                     >
                                         {loading ? (
                                             <>
@@ -591,11 +589,11 @@ const EmployeeLeave = ({ onBack }) => {
                                             </>
                                         ) : (
                                             <>
-                                                <FaPlus className="text-sm" />
+                                                <FaPlus className="text-sm mr-2" />
                                                 {editingLeave ? 'আপডেট করুন' : 'লিভ অ্যাপ্লিকেশন জমা দিন'}
                                             </>
                                         )}
-                                    </button>
+                                    </MainButton>
                                 </div>
                             </form>
                         </div>
@@ -621,13 +619,12 @@ const EmployeeLeave = ({ onBack }) => {
                             কর্মচারী লিভ ব্যবস্থাপনা
                         </h1>
                     </div>
-                    <button
+                    <MainButton
                         onClick={() => setShowAddForm(true)}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium"
                     >
-                        <FaPlus className="text-sm" />
+                        <FaPlus className="text-sm mr-2" />
                         নতুন লিভ অ্যাপ্লিকেশন
-                    </button>
+                    </MainButton>
                 </div>
             </div>
 
@@ -638,19 +635,19 @@ const EmployeeLeave = ({ onBack }) => {
                     {stats && (
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
                             <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 text-center">
-                                <div className="text-3xl font-bold text-indigo-600">{stats.totalApplications}</div>
+                                <div className="text-3xl font-bold text-[#1e90c9]">{stats.totalApplications}</div>
                                 <div className="text-sm text-gray-600">মোট আবেদন</div>
                             </div>
                             <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 text-center">
-                                <div className="text-3xl font-bold text-yellow-600">{stats.pending}</div>
+                                <div className="text-3xl font-bold text-[#1e90c9]">{stats.pending}</div>
                                 <div className="text-sm text-gray-600">Pending</div>
                             </div>
                             <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 text-center">
-                                <div className="text-3xl font-bold text-green-600">{stats.approved}</div>
+                                <div className="text-3xl font-bold text-[#1e90c9]">{stats.approved}</div>
                                 <div className="text-sm text-gray-600">Approved</div>
                             </div>
                             <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 text-center">
-                                <div className="text-3xl font-bold text-red-600">{stats.rejected}</div>
+                                <div className="text-3xl font-bold text-[#1e90c9]">{stats.rejected}</div>
                                 <div className="text-sm text-gray-600">Rejected</div>
                             </div>
                         </div>
@@ -660,7 +657,7 @@ const EmployeeLeave = ({ onBack }) => {
                     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 mb-6">
                         <div className="flex items-center justify-between mb-4">
                             <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
-                                <FaFilter className="text-indigo-600" />
+                                <FaFilter className="text-[#1e90c9]" />
                                 ফিল্টার
                             </h3>
                             <button
@@ -682,7 +679,7 @@ const EmployeeLeave = ({ onBack }) => {
                                     value={filterData.employeeId}
                                     onChange={handleFilterChange}
                                     placeholder="Employee ID"
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 />
                             </div>
 
@@ -694,7 +691,7 @@ const EmployeeLeave = ({ onBack }) => {
                                     name="status"
                                     value={filterData.status}
                                     onChange={handleFilterChange}
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     {statusOptions.map((status) => (
                                         <option key={status.value} value={status.value}>
@@ -712,7 +709,7 @@ const EmployeeLeave = ({ onBack }) => {
                                     name="leaveType"
                                     value={filterData.leaveType}
                                     onChange={handleFilterChange}
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                                 >
                                     <option value="">সব ধরনের লিভ</option>
                                     {leaveTypeOptions.map((option) => (
@@ -728,7 +725,7 @@ const EmployeeLeave = ({ onBack }) => {
                     {/* Table */}
                     {loading ? (
                         <div className="flex justify-center items-center py-12">
-                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#1e90c9]"></div>
                             <p className="text-gray-600 ml-3">কর্মচারী লিভ অ্যাপ্লিকেশন লোড হচ্ছে...</p>
                         </div>
                     ) : leaveApplications.length === 0 ? (
@@ -740,13 +737,12 @@ const EmployeeLeave = ({ onBack }) => {
                             <p className="text-gray-600 text-sm mb-4">
                                 নতুন কর্মচারী লিভ অ্যাপ্লিকেশন তৈরি করুন
                             </p>
-                            <button
+                            <MainButton
                                 onClick={() => setShowAddForm(true)}
-                                className="inline-flex items-center gap-2 px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium"
                             >
-                                <FaPlus className="text-sm" />
+                                <FaPlus className="text-sm mr-2" />
                                 নতুন লিভ অ্যাপ্লিকেশন
-                            </button>
+                            </MainButton>
                         </div>
                     ) : (
                         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">

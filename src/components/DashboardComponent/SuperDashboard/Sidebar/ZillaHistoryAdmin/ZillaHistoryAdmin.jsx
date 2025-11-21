@@ -1,8 +1,9 @@
 // ZillaHistory.jsx
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../sharedItems/Loader/Loader';
+import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 import RichTextEditor from '../../../../sharedItems/RichTextEditor/RichTextEditor';
 
 const ZillaHistoryAdmin = () => {
@@ -180,8 +181,7 @@ const ZillaHistoryAdmin = () => {
             <div className="max-w-6xl mx-auto">
                 {/* Header */}
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-gray-800 mb-2">জেলা ইতিহাস এডমিন</h1>
-                    <p className="text-gray-600">কুমিল্লা জেলার ইতিহাস এবং তথ্য আপডেট করুন</p>
+                    <h1 className="text-3xl font-bold text-gray-800 mb-2">জেলা ইতিহাস</h1>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg p-6">
@@ -196,19 +196,19 @@ const ZillaHistoryAdmin = () => {
                                 value={formData.googleMapLocation}
                                 onChange={(e) => setFormData({...formData, googleMapLocation: e.target.value})}
                                 placeholder="https://maps.app.goo.gl/your-comilla-link"
-                                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent"
                             />
-                            <button
+                            <MainButton
                                 onClick={testMapUrl}
-                                className="bg-green-500 text-white px-4 py-3 rounded-lg hover:bg-green-600 transition-colors font-medium"
+                                className="rounded-md"
                             >
                                 টেস্ট করুন
-                            </button>
+                            </MainButton>
                         </div>
                         <p className="text-xs text-gray-500 mt-1">
                             গুগল ম্যাপের শেয়ার লিঙ্ক দিন (যেমন: https://maps.app.goo.gl/...)
                         </p>
-                        <p className="text-xs text-blue-500 mt-1">
+                        <p className="text-xs text-[#1e90c9] mt-1">
                             💡 লিঙ্ক দিয়ে "টেস্ট করুন" বাটনে ক্লিক করে চেক করুন ঠিকভাবে কাজ করছে কিনা
                         </p>
                     </div>
@@ -233,10 +233,10 @@ const ZillaHistoryAdmin = () => {
                         >
                             প্রিভিউ দেখুন
                         </button>
-                        <button
+                        <MainButton
                             onClick={zillaData ? handleUpdate : handleSave}
                             disabled={saving}
-                            className="bg-green-500 text-white px-8 py-3 rounded-lg hover:bg-green-600 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                            className="rounded-md"
                         >
                             {saving ? (
                                 <>
@@ -248,7 +248,7 @@ const ZillaHistoryAdmin = () => {
                                     {zillaData ? 'আপডেট করুন' : 'সেভ করুন'}
                                 </>
                             )}
-                        </button>
+                        </MainButton>
                     </div>
 
                     {/* Preview Section */}

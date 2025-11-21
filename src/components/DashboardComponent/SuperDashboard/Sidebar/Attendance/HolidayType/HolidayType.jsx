@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewLeaveType from './AddNewLeaveType/AddNewLeaveType';
 
 
@@ -87,24 +88,20 @@ const HolidayType = () => {
             <div className="max-w-full mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-purple-600 to-purple-800 px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div className="px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <div>
-                            <h1 className="text-2xl font-bold text-white">
+                            <h1 className="text-2xl font-bold ">
                                 ছুটির ধরন ব্যবস্থাপনা
                             </h1>
-                            <p className="text-purple-100 text-sm mt-1">
-                                সকল ধরনের ছুটি ক্যাটাগরি ব্যবস্থাপনা
-                            </p>
                         </div>
-                        <button
+                        <MainButton
                             onClick={() => setShowAddForm(true)}
-                            className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors duration-200 flex items-center space-x-2"
                         >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
                             </svg>
                             <span>নতুন ছুটির ধরন</span>
-                        </button>
+                        </MainButton>
                     </div>
 
                     {/* Content */}
@@ -117,7 +114,7 @@ const HolidayType = () => {
 
                         {loading ? (
                             <div className="flex justify-center items-center py-12">
-                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
+                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1e90c9]"></div>
                             </div>
                         ) : holidayTypes.length === 0 ? (
                             <div className="text-center py-12">
@@ -126,32 +123,31 @@ const HolidayType = () => {
                                 </svg>
                                 <h3 className="text-lg font-medium text-gray-900 mb-2">কোন ছুটির ধরন নেই</h3>
                                 <p className="text-gray-500 mb-4">এখনও কোন ছুটির ধরন যোগ করা হয়নি</p>
-                                <button
+                                <MainButton
                                     onClick={() => setShowAddForm(true)}
-                                    className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-colors duration-200"
                                 >
                                     প্রথম ছুটির ধরন যোগ করুন
-                                </button>
+                                </MainButton>
                             </div>
                         ) : (
                             <>
                                 {/* Summary Cards */}
                                 <div className="grid grid-cols-1 md:grid-rows-1 md:grid-cols-3 gap-4 mb-6">
-                                    <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 text-center">
-                                        <div className="text-2xl font-bold text-purple-600">{holidayTypes.length}</div>
-                                        <div className="text-sm text-purple-700">মোট ছুটির ধরন</div>
+                                    <div className="bg-blue-50 rounded-lg p-4 text-center">
+                                        <div className="text-2xl font-bold text-[#1e90c9]">{holidayTypes.length}</div>
+                                        <div className="text-sm text-[#1e90c9]">মোট ছুটির ধরন</div>
                                     </div>
-                                    <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
-                                        <div className="text-2xl font-bold text-green-600">
+                                    <div className="bg-blue-50 rounded-lg p-4 text-center">
+                                        <div className="text-2xl font-bold text-[#1e90c9]">
                                             {holidayTypes.filter(ht => ht.name.includes('বার্ষিক')).length}
                                         </div>
-                                        <div className="text-sm text-green-700">বার্ষিক ছুটি</div>
+                                        <div className="text-sm text-[#1e90c9]">বার্ষিক ছুটি</div>
                                     </div>
                                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
-                                        <div className="text-2xl font-bold text-blue-600">
+                                        <div className="text-2xl font-bold text-[#1e90c9]">
                                             {holidayTypes.filter(ht => !ht.name.includes('বার্ষিক')).length}
                                         </div>
-                                        <div className="text-sm text-blue-700">অন্যান্য ছুটি</div>
+                                        <div className="text-sm text-[#1e90c9]">অন্যান্য ছুটি</div>
                                     </div>
                                 </div>
 
