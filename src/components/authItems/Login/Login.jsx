@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash, FaFacebook, FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router"; // Updated to react-router-dom
 import axiosInstance from "../../../hooks/axiosInstance/axiosInstance";
@@ -14,6 +14,14 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  // Auto redirect if already logged in
+  useEffect(() => {
+    if (user) {
+      // যদি ইউজার লগইন করা থাকে → সরাসরি ড্যাশবোর্ডে নিয়ে যাও
+      navigate("/super/dashboard", { replace: true });
+    }
+  }, [user, navigate]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
