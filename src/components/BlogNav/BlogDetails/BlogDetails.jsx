@@ -151,7 +151,6 @@ const BlogDetails = () => {
                             alt={blog.title}
                             className="w-full h-full object-cover"
                             onError={(e) => {
-                                e.target.src = '/images/blog-placeholder.jpg';
                                 e.target.className = 'w-full h-full object-cover bg-gray-200';
                             }}
                         />
@@ -222,7 +221,7 @@ const BlogDetails = () => {
                                       prose-table:border-gray-300
                                       prose-th:bg-gray-100
                                       prose-td:border-gray-300"
-                            dangerouslySetInnerHTML={{ __html: blog.body || 'কোন কন্টেন্ট নেই' }}
+                            dangerouslySetInnerHTML={{ __html: blog.description || 'কোন কন্টেন্ট নেই' }}
                         />
                     </div>
                 </article>

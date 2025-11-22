@@ -73,332 +73,208 @@ const StudentsMenu = ({ onBack }) => {
         });
     };
 
-    const handlePrint = (student) => {
-        // Create a new window for printing
-        const printWindow = window.open('', '_blank');
-        
-        // Format the student data for printing
-        const printContent = `
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <title>Student Information - ${student.name}</title>
-                <style>
-                    body {
-                        font-family: 'Arial', sans-serif;
-                        margin: 20px;
-                        color: #333;
-                        line-height: 1.6;
-                    }
-                    .header {
-                        text-align: center;
-                        border-bottom: 3px solid #1e90c9;
-                        padding-bottom: 20px;
-                        margin-bottom: 30px;
-                    }
-                    .header h1 {
-                        color: #1e90c9;
-                        margin: 0;
-                        font-size: 28px;
-                    }
-                    .header .subtitle {
-                        color: #666;
-                        font-size: 16px;
-                    }
-                    .student-info {
-                        display: grid;
-                        grid-template-columns: 1fr 1fr;
-                        gap: 30px;
-                        margin-bottom: 30px;
-                    }
-                    .section {
-                        margin-bottom: 25px;
-                    }
-                    .section-title {
-                        background: #1e90c9;
-                        color: white;
-                        padding: 10px 15px;
-                        margin: 0;
-                        border-radius: 5px;
-                        font-size: 18px;
-                    }
-                    .info-grid {
-                        display: grid;
-                        grid-template-columns: 1fr 1fr;
-                        gap: 15px;
-                        margin-top: 15px;
-                    }
-                    .info-item {
-                        margin-bottom: 10px;
-                    }
-                    .info-label {
-                        font-weight: bold;
-                        color: #555;
-                        display: block;
-                        margin-bottom: 2px;
-                    }
-                    .info-value {
-                        color: #333;
-                    }
-                    .photo-section {
-                        text-align: center;
-                        grid-column: 1 / -1;
-                    }
-                    .student-photo {
-                        max-width: 200px;
-                        max-height: 200px;
-                        border: 2px solid #ddd;
-                        border-radius: 10px;
-                    }
-                    .fees-section {
-                        background: #f8f9fa;
-                        padding: 15px;
-                        border-radius: 8px;
-                        border-left: 4px solid #1e90c9;
-                    }
-                    .fee-item {
-                        display: flex;
-                        justify-content: space-between;
-                        margin-bottom: 8px;
-                        padding-bottom: 8px;
-                        border-bottom: 1px solid #eee;
-                    }
-                    .fee-total {
-                        font-weight: bold;
-                        font-size: 18px;
-                        color: #1e90c9;
-                        border-top: 2px solid #1e90c9;
-                        padding-top: 10px;
-                        margin-top: 10px;
-                    }
-                    @media print {
-                        body { margin: 0; }
-                        .no-print { display: none; }
-                    }
-                    .footer {
-                        text-align: center;
-                        margin-top: 40px;
-                        padding-top: 20px;
-                        border-top: 2px solid #ddd;
-                        color: #666;
-                        font-size: 14px;
-                    }
-                </style>
-            </head>
-            <body>
-                <div class="header">
-                    <h1>STUDENT INFORMATION</h1>
-                    <div class="subtitle">Generated on ${new Date().toLocaleDateString('en-BD')}</div>
-                </div>
+    
+// এই ফাংশনটা handlePrint এর আগে রাখো (যেকোনো জায়গায় handlePrint এর আগে)
+const getPositionLabel = (position) => {
+  const labels = {
+    'Active': 'সক্রিয়',
+    'Inactive': 'নিষ্ক্রিয়',
+    'Admission Pending': 'ভর্তি অপেক্ষমাণ',
+    'Admission Rejected': 'ভর্তি বাতিল',
+    'Expelled': 'বহিষ্কৃত',
+    'Moved To Another Institute': 'অন্য প্রতিষ্ঠানে স্থানান্তরিত'
+  };
+  return labels[position] || position || 'N/A';
+};
 
-                <div class="student-info">
-                    <!-- Personal Information -->
-                    <div class="section">
-                        <h2 class="section-title">Personal Information</h2>
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">Student ID:</span>
-                                <span class="info-value">${student.studentId || 'N/A'}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Smart ID:</span>
-                                <span class="info-value">${student.smartId || 'N/A'}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Dakhela Number:</span>
-                                <span class="info-value">${student.dakhelaNumber || 'N/A'}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Full Name:</span>
-                                <span class="info-value">${student.name || 'N/A'}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Date of Birth:</span>
-                                <span class="info-value">${student.dob ? new Date(student.dob).toLocaleDateString('en-BD') : 'N/A'}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Gender:</span>
-                                <span class="info-value">${student.gender || 'N/A'}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Mobile:</span>
-                                <span class="info-value">${student.mobile || 'N/A'}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Blood Group:</span>
-                                <span class="info-value">${student.bloodGroup || 'N/A'}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Status:</span>
-                                <span class="info-value">${getStatusText(student.status)}</span>
-                            </div>
-                        </div>
-                    </div>
+const handlePrint = (student) => {
+  const printWindow = window.open("", "_blank");
+  
+  // ছবির URL (যদি না থাকে তাহলে placeholder)
+  const photoUrl = student.photo 
+    ? `${baseImageURL}${student.photo}` 
+    : "https://via.placeholder.com/150?text=ছবি+নেই";
 
-                    <!-- Family Information -->
-                    <div class="section">
-                        <h2 class="section-title">Family Information</h2>
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">Father's Name:</span>
-                                <span class="info-value">${student.fatherName || 'N/A'}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Mother's Name:</span>
-                                <span class="info-value">${student.motherName || 'N/A'}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Guardian's Name:</span>
-                                <span class="info-value">${student.guardianName || 'N/A'}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Guardian Mobile:</span>
-                                <span class="info-value">${student.guardianMobile || 'N/A'}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Relation:</span>
-                                <span class="info-value">${student.relation || 'N/A'}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Guardian NID:</span>
-                                <span class="info-value">${student.guardianNid || 'N/A'}</span>
-                            </div>
-                        </div>
-                    </div>
+  printWindow.document.write(`
+    <!DOCTYPE html>
+    <html lang="bn">
+    <head>
+      <meta charset="UTF-8">
+      <title>শিক্ষার্থীর তথ্য - ${student.name}</title>
+      <style>
+        body { 
+          font-family: 'Kalpurush', 'SolaimanLipi', Arial, sans-serif; 
+          padding: 30px; 
+          line-height: 1.7; 
+          color: #333; 
+          background: #f9f9f9;
+        }
+        .container { 
+          max-width: 850px; 
+          margin: 0 auto; 
+          border: 3px solid #1e90c9; 
+          padding: 35px; 
+          border-radius: 12px; 
+          background: #fff;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        h1 { 
+          text-align: center; 
+          color: #1e90c9; 
+          margin-bottom: 8px; 
+          font-size: 28px; 
+          font-weight: bold;
+        }
+        .subtitle { 
+          text-align: center; 
+          color: #555; 
+          margin-bottom: 25px; 
+          font-size: 16px; 
+        }
+        .photo { 
+          text-align: center; 
+          margin: 25px 0; 
+        }
+        .photo img { 
+          width: 150px; 
+          height: 150px; 
+          border-radius: 50%; 
+          border: 5px solid #1e90c9; 
+          object-fit: cover; 
+          box-shadow: 0 4px 15px rgba(30,144,201,0.3);
+        }
+        h2 { 
+          background: #1e90c9; 
+          color: white; 
+          padding: 12px 18px; 
+          border-radius: 8px; 
+          margin: 30px 0 18px 0; 
+          font-size: 19px; 
+          font-weight: bold;
+        }
+        table { 
+          width: 100%; 
+          border-collapse: collapse; 
+          margin: 18px 0; 
+          font-size: 15.5px; 
+        }
+        td { 
+          padding: 12px 15px; 
+          border: 1.5px solid #ddd; 
+          vertical-align: top; 
+        }
+        .label { 
+          font-weight: bold; 
+          background: #e3f2fd; 
+          color: #1e90c9; 
+          width: 38%; 
+          text-align: right;
+        }
+        .highlight { 
+          background: #e8f5e8; 
+          font-weight: bold; 
+          font-size: 16px;
+        }
+        .text-center { text-align: center; }
+        .footer { 
+          margin-top: 60px; 
+          padding-top: 25px; 
+          border-top: 2px dashed #1e90c9; 
+          text-align: center; 
+          color: #666; 
+          font-size: 14px; 
+        }
+        @media print {
+          body { padding: 10px; background: white; }
+          .container { border: 2px solid #1e90c9; }
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <h1>শিক্ষার্থীর বিস্তারিত তথ্য</h1>
+        <div class="subtitle">প্রিন্ট তারিখ: ${new Date().toLocaleDateString('bn-BD')}</div>
 
-                    <!-- Academic Information -->
-                    <div class="section">
-                        <h2 class="section-title">Academic Information</h2>
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">Class:</span>
-                                <span class="info-value">${student.class?.name || 'N/A'}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Section:</span>
-                                <span class="info-value">${student.section?.name || 'N/A'}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Batch:</span>
-                                <span class="info-value">${student.batch?.name || 'N/A'}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Session:</span>
-                                <span class="info-value">${student.session?.name || 'N/A'}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Class Roll:</span>
-                                <span class="info-value">${student.classRoll || 'N/A'}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Student Type:</span>
-                                <span class="info-value">${student.studentType || 'N/A'}</span>
-                            </div>
-                        </div>
-                    </div>
+        <div class="photo">
+          <img src="${photoUrl}" alt="Student Photo" onerror="this.src='https://via.placeholder.com/150?text=ছবি+নেই'" />
+        </div>
 
-                    <!-- Photo Section -->
-                    <div class="section photo-section">
-                        <h2 class="section-title">Student Photo</h2>
-                        ${student.photo ? 
-                            `<img src="${baseImageURL}${student.photo}" alt="${student.name}" class="student-photo" onerror="this.style.display='none'" />` : 
-                            '<p>No photo available</p>'
-                        }
-                    </div>
+        <p class="text-center highlight">
+          <strong>শিক্ষার্থী আইডি:</strong> ${student.studentId || 'N/A'} 
+          ${student.smartIdCard ? `| <strong>Smart ID:</strong> ${student.smartIdCard}` : ''}
+          ${student.dakhelaNumber ? `| <strong>Dakhela:</strong> ${student.dakhelaNumber}` : ''}
+        </p>
 
-                    <!-- Fee Information -->
-                    <div class="section">
-                        <h2 class="section-title">Fee Information</h2>
-                        <div class="fees-section">
-                            <div class="fee-item">
-                                <span>Admission Fee:</span>
-                                <span>${formatCurrency(student.admissionFee || 0)}</span>
-                            </div>
-                            <div class="fee-item">
-                                <span>Monthly Fee:</span>
-                                <span>${formatCurrency(student.monthlyFee || 0)}</span>
-                            </div>
-                            <div class="fee-item">
-                                <span>Session Fee:</span>
-                                <span>${formatCurrency(student.sessionFee || 0)}</span>
-                            </div>
-                            <div class="fee-item">
-                                <span>Boarding Fee:</span>
-                                <span>${formatCurrency(student.boardingFee || 0)}</span>
-                            </div>
-                            <div class="fee-item">
-                                <span>Transport Fee:</span>
-                                <span>${formatCurrency(student.transportFee || 0)}</span>
-                            </div>
-                            <div class="fee-item">
-                                <span>Residence Fee:</span>
-                                <span>${formatCurrency(student.residenceFee || 0)}</span>
-                            </div>
-                            <div class="fee-item">
-                                <span>Other Fee:</span>
-                                <span>${formatCurrency(student.otherFee || 0)}</span>
-                            </div>
-                            <div class="fee-item">
-                                <span>Previous Dues:</span>
-                                <span>${formatCurrency(student.previousDues || 0)}</span>
-                            </div>
-                            <div class="fee-item fee-total">
-                                <span>TOTAL FEES:</span>
-                                <span>${formatCurrency(student.totalFees || 0)}</span>
-                            </div>
-                            <div class="fee-item">
-                                <span>Paid Fees:</span>
-                                <span>${formatCurrency(student.paidFees || 0)}</span>
-                            </div>
-                            <div class="fee-item fee-total">
-                                <span>DUE FEES:</span>
-                                <span>${formatCurrency(student.dueFees || 0)}</span>
-                            </div>
-                        </div>
-                    </div>
+        <h2>ব্যক্তিগত তথ্য</h2>
+        <table>
+          <tr><td class="label">নাম</td><td>${student.name}</td></tr>
+          <tr><td class="label">জন্ম তারিখ</td><td>${student.birthDate ? new Date(student.birthDate).toLocaleDateString('bn-BD') : 'N/A'}</td></tr>
+          <tr><td class="label">লিঙ্গ</td><td>${student.gender === 'Male' ? 'পুরুষ' : student.gender === 'Female' ? 'মহিলা' : 'অন্যান্য'}</td></tr>
+          <tr><td class="label">রক্তের গ্রুপ</td><td>${student.bloodGroup || 'N/A'}</td></tr>
+          <tr><td class="label">মোবাইল</td><td>${student.mobile || 'N/A'}</td></tr>
+          <tr><td class="label">জন্ম নিবন্ধন নং</td><td>${student.birthRegNo || 'N/A'}</td></tr>
+        </table>
 
-                    <!-- Address Information -->
-                    <div class="section">
-                        <h2 class="section-title">Address Information</h2>
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">Permanent Address:</span>
-                                <span class="info-value">
-                                    ${[student.permanentVillage, student.permanentPostOffice, student.permanentThana, student.permanentDistrict]
-                                        .filter(Boolean).join(', ') || 'N/A'}
-                                </span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Current Address:</span>
-                                <span class="info-value">
-                                    ${student.sameAsPermanent ? 'Same as Permanent Address' : 
-                                        [student.currentVillage, student.currentPostOffice, student.currentThana, student.currentDistrict]
-                                            .filter(Boolean).join(', ') || 'N/A'}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <h2>পারিবারিক তথ্য</h2>
+        <table>
+          <tr><td class="label">পিতার নাম</td><td>${student.fatherName}</td></tr>
+          <tr><td class="label">মাতার নাম</td><td>${student.motherName}</td></tr>
+          <tr><td class="label">অভিভাবকের নাম</td><td>${student.guardianName || 'N/A'}</td></tr>
+          <tr><td class="label">অভিভাবকের মোবাইল</td><td>${student.guardianMobile || 'N/A'}</td></tr>
+          <tr><td class="label">সম্পর্ক</td><td>${student.guardianRelation || 'N/A'}</td></tr>
+          <tr><td class="label">এনআইডি</td><td>${student.nid || 'N/A'}</td></tr>
+        </table>
 
-                <div class="footer">
-                    <p>This document was generated automatically from the Student Management System</p>
-                    <p>© ${new Date().getFullYear()} - All rights reserved</p>
-                </div>
+        <h2>শিক্ষা সংক্রান্ত তথ্য</h2>
+        <table>
+          <tr><td class="label">ক্লাস</td><td>${student.className || 'N/A'}</td></tr>
+          <tr><td class="label">ব্যাচ</td><td>${student.batchName || 'N/A'}</td></tr>
+          <tr><td class="label">সেকশন</td><td>${student.sectionName || 'N/A'}</td></tr>
+          <tr><td class="label">সেশন</td><td>${student.sessionName || 'N/A'}</td></tr>
+          <tr><td class="label">ক্লাস রোল</td><td>${student.classRoll || 'N/A'}</td></tr>
+          <tr><td class="label">অবস্থান</td><td>${getPositionLabel(student.position)}</td></tr>
+          <tr><td class="label">শিক্ষার্থী ধরন</td><td>${student.studentType || 'Non-Residential'}</td></tr>
+        </table>
 
-                <script>
-                    // Auto print when window loads
-                    window.onload = function() {
-                        window.print();
-                        // setTimeout(() => window.close(), 1000);
-                    };
-                </script>
-            </body>
-            </html>
-        `;
+        <h2>ঠিকানা</h2>
+        <table>
+          <tr><td class="label">স্থায়ী ঠিকানা</td>
+            <td>${[student.permanentVillage, student.permanentPostOffice, student.permanentThana, student.permanentDistrict].filter(Boolean).join(', ') || 'N/A'}</td></tr>
+          <tr><td class="label">বর্তমান ঠিকানা</td>
+            <td>${student.currentSameAsPermanent 
+              ? 'স্থায়ী ঠিকানার মতো একই' 
+              : [student.currentVillage, student.currentPostOffice, student.currentThana, student.currentDistrict].filter(Boolean).join(', ') || 'N/A'}</td></tr>
+        </table>
 
-        printWindow.document.write(printContent);
-        printWindow.document.close();
-    };
+        <h2>ফি তথ্য</h2>
+        <table>
+          <tr><td class="label">ভর্তি ফি</td><td>${student.admissionFee || 0} টাকা</td></tr>
+          <tr><td class="label">মাসিক ফি</td><td>${student.monthlyFee || 0} টাকা</td></tr>
+          <tr><td class="label">পূর্বের বকেয়া</td><td>${student.previousDues || 0} টাকা</td></tr>
+          <tr><td class="label">সেশন ফি</td><td>${student.sessionFee || 0} টাকা</td></tr>
+          <tr><td class="label">অন্যান্য ফি</td><td>${student.otherFee || 0} টাকা</td></tr>
+        </table>
+
+        <div class="footer">
+          <p><strong>এই ডকুমেন্টটি স্বয়ংক্রিয়ভাবে তৈরি করা হয়েছে</strong></p>
+          <small>© ${new Date().getFullYear()} - সকল অধিকার সংরক্ষিত</small>
+        </div>
+      </div>
+
+      <script>
+        window.onload = function() {
+          window.print();
+          window.onafterprint = function() {
+            window.close();
+          };
+        };
+      </script>
+    </body>
+    </html>
+  `);
+
+  printWindow.document.close();
+};
 
     const handleDelete = async (studentId, studentName) => {
         const result = await Swal.fire({
@@ -437,22 +313,11 @@ const StudentsMenu = ({ onBack }) => {
         showSweetAlert('info', 'ফি সংগ্রহ ফিচার শীঘ্রই আসছে');
     };
 
-    const handleEdit = (student) => {
-        setEditingStudent(student);
-        setActiveComponent('edit');
-    };
+const handleEdit = (student) => {
+    setEditingStudent(student);
+    setActiveComponent('edit');
+};
 
-    const getStatusText = (status) => {
-        const statusMap = {
-            'active': 'সক্রিয়',
-            'inactive': 'নিষ্ক্রিয়',
-            'admission_pending': 'ভর্তি প্রক্রিয়াধীন',
-            'admission_rejected': 'ভর্তি বাতিল',
-            'expelled': 'বহিষ্কৃত',
-            'moved': 'অন্য প্রতিষ্ঠানে স্থানান্তরিত'
-        };
-        return statusMap[status] || status;
-    };
 
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
@@ -663,7 +528,7 @@ const StudentsMenu = ({ onBack }) => {
                                                 </td>
                                                 <td className="px-4 py-3">
                                                     <span className="text-gray-600 text-sm">
-                                                        {student.smartId || 'N/A'}
+                                                        {student.smartIdCard || 'N/A'}
                                                     </span>
                                                 </td>
                                                 <td className="px-4 py-3">
@@ -709,7 +574,7 @@ const StudentsMenu = ({ onBack }) => {
                                                 </td>
                                                 <td className="px-4 py-3">
                                                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                                        {student.class?.name || 'N/A'}
+                                                        {student.className || 'N/A'}
                                                     </span>
                                                 </td>
                                                 <td className="px-4 py-3">
@@ -719,7 +584,7 @@ const StudentsMenu = ({ onBack }) => {
                                                 </td>
                                                 <td className="px-4 py-3">
                                                     <span className="text-gray-600 text-sm">
-                                                        {student.section?.name || 'N/A'} / {student.batch?.name || 'N/A'}
+                                                        {student.sectionName || 'N/A'} / {student.batchName || 'N/A'}
                                                     </span>
                                                 </td>
                                                 <td className="px-4 py-3">
@@ -735,7 +600,7 @@ const StudentsMenu = ({ onBack }) => {
                                                             ? 'bg-red-100 text-red-800'
                                                             : 'bg-yellow-100 text-yellow-800'
                                                     }`}>
-                                                        {getStatusText(student.status)}
+                                                        {getPositionLabel(student.position)}
                                                     </span>
                                                 </td>
                                                 <td className="px-4 py-3">

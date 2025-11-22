@@ -13,28 +13,50 @@ const Batch = () => {
     const [showAddForm, setShowAddForm] = useState(false);
     const [editingBatch, setEditingBatch] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
+    const [classes, setClasses] = useState([]);
 
     useEffect(() => {
         fetchBatches();
     }, []);
 
-    const fetchBatches = async () => {
-        try {
-            setLoading(true);
-            const response = await axiosInstance.get('/batches');
-            
-            if (response.data.success) {
-                setBatches(response.data.data);
-            } else {
-                showSweetAlert('error', 'ব্যাচ লোড করতে সমস্যা হয়েছে');
-            }
-        } catch (error) {
-            console.error('Error fetching batches:', error);
-            showSweetAlert('error', 'ব্যাচ লোড করতে সমস্যা হয়েছে');
-        } finally {
-            setLoading(false);
+const fetchBatches = async () => {
+    try {
+        setLoading(true);
+
+        // দুটো রিকোয়েস্ট একসাথে — ব্যাচ + ক্লাস
+        const [batchRes, classRes] = await Promise.all([
+            axiosInstance.get('/batches'),
+            axiosInstance.get('/class')
+        ]);
+
+        if (batchRes.data.success) {
+            setBatches(batchRes.data.data || []);
         }
-    };
+
+        if (classRes.data.success) {
+            setClasses(classRes.data.data || []);
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        showSweetAlert('error', 'ডাটা লোড করতে সমস্যা হয়েছে');
+    } finally {
+        setLoading(false);
+    }
+};
+
+
+// classId দিয়ে ক্লাসের নাম বের করা
+const getClassName = (classRef) => {
+    if (!classRef) return 'N/A';
+    
+    const id = typeof classRef === 'object' ? (classRef._id || classRef.toString()) : classRef;
+    
+    const found = classes.find(c => 
+        c._id === id || c._id.toString() === id
+    );
+    
+    return found ? found.name : 'অজানা ক্লাস';
+};
 
     const showSweetAlert = (icon, title, text = '') => {
         Swal.fire({
@@ -220,11 +242,11 @@ const Batch = () => {
                                                         {batch.batchId}
                                                     </span>
                                                 </td>
-                                                <td className="px-6 py-4 whitespace-nowrap">
-                                                    <span className="text-sm text-gray-900">
-                                                        {batch.class ? batch.class.name : 'N/A'}
-                                                    </span>
-                                                </td>
+<td className="px-6 py-4 whitespace-nowrap">
+    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+        {getClassName(batch.class || batch.classId)}
+    </span>
+</td>
                                                 <td className="px-6 py-4 whitespace-nowrap">
                                                     <span className={`px-2 py-1 text-xs rounded-full ${
                                                         batch.isActive 

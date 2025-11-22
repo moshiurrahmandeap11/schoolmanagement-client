@@ -14,6 +14,7 @@ const Section = ({ onBack }) => {
     const [sections, setSections] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [editingSection, setEditingSection] = useState(null);
+    const [classes, setClasses] = useState([]); // সব ক্লাস
 
     useEffect(() => {
         if (activeComponent === 'list') {
@@ -21,23 +22,45 @@ const Section = ({ onBack }) => {
         }
     }, [activeComponent]);
 
-    const fetchSections = async () => {
-        try {
-            setLoading(true);
-            const response = await axiosInstance.get('/sections');
-            
-            if (response.data.success) {
-                setSections(response.data.data || []);
-            } else {
-                showSweetAlert('error', response.data.message || 'সেকশন লোড করতে সমস্যা হয়েছে');
-            }
-        } catch (error) {
-            console.error('Error fetching sections:', error);
-            showSweetAlert('error', 'সেকশন লোড করতে সমস্যা হয়েছে');
-        } finally {
-            setLoading(false);
+const fetchSections = async () => {
+    try {
+        setLoading(true);
+
+        // দুটো রিকোয়েস্ট একসাথে
+        const [sectionRes, classRes] = await Promise.all([
+            axiosInstance.get('/sections'),
+            axiosInstance.get('/class')
+        ]);
+
+        if (sectionRes.data.success) {
+            setSections(sectionRes.data.data || []);
         }
-    };
+
+        if (classRes.data.success) {
+            setClasses(classRes.data.data || []);
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        showSweetAlert('error', 'ডাটা লোড করতে সমস্যা হয়েছে');
+    } finally {
+        setLoading(false);
+    }
+};
+
+
+const getClassNameById = (classId) => {
+    if (!classId) return 'N/A';
+    
+    // classId হতে পারে string বা object
+    const idToMatch = typeof classId === 'object' ? classId._id || classId.toString() : classId;
+
+    const foundClass = classes.find(cls => 
+        cls._id === idToMatch || 
+        cls._id.toString() === idToMatch
+    );
+
+    return foundClass ? foundClass.name : 'অজানা ক্লাস';
+};
 
     const showSweetAlert = (icon, title, text = '') => {
         Swal.fire({
@@ -237,11 +260,11 @@ const Section = ({ onBack }) => {
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td className="px-4 py-3">
-                                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ">
-                                                        {section.class?.name || 'N/A'}
-                                                    </span>
-                                                </td>
+<td className="px-4 py-3">
+    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+        {getClassNameById(section.class || section.classId)}
+    </span>
+</td>
                                                 <td className="px-4 py-3">
                                                     <div className="flex justify-center">
                                                         <button

@@ -151,7 +151,7 @@ const StudentsClassUpdate = ({ onBack }) => {
             newErrors.students = 'কমপক্ষে একজন শিক্ষার্থী নির্বাচন করুন';
         }
 
-        if (formData.migrateTo && (!formData.nextSession || !formData.nextClass)) {
+        if (formData.migrateTo === 'promote' && (!formData.nextSession || !formData.nextClass)) {
             newErrors.migration = 'মাইগ্রেশন এর জন্য পরবর্তী সেশন এবং ক্লাস নির্বাচন করুন';
         }
 
@@ -186,11 +186,11 @@ const StudentsClassUpdate = ({ onBack }) => {
                 if (!student) return null;
 
                 const updateData = {
-                    // Current academic info
-                    classId: formData.currentClass,
-                    batchId: formData.batch || student.batch?._id,
-                    sectionId: formData.section || student.section?._id,
-                    sessionId: formData.activeSession || student.session?._id,
+                    // Current academic info - শুধুমাত্র নির্বাচিত ফিল্ডগুলো আপডেট হবে
+                    ...(formData.currentClass && { classId: formData.currentClass }),
+                    ...(formData.batch && { batchId: formData.batch }),
+                    ...(formData.section && { sectionId: formData.section }),
+                    ...(formData.activeSession && { sessionId: formData.activeSession }),
                     
                     // Additional settings
                     sendAttendanceSMS: formData.sendAttendanceSMS,
@@ -203,6 +203,20 @@ const StudentsClassUpdate = ({ onBack }) => {
                     updateData.nextClassId = formData.nextClass;
                     updateData.nextBatchId = formData.nextBatch;
                     updateData.nextSectionId = formData.nextSection;
+                    
+                    // যদি promote করা হয়, তাহলে current class কে next class এ update করো
+                    if (formData.nextClass) {
+                        updateData.classId = formData.nextClass;
+                    }
+                    if (formData.nextSession) {
+                        updateData.sessionId = formData.nextSession;
+                    }
+                    if (formData.nextBatch) {
+                        updateData.batchId = formData.nextBatch;
+                    }
+                    if (formData.nextSection) {
+                        updateData.sectionId = formData.nextSection;
+                    }
                 }
 
                 // Update monthly fee if provided
@@ -218,7 +232,7 @@ const StudentsClassUpdate = ({ onBack }) => {
 
             showSweetAlert(
                 'success', 
-                `${successfulUpdates.length} জন শিক্ষার্থীর তথ্য সফলভাবে আপডেট হয়েছে`
+                `${successfulUpdates.length} জন শিক্ষার্থীর ক্লাস সফলভাবে আপডেট হয়েছে`
             );
 
             // Reset form
@@ -237,11 +251,50 @@ const StudentsClassUpdate = ({ onBack }) => {
             });
             setSelectedStudents([]);
             
+            // Refresh students list
+            fetchStudents();
+            
         } catch (error) {
             console.error('Error updating students:', error);
             const errorMessage = error.response?.data?.message || 'শিক্ষার্থীদের আপডেট করতে সমস্যা হয়েছে';
             setErrors({ submit: errorMessage });
             showSweetAlert('error', errorMessage);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleQuickClassChange = async (newClassId) => {
+        if (selectedStudents.length === 0) {
+            showSweetAlert('warning', 'দয়া করে শিক্ষার্থী নির্বাচন করুন');
+            return;
+        }
+
+        setLoading(true);
+        try {
+            const updatePromises = selectedStudents.map(async (studentId) => {
+                const updateData = {
+                    classId: newClassId,
+                    updatedAt: new Date()
+                };
+
+                return axiosInstance.put(`/students/${studentId}`, updateData);
+            });
+
+            const results = await Promise.all(updatePromises);
+            const successfulUpdates = results.filter(result => result?.data?.success);
+
+            showSweetAlert(
+                'success', 
+                `${successfulUpdates.length} জন শিক্ষার্থী ${classes.find(c => c._id === newClassId)?.name} ক্লাসে স্থানান্তরিত হয়েছে`
+            );
+
+            setSelectedStudents([]);
+            fetchStudents();
+            
+        } catch (error) {
+            console.error('Error in quick class change:', error);
+            showSweetAlert('error', 'ক্লাস পরিবর্তন করতে সমস্যা হয়েছে');
         } finally {
             setLoading(false);
         }
@@ -282,14 +335,39 @@ const StudentsClassUpdate = ({ onBack }) => {
                                 <h3 className="text-lg font-semibold text-[#1e90c9] mb-2">
                                     শিক্ষার্থীদের একাডেমিক তথ্য আপডেট:
                                 </h3>
+                                <p className="text-sm text-[#1e90c9]">
+                                    নির্বাচিত শিক্ষার্থীদের ক্লাস, ব্যাচ, সেকশন এবং সেশন পরিবর্তন করুন
+                                </p>
                             </div>
+
+                            {/* Quick Class Change - Quick Actions */}
+                            {selectedStudents.length > 0 && (
+                                <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                                    <h4 className="text-sm font-semibold text-green-800 mb-3">
+                                        দ্রুত ক্লাস পরিবর্তন ({selectedStudents.length} জন নির্বাচিত)
+                                    </h4>
+                                    <div className="flex flex-wrap gap-2">
+                                        {classes.slice(0, 6).map((classItem) => (
+                                            <button
+                                                key={classItem._id}
+                                                type="button"
+                                                onClick={() => handleQuickClassChange(classItem._id)}
+                                                disabled={loading}
+                                                className="px-3 py-2 bg-green-500 text-white text-sm rounded-lg hover:bg-green-600 transition-colors disabled:opacity-50"
+                                            >
+                                                {classItem.name} এ নিয়ে যান
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
 
                             {/* Current Academic Information */}
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                                 {/* Current Class */}
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                                        ক্লাস *
+                                        বর্তমান ক্লাস *
                                     </label>
                                     <select
                                         name="currentClass"
@@ -324,7 +402,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     >
-                                        <option value="">ব্যাচ নির্বাচন করুন</option>
+                                        <option value="">বর্তমান ব্যাচ রাখুন</option>
                                         {batches.map((batch) => (
                                             <option key={batch._id} value={batch._id}>
                                                 {batch.name}
@@ -345,7 +423,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     >
-                                        <option value="">সেকশন নির্বাচন করুন</option>
+                                        <option value="">বর্তমান সেকশন রাখুন</option>
                                         {sections.map((section) => (
                                             <option key={section._id} value={section._id}>
                                                 {section.name}
@@ -357,7 +435,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                 {/* Active Session */}
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                                        Active Session
+                                        সেশন
                                     </label>
                                     <select
                                         name="activeSession"
@@ -366,10 +444,10 @@ const StudentsClassUpdate = ({ onBack }) => {
                                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     >
-                                        <option value="">সেশন নির্বাচন করুন</option>
+                                        <option value="">বর্তমান সেশন রাখুন</option>
                                         {sessions.map((session) => (
                                             <option key={session._id} value={session._id}>
-                                                {session.name}
+                                                {session.year || session.name}
                                             </option>
                                         ))}
                                     </select>
@@ -390,6 +468,9 @@ const StudentsClassUpdate = ({ onBack }) => {
                                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                         disabled={loading}
                                     />
+                                    <p className="text-xs text-gray-500 mt-1">
+                                        ফি ক্যালকুলেশন এই তারিখ থেকে শুরু হবে
+                                    </p>
                                 </div>
 
                                 <div className="flex items-center">
@@ -411,13 +492,13 @@ const StudentsClassUpdate = ({ onBack }) => {
                             {/* Migration Section */}
                             <div className="border-t pt-6">
                                 <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                                    পরবর্তী সেশনের জন্য মাইগ্রেশন
+                                    পরবর্তী সেশনের জন্য প্রমোশন
                                 </h3>
                                 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                                            Migrate To
+                                            প্রমোশন টাইপ
                                         </label>
                                         <select
                                             name="migrateTo"
@@ -426,7 +507,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e90c9] focus:border-transparent transition-all"
                                             disabled={loading}
                                         >
-                                            <option value="">মাইগ্রেশন টাইপ নির্বাচন করুন</option>
+                                            <option value="">প্রমোশন টাইপ নির্বাচন করুন</option>
                                             <option value="promote">পরবর্তী ক্লাসে প্রমোশন</option>
                                             <option value="same">একই ক্লাসে থাকবে</option>
                                         </select>
@@ -437,7 +518,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 bg-blue-50 p-4 rounded-lg">
                                         <div>
                                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                Next Session *
+                                                পরবর্তী সেশন *
                                             </label>
                                             <select
                                                 name="nextSession"
@@ -449,7 +530,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                                 <option value="">সেশন নির্বাচন করুন</option>
                                                 {sessions.map((session) => (
                                                     <option key={session._id} value={session._id}>
-                                                        {session.name}
+                                                        {session.year || session.name}
                                                     </option>
                                                 ))}
                                             </select>
@@ -457,7 +538,7 @@ const StudentsClassUpdate = ({ onBack }) => {
 
                                         <div>
                                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                Next Class *
+                                                পরবর্তী ক্লাস *
                                             </label>
                                             <select
                                                 name="nextClass"
@@ -477,7 +558,7 @@ const StudentsClassUpdate = ({ onBack }) => {
 
                                         <div>
                                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                Next Batch
+                                                পরবর্তী ব্যাচ
                                             </label>
                                             <select
                                                 name="nextBatch"
@@ -497,7 +578,7 @@ const StudentsClassUpdate = ({ onBack }) => {
 
                                         <div>
                                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                Next Section
+                                                পরবর্তী সেকশন
                                             </label>
                                             <select
                                                 name="nextSection"
@@ -530,16 +611,18 @@ const StudentsClassUpdate = ({ onBack }) => {
                                             ({classStudents.length} জন শিক্ষার্থী)
                                         </span>
                                     </label>
-                                    {formData.currentClass && (
-                                        <button
-                                            type="button"
-                                            onClick={selectAllStudents}
-                                            className="text-sm text-[#1e90c9] font-medium"
-                                        >
-                                            {selectedStudents.length === classStudents.length ? 
-                                                'সব নির্বাচন করুন' : 'সব নির্বাচন করুন'
-                                            }
-                                        </button>
+                                    {formData.currentClass && classStudents.length > 0 && (
+                                        <div className="flex items-center gap-2">
+                                            <button
+                                                type="button"
+                                                onClick={selectAllStudents}
+                                                className="text-sm text-[#1e90c9] font-medium hover:underline"
+                                            >
+                                                {selectedStudents.length === classStudents.length ? 
+                                                    'সব আনসিলেক্ট করুন' : 'সব সিলেক্ট করুন'
+                                                }
+                                            </button>
+                                        </div>
                                     )}
                                 </div>
 
@@ -551,7 +634,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                     {!formData.currentClass ? (
                                         <div className="text-center py-8 text-gray-500">
                                             <FaUser className="text-4xl text-gray-300 mx-auto mb-2" />
-                                            <p>ক্লাস নির্বাচন করুন</p>
+                                            <p>প্রথমে ক্লাস নির্বাচন করুন</p>
                                         </div>
                                     ) : classStudents.length === 0 ? (
                                         <div className="text-center py-8 text-gray-500">
@@ -566,7 +649,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                                     onClick={() => handleStudentSelection(student._id)}
                                                     className={`p-3 border rounded-lg cursor-pointer transition-all ${
                                                         selectedStudents.includes(student._id)
-                                                            ? 'bg-green-50 border-green-300'
+                                                            ? 'bg-green-50 border-green-300 shadow-sm'
                                                             : 'bg-white border-gray-200 hover:bg-gray-50'
                                                     }`}
                                                 >
@@ -586,15 +669,20 @@ const StudentsClassUpdate = ({ onBack }) => {
                                                                 <p className="text-xs text-gray-500">
                                                                     ID: {student.studentId} | রোল: {student.classRoll}
                                                                 </p>
+                                                                <p className="text-xs text-gray-400">
+                                                                    {student.class?.name} - {student.section?.name}
+                                                                </p>
                                                             </div>
                                                         </div>
-                                                        <div className={`w-4 h-4 rounded border ${
+                                                        <div className={`w-4 h-4 rounded border flex items-center justify-center ${
                                                             selectedStudents.includes(student._id)
                                                                 ? 'bg-green-500 border-green-500'
                                                                 : 'bg-white border-gray-300'
                                                         }`}>
                                                             {selectedStudents.includes(student._id) && (
-                                                                <div className="w-2 h-2 bg-white rounded-sm m-auto mt-0.5"></div>
+                                                                <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                                                </svg>
                                                             )}
                                                         </div>
                                                     </div>
@@ -605,8 +693,13 @@ const StudentsClassUpdate = ({ onBack }) => {
                                 </div>
 
                                 {formData.currentClass && classStudents.length > 0 && (
-                                    <div className="mt-3 text-sm text-gray-600">
-                                        নির্বাচিত শিক্ষার্থী: {selectedStudents.length} জন
+                                    <div className="mt-3 text-sm text-gray-600 flex justify-between items-center">
+                                        <span>নির্বাচিত শিক্ষার্থী: {selectedStudents.length} জন</span>
+                                        {selectedStudents.length > 0 && (
+                                            <span className="text-green-600 font-medium">
+                                                আপডেট প্রস্তুত
+                                            </span>
+                                        )}
                                     </div>
                                 )}
                             </div>
@@ -635,7 +728,7 @@ const StudentsClassUpdate = ({ onBack }) => {
                                 >
                                     {loading ? (
                                         <>
-                                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
                                             আপডেট হচ্ছে...
                                         </>
                                     ) : (
@@ -650,15 +743,15 @@ const StudentsClassUpdate = ({ onBack }) => {
 
                         {/* Help Text */}
                         <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                            <h3 className="text-sm font-medium text-[#1e90c9] mb-1">
-                                ক্লাস আপডেট সম্পর্কে:
+                            <h3 className="text-sm font-medium text-[#1e90c9] mb-2">
+                                ক্লাস আপডেট সম্পর্কে নির্দেশিকা:
                             </h3>
-                            <ul className="text-xs text-[#1e90c9] space-y-1">
-                                <li>• একসাথে একাধিক শিক্ষার্থীর একাডেমিক তথ্য আপডেট করতে পারবেন</li>
-                                <li>• মাইগ্রেশন ফিচার ব্যবহার করে পরবর্তী সেশনের জন্য প্রস্তুত করতে পারবেন</li>
-                                <li>• Monthly Fee From তারিখ সেট করলে ফি ক্যালকুলেশন সেই তারিখ থেকে শুরু হবে</li>
-                                <li>• Send Attendance SMS চালু করলে অটোমেটিক attendance SMS যাবে</li>
-                                <li>• নির্বাচিত সব শিক্ষার্থী একই সাথে আপডেট হবে</li>
+                            <ul className="text-xs text-gray-600 space-y-1">
+                                <li>• <strong>দ্রুত ক্লাস পরিবর্তন:</strong> উপরের বাটন দিয়ে সরাসরি অন্য ক্লাসে নিয়ে যেতে পারেন</li>
+                                <li>• <strong>ডিটেইল আপডেট:</strong> সকল ফিল্ড পূরণ করে সম্পূর্ণ তথ্য আপডেট করতে পারেন</li>
+                                <li>• <strong>প্রমোশন:</strong> পরবর্তী সেশনে স্বয়ংক্রিয়ভাবে প্রমোশন দিতে পারেন</li>
+                                <li>• <strong>ফিল্ড খালি রাখুন:</strong> কোনো ফিল্ড না বদলাতে চাইলে খালি রাখুন</li>
+                                <li>• <strong>একসাথে আপডেট:</strong> নির্বাচিত সব শিক্ষার্থী একই সাথে আপডেট হবে</li>
                             </ul>
                         </div>
                     </div>

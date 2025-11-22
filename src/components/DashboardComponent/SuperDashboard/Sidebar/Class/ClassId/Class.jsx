@@ -12,6 +12,7 @@ const Class = ({ onBack }) => {
     const [loading, setLoading] = useState(false);
     const [showAddForm, setShowAddForm] = useState(false);
     const [editingClass, setEditingClass] = useState(null);
+    const [allStudents, setAllStudents] = useState([]);
 
     useEffect(() => {
         if (!showAddForm) {
@@ -19,21 +20,40 @@ const Class = ({ onBack }) => {
         }
     }, [showAddForm]);
 
-    const fetchClasses = async () => {
-        try {
-            setLoading(true);
-            const response = await axiosInstance.get('/class');
-            
-            if (response.data.success) {
-                setClasses(response.data.data || []);
-            }
-        } catch (error) {
-            console.error('Error fetching classes:', error);
-            showSweetAlert('error', 'ক্লাস লোড করতে সমস্যা হয়েছে');
-        } finally {
-            setLoading(false);
+const fetchClasses = async () => {
+    try {
+        setLoading(true);
+
+        // দুটো রিকোয়েস্ট একসাথে
+        const [classRes, studentRes] = await Promise.all([
+            axiosInstance.get('/class'),
+            axiosInstance.get('/students') // সব স্টুডেন্ট লোড করছি
+        ]);
+
+        if (classRes.data.success) {
+            setClasses(classRes.data.data || []);
         }
-    };
+
+        if (studentRes.data.success) {
+            setAllStudents(studentRes.data.data || []);
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        showSweetAlert('error', 'ডাটা লোড করতে সমস্যা হয়েছে');
+    } finally {
+        setLoading(false);
+    }
+};
+
+// ক্লাস আইডি দিয়ে কতজন স্টুডেন্ট আছে তা কাউন্ট করে
+const getStudentCountForClass = (classId) => {
+    if (!allStudents.length || !classId) return 0;
+    return allStudents.filter(student => 
+        student.classId === classId || 
+        (student.classId && student.classId._id === classId) ||
+        (student.classId && student.classId === classId)
+    ).length;
+};
 
     const showSweetAlert = (icon, title, text = '') => {
         Swal.fire({
@@ -209,14 +229,14 @@ const Class = ({ onBack }) => {
                                                         </p>
                                                     </div>
                                                 </td>
-                                                <td className="px-6 py-4">
-                                                    <div className="flex items-center gap-2">
-                                                        <FaUsers className="text-gray-400 text-sm" />
-                                                        <span className="text-sm text-gray-800 font-semibold">
-                                                            {classItem.studentCount || 0} জন
-                                                        </span>
-                                                    </div>
-                                                </td>
+<td className="px-6 py-4">
+    <div className="flex items-center gap-2">
+        <FaUsers className="text-gray-400 text-sm" />
+        <span className="text-sm text-gray-800 font-semibold">
+            {getStudentCountForClass(classItem._id)} জন
+        </span>
+    </div>
+</td>
                                                 <td className="px-6 py-4">
                                                     <div 
                                                         className="text-sm text-gray-600 max-w-xs truncate"
