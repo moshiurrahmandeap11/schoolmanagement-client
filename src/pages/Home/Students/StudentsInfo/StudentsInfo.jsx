@@ -1,16 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
 import Loader from '../../../../components/sharedItems/Loader/Loader';
 import MainButton from '../../../../components/sharedItems/Mainbutton/Mainbutton';
-import axiosInstance from '../../../../hooks/axiosInstance/axiosInstance';
+import axiosInstance, { baseImageURL } from '../../../../hooks/axiosInstance/axiosInstance';
 
 const StudentsInfo = () => {
     const [students, setStudents] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedClass, setSelectedClass] = useState('all');
-    const navigate = useNavigate();
-
-    const imageUrl = axiosInstance.defaults.baseURL;
 
     useEffect(() => {
         fetchStudents();
@@ -21,7 +17,7 @@ const StudentsInfo = () => {
             setLoading(true);
             const response = await axiosInstance.get('/students');
             if (response.data.success) {
-                setStudents(response.data.data);
+                setStudents(response.data.data || []);
             }
         } catch (error) {
             console.error('Error fetching students:', error);
@@ -30,13 +26,9 @@ const StudentsInfo = () => {
         }
     };
 
-    // Group students by class
+    // Group students by className
     const studentsByClass = students.reduce((acc, student) => {
-        const className =
-            typeof student.class === 'object'
-                ? student.class.name
-                : student.class;
-
+        const className = student.className || 'অজানা শ্রেণী';
         if (!acc[className]) {
             acc[className] = [];
         }
@@ -44,18 +36,16 @@ const StudentsInfo = () => {
         return acc;
     }, {});
 
-    // Sort class names numerically
+    // Sort classes numerically
     const sortedClasses = Object.keys(studentsByClass).sort((a, b) => {
-        const numA = parseInt(a.replace(/\D/g, ''));
-        const numB = parseInt(b.replace(/\D/g, ''));
+        const numA = parseInt(a.replace(/\D/g, '')) || 0;
+        const numB = parseInt(b.replace(/\D/g, '')) || 0;
         return numA - numB;
     });
 
-    // Filter classes for display
-    const displayClasses =
-        selectedClass === 'all'
-            ? sortedClasses
-            : sortedClasses.filter((cls) => cls === selectedClass);
+    const displayClasses = selectedClass === 'all' 
+        ? sortedClasses 
+        : sortedClasses.filter(cls => cls === selectedClass);
 
     if (loading) {
         return (
@@ -113,14 +103,11 @@ const StudentsInfo = () => {
                     </div>
                 </div>
 
-                {/* Students Grid by Class */}
-                <div className="space-y-8">
+                {/* Students by Class */}
+                <div className="space-y-12">
                     {displayClasses.length > 0 ? (
                         displayClasses.map((className) => (
-                            <div
-                                key={className}
-                                className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"
-                            >
+                            <div key={className} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
                                 {/* Class Header */}
                                 <div className="bg-gradient-to-r from-[#1e90c9] to-[#1e90c9]/90 px-6 py-4">
                                     <h2 className="text-2xl font-bold text-white flex items-center gap-3">
@@ -135,7 +122,7 @@ const StudentsInfo = () => {
                                 <div className="p-6">
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                                         {studentsByClass[className]
-                                            .sort((a, b) => a.roll - b.roll)
+                                            .sort((a, b) => (a.classRoll || 999) - (b.classRoll || 999))
                                             .map((student) => (
                                                 <div
                                                     key={student._id}
@@ -144,9 +131,11 @@ const StudentsInfo = () => {
                                                     <div className="flex items-start gap-4">
                                                         {student.photo ? (
                                                             <img
-                                                                src={`${imageUrl}${student.photo}`}
+                                                                src={`${baseImageURL}${student.photo}`}
                                                                 alt={student.name}
                                                                 className="w-16 h-16 rounded-full object-cover border-2 border-blue-200"
+                                                                on
+                                                                onError={(e) => e.target.src = 'https://via.placeholder.com/150?text=No+Photo'}
                                                             />
                                                         ) : (
                                                             <div className="w-16 h-16 rounded-full bg-blue-100 border-2 border-blue-200 flex items-center justify-center">
@@ -157,17 +146,28 @@ const StudentsInfo = () => {
                                                             </div>
                                                         )}
 
-                                                        <div>
+                                                        <div className="flex-1">
                                                             <h3 className="font-semibold text-gray-900 text-lg">
                                                                 {student.name}
                                                             </h3>
-                                                            <p className="text-sm text-gray-600">
-                                                                <span className="font-medium">রোল:</span> {student.classRoll}
-                                                            </p>
-                                                            <p className="text-sm text-gray-600">
-                                                                <span className="font-medium">সেকশন:</span>{' '}
-                                                                {student.section?.name}
-                                                            </p>
+                                                            <div className="text-sm text-gray-600 space-y-1 mt-1">
+                                                                <p>
+                                                                    <span className="font-medium">রোল:</span> {student.classRoll || '-'}
+                                                                </p>
+                                                                <p>
+                                                                    <span className="font-medium">ক্লাস:</span> {student.className || '-'}
+                                                                </p>
+                                                                <p>
+                                                                    <span className="font-medium">সেশন:</span> {student.sessionName || student.session?.name || '-'}
+                                                                </p>
+                                                                <p>
+                                                                    <span className="font-medium">সেকশন:</span>{' '}
+                                                                    {student.sectionName || student.section?.name || '-'}
+                                                                </p>
+                                                                <p>
+                                                                    <span className="font-medium">আইডি:</span> {student.studentId}
+                                                                </p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

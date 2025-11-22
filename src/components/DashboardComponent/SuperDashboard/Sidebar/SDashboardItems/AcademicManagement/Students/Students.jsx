@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FaFilter, FaPhone, FaSearch, FaUserGraduate } from 'react-icons/fa';
 import Swal from 'sweetalert2';
-import axiosInstance from '../../../../../../../hooks/axiosInstance/axiosInstance';
+import axiosInstance, { baseImageURL } from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
 
 const Students = () => {
@@ -235,7 +235,7 @@ const Students = () => {
                                                     <div className="flex items-center gap-3">
                                                         {student.photo ? (
                                                             <img 
-                                                                src={`${axiosInstance.defaults.baseURL}${student.photo}`} 
+                                                                src={`${baseImageURL}${student.photo}`} 
                                                                 alt={student.name}
                                                                 className="w-10 h-10 rounded-full object-cover border"
                                                                 onError={(e) => {
@@ -261,7 +261,7 @@ const Students = () => {
                                                 </td>
                                                 <td className="px-4 py-3">
                                                     <span className="text-gray-700 font-medium">
-                                                        {student.class?.name || 'N/A'}
+                                                        {student.className || 'N/A'}
                                                     </span>
                                                 </td>
                                                 <td className="px-4 py-3">
@@ -279,7 +279,7 @@ const Students = () => {
                                                 </td>
                                                 <td className="px-4 py-3">
                                                     <span className="text-gray-700">
-                                                        {student.session?.name || 'N/A'}
+                                                        {student.sessionName || 'N/A'}
                                                     </span>
                                                 </td>
                                             </tr>

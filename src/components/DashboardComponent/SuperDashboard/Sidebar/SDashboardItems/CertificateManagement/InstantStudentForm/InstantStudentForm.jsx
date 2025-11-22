@@ -1,4 +1,3 @@
-// src/pages/certificate/InstituteFormList/InstituteFormList.jsx
 import 'jspdf-autotable';
 import { useEffect, useRef, useState } from 'react';
 import { FaEdit, FaPlus, FaPrint, FaSave, FaTrash } from 'react-icons/fa';
@@ -65,28 +64,55 @@ const InstantStudentForm = ({ onBack }) => {
     const selectedStudent = students.find(s => s.studentId === studentId);
     
     if (selectedStudent) {
+      // Auto-fill all fields from selected student
       setForm({
         studentId: selectedStudent.studentId || '',
         name: selectedStudent.name || '',
-        birthDate: selectedStudent.dob ? new Date(selectedStudent.dob).toISOString().split('T')[0] : '',
+        birthDate: selectedStudent.dob ? new Date(selectedStudent.dob).toISOString().split('T')[0] : 
+                 selectedStudent.birthDate ? new Date(selectedStudent.birthDate).toISOString().split('T')[0] : '',
         gender: selectedStudent.gender || 'Male',
-        mobile: selectedStudent.mobile || '',
+        mobile: selectedStudent.mobile || selectedStudent.personalPhone || '',
         bloodGroup: selectedStudent.bloodGroup || '',
         fatherName: selectedStudent.fatherName || '',
         motherName: selectedStudent.motherName || '',
-        guardianName: selectedStudent.guardianName || '',
-        parentMobile: selectedStudent.guardianMobile || selectedStudent.mobile || '',
-        rollNumber: selectedStudent.classRoll?.toString() || '',
-        className: selectedStudent.class?.name || '',
-        batch: selectedStudent.batch?.name || '',
-        section: selectedStudent.section?.name || '',
-        session: selectedStudent.session?.name || '',
+        guardianName: selectedStudent.guardianName || selectedStudent.guardianName || '',
+        parentMobile: selectedStudent.guardianMobile || selectedStudent.parentMobile || selectedStudent.mobile || '',
+        rollNumber: selectedStudent.classRoll?.toString() || selectedStudent.rollNumber || '',
+        className: selectedStudent.class?.name || selectedStudent.className || '',
+        batch: selectedStudent.batch?.name || selectedStudent.batchName || '',
+        section: selectedStudent.section?.name || selectedStudent.sectionName || '',
+        session: selectedStudent.session?.name || selectedStudent.sessionName || 
+                selectedStudent.session?.year || '',
         address: [
           selectedStudent.permanentVillage,
           selectedStudent.permanentPostOffice,
           selectedStudent.permanentThana,
           selectedStudent.permanentDistrict
-        ].filter(Boolean).join(', ') || ''
+        ].filter(Boolean).join(', ') || 
+        [
+          selectedStudent.currentVillage,
+          selectedStudent.currentPostOffice,
+          selectedStudent.currentThana,
+          selectedStudent.currentDistrict
+        ].filter(Boolean).join(', ') || 
+        selectedStudent.address || ''
+      });
+
+      // Show success message
+      Swal.fire({
+        title: 'অটো-ফিল সম্পন্ন!',
+        text: `${selectedStudent.name} এর সকল তথ্য অটোমেটিকভাবে ভরে দেওয়া হয়েছে`,
+        icon: 'success',
+        timer: 2000,
+        showConfirmButton: false
+      });
+    } else {
+      // Reset form if no student selected
+      setForm({
+        studentId: '', name: '', birthDate: '', gender: 'Male', mobile: '',
+        bloodGroup: '', fatherName: '', motherName: '', guardianName: '',
+        parentMobile: '', rollNumber: '', className: '', batch: '', section: '',
+        session: '', address: ''
       });
     }
   };
@@ -179,80 +205,78 @@ const InstantStudentForm = ({ onBack }) => {
     });
   };
 
-  
-// ==================== প্রিন্ট (StudentsMenu এর মতো নতুন উইন্ডোতে) ====================
-const handlePrint = () => {
-  if (!previewData) return;
+  // ==================== প্রিন্ট ফাংশন ====================
+  const handlePrint = () => {
+    if (!previewData) return;
 
-  const printWindow = window.open('', '_blank', 'width=1000,height=800');
+    const printWindow = window.open('', '_blank', 'width=1000,height=800');
 
-  const printContent = `
-    <!DOCTYPE html>
-    <html lang="bn">
-    <head>
-      <meta charset="UTF-8">
-      <title>${previewData.name} - ইনস্টিটিউট ফর্ম</title>
-      <style>
-        body { font-family: 'Arial', sans-serif; margin: 30px; line-height: 1.6; color: #333; }
-        .header { text-align: center; border-bottom: 4px double #1e90c9; padding-bottom: 20px; margin-bottom: 30px; }
-        .header h1 { color: #1e90c9; margin: 0; font-size: 32px; }
-        .header p { margin: 10px 0 0; color: #666; font-size: 16px; }
-        .container { max-width: 900px; margin: 0 auto; }
-        table { width: 100%; border-collapse: collapse; margin: 30px 0; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        th { background: #1e90c9; color: white; font-weight: bold; }
-        tr:nth-child(even) { background: #f8fdff; }
-        .footer { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 2px solid #1e90c9; color: #666; font-size: 14px; }
-        @media print { body { margin: 10mm; } }
-      </style>
-    </head>
-    <body>
-      <div class="container">
-        <div class="header">
-          <h1>ইনস্টিটিউট ফর্ম</h1>
-          <p>শিক্ষার্থীর বিস্তারিত তথ্য | তারিখ: ${new Date().toLocaleDateString('bn-BD')}</p>
+    const printContent = `
+      <!DOCTYPE html>
+      <html lang="bn">
+      <head>
+        <meta charset="UTF-8">
+        <title>${previewData.name} - ইনস্টিটিউট ফর্ম</title>
+        <style>
+          body { font-family: 'Arial', sans-serif; margin: 30px; line-height: 1.6; color: #333; }
+          .header { text-align: center; border-bottom: 4px double #1e90c9; padding-bottom: 20px; margin-bottom: 30px; }
+          .header h1 { color: #1e90c9; margin: 0; font-size: 32px; }
+          .header p { margin: 10px 0 0; color: #666; font-size: 16px; }
+          .container { max-width: 900px; margin: 0 auto; }
+          table { width: 100%; border-collapse: collapse; margin: 30px 0; }
+          th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+          th { background: #1e90c9; color: white; font-weight: bold; }
+          tr:nth-child(even) { background: #f8fdff; }
+          .footer { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 2px solid #1e90c9; color: #666; font-size: 14px; }
+          @media print { body { margin: 10mm; } }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1>ইনস্টিটিউট ফর্ম</h1>
+            <p>শিক্ষার্থীর বিস্তারিত তথ্য | তারিখ: ${new Date().toLocaleDateString('bn-BD')}</p>
+          </div>
+
+          <table>
+            <tr><th>ক্ষেত্র</th><th>তথ্য</th></tr>
+            <tr><td>আইডি</td><td>${previewData.studentId || 'N/A'}</td></tr>
+            <tr><td>নাম</td><td>${previewData.name || 'N/A'}</td></tr>
+            <tr><td>জন্ম তারিখ</td><td>${previewData.birthDate || 'N/A'}</td></tr>
+            <tr><td>লিঙ্গ</td><td>${previewData.gender || 'N/A'}</td></tr>
+            <tr><td>মোবাইল</td><td>${previewData.mobile || 'N/A'}</td></tr>
+            <tr><td>ব্লাড গ্রুপ</td><td>${previewData.bloodGroup || 'N/A'}</td></tr>
+            <tr><td>পিতার নাম</td><td>${previewData.fatherName || 'N/A'}</td></tr>
+            <tr><td>মাতার নাম</td><td>${previewData.motherName || 'N/A'}</td></tr>
+            <tr><td>গার্ডিয়ান</td><td>${previewData.guardianName || 'N/A'}</td></tr>
+            <tr><td>প্যারেন্ট মোবাইল</td><td>${previewData.parentMobile || 'N/A'}</td></tr>
+            <tr><td>রোল নম্বর</td><td>${previewData.rollNumber || 'N/A'}</td></tr>
+            <tr><td>ক্লাস</td><td>${previewData.className || 'N/A'}</td></tr>
+            <tr><td>ব্যাচ</td><td>${previewData.batch || 'N/A'}</td></tr>
+            <tr><td>সেকশন</td><td>${previewData.section || 'N/A'}</td></tr>
+            <tr><td>সেশন</td><td>${previewData.session || 'N/A'}</td></tr>
+            <tr><td>ঠিকানা</td><td>${previewData.address || 'N/A'}</td></tr>
+          </table>
+
+          <div class="footer">
+            <p>এই ডকুমেন্ট স্বয়ংক্রিয়ভাবে তৈরি করা হয়েছে</p>
+            <p>© Institute Management System ${new Date().getFullYear()}</p>
+          </div>
         </div>
 
-        <table>
-          <tr><th>ক্ষেত্র</th><th>তথ্য</th></tr>
-          <tr><td>আইডি</td><td>${previewData.studentId || 'N/A'}</td></tr>
-          <tr><td>নাম</td><td>${previewData.name || 'N/A'}</td></tr>
-          <tr><td>জন্ম তারিখ</td><td>${previewData.birthDate || 'N/A'}</td></tr>
-          <tr><td>লিঙ্গ</td><td>${previewData.gender || 'N/A'}</td></tr>
-          <tr><td>মোবাইল</td><td>${previewData.mobile || 'N/A'}</td></tr>
-          <tr><td>ব্লাড গ্রুপ</td><td>${previewData.bloodGroup || 'N/A'}</td></tr>
-          <tr><td>পিতার নাম</td><td>${previewData.fatherName || 'N/A'}</td></tr>
-          <tr><td>মাতার নাম</td><td>${previewData.motherName || 'N/A'}</td></tr>
-          <tr><td>গার্ডিয়ান</td><td>${previewData.guardianName || 'N/A'}</td></tr>
-          <tr><td>প্যারেন্ট মোবাইল</td><td>${previewData.parentMobile || 'N/A'}</td></tr>
-          <tr><td>রোল নম্বর</td><td>${previewData.rollNumber || 'N/A'}</td></tr>
-          <tr><td>ক্লাস</td><td>${previewData.className || 'N/A'}</td></tr>
-          <tr><td>ব্যাচ</td><td>${previewData.batch || 'N/A'}</td></tr>
-          <tr><td>সেকশন</td><td>${previewData.section || 'N/A'}</td></tr>
-          <tr><td>সেশন</td><td>${previewData.session || 'N/A'}</td></tr>
-          <tr><td>ঠিকানা</td><td>${previewData.address || 'N/A'}</td></tr>
-        </table>
+        <script>
+          window.onload = () => {
+            window.print();
+            // window.close(); // চাইলে প্রিন্টের পর উইন্ডো বন্ধ করবে
+          };
+        </script>
+      </body>
+      </html>
+    `;
 
-        <div class="footer">
-          <p>এই ডকুমেন্ট স্বয়ংক্রিয়ভাবে তৈরি করা হয়েছে</p>
-          <p>© Institute Management System ${new Date().getFullYear()}</p>
-        </div>
-      </div>
-
-      < Carpenter>
-        window.onload = () => {
-          window.print();
-          // window.close(); // চাইলে প্রিন্টের পর উইন্ডো বন্ধ করবে
-        };
-      </script>
-    </body>
-    </html>
-  `;
-
-  printWindow.document.write(printContent);
-  printWindow.document.close();
-};
-
+    printWindow.document.write(printContent);
+    printWindow.document.close();
+  };
 
   if (loading) return <Loader />;
 
@@ -371,28 +395,29 @@ const handlePrint = () => {
         </h2>
         
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Student Selection Dropdown */}
-          <div className="mb-6 p-4 bg-blue-50 rounded-lg">
-            <label className="block text-sm font-medium text-blue-800 mb-2">
-              শিক্ষার্থী সিলেক্ট করুন (অটোফিলের জন্য)
+          {/* Student Selection Dropdown - Enhanced */}
+          <div className="mb-6 p-4 bg-blue-50 rounded-lg border-2 border-blue-200">
+            <label className="block text-sm font-bold text-blue-800 mb-2">
+              🎓 শিক্ষার্থী সিলেক্ট করুন (অটোফিলের জন্য)
             </label>
             <select
               value={selectedStudentId}
               onChange={(e) => handleStudentSelect(e.target.value)}
-              className="w-full px-3 py-2 border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-white"
+              className="w-full px-4 py-3 border-2 border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-white text-blue-800 font-medium"
             >
-              <option value="">শিক্ষার্থী সিলেক্ট করুন</option>
+              <option value="">👉 একজন শিক্ষার্থী সিলেক্ট করুন</option>
               {students.map(student => (
                 <option key={student._id} value={student.studentId}>
-                  {student.studentId} - {student.name} - {student.class?.name}
+                  📝 {student.studentId} - {student.name} - {student.class?.name} - রোল: {student.classRoll}
                 </option>
               ))}
             </select>
-            <p className="text-xs text-blue-600 mt-1">
-              একজন শিক্ষার্থী সিলেক্ট করলে সব তথ্য অটোমেটিকভাবে ভরে যাবে
+            <p className="text-sm text-blue-600 mt-2 flex items-center gap-2">
+              💡 <strong>টিপ:</strong> একজন শিক্ষার্থী সিলেক্ট করলে সব তথ্য অটোমেটিকভাবে ভরে যাবে!
             </p>
           </div>
 
+          {/* Form Fields */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">শিক্ষার্থীর আইডি</label>

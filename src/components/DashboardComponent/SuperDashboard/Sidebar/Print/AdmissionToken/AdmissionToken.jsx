@@ -55,7 +55,7 @@ const AdmissionToken = ({ onBack }) => {
             }
 
             // Fetch token templates
-            const tokensResponse = await axiosInstance.get('/token');
+            const tokensResponse = await axiosInstance.get('/admission-token');
             if (tokensResponse.data.success) {
                 setTokenTemplates(tokensResponse.data.data || []);
             }

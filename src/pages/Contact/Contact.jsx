@@ -60,16 +60,19 @@ const Contact = () => {
         subject: "",
         message: "",
       });
-    } catch (err) {
-      console.log(err);
+    }catch (err) {
+  console.log("Contact form error:", err);
 
-      Swal.fire({
-        icon: "error",
-        title: "Oops... 😢",
-        text: "Something went wrong. Try again!",
-        confirmButtonColor: "#3085d6",
-      });
-    }
+  // ব্যাকএন্ড থেকে যে মেসেজ আসবে সেটাই দেখাবে
+  const errorMsg = err.response?.data?.message || "মেসেজ পাঠাতে সমস্যা হয়েছে। আবার চেষ্টা করুন।";
+
+  Swal.fire({
+    icon: "error",
+    title: "দুঃখিত!",
+    text: errorMsg,
+    confirmButtonColor: "#ef4444",
+  });
+}
   };
 
   // Function to convert Google Maps share link to embed URL

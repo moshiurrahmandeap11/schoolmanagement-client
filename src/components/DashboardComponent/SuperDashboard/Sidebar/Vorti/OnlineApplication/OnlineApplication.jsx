@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import axiosInstance from '../../../../../../hooks/axiosInstance/axiosInstance';
+import axiosInstance, { baseImageURL } from '../../../../../../hooks/axiosInstance/axiosInstance';
 import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
-
 
 const OnlineApplication = () => {
     const [applications, setApplications] = useState([]);
@@ -11,6 +10,8 @@ const OnlineApplication = () => {
     const [error, setError] = useState('');
     const [sessions, setSessions] = useState([]);
     const [classes, setClasses] = useState([]);
+    const [selectedApplication, setSelectedApplication] = useState(null);
+    const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
 
     // Filter state
@@ -112,6 +113,22 @@ const OnlineApplication = () => {
         setFilteredApplications(applications);
     };
 
+    // Handle view application details
+    const handleViewApplication = async (id) => {
+        try {
+            const response = await axiosInstance.get(`/online-applications/${id}`);
+            if (response.data?.success) {
+                setSelectedApplication(response.data.data);
+                setShowModal(true);
+            } else {
+                setError('আবেদনের বিস্তারিত লোড করতে সমস্যা হয়েছে');
+            }
+        } catch (err) {
+            setError('আবেদনের বিস্তারিত লোড করতে সমস্যা হয়েছে');
+            console.error('Error fetching application details:', err);
+        }
+    };
+
     // Handle delete application
     const handleDeleteApplication = async (id) => {
         if (!window.confirm('আপনি কি এই আবেদন ডিলিট করতে চান?')) {
@@ -162,22 +179,10 @@ const OnlineApplication = () => {
         });
     };
 
-    // Get status badge color
-    const getStatusBadge = (status) => {
-        const statusConfig = {
-            draft: { color: 'bg-gray-100 text-gray-800', label: 'খসড়া' },
-            submitted: { color: 'bg-blue-100 text-blue-800', label: 'জমা দেওয়া' },
-            pending: { color: 'bg-yellow-100 text-yellow-800', label: 'বিচারাধীন' },
-            confirmed: { color: 'bg-green-100 text-green-800', label: 'নিশ্চিত' },
-            rejected: { color: 'bg-red-100 text-red-800', label: 'বাতিল' }
-        };
-        
-        const config = statusConfig[status] || statusConfig.draft;
-        return (
-            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${config.color}`}>
-                {config.label}
-            </span>
-        );
+    // Close modal
+    const closeModal = () => {
+        setShowModal(false);
+        setSelectedApplication(null);
     };
 
     return (
@@ -428,7 +433,7 @@ const OnlineApplication = () => {
                                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                     <div className="flex justify-end space-x-3">
                                                         <button
-                                                            onClick={() => {/* View/Edit functionality */}}
+                                                            onClick={() => handleViewApplication(application._id)}
                                                             className="text-blue-600 hover:text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded px-3 py-1 bg-blue-50 hover:bg-blue-100 transition-colors duration-200"
                                                         >
                                                             দেখুন
@@ -486,6 +491,185 @@ const OnlineApplication = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Application Details Modal */}
+            {showModal && selectedApplication && (
+                <div className="fixed inset-0 bg-black/40 mt-10 bg-opacity-50 flex items-center justify-center p-4 z-50">
+                    <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                        <div className="p-6 border-b border-gray-200">
+                            <div className="flex justify-between items-center">
+                                <h2 className="text-xl font-bold text-gray-900">
+                                    আবেদন বিস্তারিত - {selectedApplication.applicationNo}
+                                </h2>
+                                <button
+                                    onClick={closeModal}
+                                    className="text-gray-400 hover:text-gray-600 focus:outline-none"
+                                >
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="p-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {/* Student Information */}
+                                <div className="space-y-4">
+                                    <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">
+                                        ছাত্রের তথ্য
+                                    </h3>
+                                    <div className="grid grid-cols-1 gap-3">
+                                        <div>
+                                            <label className="text-sm font-medium text-gray-600">ছাত্রের নাম</label>
+                                            <p className="text-sm text-gray-900 mt-1">{selectedApplication.studentName}</p>
+                                        </div>
+                                        <div>
+                                            <label className="text-sm font-medium text-gray-600">পিতার নাম</label>
+                                            <p className="text-sm text-gray-900 mt-1">{selectedApplication.fatherName}</p>
+                                        </div>
+                                        <div>
+                                            <label className="text-sm font-medium text-gray-600">মাতার নাম</label>
+                                            <p className="text-sm text-gray-900 mt-1">{selectedApplication.motherName}</p>
+                                        </div>
+                                        <div>
+                                            <label className="text-sm font-medium text-gray-600">লিঙ্গ</label>
+                                            <p className="text-sm text-gray-900 mt-1">
+                                                {selectedApplication.gender === 'male' ? 'ছেলে' : 'মেয়ে'}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <label className="text-sm font-medium text-gray-600">জন্ম তারিখ</label>
+                                            <p className="text-sm text-gray-900 mt-1">
+                                                {formatDate(selectedApplication.dateOfBirth)}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Academic Information */}
+                                <div className="space-y-4">
+                                    <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">
+                                        একাডেমিক তথ্য
+                                    </h3>
+                                    <div className="grid grid-cols-1 gap-3">
+                                        <div>
+                                            <label className="text-sm font-medium text-gray-600">সেশন</label>
+                                            <p className="text-sm text-gray-900 mt-1">{selectedApplication.sessionName}</p>
+                                        </div>
+                                        <div>
+                                            <label className="text-sm font-medium text-gray-600">ক্লাস</label>
+                                            <p className="text-sm text-gray-900 mt-1">{selectedApplication.className}</p>
+                                        </div>
+                                        <div>
+                                            <label className="text-sm font-medium text-gray-600">সেকশন</label>
+                                            <p className="text-sm text-gray-900 mt-1">{selectedApplication.sectionName || 'N/A'}</p>
+                                        </div>
+                                        <div>
+                                            <label className="text-sm font-medium text-gray-600">পূর্ববর্তী প্রতিষ্ঠান</label>
+                                            <p className="text-sm text-gray-900 mt-1">{selectedApplication.previousInstitute}</p>
+                                        </div>
+                                        <div>
+                                            <label className="text-sm font-medium text-gray-600">পূর্ববর্তী ফলাফল</label>
+                                            <p className="text-sm text-gray-900 mt-1">{selectedApplication.previousResult}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Contact Information */}
+                                <div className="space-y-4">
+                                    <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">
+                                        যোগাযোগের তথ্য
+                                    </h3>
+                                    <div className="grid grid-cols-1 gap-3">
+                                        <div>
+                                            <label className="text-sm font-medium text-gray-600">অভিভাবকের মোবাইল</label>
+                                            <p className="text-sm text-gray-900 mt-1">{selectedApplication.parentMobile}</p>
+                                        </div>
+                                        <div>
+                                            <label className="text-sm font-medium text-gray-600">ঠিকানা</label>
+                                            <p className="text-sm text-gray-900 mt-1">{selectedApplication.address}</p>
+                                        </div>
+                                        <div>
+                                            <label className="text-sm font-medium text-gray-600">শহর</label>
+                                            <p className="text-sm text-gray-900 mt-1">{selectedApplication.city}</p>
+                                        </div>
+                                        <div>
+                                            <label className="text-sm font-medium text-gray-600">ডাকঘর</label>
+                                            <p className="text-sm text-gray-900 mt-1">{selectedApplication.postOffice}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Documents Information */}
+                                <div className="space-y-4">
+                                    <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">
+                                        ডকুমেন্টস
+                                    </h3>
+                                    <div className="grid grid-cols-1 gap-3">
+                                        <div>
+                                            <label className="text-sm font-medium text-gray-600">জন্ম নিবন্ধন নম্বর</label>
+                                            <p className="text-sm text-gray-900 mt-1">{selectedApplication.birthRegistrationNo}</p>
+                                        </div>
+                                        <div>
+                                            <label className="text-sm font-medium text-gray-600">অভিভাবকের এনআইডি</label>
+                                            <p className="text-sm text-gray-900 mt-1">{selectedApplication.parentNID}</p>
+                                        </div>
+                                        <div>
+                                            <label className="text-sm font-medium text-gray-600">ছবি</label>
+                                            {selectedApplication.image && (
+                                                <div className="mt-2">
+                                                    <img 
+                                                        src={`${baseImageURL}${selectedApplication.image}`} 
+                                                        alt="Student" 
+                                                        className="w-32 h-32 object-cover rounded-lg border"
+                                                    />
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Application Status and Dates */}
+                            <div className="mt-6 pt-6 border-t border-gray-200">
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div>
+                                        <label className="text-sm font-medium text-gray-600">আবেদন অবস্থা</label>
+                                        <p className="text-sm font-medium text-gray-900 mt-1">
+                                            {selectedApplication.status === 'draft' ? 'খসড়া' :
+                                             selectedApplication.status === 'submitted' ? 'জমা দেওয়া' :
+                                             selectedApplication.status === 'pending' ? 'বিচারাধীন' :
+                                             selectedApplication.status === 'confirmed' ? 'নিশ্চিত' : 'বাতিল'}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <label className="text-sm font-medium text-gray-600">আবেদনের তারিখ</label>
+                                        <p className="text-sm text-gray-900 mt-1">
+                                            {formatDate(selectedApplication.createdAt)}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <label className="text-sm font-medium text-gray-600">আবেদন নম্বর</label>
+                                        <p className="text-sm font-medium text-gray-900 mt-1">
+                                            {selectedApplication.applicationNo}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="px-6 py-4 border-t border-gray-200 bg-gray-50 flex justify-end">
+                            <button
+                                onClick={closeModal}
+                                className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-200"
+                            >
+                                বন্ধ করুন
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

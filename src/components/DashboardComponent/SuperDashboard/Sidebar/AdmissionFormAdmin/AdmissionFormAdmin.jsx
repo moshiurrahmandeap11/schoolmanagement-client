@@ -249,43 +249,114 @@ const AdmissionFormAdmin = () => {
                 },
             });
 
-            if (response.data && response.data.success) {
-                Swal.fire('Success!', 'ভর্তি ফর্ম সফলভাবে জমা দেওয়া হয়েছে', 'success');
-                
-                // Reset form
-                setFormData({
-                    studentName: '',
-                    fatherName: '',
-                    motherName: '',
-                    parentNID: '',
-                    birthRegistrationNo: '',
-                    gender: '',
-                    dateOfBirth: '',
-                    parentMobile: '',
-                    studentMobile: '',
-                    sessionId: '',
-                    sessionName: '',
-                    classId: '',
-                    className: '',
-                    sectionId: '',
-                    sectionName: '',
-                    address: '',
-                    city: '',
-                    postOffice: '',
-                    country: 'Bangladesh',
-                    previousInstitute: '',
-                    previousResult: '',
-                    image: null
-                });
-                setImagePreview('');
+ if (response.data && response.data.success) {
+    // Reset form
+    setFormData({
+        studentName: '', fatherName: '', motherName: '', parentNID: '',
+        birthRegistrationNo: '', gender: '', dateOfBirth: '', parentMobile: '',
+        studentMobile: '', sessionId: '', sessionName: '', classId: '',
+        className: '', sectionId: '', sectionName: '', address: '',
+        city: '', postOffice: '', country: 'Bangladesh',
+        previousInstitute: '', previousResult: '', image: null
+    });
+    setImagePreview('');
 
-                // Navigate to applications list
-                setTimeout(() => {
-                    navigate('/');
-                }, 2000);
-            } else {
-                Swal.fire('Error!', response.data?.message || 'সমস্যা হয়েছে', 'error');
-            }
+    // সুন্দর SweetAlert + প্রিন্ট বাটন
+    Swal.fire({
+        icon: 'success',
+        title: 'অভিনন্দন!',
+        text: 'ভর্তি ফর্ম সফলভাবে জমা দেওয়া হয়েছে',
+        showCancelButton: true,
+        confirmButtonText: 'প্রিন্ট করুন',
+        cancelButtonText: 'ওকে',
+        confirmButtonColor: '#1e90c9',
+        cancelButtonColor: '#3085d6',
+        reverseButtons: true,
+        allowOutsideClick: false
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // প্রিন্ট পেজ ওপেন করো
+            const printWindow = window.open('', '_blank');
+            const printData = {
+                ...formData,
+                imagePreview: imagePreview || '/default-avatar.png',
+                submissionDate: new Date().toLocaleDateString('bn-BD'),
+                submissionTime: new Date().toLocaleTimeString('bn-BD')
+            };
+
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html lang="bn">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>ভর্তি ফর্ম - প্রিন্ট</title>
+                    <style>
+                        body { font-family: 'Kalpurush', Arial, sans-serif; padding: 40px; background: #f9f9f9; color: #333; line-height: 1.6; }
+                        .container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+                        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid #1e90c9; }
+                        .header h1 { color: #1e90c9; margin: 0; font-size: 28px; }
+                        .header p { color: #666; margin: 10px 0 0; }
+                        .photo { text-align: center; margin: 20px 0; }
+                        .photo img { width: 120px; height: 120px; border-radius: 50%; border: 4px solid #1e90c9; object-fit: cover; }
+                        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+                        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; }
+                        th { background: #1e90c9; color: white; width: 35%; }
+                        .footer { margin-top: 50px; text-align: center; color: #777; font-size: 14px; }
+                        @media print {
+                            body { background: white; padding: 20px; }
+                            .no-print { display: none; }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <div class="header">
+                            <h1>ভর্তি ফর্ম - প্রিন্ট কপি</h1>
+                            <p>জমার তারিখ: ${printData.submissionDate} | সময়: ${printData.submissionTime}</p>
+                        </div>
+
+                        <div class="photo">
+                            <img src="${printData.imagePreview}" alt="ছাত্রের ছবি" onerror="this.src='/default-avatar.png'" />
+                        </div>
+
+                        <table>
+                            <tr><th>ছাত্রের নাম</th><td>${printData.studentName || '-'}</td></tr>
+                            <tr><th>পিতার নাম</th><td>${printData.fatherName || '-'}</td></tr>
+                            <tr><th>মাতার নাম</th><td>${printData.motherName || '-'}</td></tr>
+                            <tr><th>জন্ম নিবন্ধন নং</th><td>${printData.birthRegistrationNo || '-'}</td></tr>
+                            <tr><th>লিঙ্গ</th><td>${printData.gender ? printData.gender === 'male' ? 'পুরুষ' : printData.gender === 'female' ? 'মহিলা' : 'অন্যান্য' : '-'}</td></tr>
+                            <tr><th>জন্ম তারিখ</th><td>${printData.dateOfBirth ? new Date(printData.dateOfBirth).toLocaleDateString('bn-BD') : '-'}</td></tr>
+                            <tr><th>প্যারেন্ট মোবাইল</th><td>${printData.parentMobile || '-'}</td></tr>
+                            <tr><th>শিক্ষার্থীর মোবাইল</th><td>${printData.studentMobile || '-'}</td></tr>
+                            <tr><th>সেশন</th><td>${printData.sessionName || '-'}</td></tr>
+                            <tr><th>ক্লাস</th><td>${printData.className || '-'}</td></tr>
+                            <tr><th>সেকশন</th><td>${printData.sectionName || '-'}</td></tr>
+                            <tr><th>ঠিকানা</th><td>${printData.address || '-'}</td></tr>
+                            <tr><th>শহর</th><td>${printData.city || '-'}</td></tr>
+                            <tr><th>পোস্ট অফিস</th><td>${printData.postOffice || '-'}</td></tr>
+                            <tr><th>পূর্ববর্তী প্রতিষ্ঠান</th><td>${printData.previousInstitute || '-'}</td></tr>
+                            <tr><th>পূর্ববর্তী ফলাফল</th><td>${printData.previousResult || '-'}</td></tr>
+                        </table>
+
+                        <div class="footer">
+                            <p>এই প্রিন্ট কপিটি ভর্তি প্রক্রিয়ার জন্য ব্যবহার করা যাবে</p>
+                            <p>ধন্যবাদ আপনার আগ্রহের জন্য</p>
+                        </div>
+                    </div>
+
+                    <script>
+                        setTimeout(() => window.print(), 800);
+                    </script>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+        } else {
+            // ওকে চাপলে হোমে যাবে
+            navigate('/');
+        }
+    });
+}
         } catch (error) {
             console.error('Error submitting admission form:', error);
             const errorMsg = error.response?.data?.message || 'ভর্তি ফর্ম জমা দিতে সমস্যা হয়েছে';
