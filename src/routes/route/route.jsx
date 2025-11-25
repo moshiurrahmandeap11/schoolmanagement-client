@@ -34,6 +34,8 @@ import PresidentDetails from "../../pages/Home/President/PresidentDetails/Presid
 import PrincipalSpeechDetails from "../../pages/Home/PrincipalSpeech/PrincipalSpeechDetails/PrincipalSpeechDetails";
 import AdmissionInfo from "../../pages/Home/Students/AdmissionINfo/AdmissionInfo";
 import ClassRoomsClient from "../../pages/Home/Students/ClassRoomsClient/ClassRoomsClient";
+import MoshiurLogin from "../../pages/Home/Students/MoshiurLogin/MoshiurLogin";
+import MoshiurProtectedRoute from "../../pages/Home/Students/MoshiurLogin/MoshiurProtectedRoute/MoshiurProtectedRoute";
 import SeatNumbers from "../../pages/Home/Students/SeatNumbers/SeatNumbers";
 import StudentsInfo from "../../pages/Home/Students/StudentsInfo/StudentsInfo";
 import HeadmasterList from "../../pages/Home/Teachers/HeadmasterList/HeadmasterList";
@@ -48,76 +50,109 @@ export const route = createBrowserRouter([
     path: "/",
     element: <RootLayout></RootLayout>,
     children: [
-        { index: true, element: <Home></Home> },
-        { path: "/about", element: <About></About>},
-        { path: "/author", element: <Author></Author>},
-        { path: "/results", element: <Results></Results>},
-        { path: "/contact", element: <Contact></Contact>},
-        { path: "/terms-and-conditions", element: <TermsAndConditions></TermsAndConditions> },
-        { path: "/privacy-policy", element: <PrivacyPolicy></PrivacyPolicy> },
-        { path: "/announcement/:id", element: <Announcement></Announcement>},
-        { path: "/school-history/:id", element: <SchoolHistoryDetails></SchoolHistoryDetails>},
-        { path: "/principal-speech/:id", element: <PrincipalSpeechDetails></PrincipalSpeechDetails>},
-        { path: "/president-speech/:id", element: <PresidentDetails></PresidentDetails>},
-        { path: "/students-info", element: <StudentsInfo></StudentsInfo>},
-        { path: "/seat-numbers", element: <SeatNumbers></SeatNumbers>},
-        { path: "/class-rooms", element: <ClassRoomsClient></ClassRoomsClient>},
-        { path: "/admission-info", element: <AdmissionInfo></AdmissionInfo>},
-        { path: "/admission-form", element: <AdmissionFormAdmin></AdmissionFormAdmin>},
-        { path: "/teachers-list", element: <TeachersList></TeachersList>},
-        { path: "/staff-list", element: <WorkersList></WorkersList>},
-        { path: "/head-teachers-list", element: <HeadmasterList></HeadmasterList>},
-        { path: "/holiday-list", element: <HolidayList></HolidayList>},
-        { path: "/video-gallery", element: <VideoGallaryNav></VideoGallaryNav>},
-        { path: "/photo-gallery", element: <PhotoGalleryNav></PhotoGalleryNav>},
-        { path: "/blog", element: <BlogNav></BlogNav>},
-        { path: "/blog-details/:id", element: <BlogDetails></BlogDetails>},
-        { path: "/managing-committee", element: <ManagingCommittee></ManagingCommittee>},
-        { path: "/upazilla-history", element: <UpazillaHistory></UpazillaHistory>},
-        { path: "/zilla-history", element: <ZillaHistory></ZillaHistory>},
-        { path: "/downloads", element: <Downloads></Downloads>},
-        { path: "/notices", element: <Notices></Notices>},
-        { path: "/notice-details/:id", element: <NoticeDetails></NoticeDetails>},
-        { path:"/all-notices", element: <AllNotices></AllNotices>},
-        { path: "/routine", element: <Routine></Routine>},
-        { path: "/circulars", element: <Circulars></Circulars>},
-        { path: "/multimedia-classroom", element: <MultimediaClassroom></MultimediaClassroom>},
+      { index: true, element: <Home></Home> },
+      { path: "/about", element: <About></About> },
+      { path: "/author", element: <Author></Author> },
+      { path: "/results", element: <Results></Results> },
+      { path: "/contact", element: <Contact></Contact> },
+      {
+        path: "/terms-and-conditions",
+        element: <TermsAndConditions></TermsAndConditions>,
+      },
+      { path: "/privacy-policy", element: <PrivacyPolicy></PrivacyPolicy> },
+      { path: "/announcement/:id", element: <Announcement></Announcement> },
+      {
+        path: "/school-history/:id",
+        element: <SchoolHistoryDetails></SchoolHistoryDetails>,
+      },
+      {
+        path: "/principal-speech/:id",
+        element: <PrincipalSpeechDetails></PrincipalSpeechDetails>,
+      },
+      {
+        path: "/president-speech/:id",
+        element: <PresidentDetails></PresidentDetails>,
+      },
+      { path: "/students-info", element: <StudentsInfo></StudentsInfo> },
+      { path: "/seat-numbers", element: <SeatNumbers></SeatNumbers> },
+      { path: "/class-rooms", element: <ClassRoomsClient></ClassRoomsClient> },
+      { path: "/admission-info", element: <AdmissionInfo></AdmissionInfo> },
+      {
+        path: "/admission-form",
+        element: <AdmissionFormAdmin></AdmissionFormAdmin>,
+      },
+      { path: "/teachers-list", element: <TeachersList></TeachersList> },
+      { path: "/staff-list", element: <WorkersList></WorkersList> },
+      {
+        path: "/head-teachers-list",
+        element: <HeadmasterList></HeadmasterList>,
+      },
+      { path: "/holiday-list", element: <HolidayList></HolidayList> },
+      { path: "/video-gallery", element: <VideoGallaryNav></VideoGallaryNav> },
+      { path: "/photo-gallery", element: <PhotoGalleryNav></PhotoGalleryNav> },
+      { path: "/blog", element: <BlogNav></BlogNav> },
+      { path: "/blog-details/:id", element: <BlogDetails></BlogDetails> },
+      {
+        path: "/managing-committee",
+        element: <ManagingCommittee></ManagingCommittee>,
+      },
+      {
+        path: "/upazilla-history",
+        element: <UpazillaHistory></UpazillaHistory>,
+      },
+      { path: "/zilla-history", element: <ZillaHistory></ZillaHistory> },
+      { path: "/downloads", element: <Downloads></Downloads> },
+      { path: "/notices", element: <Notices></Notices> },
+      { path: "/notice-details/:id", element: <NoticeDetails></NoticeDetails> },
+      { path: "/all-notices", element: <AllNotices></AllNotices> },
+      { path: "/routine", element: <Routine></Routine> },
+      { path: "/circulars", element: <Circulars></Circulars> },
+      {
+        path: "/multimedia-classroom",
+        element: <MultimediaClassroom></MultimediaClassroom>,
+      },
     ],
   },
   {
     path: "/auth",
     element: <AuthLayout></AuthLayout>,
     children: [
-        {
-            path: "login",
-            element: <Login></Login>
-        },
-        {
-            path: "signup",
-            element: <SignUp></SignUp>
-        }
-    ]
+      {
+        path: "login",
+        element: <Login></Login>,
+      },
+      {
+        path: "signup",
+        element: <SignUp></SignUp>,
+      },
+    ],
   },
-{
-  path: "/",
-  element: <DashboardLayout />,
-  children: [
-    {
-      path: "dashboard",
-      element: <NormalDashboard />
-    },
-    {
-      path: "super/dashboard",
-      element: (
-        <AdminProtectedRoute>
-          <SuperDashboard />
-        </AdminProtectedRoute>
-      )
-    },
-    {
-      path: "super/dashboard/profile",
-      element: <Profile></Profile>
-    }
-  ]
-}
+  {
+    path: "/",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "dashboard",
+        element: <NormalDashboard />,
+      },
+      {
+        path: "super/dashboard",
+        element: (
+          <AdminProtectedRoute>
+            <SuperDashboard />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "super/dashboard/profile",
+        element: <Profile></Profile>,
+      },
+    ],
+  },
+  {
+    path: "moshiur",
+    element: <MoshiurProtectedRoute>
+      <MoshiurLogin></MoshiurLogin>
+    </MoshiurProtectedRoute>,
+  },
 ]);
