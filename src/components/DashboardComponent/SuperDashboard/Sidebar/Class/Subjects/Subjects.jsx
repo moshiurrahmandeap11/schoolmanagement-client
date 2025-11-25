@@ -7,7 +7,6 @@ import MainButton from '../../../../../sharedItems/Mainbutton/Mainbutton';
 import AddNewSubject from './AddNewSubject/AddNewSubject';
 import EditSubject from './EditSubject/EditSubject';
 
-
 const Subjects = ({ onBack }) => {
     const [activeComponent, setActiveComponent] = useState('list');
     const [loading, setLoading] = useState(true);
@@ -24,15 +23,40 @@ const Subjects = ({ onBack }) => {
 
     useEffect(() => {
         if (activeComponent === 'list') {
-            fetchSubjects();
-            fetchClasses();
-            fetchSections();
+            fetchClassesAndSections();
         }
     }, [activeComponent]);
 
-    const fetchSubjects = async (filters = {}) => {
+    // প্রথমে ক্লাস এবং সেকশন লোড করবে, তারপর সাবজেক্ট
+    const fetchClassesAndSections = async () => {
         try {
             setLoading(true);
+            
+            const [classesRes, sectionsRes] = await Promise.all([
+                axiosInstance.get('/class'),
+                axiosInstance.get('/sections')
+            ]);
+
+            if (classesRes.data.success) {
+                setClasses(classesRes.data.data || []);
+            }
+            if (sectionsRes.data.success) {
+                setSections(sectionsRes.data.data || []);
+            }
+
+            // এখন সাবজেক্ট লোড করবে
+            await fetchSubjects();
+            
+        } catch (error) {
+            console.error('Error fetching classes and sections:', error);
+            showSweetAlert('error', 'ডেটা লোড করতে সমস্যা হয়েছে');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const fetchSubjects = async (filters = {}) => {
+        try {
             const params = new URLSearchParams();
             
             if (filters.subjectId) params.append('subjectId', filters.subjectId);
@@ -42,37 +66,27 @@ const Subjects = ({ onBack }) => {
             const response = await axiosInstance.get(`/subjects?${params}`);
             
             if (response.data.success) {
-                setSubjects(response.data.data || []);
+                const subjectsData = response.data.data || [];
+                
+                // ক্লাস এবং সেকশন তথ্য যোগ করুন
+                const enrichedSubjects = subjectsData.map(subject => {
+                    const classInfo = classes.find(c => c._id === subject.classId);
+                    const sectionInfo = sections.find(s => s._id === subject.sectionId);
+                    
+                    return {
+                        ...subject,
+                        class: classInfo || { name: 'N/A' },
+                        section: sectionInfo || { name: 'N/A' }
+                    };
+                });
+                
+                setSubjects(enrichedSubjects);
             } else {
                 showSweetAlert('error', response.data.message || 'বিষয় লোড করতে সমস্যা হয়েছে');
             }
         } catch (error) {
             console.error('Error fetching subjects:', error);
             showSweetAlert('error', 'বিষয় লোড করতে সমস্যা হয়েছে');
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const fetchClasses = async () => {
-        try {
-            const response = await axiosInstance.get('/class');
-            if (response.data.success) {
-                setClasses(response.data.data || []);
-            }
-        } catch (error) {
-            console.error('Error fetching classes:', error);
-        }
-    };
-
-    const fetchSections = async () => {
-        try {
-            const response = await axiosInstance.get('/sections');
-            if (response.data.success) {
-                setSections(response.data.data || []);
-            }
-        } catch (error) {
-            console.error('Error fetching sections:', error);
         }
     };
 
@@ -348,17 +362,17 @@ const Subjects = ({ onBack }) => {
                                                     </div>
                                                 </td>
                                                 <td className="px-4 py-3">
-                                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ">
+                                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                                                         {subject.code}
                                                     </span>
                                                 </td>
                                                 <td className="px-4 py-3">
-                                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ">
+                                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                                                         {subject.class?.name || 'N/A'}
                                                     </span>
                                                 </td>
                                                 <td className="px-4 py-3">
-                                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium">
+                                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
                                                         {subject.section?.name || 'N/A'}
                                                     </span>
                                                 </td>
@@ -370,7 +384,7 @@ const Subjects = ({ onBack }) => {
                                                             title="এডিট করুন"
                                                         >
                                                             <FaEdit className="text-xs" />
-                                                            
+                                                            এডিট
                                                         </button>
                                                     </div>
                                                 </td>
@@ -382,7 +396,7 @@ const Subjects = ({ onBack }) => {
                                                             title="ডিলিট করুন"
                                                         >
                                                             <FaTrash className="text-xs" />
-                                                            
+                                                            ডিলিট
                                                         </button>
                                                     </div>
                                                 </td>

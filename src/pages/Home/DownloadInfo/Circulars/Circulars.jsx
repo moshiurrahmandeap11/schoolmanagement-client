@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaCalendarAlt, FaDownload, FaEye, FaSearch } from 'react-icons/fa';
 import { useNavigate } from 'react-router';
 import MainButton from '../../../../components/sharedItems/Mainbutton/Mainbutton';
-import axiosInstance, { baseImageURL } from '../../../../hooks/axiosInstance/axiosInstance';
+import axiosInstance from '../../../../hooks/axiosInstance/axiosInstance';
 
 
 const AllCirculars = () => {
@@ -89,29 +89,8 @@ const AllCirculars = () => {
 
     const handleCircularClick = (circular) => {
         if (circular.filePath) {
-            const fileUrl = `${baseImageURL}${circular.filePath}`;
+            const fileUrl = `${axiosInstance.defaults.baseURL}${circular.filePath}`;
             window.open(fileUrl, '_blank');
-        }
-    };
-
-    const handleDownload = async (circular, e) => {
-        e.stopPropagation();
-        try {
-            // Increment download count
-            await axiosInstance.patch(`/circulars/${circular._id}/download`);
-            
-            // Create download link
-            const link = document.createElement('a');
-            link.href = `${baseImageURL}${circular.filePath}`;
-            link.download = circular.fileName;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-
-            // Refresh list to update download count
-            fetchAllCirculars();
-        } catch (error) {
-            console.error('Error downloading file:', error);
         }
     };
 
@@ -383,12 +362,6 @@ const AllCirculars = () => {
                                                         onClick={() => handleCircularClick(circular)}
                                                         className="text-blue-600 hover:text-blue-900 mr-3"
                                                     >
-                                                        View
-                                                    </button>
-                                                    <button
-                                                        onClick={(e) => handleDownload(circular, e)}
-                                                        className="text-[#1e90c9] hover:text-[#1e90c9]"
-                                                    >
                                                         Download
                                                     </button>
                                                 </td>
@@ -454,12 +427,6 @@ const AllCirculars = () => {
                                                 <button
                                                     onClick={() => handleCircularClick(circular)}
                                                     className="flex-1 py-2 text-center text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50"
-                                                >
-                                                    View
-                                                </button>
-                                                <button
-                                                    onClick={(e) => handleDownload(circular, e)}
-                                                    className="flex-1 py-2 text-center text-green-600 border border-green-600 rounded-lg hover:bg-green-50"
                                                 >
                                                     Download
                                                 </button>

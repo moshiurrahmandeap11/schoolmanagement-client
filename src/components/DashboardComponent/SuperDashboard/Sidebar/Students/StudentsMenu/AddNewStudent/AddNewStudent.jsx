@@ -290,9 +290,7 @@ const AddNewStudent = ({ onBack, onSuccess, editData, mode = "new" }) => {
       } else {
         if (onSuccess) {
           onSuccess();
-        } else {
-          window.history.back();
-        }
+        } 
       }
     } catch (err) {
       console.error(err);
