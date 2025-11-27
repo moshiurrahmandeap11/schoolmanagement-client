@@ -22,15 +22,6 @@ useEffect(() => {
   tryFetching()
 }, [])
 
-  // লোডিং অবস্থায়
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-        <div className="text-white text-3xl animate-pulse">লোড হচ্ছে...</div>
-      </div>
-    );
-  }
-
   // শাটডাউন হলে পুরো সাইট বন্ধ!
   if (websiteStatus === 'shutdown') {
     return (
