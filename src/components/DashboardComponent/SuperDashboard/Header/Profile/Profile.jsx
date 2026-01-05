@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { FaArrowLeft } from 'react-icons/fa';
+import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import axiosInstance, { baseImageURL } from '../../../../../hooks/axiosInstance/axiosInstance';
 import useAuth from '../../../../../hooks/useAuth/useAuth';
@@ -6,6 +8,7 @@ import Loader from '../../../../sharedItems/Loader/Loader';
 import MainButton from '../../../../sharedItems/Mainbutton/Mainbutton';
 
 const Profile = () => {
+    const navigate = useNavigate(); // useNavigate হুক ব্যবহার করুন
     const { user: authUser } = useAuth();
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
@@ -20,6 +23,11 @@ const Profile = () => {
     });
     const [profileImage, setProfileImage] = useState(null);
     const [imagePreview, setImagePreview] = useState('');
+
+    // Back button handler
+    const handleBack = () => {
+        navigate(-1); // ব্রাউজার হিস্টোরিতে এক ধাপ পিছনে যাবে
+    };
 
     // Fetch user data
     const fetchUserData = async () => {
@@ -252,7 +260,29 @@ const Profile = () => {
     return (
         <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
             <div className="max-w-full mx-auto">
+                {/* Back Button Section */}
+                <div className="mb-6">
+                    <button
+                        onClick={handleBack}
+                        className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-[#1e90c9] transition-colors duration-200 font-medium"
+                    >
+                        <FaArrowLeft className="w-4 h-4" />
+                        <span>পিছনে যান</span>
+                    </button>
+                </div>
+
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                    {/* Header with Title and Back Button */}
+                    <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                        <h2 className="text-2xl font-bold text-gray-800">প্রোফাইল ম্যানেজমেন্ট</h2>
+                        <button
+                            onClick={handleBack}
+                            className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                        >
+                            <FaArrowLeft className="w-3 h-3" />
+                            ব্যাক
+                        </button>
+                    </div>
 
                     {/* Content */}
                     <div className="p-6">
@@ -427,6 +457,15 @@ const Profile = () => {
                                         <div className="flex flex-col sm:flex-row gap-4 justify-end pt-6 border-t border-gray-200">
                                             <button
                                                 type="button"
+                                                onClick={handleBack}
+                                                className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                                disabled={saving || uploading}
+                                            >
+                                                <FaArrowLeft className="w-4 h-4" />
+                                                ব্যাক
+                                            </button>
+                                            <button
+                                                type="button"
                                                 onClick={handleReset}
                                                 className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                                                 disabled={saving || uploading}
@@ -443,7 +482,7 @@ const Profile = () => {
                                                         <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                                        </svg>
+                                                    </svg>
                                                         {uploading ? 'আপলোড হচ্ছে...' : 'সংরক্ষণ হচ্ছে...'}
                                                     </span>
                                                 ) : (

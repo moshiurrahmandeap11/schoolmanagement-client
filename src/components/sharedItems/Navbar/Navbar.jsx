@@ -41,7 +41,8 @@ const Navbar = () => {
       submenu: [
         { name: "ছাত্র-ছাত্রীদের আসন সংখ্যা", path: "/seat-numbers" },
         { name: "ছুটির তালিকা", path: "/holiday-list" },
-        { name: "সার্কুলার", path: "/circulars" }
+        { name: "সার্কুলার", path: "/circulars" },
+        { name: "সোশ্যাল লিংকসমূহ", path: "/social-links"}
       ]
     },
     { name: "যোগাযোগ", path: "/contact" }

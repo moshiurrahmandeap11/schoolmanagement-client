@@ -323,7 +323,7 @@ const InstituteInfo = () => {
                             {/* Slogan */}
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    শ্লোগান (Slogan)
+                                    স্লোগান (Slogan)
                                 </label>
                                 <input
                                     type="text"

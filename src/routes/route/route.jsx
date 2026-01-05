@@ -17,6 +17,7 @@ import PrivacyPolicy from "../../components/PrivacyPolicy/PrivacyPolicy";
 import ManagingCommittee from "../../components/sharedItems/Footer/SubFooter/ManagingCommittee/ManagingCommittee";
 import UpazillaHistory from "../../components/sharedItems/Footer/SubFooter/UpazillaHistory/UpazillaHistory";
 import ZillaHistory from "../../components/sharedItems/Footer/SubFooter/ZillaHistory/ZillaHistory";
+import SocialLinksNav from "../../components/SocialLinksNav/SocialLinksNav";
 import TermsAndConditions from "../../components/TermsAndCondtions/TermsAndConditions";
 import AdminProtectedRoute from "../../hooks/ProtectedRoute/ProtectedRoute";
 import AuthLayout from "../../layouts/AuthLayout/AuthLayout";
@@ -34,8 +35,6 @@ import PresidentDetails from "../../pages/Home/President/PresidentDetails/Presid
 import PrincipalSpeechDetails from "../../pages/Home/PrincipalSpeech/PrincipalSpeechDetails/PrincipalSpeechDetails";
 import AdmissionInfo from "../../pages/Home/Students/AdmissionINfo/AdmissionInfo";
 import ClassRoomsClient from "../../pages/Home/Students/ClassRoomsClient/ClassRoomsClient";
-import MoshiurLogin from "../../pages/Home/Students/MoshiurLogin/MoshiurLogin";
-import MoshiurProtectedRoute from "../../pages/Home/Students/MoshiurLogin/MoshiurProtectedRoute/MoshiurProtectedRoute";
 import SeatNumbers from "../../pages/Home/Students/SeatNumbers/SeatNumbers";
 import StudentsInfo from "../../pages/Home/Students/StudentsInfo/StudentsInfo";
 import HeadmasterList from "../../pages/Home/Teachers/HeadmasterList/HeadmasterList";
@@ -111,6 +110,10 @@ export const route = createBrowserRouter([
         path: "/multimedia-classroom",
         element: <MultimediaClassroom></MultimediaClassroom>,
       },
+      {
+        path: "/social-links", 
+        element: <SocialLinksNav />
+      }
     ],
   },
   {
@@ -148,11 +151,5 @@ export const route = createBrowserRouter([
         element: <Profile></Profile>,
       },
     ],
-  },
-  {
-    path: "moshiur",
-    element: <MoshiurProtectedRoute>
-      <MoshiurLogin></MoshiurLogin>
-    </MoshiurProtectedRoute>,
   },
 ]);

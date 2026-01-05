@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { FaEdit, FaTrash, FaToggleOn, FaToggleOff, FaExclamationCircle } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
+import { FaEdit, FaExclamationCircle, FaToggleOff, FaToggleOn, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import axiosInstance, { baseImageURL } from '../../../../../../../hooks/axiosInstance/axiosInstance';
 import Loader from '../../../../../../sharedItems/Loader/Loader';
@@ -217,7 +217,6 @@ const handleToggle = async (id, currentStatus, name) => {
                           alt={branch.name}
                           className="w-12 h-12 rounded-lg object-cover border border-gray-200 shadow-sm"
                           onError={(e) => {
-                            e.target.src = '/default-branch-logo.png';
                             e.target.onerror = null;
                           }}
                         />

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaEye, FaEyeSlash, FaFacebook, FaGoogle } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router"; // Updated to react-router-dom
 import axiosInstance from "../../../hooks/axiosInstance/axiosInstance";
 import useAuth from "../../../hooks/useAuth/useAuth";
@@ -7,7 +7,7 @@ import CustomButton from "../../sharedItems/CustomButton/CustomButton";
 import Loader from "../../sharedItems/Loader/Loader";
 
 const Login = () => {
-  const { loading, user, googleLogin, facebookLogin, logIn } = useAuth();
+  const { loading, user, googleLogin, logIn } = useAuth();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -18,7 +18,6 @@ const Login = () => {
   // Auto redirect if already logged in
   useEffect(() => {
     if (user) {
-      // যদি ইউজার লগইন করা থাকে → সরাসরি ড্যাশবোর্ডে নিয়ে যাও
       navigate("/super/dashboard", { replace: true });
     }
   }, [user, navigate]);
@@ -34,10 +33,10 @@ const handleNormalLogin = async () => {
   }
 
   try {
-    // 1️⃣ Firebase login
+    //  Firebase login
     await logIn(formData?.email, formData?.password);
 
-    // 2️⃣ Backend /login API call
+    //  Backend /login API call
     const res = await axiosInstance.post("/users/login", {
       email: formData?.email,
       password: formData?.password,
@@ -72,32 +71,12 @@ if (res.data.success) {
       const backendRes = await axiosInstance.post("/users/google-login", { idToken });
       if (backendRes.data.success) {
         console.log("✅ Google login success:", backendRes.data.user);
-        navigate("/dashboard"); // Redirect to dashboard
+        navigate("/super/dashboard"); // Redirect to dashboard
       }
     } catch (err) {
       console.error("❌ Google login failed:", err);
       console.error("Error details:", err.code, err.message);
       alert(err.response?.data?.message || err.message || "Google login failed. Please try again.");
-    }
-  };
-
-  // Facebook login
-  const handleFacebookLogin = async () => {
-    try {
-      console.log("Starting Facebook login...");
-      const res = await facebookLogin();
-      console.log("Firebase login success:", res.user);
-      const idToken = await res.user.getIdToken();
-      console.log("Firebase ID token obtained:", idToken);
-      const backendRes = await axiosInstance.post("/users/facebook-login", { idToken });
-      if (backendRes.data.success) {
-        console.log("✅ Facebook login success:", backendRes.data.user);
-        navigate("/dashboard"); // Redirect to dashboard
-      }
-    } catch (err) {
-      console.error("❌ Facebook login failed:", err);
-      console.error("Error details:", err.code, err.message);
-      alert(err.response?.data?.message || err.message || "Facebook login failed. Please try again.");
     }
   };
 
@@ -184,9 +163,9 @@ if (res.data.success) {
 
           {/* Divider */}
           <div className="my-6 flex items-center">
-            <div className="flex-grow h-px bg-gray-300"></div>
+            <div className="grow h-px bg-gray-300"></div>
             <span className="mx-4 text-sm text-gray-500">or continue with</span>
-            <div className="flex-grow h-px bg-gray-300"></div>
+            <div className="grow h-px bg-gray-300"></div>
           </div>
 
           {/* Social Login */}
@@ -197,13 +176,6 @@ if (res.data.success) {
               className="flex cursor-pointer items-center justify-center w-12 h-12 bg-white border border-gray-300 rounded-full hover:bg-gray-100 transition-colors duration-300"
             >
               <FaGoogle size={24} className="text-[#0F5EF6]" />
-            </button>
-            <button
-              type="button"
-              onClick={handleFacebookLogin}
-              className="flex cursor-pointer items-center justify-center w-12 h-12 bg-white border border-gray-300 rounded-full hover:bg-gray-100 transition-colors duration-300"
-            >
-              <FaFacebook size={24} className="text-[#0F5EF6]" />
             </button>
           </div>
 
